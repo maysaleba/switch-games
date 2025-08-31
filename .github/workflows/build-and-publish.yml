@@ -33,10 +33,24 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Set up GCP credentials (if provided)
-        if: ${{ !!secrets.GCP_SERVICE_ACCOUNT_JSON }}
+      # Detect if GCP secret exists
+      - name: Detect GCP secret
+        id: gcp
+        env:
+          GCP_JSON: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}
         run: |
-          echo '${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}' > "$GOOGLE_APPLICATION_CREDENTIALS"
+          if [ -n "$GCP_JSON" ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up GCP credentials (if provided)
+        if: ${{ steps.gcp.outputs.present == 'true' }}
+        env:
+          GCP_JSON: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}
+        run: |
+          printf '%s' "$GCP_JSON" > "$GOOGLE_APPLICATION_CREDENTIALS"
 
       # =========================
       # Parallel region fetches
@@ -172,5 +186,5 @@ jobs:
           fi
 
       - name: Cleanup temp GCP key
-        if: ${{ always() && !!secrets.GCP_SERVICE_ACCOUNT_JSON }}
+        if: ${{ always() && steps.gcp.outputs.present == 'true' }}
         run: rm -f "$GOOGLE_APPLICATION_CREDENTIALS"
