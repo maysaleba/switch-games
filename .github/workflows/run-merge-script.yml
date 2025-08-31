@@ -1,0 +1,53 @@
+name: Nintendo Script Runner
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '51 18 * * *'  # 6:51 AM NZST (18:51 UTC previous day)
+    - cron: '51 21 * * *'  # 9:51 AM NZST (21:51 UTC previous day)
+    - cron: '30 9 * * *'   # 9:30 PM NZST (09:30 UTC same day)
+
+permissions:
+  contents: write  # ✅ Allows GITHUB_TOKEN to push commits
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run script 1 – generate matched_nintendo_games.json
+        run: node us_eu_match.js
+
+      - name: Run script 2 – convert to XLSX
+        run: node generate_converted_report.js
+
+      - name: Upload JSON output
+        uses: actions/upload-artifact@v4
+        with:
+          name: matched_nintendo_games_json
+          path: matched_nintendo_games.json
+
+      - name: Upload XLSX report
+        uses: actions/upload-artifact@v4
+        with:
+          name: converted_report
+          path: converted_report3.xlsx
+
+      - name: Commit updated XLSX to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add converted_report3.xlsx
+          git commit -m "🔄 Auto-update converted_report3.xlsx" || echo "No changes to commit"
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main

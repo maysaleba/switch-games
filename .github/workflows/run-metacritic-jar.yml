@@ -1,0 +1,70 @@
+name: Metacritic JAR Runner
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Nintendo Script Runner"]
+    types: [completed]
+
+jobs:
+  run-jar:
+    # if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo (contains JAR + converted_report3.xlsx)
+        uses: actions/checkout@v3
+
+      - name: Download csvjson.json and csvjson.csv from maysaleba.github.io
+        run: |
+          mkdir -p site/src
+          curl -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
+               -o site/src/csvjson.json \
+               https://raw.githubusercontent.com/maysaleba/maysaleba.github.io/main/src/csvjson.json
+
+          curl -H "Authorization: token ${{ secrets.PERSONAL_ACCESS_TOKEN }}" \
+               -o site/src/csvjson.csv \
+               https://raw.githubusercontent.com/maysaleba/maysaleba.github.io/main/src/csvjson.csv
+
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Create GCP credentials file
+        run: echo "${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}" | base64 -d > gcp_key.json
+
+      - name: Check JSON file content
+        run: |
+          echo "===== gcp_key.json start ====="
+          cat gcp_key.json
+          echo "===== gcp_key.json end ====="
+
+      - name: Run Metacritic enrichment JAR
+        run: java -jar metacritic-enrich-switch-1.0.0.jar
+
+      - name: Commit and push updated csvjson files using sparse checkout
+        run: |
+          mkdir gh-pages
+          cd gh-pages
+
+          git init
+          git remote add origin https://x-access-token:${{ secrets.PERSONAL_ACCESS_TOKEN }}@github.com/maysaleba/maysaleba.github.io.git
+          git config core.sparseCheckout true
+
+          echo "src/csvjson.json" >> .git/info/sparse-checkout
+          echo "src/csvjson.csv"  >> .git/info/sparse-checkout
+
+          git fetch origin main
+          git checkout main
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          cp ../site/src/csvjson.* src/
+
+          git add src/csvjson.*
+          git commit -m "🔁 Auto-update CSVJSON from JAR" || echo "No changes to commit"
+          git pull --rebase origin main
+          git push origin main
