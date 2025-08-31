@@ -34,7 +34,7 @@ jobs:
         run: npm ci
 
       - name: Set up GCP credentials (if provided)
-        if: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON != '' }}
+        if: ${{ !!secrets.GCP_SERVICE_ACCOUNT_JSON }}
         run: |
           echo '${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}' > "$GOOGLE_APPLICATION_CREDENTIALS"
 
@@ -172,5 +172,5 @@ jobs:
           fi
 
       - name: Cleanup temp GCP key
-        if: ${{ always() && secrets.GCP_SERVICE_ACCOUNT_JSON != '' }}
+        if: ${{ always() && !!secrets.GCP_SERVICE_ACCOUNT_JSON }}
         run: rm -f "$GOOGLE_APPLICATION_CREDENTIALS"
