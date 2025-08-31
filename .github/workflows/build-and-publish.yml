@@ -106,11 +106,12 @@ jobs:
         shell: bash
         run: |
           set -e
-          ls -lh || true
+          echo "Files in data/:"
+          ls -lh data || true
           for f in eu_games_enriched.json hk_games_enriched.json jp_games_enriched.json kr_games_enriched.json us_games_enriched.json; do
-            test -f "$f" || { echo "Missing $f"; exit 1; }
+            test -f "data/$f" || { echo "Missing data/$f"; exit 1; }
           done
-          echo "All regional outputs present."
+          echo "All regional outputs present in data/."
 
       # =========================
       # Downstream pipeline
