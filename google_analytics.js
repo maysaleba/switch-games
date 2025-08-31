@@ -11,9 +11,9 @@ const { BetaAnalyticsDataClient } = require('@google-analytics/data');
 const PROPERTY_ID = '272381607';
 
 // Adjust these paths for your machine:
-const CREDENTIALS_JSON_PATH = 'C:\\Users\\maysa\\Desktop\\bggen\\maysalebaph-e5a6a9b41af1.json';
-const JSON_FILE_PATH = 'C:\\Users\\maysa\\Desktop\\switch-games\\csvjson.json';
-const CSV_FILE_PATH = path.join(path.dirname(JSON_FILE_PATH), 'csvjson.csv');
+const CREDENTIALS_JSON_PATH = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+const JSON_FILE_PATH = path.resolve('csvjson.json');
+const CSV_FILE_PATH = path.resolve('csvjson.csv');
 
 // --- helpers ---
 function extractSlug(url) {

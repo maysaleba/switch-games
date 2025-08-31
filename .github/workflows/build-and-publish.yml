@@ -1,0 +1,176 @@
+name: Build & Publish
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '51 18 * * *'  # 6:51 AM NZST (18:51 UTC previous day)
+    - cron: '51 21 * * *'  # 9:51 AM NZST (21:51 UTC previous day)
+    - cron: '30 09 * * *'  # 9:30 PM NZST (09:30 UTC same day)
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    env:
+      NODE_ENV: production
+      GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/.tmp-gcp-key.json
+      WEBSITE_REPO: maysaleba/maysaleba.github.io
+      WEBSITE_DIR: site-out
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Set up GCP credentials (if provided)
+        if: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON != '' }}
+        run: |
+          echo '${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}' > "$GOOGLE_APPLICATION_CREDENTIALS"
+
+      # =========================
+      # Parallel region fetches
+      # =========================
+      - name: Fetch all regions in parallel (pair-wise)
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          run_eu() {
+            echo "=== EU start ==="
+            node fetch_eu.js
+            node fetchProductCodesEU.js
+            echo "=== EU done ==="
+          }
+
+          run_hk() {
+            echo "=== HK start ==="
+            node fetch_hk.js
+            node fetchProductCodesHK.js
+            echo "=== HK done ==="
+          }
+
+          run_jp() {
+            echo "=== JP start ==="
+            node fetch_jp.js
+            node fetchProductCodesJP.js
+            echo "=== JP done ==="
+          }
+
+          run_kr() {
+            echo "=== KR start ==="
+            node fetch_kr.js
+            node fetchProductCodesKR.js
+            echo "=== KR done ==="
+          }
+
+          run_us() {
+            echo "=== US start ==="
+            node fetch_us.js
+            node fetchProductCodesUS.js
+            echo "=== US done ==="
+          }
+
+          run_eu &  PID_EU=$!
+          run_hk &  PID_HK=$!
+          run_jp &  PID_JP=$!
+          run_kr &  PID_KR=$!
+          run_us &  PID_US=$!
+
+          wait $PID_EU $PID_HK $PID_JP $PID_KR $PID_US
+
+      - name: Verify regional outputs exist
+        shell: bash
+        run: |
+          set -e
+          ls -lh || true
+          for f in eu_games_enriched.json hk_games_enriched.json jp_games_enriched.json kr_games_enriched.json us_games_enriched.json; do
+            test -f "$f" || { echo "Missing $f"; exit 1; }
+          done
+          echo "All regional outputs present."
+
+      # =========================
+      # Downstream pipeline
+      # =========================
+      - name: Merge (enriched)
+        run: node merge_enriched.js
+
+      - name: Upload unmatched merge log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: merge-unmatched-log
+          path: logs/merge_unmatched.log
+
+      - name: Get Prices
+        run: node getPrices.js
+
+      - name: Sync & Build csvjson
+        run: node sync_build_csvjson.js
+
+      - name: Google Analytics enrich (popularity / re-sort)
+        run: node google_analytics.js
+
+      # Commit outputs back to this repo
+      - name: Commit outputs to this repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add \
+            eu_games_enriched.json \
+            hk_games_enriched.json \
+            jp_games_enriched.json \
+            kr_games_enriched.json \
+            us_games_enriched.json \
+            merged_enriched.json \
+            merged_enriched_with_prices.json || true
+
+          if ! git diff --cached --quiet; then
+            git commit -m "CI: update enriched & regional outputs [skip ci]"
+            git push
+          else
+            echo "No changes to commit to self repo."
+          fi
+
+      # Publish to website repo (csvjson.json + csvjson.csv)
+      - name: Prepare website payload
+        run: |
+          mkdir -p "$WEBSITE_DIR"
+          cp -f csvjson.json "$WEBSITE_DIR"/
+          cp -f csvjson.csv "$WEBSITE_DIR"/
+
+      - name: Push to website repo (maysaleba.github.io)
+        env:
+          PAT: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        run: |
+          set -e
+          git clone --depth 1 "https://x-access-token:${PAT}@github.com/${WEBSITE_REPO}.git" publish
+          cp -f "${WEBSITE_DIR}/csvjson.json" publish/
+          cp -f "${WEBSITE_DIR}/csvjson.csv" publish/
+
+          cd publish
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add csvjson.json csvjson.csv || true
+
+          if ! git diff --cached --quiet; then
+            git commit -m "CI: update csvjson artifacts"
+            git push origin HEAD
+          else
+            echo "No website changes to publish."
+          fi
+
+      - name: Cleanup temp GCP key
+        if: ${{ always() && secrets.GCP_SERVICE_ACCOUNT_JSON != '' }}
+        run: rm -f "$GOOGLE_APPLICATION_CREDENTIALS"
