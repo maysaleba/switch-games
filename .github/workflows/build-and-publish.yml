@@ -7,6 +7,9 @@ on:
     - cron: '51 21 * * *'  # 9:51 AM NZST (21:51 UTC previous day)
     - cron: '30 09 * * *'  # 9:30 PM NZST (09:30 UTC same day)
 
+permissions:
+  contents: write   # required so we can push to current repo
+
 jobs:
   run-pipeline:
     runs-on: ubuntu-latest
@@ -33,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      # Detect if GCP secret exists (so we don't reference secrets in "if:")
+      # Detect if GCP secret exists
       - name: Detect GCP secret
         id: gcp
         env:
@@ -55,44 +58,16 @@ jobs:
       # =========================
       # Parallel region fetches
       # =========================
-      - name: Fetch all regions in parallel (pair-wise, EU is single)
+      - name: Fetch all regions in parallel
         shell: bash
         run: |
           set -euo pipefail
 
-          run_eu() {
-            echo "=== EU start ==="
-            node fetch_eu.js
-            echo "=== EU done ==="
-          }
-
-          run_hk() {
-            echo "=== HK start ==="
-            node fetch_hk.js
-            node fetchProductCodesHK.js
-            echo "=== HK done ==="
-          }
-
-          run_jp() {
-            echo "=== JP start ==="
-            node fetch_jp.js
-            node fetchProductCodesJP.js
-            echo "=== JP done ==="
-          }
-
-          run_kr() {
-            echo "=== KR start ==="
-            node fetch_kr.js
-            node fetchProductCodesKR.js
-            echo "=== KR done ==="
-          }
-
-          run_us() {
-            echo "=== US start ==="
-            node fetch_us.js
-            node fetchProductCodesUS.js
-            echo "=== US done ==="
-          }
+          run_eu() { echo "=== EU start ==="; node fetch_eu.js; echo "=== EU done ==="; }
+          run_hk() { echo "=== HK start ==="; node fetch_hk.js; node fetchProductCodesHK.js; echo "=== HK done ==="; }
+          run_jp() { echo "=== JP start ==="; node fetch_jp.js; node fetchProductCodesJP.js; echo "=== JP done ==="; }
+          run_kr() { echo "=== KR start ==="; node fetch_kr.js; node fetchProductCodesKR.js; echo "=== KR done ==="; }
+          run_us() { echo "=== US start ==="; node fetch_us.js; node fetchProductCodesUS.js; echo "=== US done ==="; }
 
           run_eu &  PID_EU=$!
           run_hk &  PID_HK=$!
@@ -135,20 +110,28 @@ jobs:
       - name: Google Analytics enrich (popularity / re-sort)
         run: node google_analytics.js
 
-      # Commit outputs back to this repo
+      # =========================
+      # Commit outputs back to THIS repo
+      # =========================
       - name: Commit outputs to this repo
+        shell: bash
         run: |
+          set -e
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+          echo "Sanity check for generated files:"
+          ls -lh data || true
+          ls -lh output || true
+
           git add \
-            eu_games_enriched.json \
-            hk_games_enriched.json \
-            jp_games_enriched.json \
-            kr_games_enriched.json \
-            us_games_enriched.json \
-            merged_enriched.json \
-            merged_enriched_with_prices.json || true
+            data/eu_games_enriched.json \
+            data/hk_games_enriched.json \
+            data/jp_games_enriched.json \
+            data/kr_games_enriched.json \
+            data/us_games_enriched.json \
+            output/merged_enriched.json \
+            output/merged_enriched_with_prices.json
 
           if ! git diff --cached --quiet; then
             git commit -m "CI: update enriched & regional outputs [skip ci]"
@@ -157,26 +140,27 @@ jobs:
             echo "No changes to commit to self repo."
           fi
 
-      # Publish to website repo (csvjson.json + csvjson.csv)
-      - name: Prepare website payload
-        run: |
-          mkdir -p "$WEBSITE_DIR"
-          cp -f csvjson.json "$WEBSITE_DIR"/
-          cp -f csvjson.csv "$WEBSITE_DIR"/
-
+      # =========================
+      # Publish csvjson.json + csvjson.csv to website repo
+      # =========================
       - name: Push to website repo (maysaleba.github.io)
         env:
           PAT: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        shell: bash
         run: |
           set -e
+          : "${PAT:?PERSONAL_ACCESS_TOKEN secret is required to push to website repo}"
+
+          # Sanity check
+          ls -lh csvjson.json csvjson.csv
+
           git clone --depth 1 "https://x-access-token:${PAT}@github.com/${WEBSITE_REPO}.git" publish
-          cp -f "${WEBSITE_DIR}/csvjson.json" publish/
-          cp -f "${WEBSITE_DIR}/csvjson.csv" publish/
+          cp -f csvjson.json csvjson.csv publish/
 
           cd publish
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add csvjson.json csvjson.csv || true
+          git add csvjson.json csvjson.csv
 
           if ! git diff --cached --quiet; then
             git commit -m "CI: update csvjson artifacts"
