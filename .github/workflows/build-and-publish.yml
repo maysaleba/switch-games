@@ -19,7 +19,6 @@ jobs:
       NODE_ENV: production
       GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/.tmp-gcp-key.json
       WEBSITE_REPO: maysaleba/maysaleba.github.io
-      WEBSITE_DIR: site-out
 
     steps:
       - name: Checkout
@@ -141,7 +140,7 @@ jobs:
           fi
 
       # =========================
-      # Publish csvjson.json + csvjson.csv to website repo
+      # Publish csvjson.json + csvjson.csv to website repo (under src/)
       # =========================
       - name: Push to website repo (maysaleba.github.io)
         env:
@@ -155,15 +154,17 @@ jobs:
           ls -lh csvjson.json csvjson.csv
 
           git clone --depth 1 "https://x-access-token:${PAT}@github.com/${WEBSITE_REPO}.git" publish
-          cp -f csvjson.json csvjson.csv publish/
+
+          mkdir -p publish/src
+          cp -f csvjson.json csvjson.csv publish/src/
 
           cd publish
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add csvjson.json csvjson.csv
+          git add src/csvjson.json src/csvjson.csv
 
           if ! git diff --cached --quiet; then
-            git commit -m "CI: update csvjson artifacts"
+            git commit -m "CI: update csvjson artifacts under src/"
             git push origin HEAD
           else
             echo "No website changes to publish."
