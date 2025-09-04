@@ -4,6 +4,16 @@ const path = require('path');
 const axios = require('axios');
 
 // ---- helpers ----
+// helper at top (same place as keyOf, delay, etc.)
+function isGenericUrlKey(uk, url) {
+  if (!uk && !url) return true;
+  const u = (uk || '').toLowerCase().trim();
+  const badKeys = new Set(['switch','games','products','nintendo','eshop','store']);
+  if (u && (u.length < 8 || badKeys.has(u))) return true;
+  if (url && /\/store\/products\/switch\/?$/i.test(url)) return true;
+  return false;
+}
+
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 async function safePost(url, payload, headers, retries = 3) {
@@ -103,7 +113,9 @@ async function fetchUSGamesOnSale() {
       publisher: h.softwarePublisher || '',
       dlcType: h.dlcType || '',
       playerCount: h.playerCount || ''
-    }));
+    }))
+    // ⬇️ filter out generic rows
+    .filter(e => !isGenericUrlKey(e.urlKey, e.url));
 
   console.log(`▶️ Completed US games fetch. Total unique: ${unique.length}`);
   return unique;
