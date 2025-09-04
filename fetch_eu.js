@@ -68,6 +68,7 @@ function mapDoc(doc) {
 
   // Slugify title + platform
   const slugBase = (doc?.title || '').trim().toLowerCase()
+    .replace(/'/g, '')             // drop apostrophes entirely
     .replace(/[^a-z0-9]+/g, '-')   // replace non-alphanumeric with hyphen
     .replace(/^-+|-+$/g, '');      // trim leading/trailing hyphens
 
