@@ -61,13 +61,25 @@ function nowIso() { return new Date().toISOString(); }
 function mapDoc(doc) {
   const nsuid = euKey(doc) || '';
 
+function normalizeTitleForSlug(s) {
+  return (s || '')
+    .normalize('NFKD')                 // decompose accents + full-width forms
+    .replace(/[\u0300-\u036f]/g, '')   // strip diacritics
+    .replace(/[\uff01-\uff5e]/g, c =>  // full-width ASCII → half-width
+      String.fromCharCode(c.charCodeAt(0) - 0xFEE0)
+    )
+    .replace(/’/g, "'")                // curly → straight apostrophe
+    .replace(/[\u200B-\u200D\uFEFF]/g, '') // remove zero-width chars
+    .toLowerCase();
+}
+  
   // Normalize platform
   const platformName = Array.isArray(doc?.system_names_txt) && doc.system_names_txt.length > 0
     ? doc.system_names_txt[0]
     : 'Nintendo Switch';
 
-  // Slugify title + platform
-  const slugBase = (doc?.title || '').trim().toLowerCase()
+  // Slugify title (Unicode-safe)
+  const slugBase = normalizeTitleForSlug(doc?.title || '').trim()
     .replace(/'/g, '')             // drop apostrophes entirely
     .replace(/[^a-z0-9]+/g, '-')   // replace non-alphanumeric with hyphen
     .replace(/^-+|-+$/g, '');      // trim leading/trailing hyphens
