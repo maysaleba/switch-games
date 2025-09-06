@@ -1,18 +1,12 @@
 #!/usr/bin/env node
 /**
- * KR enrichment (MASTER + SNAPSHOT, non-destructive merge)
- *
- * - MASTER (union): keeps everything ever seen; never drops rows when base changes.
- * - CURRENT snapshot: only items present in today's base (active_in_base=true).
- * - Non-destructive merge: blank/empty values from base cannot overwrite
- *   previously enriched non-empty values (e.g., platform, productCode_kr).
- *
- * Reads:
- *   data/kr_games.json                  <-- "current view" (e.g., sale-only)
- *   data/kr_games_enriched.json         <-- MASTER (if exists)
- * Writes:
- *   data/kr_games_enriched.json         <-- MASTER (union, never drops)
- *   data/kr_games_enriched_current.json <-- SNAPSHOT (active only)
+ * KR enrichment (single-pass: code + platform + supportLanguage)
+ * - MASTER union (never drops)
+ * - CURRENT snapshot: active_in_base = true
+ * - Non-destructive merge; sentinels preserved:
+ *   - productCode_kr === "" stays "" (never reprocess)
+ *   - supportLanguage === "" stays "" (processed, NO English)
+ * - supportLanguage only set if productCode_kr is non-empty
  */
 
 const fs = require("fs");
@@ -27,15 +21,16 @@ const OUT_CURRENT = "data/kr_games_enriched_current.json";
 
 // ---------- CONFIG ----------
 const CONFIG = {
-  concurrency: 4,
+  concurrency: 2,           // gentler than 4
   baseDelayMs: 900,
   retries: 2,
-  rps: 0.8,                 // token-bucket average RPS
-  cooldownEvery: 40,        // cooldown/warmup every N requests
+  rps: 0.8,
+  cooldownEvery: 40,
   cooldownMsRange: [45_000, 90_000],
+  requestTimeoutMs: 20_000,
 };
 
-// ---------- HTTP BOILERPLATE ----------
+// ---------- HTTP ----------
 const KR_HOST = "store.nintendo.co.kr";
 const UA =
   "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36";
@@ -77,65 +72,49 @@ class Limiter {
 const limiter = new Limiter({ ratePerSec: Math.max(0.2, CONFIG.rps || 0.8), burst: 2 });
 
 // ---------- Cookie jar & warmup ----------
-const cookieJar = new Map(); // name -> value
+const cookieJar = new Map();
 function setCookiesFrom(res) {
   const set = res.headers["set-cookie"];
   if (!set) return;
-  const arr = Array.isArray(set) ? set : [set];
-  for (const line of arr) {
+  for (const line of (Array.isArray(set) ? set : [set])) {
     const m = /^([^=;,\s]+)=([^;]*)/.exec(line);
     if (m) cookieJar.set(m[1], m[2]);
   }
 }
 function getCookieHeader() {
-  if (!cookieJar.size) return undefined;
-  return [...cookieJar.entries()].map(([k, v]) => `${k}=${v}`).join("; ");
+  return cookieJar.size ? [...cookieJar.entries()].map(([k, v]) => `${k}=${v}`).join("; ") : undefined;
 }
 function makeHeaders(extra = {}) {
   const headers = {
     "User-Agent": UA,
-    "Accept":
-      "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
     "Accept-Language": "ko-KR,ko;q=0.9,en;q=0.8",
     "Cache-Control": "no-cache",
     "Pragma": "no-cache",
     "Upgrade-Insecure-Requests": "1",
-    "Sec-Fetch-Site": "same-origin",
-    "Sec-Fetch-Mode": "navigate",
-    "Sec-Fetch-User": "?1",
-    "Sec-Fetch-Dest": "document",
-    "sec-ch-ua": `"Chromium";v="124", "Not-A.Brand";v="99"`,
-    "sec-ch-ua-mobile": "?0",
-    "sec-ch-ua-platform": `"Windows"`,
     "Referer": "https://store.nintendo.co.kr/",
   };
   const cookie = getCookieHeader();
-  if (cookie) headers["Cookie"] = cookie;
-  Object.assign(headers, extra);
-  return headers;
+  if (cookie) headers.Cookie = cookie;
+  return Object.assign(headers, extra);
 }
 async function warmup() {
   await new Promise((resolve, reject) => {
-    https
+    const req = https
       .get(`https://${KR_HOST}/`, { headers: makeHeaders(), agent: httpsAgent }, (res) => {
         setCookiesFrom(res);
         res.on("data", () => {});
         res.on("end", resolve);
       })
       .on("error", reject);
+    req.setTimeout(CONFIG.requestTimeoutMs, () => req.destroy(new Error(`Warmup timeout ${CONFIG.requestTimeoutMs}ms`)));
   });
 }
 
-// ---------- Low-level fetchers ----------
-const stats = { started: Date.now(), totalRequests: 0, totalAttempts: 0, ok: 0 };
+// ---------- Low-level fetch ----------
+const stats = { started: Date.now(), totalAttempts: 0 };
 
-async function fetchText(
-  url,
-  attempt = 1,
-  maxAttempts = 2,
-  maxRedirects = 5,
-  headers = makeHeaders()
-) {
+async function fetchText(url, attempt = 1, maxAttempts = 2, maxRedirects = 5, headers = makeHeaders()) {
   await limiter.take();
   return new Promise((resolve, reject) => {
     const req = https.get(url, { headers, agent: httpsAgent }, (res) => {
@@ -155,10 +134,9 @@ async function fetchText(
       res.on("end", async () => {
         const looksDenied = /Access Denied|Reference #[0-9a-f]+/i.test(html);
         if ((code === 403 || code === 503 || looksDenied) && attempt < maxAttempts) {
-          await sleep(attempt + 1 < maxAttempts ? jitter(1500 * attempt) : jitter(45_000, 0.5));
-          try {
-            await maybeCooldownAndRefresh();
-          } catch {}
+          const back = attempt + 1 < maxAttempts ? jitter(1500 * attempt) : jitter(45_000, 0.5);
+          await sleep(back);
+          try { await maybeCooldownAndRefresh(); } catch {}
           const ref = randomReferer();
           return resolve(fetchText(url, attempt + 1, maxAttempts, maxRedirects, makeHeaders({ Referer: ref })));
         }
@@ -170,12 +148,13 @@ async function fetchText(
         resolve({ html, status: code });
       });
     });
+    req.setTimeout(CONFIG.requestTimeoutMs, () => req.destroy(new Error(`Timeout ${CONFIG.requestTimeoutMs}ms :: ${url}`)));
     req.on("error", reject);
   });
 }
 
 async function maybeCooldownAndRefresh() {
-  if (stats.totalRequests > 0 && stats.totalRequests % CONFIG.cooldownEvery === 0) {
+  if (stats.totalAttempts > 0 && stats.totalAttempts % CONFIG.cooldownEvery === 0) {
     const [a, b] = CONFIG.cooldownMsRange;
     const wait = Math.floor(Math.random() * (b - a)) + a;
     console.log(`[cooldown] Sleeping ${wait}ms & refreshing cookies…`);
@@ -187,86 +166,76 @@ async function maybeCooldownAndRefresh() {
 // ---------- Extractors ----------
 function extractHACAnywhere(text) {
   if (!text) return null;
-  const re = /\bHAC[0-9A-Z\-]{4,}\b/i; // HAC-XXXX or HACXXXX…
+  const re = /\bHAC[0-9A-Z\-]{4,}\b/i;
   const m = String(text).match(re);
   return m ? m[0].toUpperCase() : null;
 }
-
 function extractProductCodeFromHtml(html) {
-  // itemprop="sku"
   {
-    const m1 = html.match(
-      /<meta[^>]+itemprop=["']sku["'][^>]+content=["']([^"']+)["']/i
-    );
+    const m1 = html.match(/<meta[^>]+itemprop=["']sku["'][^>]+content=["']([^"']+)["']/i);
     if (m1 && m1[1]) return m1[1].trim();
     const m2 = html.match(/itemprop=["']sku["'][^>]*>\s*([^<>\s][^<]*)\s*</i);
     if (m2 && m2[1]) return m2[1].trim();
   }
-  // Magento-ish: .product.attribute.sku .value
   {
-    const m = html.match(
-      /class=["'][^"']*\bproduct\b[^"']*\battribute\b[^"']*\bsku\b[^"']*["'][\s\S]*?class=["'][^"']*\bvalue\b[^"']*["'][^>]*>\s*([^<>\s][^<]*)\s*</i
-    );
+    const m = html.match(/class=["'][^"']*\bproduct\b[^"']*\battribute\b[^"']*\bsku\b[^"']*["'][\s\S]*?class=["'][^"']*\bvalue\b[^"']*["'][^>]*>\s*([^<>\s][^<]*)\s*</i);
     if (m && m[1]) return m[1].trim();
   }
-  // Label block
   {
     const m = html.match(/>\s*SKU\s*<\/h2>[\s\S]*?([A-Z0-9\-\_]{4,})/i);
     if (m && m[1]) return m[1].trim();
   }
-  // Global HAC scan as last resort
-  const hac = extractHACAnywhere(html);
-  return hac || null;
+  return extractHACAnywhere(html);
 }
-
-// Try to detect platform from attribute blocks or text
 function extractPlatformFromHtml(html) {
-  if (!html) return null;
-
-  const block = html.match(
-    /<div[^>]*class=["'][^"']*\bproduct-attribute\b[^"']*\blabel_platform_attr\b[^"']*["'][\s\S]*?<div[^>]*class=["'][^"']*\bproduct-attribute-val\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i
-  );
+  const block = html.match(/<div[^>]*class=["'][^"']*\bproduct-attribute\b[^"']*\blabel_platform_attr\b[^"']*["'][\s\S]*?<div[^>]*class=["'][^"']*\bproduct-attribute-val\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i);
   if (block && block[1]) {
     const raw = block[1].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
     if (/Nintendo Switch 2/i.test(raw)) return "Nintendo Switch 2";
     if (/Nintendo Switch/i.test(raw)) return "Nintendo Switch";
   }
-
   if (/Nintendo Switch 2/i.test(html)) return "Nintendo Switch 2";
   if (/Nintendo Switch/i.test(html)) return "Nintendo Switch";
   return null;
 }
-
-// ======= urlKey helpers =======
-function slugifyTitle(s) {
-  return String(s || "")
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+function extractSupportedLanguagesText(html) {
+  const block =
+    html.match(/<div[^>]*class=["'][^"']*\bproduct-attribute\b[^"']*\blabel_supported_languages_attr\b[^"']*["'][\s\S]*?<div[^>]*class=["'][^"']*\bproduct-attribute-val\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i)
+    || html.match(/supported[_\- ]languages[\s\S]*?class=["'][^"']*\bproduct-attribute-val\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i);
+  if (block && block[1]) return block[1].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim() || null;
+  const near = html.match(/(지원\s*언어|언어|지원언어|Supported\s*Languages?)[:：]?\s*([\s\S]{0,240})<\/(div|li|p|td)>/i);
+  if (near) return near[0].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim() || null;
+  return null;
 }
-function platformKeyFromName(name) {
-  if (name === "Nintendo Switch 2") return "switch-2";
-  return "switch"; // default & "Nintendo Switch"
-}
-function buildUrlKey(title, platform) {
-  const slug = slugifyTitle(title);
-  const pkey = platformKeyFromName(platform);
-  return slug ? `${slug}-${pkey}` : "";
+function textHasEnglishLanguageKR(txt) {
+  if (!txt) return false;
+  return /영어/.test(txt) || /\benglish\b/i.test(txt) || /\ben\b(?![a-z])/i.test(txt);
 }
 
-// ---------- Concurrency helper ----------
+// ---------- I/O & merge helpers ----------
+function loadJsonSafe(p, def) { try { return JSON.parse(fs.readFileSync(p, "utf8")); } catch { return def; } }
+function saveJsonPretty(p, obj) { ensureDir(p); fs.writeFileSync(p, JSON.stringify(obj, null, 2), "utf8"); }
+
+const nowIso = () => new Date().toISOString();
+const isNonEmpty = (v) => typeof v === "string" ? v.trim() !== "" : (v != null);
+function pick(a, b) { const sa = (a ?? "").toString().trim(); const sb = (b ?? "").toString().trim(); return sa ? a : (sb ? b : a); }
+function pickSupportLanguage(baseVal, priorVal) {
+  if (typeof baseVal === "string" && baseVal.trim() !== "") return baseVal;
+  if (baseVal === "") return "";
+  if (priorVal === "") return "";
+  if (priorVal !== undefined) return priorVal;
+  return baseVal;
+}
+
+// ---------- Concurrency ----------
 async function mapWithConcurrency(items, limit, fn, baseDelayMs = 0) {
   const results = new Array(items.length);
-  let idx = 0,
-    inflight = 0;
-
+  let idx = 0, inflight = 0;
   return new Promise((resolve) => {
     const kick = () => {
       if (idx >= items.length && inflight === 0) return resolve(results);
       while (inflight < limit && idx < items.length) {
-        const i = idx++;
-        inflight++;
+        const i = idx++; inflight++;
         (async () => {
           try {
             if (baseDelayMs) await sleep(jitter(baseDelayMs, 0.8));
@@ -274,8 +243,7 @@ async function mapWithConcurrency(items, limit, fn, baseDelayMs = 0) {
           } catch (e) {
             results[i] = { error: String(e) };
           } finally {
-            inflight--;
-            kick();
+            inflight--; kick();
           }
         })();
       }
@@ -284,76 +252,39 @@ async function mapWithConcurrency(items, limit, fn, baseDelayMs = 0) {
   });
 }
 
-// ---------- I/O ----------
-function loadJsonSafe(p, def) {
-  try {
-    return JSON.parse(fs.readFileSync(p, "utf8"));
-  } catch {
-    return def;
-  }
-}
-function saveJsonPretty(p, obj) {
-  ensureDir(p);
-  fs.writeFileSync(p, JSON.stringify(obj, null, 2), "utf8");
-}
-
-// ---------- Fetchers ----------
-async function getProductCodeForNsuid(nsuid) {
+// ---------- Single-pass fetcher ----------
+async function getAllDetailsForNsuid(nsuid) {
   const url = `https://${KR_HOST}/${encodeURIComponent(nsuid)}`;
   let lastErr = null;
-
   for (let attempt = 0; attempt <= Math.max(1, CONFIG.retries); attempt++) {
     try {
       await sleep(jitter(120 + attempt * 40, 0.7));
-      const headers = makeHeaders({ Referer: randomReferer() });
       stats.totalAttempts++;
+      const headers = makeHeaders({ Referer: randomReferer() });
       const { html } = await fetchText(url, 1, 3, 5, headers);
-      stats.totalRequests++;
 
       const code = extractProductCodeFromHtml(html);
       const platform = extractPlatformFromHtml(html);
-      stats.ok++;
+      const langTxt = extractSupportedLanguagesText(html);
+      const hasEN = textHasEnglishLanguageKR(langTxt || "");
+      const supportLanguage = hasEN ? "en" : "";
 
-      if (code) return { nsuid, url, productCode: code, platform, result: "FOUND" };
-      return { nsuid, url, productCode: "", platform, result: "NO_CODE" }; // fetched OK but none visible
+      return {
+        nsuid, url,
+        productCode: code ?? null,
+        platform: platform ?? null,
+        supportLanguage,
+        result: "OK",
+      };
     } catch (e) {
       lastErr = e;
       if (e && /HTTP 404/.test(String(e))) {
-        return { nsuid, url, productCode: "", platform: null, result: "NOT_FOUND" };
+        return { nsuid, url, productCode: "", platform: null, supportLanguage: null, result: "NOT_FOUND" };
       }
       await sleep(Math.min(20_000, 1500 * Math.pow(2, attempt)) + Math.floor(Math.random() * 500));
-      if (attempt === Math.max(1, CONFIG.retries)) {
-        try {
-          await maybeCooldownAndRefresh();
-        } catch {}
-      }
     }
   }
-  return {
-    nsuid,
-    url: `https://${KR_HOST}/${encodeURIComponent(nsuid)}`,
-    productCode: null,
-    platform: null,
-    result: "ERROR",
-    error: String(lastErr),
-  };
-}
-
-// Platform-only fetcher (when code is cached but platform is missing)
-async function getPlatformForNsuid(nsuid) {
-  const url = `https://${KR_HOST}/${encodeURIComponent(nsuid)}`;
-  try {
-    await sleep(jitter(120, 0.7));
-    const headers = makeHeaders({ Referer: randomReferer() });
-    stats.totalAttempts++;
-    const { html } = await fetchText(url, 1, 3, 5, headers);
-    stats.totalRequests++;
-    const platform = extractPlatformFromHtml(html);
-    stats.ok++;
-    return { nsuid, url, platform, result: platform ? "FOUND" : "NO_PLATFORM" };
-  } catch (e) {
-    return { nsuid, url, platform: null, result: "ERROR", error: String(e) };
-  }
+  return { nsuid, url: `https://${KR_HOST}/${encodeURIComponent(nsuid)}`, productCode: null, platform: null, supportLanguage: null, result: "ERROR", error: String(lastErr) };
 }
 
 // ---------- MAIN ----------
@@ -361,9 +292,9 @@ async function getPlatformForNsuid(nsuid) {
   ensureDir(OUT_MASTER);
   await warmup();
 
-  const nowIso = new Date().toISOString();
+  const now = nowIso();
 
-  // Load current base (may be sale-only or a rebuild)
+  // Load base/master
   const baseGames = loadJsonSafe(IN_PATH, []);
   const inBase = new Map();
   for (const g of Array.isArray(baseGames) ? baseGames : []) {
@@ -371,8 +302,6 @@ async function getPlatformForNsuid(nsuid) {
     if (!id) continue;
     inBase.set(id, g);
   }
-
-  // Load existing MASTER
   const existingMaster = loadJsonSafe(OUT_MASTER, []);
   const byNsuid = new Map();
   for (const g of Array.isArray(existingMaster) ? existingMaster : []) {
@@ -380,41 +309,23 @@ async function getPlatformForNsuid(nsuid) {
     if (id) byNsuid.set(id, g);
   }
 
-  // Helper: prefer non-empty a; else non-empty b; else a
-  const pick = (a, b) => {
-    const sa = (a ?? "").toString().trim();
-    const sb = (b ?? "").toString().trim();
-    return sa ? a : (sb ? b : a);
-  };
-
-  // UNION: base ∪ existing  (non-destructive merge)
+  // Union + merge
   const unionIds = new Set([...inBase.keys(), ...byNsuid.keys()]);
   const working = [];
   for (const id of unionIds) {
     const base = inBase.get(id) || {};
     const prior = byNsuid.get(id) || {};
-
-    // Start from prior, then overlay "safe" base fields
     let merged = { ...prior };
 
-    // Always prefer latest title/url from base if present
-    if ((base.title || "").trim()) merged.title = base.title;
-    if ((base.url || "").trim()) merged.url = base.url;
+    if (isNonEmpty(base.title)) merged.title = base.title;
+    if (isNonEmpty(base.url))   merged.url   = base.url;
 
-    // Carry over identifiers
     merged.nsuid_kr = pick(base.nsuid_kr, pick(merged.nsuid_kr, base.nsuid || base.nsuid_txt || prior.nsuid || prior.nsuid_txt));
 
-    // Master bookkeeping
     merged.active_in_base = inBase.has(id);
-    merged.first_seen_at = merged.first_seen_at || prior.first_seen_at || nowIso;
-    if (merged.active_in_base) {
-      merged.last_seen_at = nowIso;
-    } else {
-      merged.last_seen_at = merged.last_seen_at || nowIso;
-    }
+    merged.first_seen_at  = merged.first_seen_at || prior.first_seen_at || now;
+    merged.last_seen_at   = merged.active_in_base ? now : (merged.last_seen_at || now);
 
-    // Non-destructive for enriched fields: don't let blank base wipe master
-    // If you also track these in base and want them to update when non-empty, allow it via pick(base, prior)
     merged.productCode_kr = pick(base.productCode_kr, merged.productCode_kr);
     merged.platform       = pick(base.platform,       merged.platform);
     merged.releaseDate    = pick(base.releaseDate,    merged.releaseDate);
@@ -427,169 +338,108 @@ async function getPlatformForNsuid(nsuid) {
                               ? base.genres
                               : (Array.isArray(merged.genres) ? merged.genres : []);
 
-    // Keep urlKey in sync when we have title+platform
-    const titleForKey = merged.title || "";
-    const platForKey  = (merged.platform && String(merged.platform).trim()) ? merged.platform : "Nintendo Switch";
-    if (titleForKey) merged.urlKey = buildUrlKey(titleForKey, platForKey);
+    merged.supportLanguage = pickSupportLanguage(base.supportLanguage, merged.supportLanguage);
 
     working.push(merged);
   }
 
-  // Decide what to fetch:
-  // A) product code pass: ONLY for active items that lack a confirmed code
-  const toProcessCode = working.filter((g) => {
+  // Build single processing list (ACTIVE ONLY)
+  const toProcess = working.filter((g) => {
     if (!g.active_in_base) return false;
     const id = g && (g.nsuid_kr || g.nsuid || g.nsuid_txt);
     if (!id) return false;
-    const code = g.productCode_kr;
-    if (code === "") return false;                               // explicit prior miss
-    if (typeof code === "string" && code.trim()) return false;   // already have code
-    return true; // undefined or null → process (null means retry)
-  });
 
-  // B) platform-only pass: ONLY for active items with code present but platform missing/empty
-  const toProcessPlatformOnly = working.filter((g) => {
-    if (!g.active_in_base) return false;
     const code = g.productCode_kr;
-    const hasCode = typeof code === "string" && code.trim().length > 0;
-    const platMissing = !g.platform || String(g.platform).trim() === "";
-    return hasCode && platMissing;
+    const codeMissing = !(typeof code === "string" && code.trim() !== "") && code !== "";
+    const platformMissing = !g.platform || String(g.platform).trim() === "";
+    const langUnset = g.supportLanguage === undefined || g.supportLanguage === null;
+
+    if (code === "") return false; // explicit sentinel → skip
+
+    return codeMissing || platformMissing || langUnset;
   });
 
   const activeCount = [...inBase.keys()].length;
-  console.log(
-    `[store.kr MASTER] union=${working.length} active=${activeCount} codeFetch=${toProcessCode.length} platOnly=${toProcessPlatformOnly.length}`
-  );
-  console.log({
-    union: working.length,
-    active: activeCount,
-    codeFetch: toProcessCode.length,
-    platOnly: toProcessPlatformOnly.length,
-    sanity: toProcessCode.length + toProcessPlatformOnly.length === activeCount,
-  });
+  const codeFetchCount = toProcess.filter(g =>
+    !(typeof g.productCode_kr === "string" && g.productCode_kr.trim() !== "") && g.productCode_kr !== ""
+  ).length;
+  const platMissingCount = toProcess.filter(g => !g.platform || String(g.platform).trim() === "").length;
+  const langUnsetCount = toProcess.filter(g => g.supportLanguage === undefined || g.supportLanguage === null).length;
 
-  // Index for in-place updates + periodic saves
+  console.log(
+    `[store.hk MASTER] union=${working.length} active=${activeCount} ` +
+    `toProcess=${toProcess.length} codeMissing=${codeFetchCount} ` +
+    `platMissing=${platMissingCount} langUnset=${langUnsetCount}`
+  );
+
+
   const idxByNsuid = new Map();
   for (let i = 0; i < working.length; i++) {
     const id = String(working[i].nsuid_kr || working[i].nsuid || working[i].nsuid_txt || "");
     if (id) idxByNsuid.set(id, i);
   }
 
-  let processed = 0,
-    found = 0,
-    markedEmpty = 0,
-    markedNull = 0;
-  let platFilledFromCodeFetch = 0;
-  let platOnlyFound = 0,
-    platOnlyMiss = 0;
+  let done = 0, foundCode = 0, noCode = 0, errors = 0, langEn = 0, langNoEn = 0, platFill = 0;
 
-  // Pass 1: fetch productCode_kr (also fills platform if we saw it)
   await mapWithConcurrency(
-    toProcessCode,
+    toProcess,
     Math.max(1, CONFIG.concurrency),
     async (game) => {
       const nsuid = String(game.nsuid_kr || game.nsuid || game.nsuid_txt);
-      const res = await getProductCodeForNsuid(nsuid);
-
-      if (res.result === "FOUND") {
-        found++;
-        console.log(`[OK] ${nsuid} → ${res.productCode}`);
-      } else if (res.result === "NO_CODE" || res.result === "NOT_FOUND") {
-        markedEmpty++;
-        console.log(`[MISS] ${nsuid} → "" (${res.result})`);
-      } else {
-        markedNull++;
-        console.warn(`[WARN] ${nsuid} → null (${res.error || res.result})`);
-      }
+      const res = await getAllDetailsForNsuid(nsuid);
 
       const i = idxByNsuid.get(nsuid);
       if (i != null) {
-        // update productCode and platform (non-destructive already handled in merge)
-        working[i].productCode_kr = res.productCode; // string | "" | null
-        if (!working[i].platform && res.platform) {
-          working[i].platform = res.platform;
-          platFilledFromCodeFetch++;
+        const row = working[i];
+
+        if (res.result === "NOT_FOUND") {
+          row.productCode_kr = "";
+          noCode++;
+          console.log(`[MISS] ${nsuid} → "" (404/Not found)`);
+        } else if (res.result === "OK") {
+          if (res.productCode) {
+            if (!row.productCode_kr || (row.productCode_kr == null)) {
+              row.productCode_kr = res.productCode;
+              foundCode++;
+              console.log(`[OK] ${nsuid} → ${res.productCode}`);
+            }
+          } else if (row.productCode_kr == null) {
+            row.productCode_kr = null;
+          }
+
+          if (!row.platform && res.platform) {
+            row.platform = res.platform;
+            platFill++;
+            console.log(`[PLATFORM] ${nsuid} → ${res.platform}`);
+          }
+
+          const codeNow = row.productCode_kr || res.productCode;
+          const hasCodeNow = typeof codeNow === "string" && codeNow.trim() !== "";
+          if ((row.supportLanguage === undefined || row.supportLanguage === null) && hasCodeNow) {
+            if (res.supportLanguage === "en") { row.supportLanguage = "en"; langEn++; console.log(`[LANG] ${nsuid} → en`); }
+            else if (res.supportLanguage === "") { row.supportLanguage = ""; langNoEn++; console.log(`[LANG] ${nsuid} → (no English)`); }
+          }
+
+        } else {
+          errors++;
+          console.warn(`[WARN] ${nsuid} → (error: ${res.error || res.result})`);
         }
 
-        // set urlKey when we have a title and platform
-        const titleForKey = working[i].title || game.title || "";
-        const platForKey = working[i].platform || res.platform || "Nintendo Switch";
-        if (titleForKey) {
-          working[i].urlKey = buildUrlKey(titleForKey, platForKey);
-        }
-
-        working[i].last_checked_at = new Date().toISOString();
-      }
-
-      processed++;
-      if (processed % 10 === 0 || processed === toProcessCode.length) {
-        saveJsonPretty(OUT_MASTER, working);
+        row.last_checked_at = nowIso();
+        if (++done % 10 === 0 || done === toProcess.length) saveJsonPretty(OUT_MASTER, working);
       }
     },
     CONFIG.baseDelayMs
   );
 
-  // Pass 2: platform-only fill where productCode_kr is cached
-  await mapWithConcurrency(
-    toProcessPlatformOnly,
-    Math.max(1, CONFIG.concurrency),
-    async (game) => {
-      const nsuid = String(game.nsuid_kr || game.nsuid || game.nsuid_txt);
-      const res = await getPlatformForNsuid(nsuid);
-
-      const i = idxByNsuid.get(nsuid);
-      if (i != null && res.platform) {
-        working[i].platform = res.platform;
-        platOnlyFound++;
-        console.log(`[PLATFORM] ${nsuid} → ${res.platform}`);
-
-        // (re)build urlKey now that platform is known
-        const titleForKey = working[i].title || game.title || "";
-        const platForKey = working[i].platform || res.platform || "Nintendo Switch";
-        if (titleForKey) {
-          working[i].urlKey = buildUrlKey(titleForKey, platForKey);
-        }
-      } else if (i != null) {
-        platOnlyMiss++;
-        console.log(`[PLATFORM] ${nsuid} → (not found)`);
-      }
-
-      if (
-        (platOnlyFound + platOnlyMiss) % 10 === 0 ||
-        platOnlyFound + platOnlyMiss === toProcessPlatformOnly.length
-      ) {
-        saveJsonPretty(OUT_MASTER, working);
-      }
-
-      if (i != null) {
-        working[i].last_checked_at = new Date().toISOString();
-      }
-    },
-    CONFIG.baseDelayMs
-  );
-
-  // Final sweep: ensure urlKey exists for all entries
-  for (let i = 0; i < working.length; i++) {
-    const t = working[i].title || "";
-    if (!t) continue;
-    const p = working[i].platform || "Nintendo Switch";
-    const desired = buildUrlKey(t, p);
-    if (desired && working[i].urlKey !== desired) {
-      working[i].urlKey = desired;
-    }
-  }
-
-  // Save MASTER (union)
   saveJsonPretty(OUT_MASTER, working);
-
-  // Save CURRENT snapshot (only active items)
   const current = working.filter((g) => g.active_in_base);
   saveJsonPretty(OUT_CURRENT, current);
 
   const secs = ((Date.now() - stats.started) / 1000).toFixed(1);
   console.log(
-    `Done in ${secs}s. CodeProcessed=${processed}, FOUND=${found}, EMPTY="${markedEmpty}", NULL=${markedNull}. ` +
-      `PlatformFilledFromCodeFetch=${platFilledFromCodeFetch}, PlatformOnly FOUND=${platOnlyFound}, MISS=${platOnlyMiss}. ` +
-      `Master: ${OUT_MASTER} | Current: ${OUT_CURRENT}`
+    `Done in ${secs}s. CodeOK=${foundCode}, CodeMISS="${noCode}", ERR=${errors}. ` +
+    `PlatformFilled=${platFill}, Lang EN=${langEn}, Lang NoEN=${langNoEn}. ` +
+    `Master: ${OUT_MASTER} | Current: ${OUT_CURRENT}`
   );
 })();

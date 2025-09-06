@@ -12,8 +12,8 @@ const axios = require('axios').default;
 const cheerio = require('cheerio');
 
 // ---- CONFIG ----
-//const BASE = "https://store.nintendo.com.hk/digital-games/recent-releases?product_list_order=release-date-asc";
-const BASE = "https://store.nintendo.com.hk/digital-games/current-offers?product_list_limit=24";
+const BASE = "https://store.nintendo.com.hk/digital-games/recent-releases?product_list_order=release-date-asc";
+//const BASE = "https://store.nintendo.com.hk/digital-games/current-offers?product_list_limit=24";
 const PAGE_DELAY_MS = 350; // polite delay between listing pages
 
 // ---- HELPERS ----

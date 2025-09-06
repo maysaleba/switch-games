@@ -9,9 +9,9 @@
  *   Region sets:
  *     US: ['US','MX','BR','CA','CO','AR','PE']   (requires nsuid_us)
  *     EU: ['ZA','AU','NZ','NO','PL']             (requires nsuid_eu)
- *     JP: ['JP']                                 (requires nsuid_jp)
- *     KR: ['KR']                                 (requires nsuid_kr)
- *     HK: ['HK']                                 (requires nsuid_hk)
+ *     JP: ['JP']                                 (requires nsuid_jp  AND supportLanguage_jp has EN)
+ *     KR: ['KR']                                 (requires nsuid_kr  AND supportLanguage_kr has EN)
+ *     HK: ['HK']                                 (requires nsuid_hk  AND supportLanguage_hk has EN)
  *
  * Endpoint: https://api.ec.nintendo.com/v1/price?country=XX&ids=...&limit=50&lang=en
  */
@@ -103,7 +103,6 @@ async function fetchPricesPageWithRetry(country, idsChunk, { retries = 3, backof
           let waitMs = 0;
           const retryAfter = res.headers.get('retry-after');
           if (retryAfter) {
-            // seconds or HTTP-date; assume seconds when numeric
             const n = Number(retryAfter);
             waitMs = Number.isFinite(n) ? n * 1000 : backoffBase * Math.pow(2, attempt);
           } else {
@@ -146,7 +145,6 @@ async function getPricesForCountry(country, ids) {
 function formatPriceRow(row) {
   const reg = row?.regular_price || {};
   const disc = row?.discount_price || {};
-  // always prefer raw_value now
   const pickRaw = (p) => p ? (p.raw_value ?? null) : null;
   return {
     regular: pickRaw(reg),
@@ -176,6 +174,35 @@ function mergeBack(entries, country, priceRows, countryToIdToIndexes) {
   console.log(`   ↳ merged ${applied} price mappings for ${country}`);
 }
 
+/** --- NEW: language helpers --- */
+function hasEnglish(value) {
+  if (!value) return false;
+  // Accept arrays, comma/semicolon separated strings, or single string tokens
+  let tokens = [];
+  if (Array.isArray(value)) {
+    tokens = value;
+  } else if (typeof value === 'string') {
+    // Split by commas/semicolons/pipes/whitespace to be safe
+    tokens = value.split(/[\s,;|/]+/);
+  } else {
+    return false;
+  }
+  return tokens.some(tok => {
+    if (!tok) return false;
+    const t = String(tok).trim().toLowerCase();
+    // match en, en-US, en_GB, english, etc.
+    return t === 'en' || t === 'english' || /^en([-_][a-z]+)?$/.test(t);
+  });
+}
+function supportsEnglishForRegion(entry, region) {
+  switch (region) {
+    case 'JP': return hasEnglish(entry.supportLanguage_jp);
+    case 'KR': return hasEnglish(entry.supportLanguage_kr);
+    case 'HK': return hasEnglish(entry.supportLanguage_hk);
+    default:   return true; // US/EU have no extra constraint
+  }
+}
+
 /** Build batches: which countries to fetch which IDs, and where to merge them back */
 function buildCountryBatches(entries) {
   const countryToIds = {};
@@ -190,11 +217,29 @@ function buildCountryBatches(entries) {
 
   entries.forEach((e, idx) => {
     if (!e || e.active_in_base !== true) return;
+
+    // US/EU: only need NSUID
     if (e.nsuid_us) regionSets.US.forEach(c => upsert(c, String(e.nsuid_us), idx));
     if (e.nsuid_eu) regionSets.EU.forEach(c => upsert(c, String(e.nsuid_eu), idx));
-    if (e.nsuid_jp) regionSets.JP.forEach(c => upsert(c, String(e.nsuid_jp), idx));
-    if (e.nsuid_kr) regionSets.KR.forEach(c => upsert(c, String(e.nsuid_kr), idx));
-    if (e.nsuid_hk) regionSets.HK.forEach(c => upsert(c, String(e.nsuid_hk), idx));
+
+    // JP/KR/HK: need NSUID AND English support for that store
+    if (e.nsuid_jp && supportsEnglishForRegion(e, 'JP')) {
+      regionSets.JP.forEach(c => upsert(c, String(e.nsuid_jp), idx));
+    } else if (e.nsuid_jp && !supportsEnglishForRegion(e, 'JP')) {
+      console.log(`   ⤷ skip JP (no EN) for idx=${idx} title="${e.title || ''}"`);
+    }
+
+    if (e.nsuid_kr && supportsEnglishForRegion(e, 'KR')) {
+      regionSets.KR.forEach(c => upsert(c, String(e.nsuid_kr), idx));
+    } else if (e.nsuid_kr && !supportsEnglishForRegion(e, 'KR')) {
+      console.log(`   ⤷ skip KR (no EN) for idx=${idx} title="${e.title || ''}"`);
+    }
+
+    if (e.nsuid_hk && supportsEnglishForRegion(e, 'HK')) {
+      regionSets.HK.forEach(c => upsert(c, String(e.nsuid_hk), idx));
+    } else if (e.nsuid_hk && !supportsEnglishForRegion(e, 'HK')) {
+      console.log(`   ⤷ skip HK (no EN) for idx=${idx} title="${e.title || ''}"`);
+    }
   });
 
   const countryToIdsArr = {};
