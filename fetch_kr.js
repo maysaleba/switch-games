@@ -14,7 +14,8 @@ const cheerio = require('cheerio');
 
 // ---- CONFIG ----
 //const BASE = 'https://store.nintendo.co.kr/all-product?product_list_limit=48';
-const BASE = 'https://store.nintendo.co.kr/digital/sale?am_on_sale=1&product_list_limit=48';
+//const BASE = 'https://store.nintendo.co.kr/digital/sale?am_on_sale=1&product_list_limit=48';
+const BASE = 'https://store.nintendo.co.kr/digital/sale?am_on_sale=1&product_list_limit=48&product_list_order=price';
 const PAGE_DELAY_MS = 350;
 const MAX_PAGES = 200;
 
