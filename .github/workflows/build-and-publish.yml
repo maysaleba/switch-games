@@ -62,20 +62,18 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-
+      
           run_eu() { echo "=== EU start ==="; node fetch_eu.js; echo "=== EU done ==="; }
           run_hk() { echo "=== HK start ==="; node fetch_hk.js; node fetchProductCodesHK.js; echo "=== HK done ==="; }
           run_jp() { echo "=== JP start ==="; node fetch_jp.js; node fetchProductCodesJP.js; echo "=== JP done ==="; }
-          run_kr() { echo "=== KR start ==="; node fetch_kr.js; node fetchProductCodesKR.js; echo "=== KR done ==="; }
           run_us() { echo "=== US start ==="; node fetch_us.js; node fetchProductCodesUS.js; echo "=== US done ==="; }
-
+      
           run_eu &  PID_EU=$!
           run_hk &  PID_HK=$!
           run_jp &  PID_JP=$!
-          run_kr &  PID_KR=$!
           run_us &  PID_US=$!
-
-          wait $PID_EU $PID_HK $PID_JP $PID_KR $PID_US
+      
+          wait $PID_EU $PID_HK $PID_JP $PID_US
 
       - name: Verify regional outputs exist
         shell: bash
@@ -83,7 +81,7 @@ jobs:
           set -e
           echo "Files in data/:"
           ls -lh data || true
-          for f in eu_games_enriched.json hk_games_enriched.json jp_games_enriched.json kr_games_enriched.json us_games_enriched.json; do
+          for f in eu_games_enriched.json hk_games_enriched.json jp_games_enriched.json us_games_enriched.json; do
             test -f "data/$f" || { echo "Missing data/$f"; exit 1; }
           done
           echo "All regional outputs present in data/."
@@ -119,20 +117,19 @@ jobs:
           set -e
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
+      
           echo "Sanity check for generated files:"
           ls -lh data || true
           ls -lh output || true
-
+      
           git add \
             data/eu_games_enriched.json \
             data/hk_games_enriched.json \
             data/jp_games_enriched.json \
-            data/kr_games_enriched.json \
             data/us_games_enriched.json \
             output/merged_enriched.json \
             output/merged_enriched_with_prices.json
-
+      
           if ! git diff --cached --quiet; then
             git commit -m "CI: update enriched & regional outputs [skip ci]"
             git push
