@@ -27,11 +27,11 @@ const INPUTS = {
   jp: 'data/jp_games_enriched.json',
   hk: 'data/hk_games_enriched.json',
   eu: 'data/eu_games_enriched.json',
-  kr: 'data/kr_games_enriched.json', // <- add when ready
+//  kr: 'data/kr_games_enriched.json', // <- add when ready
 };
 
-const REGIONS = ['jp', 'hk', 'eu', 'kr'];                // non-US regions we try to match
-const REGION_CODES_ALL = ['us', 'jp', 'hk', 'eu', 'kr']; // used for pruning nsuid_*
+const REGIONS = ['jp', 'hk', 'eu'];                // non-US regions we try to match
+const REGION_CODES_ALL = ['us', 'jp', 'hk', 'eu']; // used for pruning nsuid_*
 const OUT_DIR = 'output';
 const LOG_DIR = 'logs';
 const OUT_FILE = path.join(OUT_DIR, 'merged_enriched.json');
