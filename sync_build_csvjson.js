@@ -15,7 +15,7 @@ const dayjs = require('dayjs');
 
 // -------------------- CONFIG --------------------
 const REMOTE_CSVJSON_URL     = 'https://raw.githubusercontent.com/maysaleba/maysaleba.github.io/main/src/csvjson.json';
-const LOCAL_FALLBACK_CSVJSON = path.resolve('output/csvjson.json');                 // sample fallback if remote fetch fails
+const LOCAL_FALLBACK_CSVJSON = path.resolve('output/csvjson.json');                     // sample fallback if remote fetch fails
 const MERGED_WITH_PRICES     = path.resolve('output/merged_enriched_with_prices.json'); // source file you uploaded
 const HLTB_JSON              = path.resolve('hltb.json');                                // optional
 const METACRITIC_CSV         = path.resolve('metacritic_switch.csv');                    // local CSV you maintain
@@ -47,16 +47,13 @@ const REGION_KEY_MAP = {
 const REGULAR_FALLBACK = ['US', 'AU', 'JP', 'KR', 'HK'];
 
 // -------------------- HELPERS --------------------
-// Put this near your other helpers
 function buildNintendoUrl(u) {
   if (!u) return '';
   const s = String(u).trim();
   if (!s) return '';
-  // If it already starts with https, return as-is
   if (s.startsWith('https')) return s;
-  // Otherwise, prefix the Nintendo domain (normalize leading slash)
-  const path = s.startsWith('/') ? s : `/${s}`;
-  return `https://www.nintendo.com${path}`;
+  const p = s.startsWith('/') ? s : `/${s}`;
+  return `https://www.nintendo.com${p}`;
 }
 
 function getJSON(url) {
@@ -104,7 +101,7 @@ function loadSlugReplacements(filePath) {
     .split(/\r?\n/)
     .map(l => l.trim())
     .filter(Boolean)
-    .filter(l => !l.startsWith('#')); // allow comments
+    .filter(l => !l.startsWith('#'));
   for (const line of lines) {
     const eq = line.indexOf('=');
     if (eq === -1) continue;
@@ -146,7 +143,6 @@ function applySlugReplacements(slug) {
     slug = SLUG_REPLACEMENTS.get(slug);
   }
   if (slug !== 'dragon-quest-xi-s-echoes-of-an-elusive-age') {
-    // replace "-s" at the end of a token with "s" (your historical rule)
     slug = slug.replace(/-s(?![a-zA-Z])/g, 's');
   }
   return slug;
@@ -323,11 +319,12 @@ function ensureAllRegionKeys(row) {
   console.log(`✅ active_in_base=true & has sale_end: ${active.length}`);
   console.log(`🚫 dropped for missing sale_end:      ${droppedNoSaleEnd}`);
 
-  // Build source index by sanitized urlKey
+  // Build source index by MATCH slug (replacements for matching ONLY)
   const sourceBySlug = new Map();
   for (const g of active) {
-    const slug = applySlugReplacements((g.urlKey || '').trim());
-    if (slug) sourceBySlug.set(slug, g);
+    const rawSlug   = (g.urlKey || '').trim();
+    const matchSlug = applySlugReplacements(rawSlug); // used for matching only
+    if (matchSlug) sourceBySlug.set(matchSlug, g);
   }
   console.log(`🧭 Source index prepared: ${sourceBySlug.size} unique slugs`);
 
@@ -360,12 +357,16 @@ function ensureAllRegionKeys(row) {
     }
     const SaleEnds = saleEnds.length ? saleEnds.sort((a, b) => a - b)[0].format('YYYY-MM-DD') : '';
     const SaleStarted = saleStarts.length ? saleStarts.sort((a, b) => a - b)[0].format('YYYY-MM-DD') : '';
-    const salePriceUS = prices?.US?.sale ?? ''; // guard unusual keying
+    const salePriceUS = prices?.US?.sale ?? '';
     const PercentOff  = computeMaxPercentOffAcrossRegions(prices);
     const hltb        = safeHLTB(hltbData, g.title || '');
     const Image       = buildImageUrl(g);
     const MexPrice    = buildMexPrice(g);
     const Price       = pickRegular(prices);
+
+    // preserve raw slug in output; use replacements+normalize ONLY for Meta
+    const rawSlug  = (g.urlKey || '').trim();
+    const metaSlug = normalizeForMetacritic(applySlugReplacements(rawSlug));
 
     const row = {
       CanadaPrice: prices?.CA?.sale ?? '',
@@ -376,7 +377,7 @@ function ensureAllRegionKeys(row) {
       description: '',
       Image,
       NewZealandPrice: prices?.NZ?.sale ?? '',
-      URL: buildNintendoUrl(g.url),   // ⬅️ was: g.url || '
+      URL: buildNintendoUrl(g.url),
       platform: g.platform || '',
       MainStory: hltb.MainStory,
       Trailer: '',
@@ -395,7 +396,7 @@ function ensureAllRegionKeys(row) {
       ESRBRating: g.dlcType || '',
       Publisher: g.publisher || '',
       ReleaseDate: g.releaseDate || '',
-      Slug: applySlugReplacements((g.urlKey || '').trim()),
+      Slug: rawSlug, // << preserve original urlKey in output
       PolandPrice: prices?.PL?.sale ?? '',
       NumberofPlayers: 'https://shope.ee/5ALD8alAHo',
       NorwayPrice: prices?.NO?.sale ?? '',
@@ -416,7 +417,6 @@ function ensureAllRegionKeys(row) {
     ensureAllRegionKeys(row);
 
     // Metacritic enrichment (normalize slug for compare + URL)
-    const metaSlug = normalizeForMetacritic(row.Slug);
     const meta = metaMap.get(metaSlug);
     if (meta) {
       row.SCORE = meta.score || '';
@@ -429,7 +429,6 @@ function ensureAllRegionKeys(row) {
   }
 
   function pricesDiffer(existing, fresh) {
-    // ⬇️ Added 'Image' and 'MexPrice' to the comparison set
     const keysToCheck = new Set(Object.values(REGION_KEY_MAP).concat([
       'PercentOff','SaleEnds','SaleStarted','Price','Image','MexPrice'
     ]));
@@ -449,25 +448,27 @@ function ensureAllRegionKeys(row) {
   // Walk existing → keep/patch/delete
   for (const row of csvjson) {
     i++;
-    const slug = applySlugReplacements((row.Slug || '').trim());
-    if (!sourceBySlug.has(slug)) {
+    // Use replacements for matching ONLY (existing rows may have replaced slugs already)
+    const matchSlug = applySlugReplacements((row.Slug || '').trim());
+    if (!sourceBySlug.has(matchSlug)) {
       deleted++;
-      console.log(`[${i}/${totalExisting}] 🗑️  delete: ${slug}`);
+      console.log(`[${i}/${totalExisting}] 🗑️  delete: ${matchSlug}`);
       continue;
     }
-    const g = sourceBySlug.get(slug);
+    const g = sourceBySlug.get(matchSlug);
     const rebuilt = buildRowFromSource(g);
-    seen.add(slug);
+    seen.add(matchSlug);
 
     if (pricesDiffer(row, rebuilt)) {
       updated++;
       nextRows.push(rebuilt);
-      console.log(`[${i}/${totalExisting}] 🔁 update: ${slug}`);
+      console.log(`[${i}/${totalExisting}] 🔁 update: ${matchSlug}`);
     } else {
       kept++;
       // keep row, but ensure SCORE/URL/platform/genre fresh & region keys present
       const keptRow = { ...row };
-      const metaSlug = normalizeForMetacritic(rebuilt.Slug);
+      // compute meta slug with replacements+normalize even when keeping
+      const metaSlug = normalizeForMetacritic(applySlugReplacements(rebuilt.Slug));
       keptRow.SCORE = rebuilt.SCORE || keptRow.SCORE || '';
       keptRow.OpenCriticURL = metaSlug
         ? `https://www.metacritic.com/game/${metaSlug}/critic-reviews/?platform=nintendo-switch`
@@ -475,9 +476,7 @@ function ensureAllRegionKeys(row) {
       keptRow.platform = rebuilt.platform || keptRow.platform || '';
       keptRow.genre = rebuilt.genre || keptRow.genre || '';
 
-      // ensure ALL region labels exist
       ensureAllRegionKeys(keptRow);
-
       nextRows.push(keptRow);
 
       if (i % 50 === 0 || i === totalExisting) {
@@ -488,23 +487,22 @@ function ensureAllRegionKeys(row) {
 
   // Append new rows
   const toAppend = [];
-  for (const [slug] of sourceBySlug.entries()) {
-    if (seen.has(slug)) continue;
-    toAppend.push(slug);
+  for (const [matchSlug] of sourceBySlug.entries()) {
+    if (seen.has(matchSlug)) continue;
+    toAppend.push(matchSlug);
   }
   const appendTotal = toAppend.length;
   console.log(`➕ Appending ${appendTotal} new rows...`);
   let a = 0;
-  for (const slug of toAppend) {
+  for (const matchSlug of toAppend) {
     a++;
-    const g = sourceBySlug.get(slug);
+    const g = sourceBySlug.get(matchSlug);
     const built = buildRowFromSource(g);
-    // make sure all regions present (redundant safety)
     ensureAllRegionKeys(built);
     nextRows.push(built);
     appended++;
     if (a <= 5 || a % 25 === 0 || a === appendTotal) {
-      console.log(`   [${a}/${appendTotal}] append: ${slug}`);
+      console.log(`   [${a}/${appendTotal}] append: ${matchSlug}`);
     }
   }
 
