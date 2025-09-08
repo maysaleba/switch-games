@@ -94,7 +94,10 @@ function urlKeyLooseFromItem(item) {
 
 function normalizeTitle(s) {
   if (!s) return null;
-  return String(s).toLowerCase().normalize('NFKD')
+  return String(s)
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/&/g, ' and ')            // 👈 convert ampersand first
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[’']/g, '')
     .replace(/[^a-z0-9]+/g, ' ')
