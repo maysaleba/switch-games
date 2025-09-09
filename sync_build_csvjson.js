@@ -356,7 +356,7 @@ function ensureAllRegionKeys(row) {
       if (p?.sale_start) saleStarts.push(dayjs(p.sale_start));
     }
     const SaleEnds = saleEnds.length ? saleEnds.sort((a, b) => a - b)[0].format('YYYY-MM-DD') : '';
-    const SaleStarted = saleStarts.length ? saleStarts.sort((a, b) => a - b)[0].format('YYYY-MM-DD') : '';
+    const SaleStarted = saleStarts.length ? dayjs(Math.max(...saleStarts)).format('YYYY-MM-DD') : '';
     const salePriceUS = prices?.US?.sale ?? '';
     const PercentOff  = computeMaxPercentOffAcrossRegions(prices);
     const hltb        = safeHLTB(hltbData, g.title || '');
