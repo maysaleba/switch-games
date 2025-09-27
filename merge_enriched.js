@@ -100,7 +100,7 @@ function normalizeTitle(s) {
     .replace(/&/g, ' and ')            // 👈 convert ampersand first
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[’']/g, '')
-    .replace(/[^a-z0-9]+/g, ' ')
+    .replace(/[^a-z0-9+]+/g, ' ')   // allow + to stay
     .replace(/\s+/g, ' ')
     .trim();
 }
