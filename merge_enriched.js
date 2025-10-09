@@ -370,11 +370,15 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
       }
     }
 
-    // === PRUNE nsuid_* to ONLY regions in __activeRegions
-    for (const rc of REGION_CODES_ALL) {
-      const key = `nsuid_${rc}`;
-      if (Object.prototype.hasOwnProperty.call(item, key)) {
-        if (!item.__activeRegions.has(rc)) {
+    // === PRUNE MODE: keep all nsuid_* if ANY region is active_in_base
+    // If the merged row is active at all, don't prune any nsuid_* fields.
+    if (item.active_in_base === true) {
+      // do nothing — keep all nsuid_*
+    } else {
+      // original behavior: remove all nsuid_* since the row isn't active anywhere
+      for (const rc of REGION_CODES_ALL) {
+        const key = `nsuid_${rc}`;
+        if (Object.prototype.hasOwnProperty.call(item, key)) {
           delete item[key];
         }
       }
