@@ -410,7 +410,8 @@ function ensureAllRegionKeys(row) {
     // include any known region sale keys (from REGION_KEY_MAP)
     for (const [code, label] of Object.entries(REGION_KEY_MAP)) {
       if (label === 'SalePrice') continue; // US handled separately
-      row[label] = prices?.[code]?.sale ?? row[label] ?? '';
+      const p = prices?.[code];
+      row[label] = p?.sale ?? p?.regular ?? row[label] ?? '';
     }
 
     // guarantee ALL region keys exist even if empty
