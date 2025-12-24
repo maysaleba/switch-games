@@ -63,6 +63,7 @@ function mapDoc(doc) {
 
 function normalizeTitleForSlug(s) {
   return (s || '')
+    .replace(/[™®]/g, '')              // ✅ remove BEFORE NFKD so it can't become "TM"/"R"
     .normalize('NFKD')                 // decompose accents + full-width forms
     .replace(/[\u0300-\u036f]/g, '')   // strip diacritics
     .replace(/[\uff01-\uff5e]/g, c =>  // full-width ASCII → half-width
@@ -70,7 +71,6 @@ function normalizeTitleForSlug(s) {
     )
     .replace(/’/g, "'")                // curly → straight apostrophe
     .replace(/[\u200B-\u200D\uFEFF]/g, '') // remove zero-width chars
-    .replace(/\b(tm|r)\b|[™®]/gi, '') // 🚫 remove TM / ™ / ®
     .toLowerCase();
 }
   
