@@ -199,6 +199,31 @@ function loadStrictUrlKeys(filePath) {
 let STRICT_URLKEYS = loadStrictUrlKeys(STRICT_URLKEY_FILE);
 
 // ====== matching ======
+
+function filterCandidatesByF4(candidates, usItem) {
+  const usNsuid = usItem.nsuid_us ?? usItem.nsuid;
+  const f4US = first4DigitsFromNsuid(usNsuid, 'us') || null;
+  if (!f4US) return candidates; // no global constraint possible
+
+  const filtered = candidates.filter((cand) => {
+    const candF4 =
+      first4DigitsFromNsuid(cand.nsuid_us ?? cand.nsuid, 'us') ||
+      first4DigitsFromNsuid(cand.nsuid_eu ?? cand.nsuid, 'eu') ||
+      first4DigitsFromNsuid(cand.nsuid_jp ?? cand.nsuid, 'jp') ||
+      first4DigitsFromNsuid(cand.nsuid_hk ?? cand.nsuid, 'hk') ||
+      first4DigitsFromNsuid(cand.nsuid_kr ?? cand.nsuid, 'kr') ||
+      (String(cand.nsuid ?? '').replace(/\D+/g, '').slice(0, 4) || null);
+
+    // GLOBAL f4 gate:
+    // - If we can compute candF4, it must match f4US.
+    // - If we can't compute candF4, keep it (can't prove mismatch).
+    return !candF4 || candF4 === f4US;
+  });
+
+  // If filtering removes everything (rare), fall back to original list to avoid false negatives.
+  return filtered.length ? filtered : candidates;
+}
+
 function tryMatch(regionIdx, usItem, { strictUrlKeyHit }) {
   const urlKeyUS = getUrlKey(usItem);
   const urlKeyUSL = urlKeyUS ? urlKeyUS.replace(/-/g, '') : null;
@@ -206,25 +231,14 @@ function tryMatch(regionIdx, usItem, { strictUrlKeyHit }) {
   // --- STRICT URLKEY-ONLY MODE (per-row) ---
   if (strictUrlKeyHit && urlKeyUS && urlKeyUSL) {
     if (regionIdx.k4.has(urlKeyUSL)) {
-      const candidates = regionIdx.k4.get(urlKeyUSL) || [];
+      let candidates = regionIdx.k4.get(urlKeyUSL) || [];
+
+      // ✅ Apply GLOBAL f4 constraint up front
+      candidates = filterCandidatesByF4(candidates, usItem);
+
       if (candidates.length === 1) return { item: candidates[0], rule: 'strict-urlKey' };
-      // Prefer a candidate sharing NSUID first4 with the US item (if any)
-      const f4US =
-        first4DigitsFromNsuid(usItem.nsuid_us ?? usItem.nsuid, 'us') ||
-        null;
-      if (f4US) {
-        for (const cand of candidates) {
-          const candF4 =
-            first4DigitsFromNsuid(cand.nsuid_us ?? cand.nsuid, 'us') ||
-            first4DigitsFromNsuid(cand.nsuid_eu ?? cand.nsuid, 'eu') ||
-            first4DigitsFromNsuid(cand.nsuid_jp ?? cand.nsuid, 'jp') ||
-            first4DigitsFromNsuid(cand.nsuid_hk ?? cand.nsuid, 'hk') ||
-            first4DigitsFromNsuid(cand.nsuid_kr ?? cand.nsuid, 'kr') ||
-            (String(cand.nsuid ?? '').replace(/\D+/g, '').slice(0,4) || null);
-          if (candF4 && candF4 === f4US) return { item: cand, rule: 'strict-urlKey' };
-        }
-      }
-      // Fallback to first candidate deterministically
+
+      // After global filtering, still multiple → deterministic fallback
       return { item: candidates[0], rule: 'strict-urlKey' };
     }
     // Strict list says urlKey-only, but no regional candidate → no match (do NOT fall back)
@@ -240,26 +254,31 @@ function tryMatch(regionIdx, usItem, { strictUrlKeyHit }) {
 
   if (f4 && isNonEmpty(pcUS) && platUS) {
     const pcU = uc(pcUS);
-    const key1 = `${f4}|${pcU}|${platUS}`; if (regionIdx.k1.has(key1)) return { item: regionIdx.k1.get(key1), rule: 'k1' };
-    const pc8 = pcFirst8(pcU);             if (pc8) { const key2 = `${f4}|${pc8}|${platUS}`; if (regionIdx.k2.has(key2)) return { item: regionIdx.k2.get(key2), rule: 'k2' }; }
-    const pc48 = pcPos4to8(pcU);           if (pc48){ const key3 = `${f4}|${pc48}|${platUS}`; if (regionIdx.k3.has(key3)) return { item: regionIdx.k3.get(key3), rule: 'k3' }; }
+    const key1 = `${f4}|${pcU}|${platUS}`;
+    if (regionIdx.k1.has(key1)) return { item: regionIdx.k1.get(key1), rule: 'k1' };
+
+    const pc8 = pcFirst8(pcU);
+    if (pc8) {
+      const key2 = `${f4}|${pc8}|${platUS}`;
+      if (regionIdx.k2.has(key2)) return { item: regionIdx.k2.get(key2), rule: 'k2' };
+    }
+
+    const pc48 = pcPos4to8(pcU);
+    if (pc48) {
+      const key3 = `${f4}|${pc48}|${platUS}`;
+      if (regionIdx.k3.has(key3)) return { item: regionIdx.k3.get(key3), rule: 'k3' };
+    }
   }
 
   if (urlKeyUSL && regionIdx.k4.has(urlKeyUSL)) {
-    const candidates = regionIdx.k4.get(urlKeyUSL) || [];
+    let candidates = regionIdx.k4.get(urlKeyUSL) || [];
+
+    // ✅ Apply GLOBAL f4 constraint up front (not just as a tie-break)
+    candidates = filterCandidatesByF4(candidates, usItem);
+
     if (candidates.length === 1) return { item: candidates[0], rule: 'k4' };
-    if (f4) {
-      for (const cand of candidates) {
-        const candF4 =
-          first4DigitsFromNsuid(cand.nsuid_us ?? cand.nsuid, 'us') ||
-          first4DigitsFromNsuid(cand.nsuid_eu ?? cand.nsuid, 'eu') ||
-          first4DigitsFromNsuid(cand.nsuid_jp ?? cand.nsuid, 'jp') ||
-          first4DigitsFromNsuid(cand.nsuid_hk ?? cand.nsuid, 'hk') ||
-          first4DigitsFromNsuid(cand.nsuid_kr ?? cand.nsuid, 'kr') ||
-          (String(cand.nsuid ?? '').replace(/\D+/g, '').slice(0,4) || null);
-        if (candF4 && candF4 === f4) return { item: cand, rule: 'k4' };
-      }
-    }
+
+    // After global filtering, still multiple → deterministic fallback
     return { item: candidates[0], rule: 'k4' };
   }
 
@@ -270,6 +289,7 @@ function tryMatch(regionIdx, usItem, { strictUrlKeyHit }) {
 
   return null;
 }
+
 
 // ---- append + active tracking
 function appendRegionFields(base, region, matched, { onRaise } = {}) {
