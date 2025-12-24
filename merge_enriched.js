@@ -203,7 +203,9 @@ let STRICT_URLKEYS = loadStrictUrlKeys(STRICT_URLKEY_FILE);
 function filterCandidatesByF4(candidates, usItem) {
   const usNsuid = usItem.nsuid_us ?? usItem.nsuid;
   const f4US = first4DigitsFromNsuid(usNsuid, 'us') || null;
-  if (!f4US) return candidates; // no global constraint possible
+  if (!f4US) return candidates; // no constraint possible
+
+  let sawAnyCandF4 = false;
 
   const filtered = candidates.filter((cand) => {
     const candF4 =
@@ -214,15 +216,20 @@ function filterCandidatesByF4(candidates, usItem) {
       first4DigitsFromNsuid(cand.nsuid_kr ?? cand.nsuid, 'kr') ||
       (String(cand.nsuid ?? '').replace(/\D+/g, '').slice(0, 4) || null);
 
-    // GLOBAL f4 gate:
-    // - If we can compute candF4, it must match f4US.
-    // - If we can't compute candF4, keep it (can't prove mismatch).
+    if (candF4) sawAnyCandF4 = true;
+
+    // Keep unknowns; keep matches; reject known mismatches
     return !candF4 || candF4 === f4US;
   });
 
-  // If filtering removes everything (rare), fall back to original list to avoid false negatives.
+  // If we proved mismatch (i.e., at least one candidate had a candF4) and none survived,
+  // then we must return empty to prevent wrong-class matches.
+  if (sawAnyCandF4 && filtered.length === 0) return [];
+
+  // Otherwise (e.g., all candidates lacked NSUIDs), keep them to allow urlKey/title matching.
   return filtered.length ? filtered : candidates;
 }
+
 
 function tryMatch(regionIdx, usItem, { strictUrlKeyHit }) {
   const urlKeyUS = getUrlKey(usItem);
