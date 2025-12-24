@@ -70,6 +70,7 @@ function normalizeTitleForSlug(s) {
     )
     .replace(/’/g, "'")                // curly → straight apostrophe
     .replace(/[\u200B-\u200D\uFEFF]/g, '') // remove zero-width chars
+    .replace(/\b(tm|r)\b|[™®]/gi, '') // 🚫 remove TM / ™ / ®
     .toLowerCase();
 }
   
