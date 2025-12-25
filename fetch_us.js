@@ -8,7 +8,7 @@ const axios = require('axios');
 function isGenericUrlKey(uk, url) {
   if (!uk && !url) return true;
   const u = (uk || '').toLowerCase().trim();
-  const badKeys = new Set(['switch','games','products','nintendo','eshop','store']);
+  const badKeys = new Set(['switch', 'games', 'products', 'nintendo', 'eshop', 'store']);
   if (u && (u.length < 8 || badKeys.has(u))) return true;
   if (url && /\/store\/products\/switch\/?$/i.test(url)) return true;
   return false;
@@ -46,18 +46,51 @@ function keyOf(hit) {
 // Fetch US games from Algolia (Deals only, Switch + Switch 2)
 async function fetchUSGamesOnSale() {
   console.log('▶️ Starting US games fetch...');
-//  const indices = ['store_game_en_us'];
-//  const indices = ['store_game_en_us_price_asc','store_game_en_us_price_des'];
-//  const indices = ['store_game_en_us_release_des'];
+  //  const indices = ['store_game_en_us'];
+  //  const indices = ['store_game_en_us_price_asc','store_game_en_us_price_des'];
+  //  const indices = ['store_game_en_us_release_des'];
   const indices = ['store_game_en_us_title_asc', 'store_game_en_us_title_des'];
+
   const headers = {
     'Content-Type': 'application/json',
     'x-algolia-agent': 'Algolia for JavaScript (4.23.2); Browser',
     'x-algolia-application-id': 'U3B6GR4UA3',
     'x-algolia-api-key': 'a29c6927638bfd8cee23993e51e721c9'
   };
+
+  // Base 1-char prefixes (your current strategy)
   const queryPrefixes = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split('');
   const hitsPerPage = 100;
+
+  // Expansion chars (for special-case splitting like D -> DA..D9)
+  const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'.split('');
+
+  /**
+   * ✅ Special cases:
+   * depth: 2 => expands "D" -> "DA".."D9"
+   *
+   * Add more later, e.g.:
+   *   M: { depth: 2, delayMsBetweenSubqueries: 50 }
+   */
+  const SPECIAL_CASES = {
+    D: { depth: 2, delayMsBetweenSubqueries: 50 },
+
+    // If you ever need deeper splitting later:
+    // D: { depth: 2, delayMsBetweenSubqueries: 50, expandDeeper: { DI: 3 } }
+  };
+
+  function expandPrefix(prefix, depth) {
+    // depth=1 => ["D"]
+    // depth=2 => ["DA","DB",...,"D9"]
+    // depth=3 => ["DAA","DAB",...]
+    let list = [prefix];
+    while (list[0].length < depth) {
+      const next = [];
+      for (const p of list) for (const c of CHARS) next.push(p + c);
+      list = next;
+    }
+    return list;
+  }
 
   async function fetchGroup(index, query) {
     let page = 0, nbPages = 1;
@@ -73,7 +106,13 @@ async function fetchUSGamesOnSale() {
         hitsPerPage,
         page
       };
-      const { data } = await safePost(`https://u3b6gr4ua3-dsn.algolia.net/1/indexes/${index}/query`, payload, headers);
+
+      const { data } = await safePost(
+        `https://u3b6gr4ua3-dsn.algolia.net/1/indexes/${index}/query`,
+        payload,
+        headers
+      );
+
       const hits = data.hits || [];
       nbPages = data.nbPages;
 
@@ -92,8 +131,34 @@ async function fetchUSGamesOnSale() {
     return groupHits;
   }
 
+  // Router: normal fetchGroup, or expanded special-case prefix
+  async function fetchPrefix(index, prefix) {
+    const cfg = SPECIAL_CASES[prefix];
+    if (!cfg) return await fetchGroup(index, prefix);
+
+    const targets = expandPrefix(prefix, cfg.depth);
+    const all = [];
+
+    for (const t of targets) {
+      // Optional deeper-expansion per subprefix (only if you enable it in SPECIAL_CASES)
+      if (cfg.expandDeeper && cfg.expandDeeper[t]) {
+        const deeperTargets = expandPrefix(t, cfg.expandDeeper[t]);
+        for (const dt of deeperTargets) {
+          all.push(...await fetchGroup(index, dt));
+          if (cfg.delayMsBetweenSubqueries) await delay(cfg.delayMsBetweenSubqueries);
+        }
+        continue;
+      }
+
+      all.push(...await fetchGroup(index, t));
+      if (cfg.delayMsBetweenSubqueries) await delay(cfg.delayMsBetweenSubqueries);
+    }
+
+    return all;
+  }
+
   const allResults = await Promise.all(
-    indices.flatMap(index => queryPrefixes.map(prefix => fetchGroup(index, prefix)))
+    indices.flatMap(index => queryPrefixes.map(prefix => fetchPrefix(index, prefix)))
   );
 
   const combined = allResults.flat();
