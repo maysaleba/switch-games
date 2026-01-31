@@ -40,7 +40,10 @@ const REGION_KEY_MAP = {
   NO: 'NorwayPrice',
   JP: 'JapanPrice',
   KR: 'KoreaPrice',
-  HK: 'HongKongPrice'
+  HK: 'HongKongPrice',
+  MY: 'MalaysiaPrice',
+  SG: 'SingaporePrice',
+  TH: 'ThailandPrice'
 };
 
 // fallback chain for "Price" (regular) column
