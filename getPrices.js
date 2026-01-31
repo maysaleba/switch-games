@@ -38,6 +38,7 @@ const regionSets = {
   JP: ['JP'],
   KR: ['KR'],
   HK: ['HK'],
+  AS: ['TH', 'SG', 'MY'],
 };
 
 // ---------- helpers ----------
@@ -221,6 +222,11 @@ function buildCountryBatches(entries) {
     // US/EU: only need NSUID
     if (e.nsuid_us) regionSets.US.forEach(c => upsert(c, String(e.nsuid_us), idx));
     if (e.nsuid_eu) regionSets.EU.forEach(c => upsert(c, String(e.nsuid_eu), idx));
+    
+    // AS (TH / SG / MY): only need NSUID
+    if (e.nsuid_as) {
+      regionSets.AS.forEach(c => upsert(c, String(e.nsuid_as), idx));
+    }
 
     // JP/KR/HK: need NSUID AND English support for that store
     if (e.nsuid_jp && supportsEnglishForRegion(e, 'JP')) {

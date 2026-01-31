@@ -27,11 +27,12 @@ const INPUTS = {
   jp: 'data/jp_games_enriched.json',
   hk: 'data/hk_games_enriched.json',
   eu: 'data/eu_games_enriched.json',
+  as: 'data/as_games_enriched.json'
 //  kr: 'data/kr_games_enriched.json', // <- add when ready
 };
 
-const REGIONS = ['jp', 'hk', 'eu'];                // non-US regions we try to match
-const REGION_CODES_ALL = ['us', 'jp', 'hk', 'eu']; // used for pruning nsuid_*
+const REGIONS = ['jp', 'hk', 'eu', 'as'];                // non-US regions we try to match
+const REGION_CODES_ALL = ['us', 'jp', 'hk', 'eu', 'as']; // used for pruning nsuid_*
 const OUT_DIR = 'output';
 const LOG_DIR = 'logs';
 const OUT_FILE = path.join(OUT_DIR, 'merged_enriched.json');
@@ -106,6 +107,19 @@ function normalizeTitle(s) {
 }
 
 // ---- platform helpers ----
+function normalizeProductCodeForRegion(pc, region) {
+  if (!pc) return null;
+  const s = uc(pc);
+
+  // AS rule: ignore 4th character (index 3)
+  if (region === 'as' && s.length >= 5) {
+    // keep chars 0–2, skip index 3, keep rest
+    return s.slice(0, 3) + s.slice(4);
+  }
+
+  return s;
+}
+
 function normalizePlatform(s) {
   if (!s) return null;
   return String(s).trim().toLowerCase(); // strict equality
@@ -154,31 +168,54 @@ function buildRegionIndexes(arr, region) {
   for (const item of arr) {
     const nsuid = item[`nsuid_${region}`] ?? item.nsuid ?? null;
     const f4 = first4DigitsFromNsuid(nsuid, region);
-    const pc = item[`productCode_${region}`] ?? item.productCode ?? null;
+
+    // ✅ UPDATED: region-specific product code normalization
+    const pcRaw = item[`productCode_${region}`] ?? item.productCode ?? null;
+    const pcNorm = normalizeProductCodeForRegion(pcRaw, region);
+
     const urlKeyL = urlKeyLooseFromItem(item);
     const titleN = ENABLE_TITLE_FALLBACK ? normalizeTitle(item?.title) : null;
     const plat = getPlatform(item); // may be null/empty
 
-    if (f4 && isNonEmpty(pc) && plat) {
-      const pcU = uc(pc);
-      const key1 = `${f4}|${pcU}|${plat}`; if (!k1.has(key1)) k1.set(key1, item);
-      const pc8 = pcFirst8(pcU);   if (pc8) { const key2 = `${f4}|${pc8}|${plat}`; if (!k2.has(key2)) k2.set(key2, item); }
-      const pc48 = pcPos4to8(pcU); if (pc48){ const key3 = `${f4}|${pc48}|${plat}`; if (!k3.has(key3)) k3.set(key3, item); }
+    // --- k1/k2/k3 (NSUID first4 + productCode variants) requires SAME platform ---
+    if (f4 && isNonEmpty(pcNorm) && plat) {
+      // k1: full normalized PC
+      const key1 = `${f4}|${pcNorm}|${plat}`;
+      if (!k1.has(key1)) k1.set(key1, item);
+
+      // k2: first 8 chars of normalized PC
+      const pc8 = pcNorm.length >= 8 ? pcNorm.slice(0, 8) : null;
+      if (pc8) {
+        const key2 = `${f4}|${pc8}|${plat}`;
+        if (!k2.has(key2)) k2.set(key2, item);
+      }
+
+      // k3: chars 4–8-ish (same slice logic as original script)
+      // Note: this intentionally matches your existing pcPos4to8 behavior.
+      const pc48 = pcNorm.length >= 8 ? pcNorm.slice(3, 8) : null;
+      if (pc48) {
+        const key3 = `${f4}|${pc48}|${plat}`;
+        if (!k3.has(key3)) k3.set(key3, item);
+      }
     }
 
+    // --- k4: urlKey (loose) ignores platform ---
     if (urlKeyL) {
       const arrL = k4.get(urlKeyL);
       if (arrL) arrL.push(item);
       else k4.set(urlKeyL, [item]);
     }
 
+    // --- title fallback requires SAME platform ---
     if (titleN && plat) {
       const keyt = `${titleN}|${plat}`;
       if (!kt.has(keyt)) kt.set(keyt, item);
     }
   }
+
   return { k1, k2, k3, k4, kt };
 }
+
 
 // ====== strict urlKey list ======
 function loadStrictUrlKeys(filePath) {
@@ -199,38 +236,6 @@ function loadStrictUrlKeys(filePath) {
 let STRICT_URLKEYS = loadStrictUrlKeys(STRICT_URLKEY_FILE);
 
 // ====== matching ======
-
-function filterCandidatesByF4(candidates, usItem) {
-  const usNsuid = usItem.nsuid_us ?? usItem.nsuid;
-  const f4US = first4DigitsFromNsuid(usNsuid, 'us') || null;
-  if (!f4US) return candidates; // no constraint possible
-
-  let sawAnyCandF4 = false;
-
-  const filtered = candidates.filter((cand) => {
-    const candF4 =
-      first4DigitsFromNsuid(cand.nsuid_us ?? cand.nsuid, 'us') ||
-      first4DigitsFromNsuid(cand.nsuid_eu ?? cand.nsuid, 'eu') ||
-      first4DigitsFromNsuid(cand.nsuid_jp ?? cand.nsuid, 'jp') ||
-      first4DigitsFromNsuid(cand.nsuid_hk ?? cand.nsuid, 'hk') ||
-      first4DigitsFromNsuid(cand.nsuid_kr ?? cand.nsuid, 'kr') ||
-      (String(cand.nsuid ?? '').replace(/\D+/g, '').slice(0, 4) || null);
-
-    if (candF4) sawAnyCandF4 = true;
-
-    // Keep unknowns; keep matches; reject known mismatches
-    return !candF4 || candF4 === f4US;
-  });
-
-  // If we proved mismatch (i.e., at least one candidate had a candF4) and none survived,
-  // then we must return empty to prevent wrong-class matches.
-  if (sawAnyCandF4 && filtered.length === 0) return [];
-
-  // Otherwise (e.g., all candidates lacked NSUIDs), keep them to allow urlKey/title matching.
-  return filtered.length ? filtered : candidates;
-}
-
-
 function tryMatch(regionIdx, usItem, { strictUrlKeyHit }) {
   const urlKeyUS = getUrlKey(usItem);
   const urlKeyUSL = urlKeyUS ? urlKeyUS.replace(/-/g, '') : null;
@@ -238,14 +243,25 @@ function tryMatch(regionIdx, usItem, { strictUrlKeyHit }) {
   // --- STRICT URLKEY-ONLY MODE (per-row) ---
   if (strictUrlKeyHit && urlKeyUS && urlKeyUSL) {
     if (regionIdx.k4.has(urlKeyUSL)) {
-      let candidates = regionIdx.k4.get(urlKeyUSL) || [];
-
-      // ✅ Apply GLOBAL f4 constraint up front
-      candidates = filterCandidatesByF4(candidates, usItem);
-
+      const candidates = regionIdx.k4.get(urlKeyUSL) || [];
       if (candidates.length === 1) return { item: candidates[0], rule: 'strict-urlKey' };
-
-      // After global filtering, still multiple → deterministic fallback
+      // Prefer a candidate sharing NSUID first4 with the US item (if any)
+      const f4US =
+        first4DigitsFromNsuid(usItem.nsuid_us ?? usItem.nsuid, 'us') ||
+        null;
+      if (f4US) {
+        for (const cand of candidates) {
+          const candF4 =
+            first4DigitsFromNsuid(cand.nsuid_us ?? cand.nsuid, 'us') ||
+            first4DigitsFromNsuid(cand.nsuid_eu ?? cand.nsuid, 'eu') ||
+            first4DigitsFromNsuid(cand.nsuid_jp ?? cand.nsuid, 'jp') ||
+            first4DigitsFromNsuid(cand.nsuid_hk ?? cand.nsuid, 'hk') ||
+            first4DigitsFromNsuid(cand.nsuid_kr ?? cand.nsuid, 'kr') ||
+            (String(cand.nsuid ?? '').replace(/\D+/g, '').slice(0,4) || null);
+          if (candF4 && candF4 === f4US) return { item: cand, rule: 'strict-urlKey' };
+        }
+      }
+      // Fallback to first candidate deterministically
       return { item: candidates[0], rule: 'strict-urlKey' };
     }
     // Strict list says urlKey-only, but no regional candidate → no match (do NOT fall back)
@@ -261,31 +277,26 @@ function tryMatch(regionIdx, usItem, { strictUrlKeyHit }) {
 
   if (f4 && isNonEmpty(pcUS) && platUS) {
     const pcU = uc(pcUS);
-    const key1 = `${f4}|${pcU}|${platUS}`;
-    if (regionIdx.k1.has(key1)) return { item: regionIdx.k1.get(key1), rule: 'k1' };
-
-    const pc8 = pcFirst8(pcU);
-    if (pc8) {
-      const key2 = `${f4}|${pc8}|${platUS}`;
-      if (regionIdx.k2.has(key2)) return { item: regionIdx.k2.get(key2), rule: 'k2' };
-    }
-
-    const pc48 = pcPos4to8(pcU);
-    if (pc48) {
-      const key3 = `${f4}|${pc48}|${platUS}`;
-      if (regionIdx.k3.has(key3)) return { item: regionIdx.k3.get(key3), rule: 'k3' };
-    }
+    const key1 = `${f4}|${pcU}|${platUS}`; if (regionIdx.k1.has(key1)) return { item: regionIdx.k1.get(key1), rule: 'k1' };
+    const pc8 = pcFirst8(pcU);             if (pc8) { const key2 = `${f4}|${pc8}|${platUS}`; if (regionIdx.k2.has(key2)) return { item: regionIdx.k2.get(key2), rule: 'k2' }; }
+    const pc48 = pcPos4to8(pcU);           if (pc48){ const key3 = `${f4}|${pc48}|${platUS}`; if (regionIdx.k3.has(key3)) return { item: regionIdx.k3.get(key3), rule: 'k3' }; }
   }
 
   if (urlKeyUSL && regionIdx.k4.has(urlKeyUSL)) {
-    let candidates = regionIdx.k4.get(urlKeyUSL) || [];
-
-    // ✅ Apply GLOBAL f4 constraint up front (not just as a tie-break)
-    candidates = filterCandidatesByF4(candidates, usItem);
-
+    const candidates = regionIdx.k4.get(urlKeyUSL) || [];
     if (candidates.length === 1) return { item: candidates[0], rule: 'k4' };
-
-    // After global filtering, still multiple → deterministic fallback
+    if (f4) {
+      for (const cand of candidates) {
+        const candF4 =
+          first4DigitsFromNsuid(cand.nsuid_us ?? cand.nsuid, 'us') ||
+          first4DigitsFromNsuid(cand.nsuid_eu ?? cand.nsuid, 'eu') ||
+          first4DigitsFromNsuid(cand.nsuid_jp ?? cand.nsuid, 'jp') ||
+          first4DigitsFromNsuid(cand.nsuid_hk ?? cand.nsuid, 'hk') ||
+          first4DigitsFromNsuid(cand.nsuid_kr ?? cand.nsuid, 'kr') ||
+          (String(cand.nsuid ?? '').replace(/\D+/g, '').slice(0,4) || null);
+        if (candF4 && candF4 === f4) return { item: cand, rule: 'k4' };
+      }
+    }
     return { item: candidates[0], rule: 'k4' };
   }
 
@@ -296,7 +307,6 @@ function tryMatch(regionIdx, usItem, { strictUrlKeyHit }) {
 
   return null;
 }
-
 
 // ---- append + active tracking
 function appendRegionFields(base, region, matched, { onRaise } = {}) {
