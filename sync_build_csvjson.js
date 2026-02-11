@@ -322,14 +322,52 @@ function ensureAllRegionKeys(row) {
   console.log(`✅ active_in_base=true & has sale_end: ${active.length}`);
   console.log(`🚫 dropped for missing sale_end:      ${droppedNoSaleEnd}`);
 
+  // -------------------- OPTION B (duplicate-handling) --------------------
   // Build source index by MATCH slug (replacements for matching ONLY)
+  // - If slug is unique => keep it.
+  // - If duplicate => prefer entry that has US pricing; if tie, prefer more regions.
   const sourceBySlug = new Map();
+
+  function hasUSPrice(game) {
+    const p = game?.prices?.US;
+    return !!(p && (p.sale != null && String(p.sale) !== '' || p.regular != null && String(p.regular) !== ''));
+  }
+  function regionCount(game) {
+    return Object.keys(game?.prices || {}).length;
+  }
+  function pickPreferred(cur, next) {
+    const curHasUS = hasUSPrice(cur);
+    const nxtHasUS = hasUSPrice(next);
+
+    if (!curHasUS && nxtHasUS) return next;
+    if (curHasUS && !nxtHasUS) return cur;
+
+    // tie (both have US or both don't): pick the one with more regions
+    const curCnt = regionCount(cur);
+    const nxtCnt = regionCount(next);
+    if (nxtCnt > curCnt) return next;
+
+    return cur;
+  }
+
+  let duplicateSlugs = 0;
   for (const g of active) {
     const rawSlug   = (g.urlKey || '').trim();
     const matchSlug = applySlugReplacements(rawSlug); // used for matching only
-    if (matchSlug) sourceBySlug.set(matchSlug, g);
+    if (!matchSlug) continue;
+
+    const cur = sourceBySlug.get(matchSlug);
+    if (!cur) {
+      sourceBySlug.set(matchSlug, g);
+    } else {
+      duplicateSlugs++;
+      sourceBySlug.set(matchSlug, pickPreferred(cur, g));
+    }
   }
+
   console.log(`🧭 Source index prepared: ${sourceBySlug.size} unique slugs`);
+  console.log(`🧬 Duplicate slug collisions handled (Option B): ${duplicateSlugs}`);
+  // ----------------------------------------------------------------------
 
   // 2) load csvjson.json (remote → fallback)
   let csvjson;
