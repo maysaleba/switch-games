@@ -283,20 +283,28 @@ function buildCountryBatches(entries) {
   countries.forEach(c => console.log(`  - ${c}: ${countryToIds[c].length} IDs`));
 
   // Prepare tasks: one per country
+  let failedCountries = [];
+  
   const tasks = countries.map(country => async () => {
     const ids = countryToIds[country];
     try {
       const { prices } = await getPricesForCountry(country, ids);
       mergeBack(entries, country, prices, countryToIdToIndexes);
-      await sleep(150); // tiny gap before next task
+      await sleep(150);
     } catch (err) {
-      console.warn(`⚠️  Skipping ${country}: ${err.message || err}`);
+      console.error(`❌ FAILED ${country}: ${err.message || err}`);
+      failedCountries.push(country);
     }
   });
 
   // Run with limited concurrency
   console.log(`Starting country fetches with concurrency=${COUNTRY_POOL_SIZE}…`);
   await runWithPool(tasks, { concurrency: COUNTRY_POOL_SIZE });
+
+  if (failedCountries.length > 0) {
+    console.error(`\n🚨 Price fetching failed for: ${failedCountries.join(', ')}`);
+    process.exit(1);
+  }
 
   // Write output
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(entries, null, 2), 'utf8');
@@ -305,3 +313,4 @@ function buildCountryBatches(entries) {
   console.error(err);
   process.exit(1);
 });
+
