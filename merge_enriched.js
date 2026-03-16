@@ -1,21 +1,20 @@
 #!/usr/bin/env node
 /**
- * Data-driven merge for US base with N regions (e.g., jp/hk/eu[/kr]).
+ * Data-driven merge for US base with N regions.
+ *
  * Matching rules:
  *   - k1/k2/k3 (NSUID first4 + productCode variants) → require SAME platform
  *   - title fallback                                → require SAME platform
- *   - urlKey (k4)                                   → IGNORES platform; uses *loose* key (hyphens removed)
+ *   - urlKey (k4)                                   → IGNORES platform; uses loose key (hyphens removed)
  *       + Safety: prefer candidates with the same NSUID first4 when multiple items share the same loose key.
  *
  * active_in_base OR-in logic:
  *   - If ANY matched source has active_in_base === true → merged.active_in_base = true.
- *   - We also track WHICH regions have active_in_base === true (activeRegions set).
- *   - At the end of each row, we PRUNE nsuid_* fields to ONLY those regions present in activeRegions.
  *
- * NEW IN THIS VERSION:
- *   - Prune nsuid_* so ONLY regions where active_in_base === true remain.
- *   - Strict urlKey mode driven by external file: config/strict_urlkeys.txt (one urlKey per line; '#' comments allowed)
- *     If a US row’s urlKey is listed there, we ONLY match by urlKey (loose) and skip k1/k2/k3/title rules for that row.
+ * This version adds:
+ *   - AS fields in pretty output ordering
+ *   - A second merge pass using unmatched EU rows as fallback base rows
+ *   - Leftover JP/HK/AS can merge into EU-base rows when no US row exists
  */
 
 const fs = require('fs');
@@ -28,7 +27,7 @@ const INPUTS = {
   hk: 'data/hk_games_enriched.json',
   eu: 'data/eu_games_enriched.json',
   as: 'data/as_games_enriched.json'
-//  kr: 'data/kr_games_enriched.json', // <- add when ready
+  // kr: 'data/kr_games_enriched.json',
 };
 
 const REGIONS = ['jp', 'hk', 'eu', 'as'];                // non-US regions we try to match
@@ -39,8 +38,6 @@ const OUT_FILE = path.join(OUT_DIR, 'merged_enriched.json');
 const LOG_FILE = path.join(LOG_DIR, 'merge_unmatched.log');
 
 const ENABLE_TITLE_FALLBACK = true;
-
-// NEW: optional external file for strict urlKey-only matching
 const STRICT_URLKEY_FILE = 'strict_urlkeys.txt';
 
 // ====== utils ======
@@ -55,6 +52,7 @@ function normalizeNsuid(region, nsuidRaw) {
   if (region === 'jp' && s.startsWith('D')) s = s.slice(1); // strip 'D' for JP
   return s;
 }
+
 function first4DigitsFromNsuid(nsuidRaw, region) {
   const nsuid = normalizeNsuid(region, nsuidRaw);
   if (!nsuid) return null;
@@ -62,10 +60,20 @@ function first4DigitsFromNsuid(nsuidRaw, region) {
   return digits.length >= 4 ? digits.slice(0, 4) : null;
 }
 
-function pcFirst8(pc) { const s = uc(pc); return s.length >= 8 ? s.slice(0, 8) : null; }
-function pcPos4to8(pc) { const s = uc(pc); return s.length >= 8 ? s.slice(3, 8) : null; }
+function pcFirst8(pc) {
+  const s = uc(pc);
+  return s.length >= 8 ? s.slice(0, 8) : null;
+}
 
-function getUrlKeyRaw(item) { return item?.urlKey ?? item?.slug ?? item?.url_key ?? null; }
+function pcPos4to8(pc) {
+  const s = uc(pc);
+  return s.length >= 8 ? s.slice(3, 8) : null;
+}
+
+function getUrlKeyRaw(item) {
+  return item?.urlKey ?? item?.slug ?? item?.url_key ?? null;
+}
+
 function normalizeSlug(s) {
   if (!s) return null;
   let t = String(s).trim().toLowerCase()
@@ -76,9 +84,11 @@ function normalizeSlug(s) {
     .replace(/^-|-$/g, '');
   return t || null;
 }
+
 function getUrlKey(item) {
   const raw = getUrlKeyRaw(item);
   if (raw) return normalizeSlug(raw);
+
   const url = item?.url;
   if (url) {
     const m = String(url).match(/\/([^/?#]+?)(?:\.html)?(?:\?|#|$)/i);
@@ -87,7 +97,7 @@ function getUrlKey(item) {
   return null;
 }
 
-// ---- loose URL key (remove hyphens) ----
+// loose URL key = remove hyphens
 function urlKeyLooseFromItem(item) {
   const k = getUrlKey(item);
   return k ? k.replace(/-/g, '') : null;
@@ -98,22 +108,21 @@ function normalizeTitle(s) {
   return String(s)
     .toLowerCase()
     .normalize('NFKD')
-    .replace(/&/g, ' and ')            // 👈 convert ampersand first
+    .replace(/&/g, ' and ')
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[’']/g, '')
-    .replace(/[^a-z0-9+]+/g, ' ')   // allow + to stay
+    .replace(/[^a-z0-9+]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 }
 
-// ---- platform helpers ----
+// ---- platform/product helpers ----
 function normalizeProductCodeForRegion(pc, region) {
   if (!pc) return null;
   const s = uc(pc);
 
   // AS rule: ignore 4th character (index 3)
   if (region === 'as' && s.length >= 5) {
-    // keep chars 0–2, skip index 3, keep rest
     return s.slice(0, 3) + s.slice(4);
   }
 
@@ -122,13 +131,17 @@ function normalizeProductCodeForRegion(pc, region) {
 
 function normalizePlatform(s) {
   if (!s) return null;
-  return String(s).trim().toLowerCase(); // strict equality
+  return String(s).trim().toLowerCase();
 }
+
 function getPlatform(item) {
   return normalizePlatform(item?.platform);
 }
 
-function supportLangField(region) { return `supportLanguage_${region}`; }
+function supportLangField(region) {
+  return `supportLanguage_${region}`;
+}
+
 function pickSupportLanguage(item) {
   if (Array.isArray(item?.supportLanguages)) {
     const norm = new Set(item.supportLanguages.map(x => String(x).trim()));
@@ -145,15 +158,19 @@ function pickSupportLanguage(item) {
 function sortKeysPretty(item) {
   const preferred = [
     'title','url','urlKey','platform','genres','releaseDate','publisher','dlcType','playerCount',
-    'imageSquare','imageSquare_us','imageSquare_eu','imageSquare_jp','imageSquare_hk','imageSquare_kr','imageKey',
-    'nsuid_us','nsuid_eu','nsuid_jp','nsuid_hk','nsuid_kr',
-    'productCode_us','productCode_eu','productCode_jp','productCode_hk','productCode_kr',
-    'supportLanguage_us','supportLanguage_eu','supportLanguage_jp','supportLanguage_hk','supportLanguage_kr',
+    'imageSquare','imageSquare_us','imageSquare_eu','imageSquare_jp','imageSquare_hk','imageSquare_as','imageSquare_kr','imageKey',
+    'nsuid_us','nsuid_eu','nsuid_jp','nsuid_hk','nsuid_as','nsuid_kr',
+    'productCode_us','productCode_eu','productCode_jp','productCode_hk','productCode_as','productCode_kr',
+    'supportLanguage_us','supportLanguage_eu','supportLanguage_jp','supportLanguage_hk','supportLanguage_as','supportLanguage_kr',
     'active_in_base',
   ];
   const out = {};
-  for (const k of preferred) if (Object.prototype.hasOwnProperty.call(item, k)) out[k] = item[k];
-  for (const k of Object.keys(item)) if (!Object.prototype.hasOwnProperty.call(out, k)) out[k] = item[k];
+  for (const k of preferred) {
+    if (Object.prototype.hasOwnProperty.call(item, k)) out[k] = item[k];
+  }
+  for (const k of Object.keys(item)) {
+    if (!Object.prototype.hasOwnProperty.call(out, k)) out[k] = item[k];
+  }
   return out;
 }
 
@@ -169,29 +186,23 @@ function buildRegionIndexes(arr, region) {
     const nsuid = item[`nsuid_${region}`] ?? item.nsuid ?? null;
     const f4 = first4DigitsFromNsuid(nsuid, region);
 
-    // ✅ UPDATED: region-specific product code normalization
     const pcRaw = item[`productCode_${region}`] ?? item.productCode ?? null;
     const pcNorm = normalizeProductCodeForRegion(pcRaw, region);
 
     const urlKeyL = urlKeyLooseFromItem(item);
     const titleN = ENABLE_TITLE_FALLBACK ? normalizeTitle(item?.title) : null;
-    const plat = getPlatform(item); // may be null/empty
+    const plat = getPlatform(item);
 
-    // --- k1/k2/k3 (NSUID first4 + productCode variants) requires SAME platform ---
     if (f4 && isNonEmpty(pcNorm) && plat) {
-      // k1: full normalized PC
       const key1 = `${f4}|${pcNorm}|${plat}`;
       if (!k1.has(key1)) k1.set(key1, item);
 
-      // k2: first 8 chars of normalized PC
       const pc8 = pcNorm.length >= 8 ? pcNorm.slice(0, 8) : null;
       if (pc8) {
         const key2 = `${f4}|${pc8}|${plat}`;
         if (!k2.has(key2)) k2.set(key2, item);
       }
 
-      // k3: chars 4–8-ish (same slice logic as original script)
-      // Note: this intentionally matches your existing pcPos4to8 behavior.
       const pc48 = pcNorm.length >= 8 ? pcNorm.slice(3, 8) : null;
       if (pc48) {
         const key3 = `${f4}|${pc48}|${plat}`;
@@ -199,14 +210,12 @@ function buildRegionIndexes(arr, region) {
       }
     }
 
-    // --- k4: urlKey (loose) ignores platform ---
     if (urlKeyL) {
       const arrL = k4.get(urlKeyL);
       if (arrL) arrL.push(item);
       else k4.set(urlKeyL, [item]);
     }
 
-    // --- title fallback requires SAME platform ---
     if (titleN && plat) {
       const keyt = `${titleN}|${plat}`;
       if (!kt.has(keyt)) kt.set(keyt, item);
@@ -216,17 +225,18 @@ function buildRegionIndexes(arr, region) {
   return { k1, k2, k3, k4, kt };
 }
 
-
 // ====== strict urlKey list ======
 function loadStrictUrlKeys(filePath) {
   if (!fs.existsSync(filePath)) {
     console.log(`ℹ️ No strict urlKey file found at ${filePath}. Running without strict list.`);
     return new Set();
   }
+
   const raw = fs.readFileSync(filePath, 'utf8')
     .split(/\r?\n/)
     .map(x => x.trim())
     .filter(x => x && !x.startsWith('#'));
+
   const normalized = raw.map(normalizeSlug).filter(Boolean);
   const set = new Set(normalized);
   console.log(`🔑 Loaded ${set.size} strict urlKeys from ${filePath}`);
@@ -235,73 +245,119 @@ function loadStrictUrlKeys(filePath) {
 
 let STRICT_URLKEYS = loadStrictUrlKeys(STRICT_URLKEY_FILE);
 
-// ====== matching ======
-function tryMatch(regionIdx, usItem, { strictUrlKeyHit }) {
-  const urlKeyUS = getUrlKey(usItem);
-  const urlKeyUSL = urlKeyUS ? urlKeyUS.replace(/-/g, '') : null;
+// ====== matching helpers ======
+function pickBaseNsuid(item) {
+  return item.nsuid_us
+    ?? item.nsuid_eu
+    ?? item.nsuid_jp
+    ?? item.nsuid_hk
+    ?? item.nsuid_as
+    ?? item.nsuid_kr
+    ?? item.nsuid
+    ?? null;
+}
 
-  // --- STRICT URLKEY-ONLY MODE (per-row) ---
-  if (strictUrlKeyHit && urlKeyUS && urlKeyUSL) {
-    if (regionIdx.k4.has(urlKeyUSL)) {
-      const candidates = regionIdx.k4.get(urlKeyUSL) || [];
+function pickBaseProductCode(item) {
+  return item.productCode_us
+    ?? item.productCode_eu
+    ?? item.productCode_jp
+    ?? item.productCode_hk
+    ?? item.productCode_as
+    ?? item.productCode_kr
+    ?? item.productCode
+    ?? null;
+}
+
+function detectBaseRegion(item) {
+  if (item.nsuid_us || item.productCode_us) return 'us';
+  if (item.nsuid_eu || item.productCode_eu) return 'eu';
+  if (item.nsuid_jp || item.productCode_jp) return 'jp';
+  if (item.nsuid_hk || item.productCode_hk) return 'hk';
+  if (item.nsuid_as || item.productCode_as) return 'as';
+  if (item.nsuid_kr || item.productCode_kr) return 'kr';
+  return 'us';
+}
+
+function candidateFirst4(cand) {
+  return (
+    first4DigitsFromNsuid(cand.nsuid_us ?? cand.nsuid, 'us') ||
+    first4DigitsFromNsuid(cand.nsuid_eu ?? cand.nsuid, 'eu') ||
+    first4DigitsFromNsuid(cand.nsuid_jp ?? cand.nsuid, 'jp') ||
+    first4DigitsFromNsuid(cand.nsuid_hk ?? cand.nsuid, 'hk') ||
+    first4DigitsFromNsuid(cand.nsuid_as ?? cand.nsuid, 'as') ||
+    first4DigitsFromNsuid(cand.nsuid_kr ?? cand.nsuid, 'kr') ||
+    (String(cand.nsuid ?? '').replace(/\D+/g, '').slice(0, 4) || null)
+  );
+}
+
+// ====== matching ======
+function tryMatch(regionIdx, baseItem, { strictUrlKeyHit }) {
+  const urlKeyBase = getUrlKey(baseItem);
+  const urlKeyBaseL = urlKeyBase ? urlKeyBase.replace(/-/g, '') : null;
+
+  if (strictUrlKeyHit && urlKeyBase && urlKeyBaseL) {
+    if (regionIdx.k4.has(urlKeyBaseL)) {
+      const candidates = regionIdx.k4.get(urlKeyBaseL) || [];
       if (candidates.length === 1) return { item: candidates[0], rule: 'strict-urlKey' };
-      // Prefer a candidate sharing NSUID first4 with the US item (if any)
-      const f4US =
-        first4DigitsFromNsuid(usItem.nsuid_us ?? usItem.nsuid, 'us') ||
-        null;
-      if (f4US) {
+
+      const baseRegion = detectBaseRegion(baseItem);
+      const f4Base = first4DigitsFromNsuid(pickBaseNsuid(baseItem), baseRegion) || null;
+
+      if (f4Base) {
         for (const cand of candidates) {
-          const candF4 =
-            first4DigitsFromNsuid(cand.nsuid_us ?? cand.nsuid, 'us') ||
-            first4DigitsFromNsuid(cand.nsuid_eu ?? cand.nsuid, 'eu') ||
-            first4DigitsFromNsuid(cand.nsuid_jp ?? cand.nsuid, 'jp') ||
-            first4DigitsFromNsuid(cand.nsuid_hk ?? cand.nsuid, 'hk') ||
-            first4DigitsFromNsuid(cand.nsuid_kr ?? cand.nsuid, 'kr') ||
-            (String(cand.nsuid ?? '').replace(/\D+/g, '').slice(0,4) || null);
-          if (candF4 && candF4 === f4US) return { item: cand, rule: 'strict-urlKey' };
+          const candF4 = candidateFirst4(cand);
+          if (candF4 && candF4 === f4Base) return { item: cand, rule: 'strict-urlKey' };
         }
       }
-      // Fallback to first candidate deterministically
+
       return { item: candidates[0], rule: 'strict-urlKey' };
     }
-    // Strict list says urlKey-only, but no regional candidate → no match (do NOT fall back)
+
     return null;
   }
 
-  // --- NORMAL LOGIC (k1/k2/k3 → urlKey → title) ---
-  const usNsuid = usItem.nsuid_us ?? usItem.nsuid;
-  const f4 = first4DigitsFromNsuid(usNsuid, 'us');
-  const pcUS = usItem.productCode_us ?? usItem.productCode ?? null;
-  const titleUS = ENABLE_TITLE_FALLBACK ? normalizeTitle(usItem?.title) : null;
-  const platUS = getPlatform(usItem); // may be null
+  const baseRegion = detectBaseRegion(baseItem);
+  const baseNsuid = pickBaseNsuid(baseItem);
+  const f4 = first4DigitsFromNsuid(baseNsuid, baseRegion);
+  const pcBaseRaw = pickBaseProductCode(baseItem);
+  const pcBase = normalizeProductCodeForRegion(pcBaseRaw, baseRegion);
+  const titleBase = ENABLE_TITLE_FALLBACK ? normalizeTitle(baseItem?.title) : null;
+  const platBase = getPlatform(baseItem);
 
-  if (f4 && isNonEmpty(pcUS) && platUS) {
-    const pcU = uc(pcUS);
-    const key1 = `${f4}|${pcU}|${platUS}`; if (regionIdx.k1.has(key1)) return { item: regionIdx.k1.get(key1), rule: 'k1' };
-    const pc8 = pcFirst8(pcU);             if (pc8) { const key2 = `${f4}|${pc8}|${platUS}`; if (regionIdx.k2.has(key2)) return { item: regionIdx.k2.get(key2), rule: 'k2' }; }
-    const pc48 = pcPos4to8(pcU);           if (pc48){ const key3 = `${f4}|${pc48}|${platUS}`; if (regionIdx.k3.has(key3)) return { item: regionIdx.k3.get(key3), rule: 'k3' }; }
+  if (f4 && isNonEmpty(pcBase) && platBase) {
+    const pcU = uc(pcBase);
+    const key1 = `${f4}|${pcU}|${platBase}`;
+    if (regionIdx.k1.has(key1)) return { item: regionIdx.k1.get(key1), rule: 'k1' };
+
+    const pc8 = pcFirst8(pcU);
+    if (pc8) {
+      const key2 = `${f4}|${pc8}|${platBase}`;
+      if (regionIdx.k2.has(key2)) return { item: regionIdx.k2.get(key2), rule: 'k2' };
+    }
+
+    const pc48 = pcPos4to8(pcU);
+    if (pc48) {
+      const key3 = `${f4}|${pc48}|${platBase}`;
+      if (regionIdx.k3.has(key3)) return { item: regionIdx.k3.get(key3), rule: 'k3' };
+    }
   }
 
-  if (urlKeyUSL && regionIdx.k4.has(urlKeyUSL)) {
-    const candidates = regionIdx.k4.get(urlKeyUSL) || [];
+  if (urlKeyBaseL && regionIdx.k4.has(urlKeyBaseL)) {
+    const candidates = regionIdx.k4.get(urlKeyBaseL) || [];
     if (candidates.length === 1) return { item: candidates[0], rule: 'k4' };
+
     if (f4) {
       for (const cand of candidates) {
-        const candF4 =
-          first4DigitsFromNsuid(cand.nsuid_us ?? cand.nsuid, 'us') ||
-          first4DigitsFromNsuid(cand.nsuid_eu ?? cand.nsuid, 'eu') ||
-          first4DigitsFromNsuid(cand.nsuid_jp ?? cand.nsuid, 'jp') ||
-          first4DigitsFromNsuid(cand.nsuid_hk ?? cand.nsuid, 'hk') ||
-          first4DigitsFromNsuid(cand.nsuid_kr ?? cand.nsuid, 'kr') ||
-          (String(cand.nsuid ?? '').replace(/\D+/g, '').slice(0,4) || null);
+        const candF4 = candidateFirst4(cand);
         if (candF4 && candF4 === f4) return { item: cand, rule: 'k4' };
       }
     }
+
     return { item: candidates[0], rule: 'k4' };
   }
 
-  if (titleUS && platUS) {
-    const keyt = `${titleUS}|${platUS}`;
+  if (titleBase && platBase) {
+    const keyt = `${titleBase}|${platBase}`;
     if (regionIdx.kt?.has(keyt)) return { item: regionIdx.kt.get(keyt), rule: 'title' };
   }
 
@@ -329,59 +385,50 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
     base.platform = String(platformVal).trim();
   }
 
-  // also copy region-specific imageSquare if present
   const imgSqKey = `imageSquare_${region}`;
   const imgSqVal = matched?.imageSquare ?? matched?.image_square ?? null;
   if (isNonEmpty(imgSqVal) && !isNonEmpty(base[imgSqKey])) {
     base[imgSqKey] = String(imgSqVal).trim();
   }
 
-  // Flag active + track region that is active
   if (matched && matched.active_in_base === true) {
     if (base.active_in_base !== true && typeof onRaise === 'function') onRaise();
     base.active_in_base = true;
-    // track region activity for pruning
     base.__activeRegions?.add(region);
   }
 
-  // Keep note if this region contributed (debugging)
   if (!base.__matchedRegions) base.__matchedRegions = new Set();
   base.__matchedRegions.add(region);
 }
 
 // ====== main ======
 (function main() {
-  // Load sources
   const us = readJson(INPUTS.us);
   const US_BASE_COUNT = Array.isArray(us) ? us.length : 0;
 
   const regionData = {};
   for (const r of REGIONS) regionData[r] = readJson(INPUTS[r]);
 
-  // Build indexes
   const regionIdx = {};
   const seen = {};
   const ruleCounts = {};
   for (const r of REGIONS) {
     regionIdx[r] = buildRegionIndexes(regionData[r], r);
     seen[r] = new Set();
-    ruleCounts[r] = { 'strict-urlKey':0, k1:0, k2:0, k3:0, k4:0, title:0 };
+    ruleCounts[r] = { 'strict-urlKey': 0, k1: 0, k2: 0, k3: 0, k4: 0, title: 0 };
   }
 
-  // RAISE LOGGING ACCUMULATORS
   const activeRaiseEvents = [];
   const activeRaiseCounts = Object.fromEntries(REGIONS.map(r => [r, 0]));
 
-  // Merge pass over US
+  // ===== Pass 1: US base =====
   const merged = us.map((orig, rowId) => {
     const item = { ...orig, __rowId: rowId };
     const wasActiveInitially = orig.active_in_base === true;
 
-    // per-row set of regions that are "active"
     item.__activeRegions = new Set();
     if (orig.active_in_base === true) item.__activeRegions.add('us');
 
-    // Determine if this US row is in strict urlKey list
     const uk = getUrlKey(item);
     const strictHit = !!(uk && STRICT_URLKEYS.has(uk));
 
@@ -392,7 +439,7 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
           onRaise: () => {
             if (!wasActiveInitially) {
               activeRaiseCounts[r] += 1;
-              const title = item.title ?  `"${item.title}"` : '';
+              const title = item.title ? `"${item.title}"` : '';
               const usNsuid = item.nsuid_us ?? item.nsuid ?? 'N/A';
               activeRaiseEvents.push(
                 `raised active_in_base by ${r.toUpperCase()} for rowId ${rowId} ${title} (US nsuid: ${usNsuid})`
@@ -407,12 +454,7 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
       }
     }
 
-    // === PRUNE MODE: keep all nsuid_* if ANY region is active_in_base
-    // If the merged row is active at all, don't prune any nsuid_* fields.
-    if (item.active_in_base === true) {
-      // do nothing — keep all nsuid_*
-    } else {
-      // original behavior: remove all nsuid_* since the row isn't active anywhere
+    if (item.active_in_base !== true) {
       for (const rc of REGION_CODES_ALL) {
         const key = `nsuid_${rc}`;
         if (Object.prototype.hasOwnProperty.call(item, key)) {
@@ -421,11 +463,9 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
       }
     }
 
-    // housekeeping
     delete item.__matchedRegions;
     delete item.__activeRegions;
 
-    // ensure urlKey is present (normalize if needed)
     if (!isNonEmpty(item.urlKey)) {
       const ukNow = getUrlKey(item);
       if (ukNow) item.urlKey = ukNow;
@@ -434,13 +474,13 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
     return sortKeysPretty(item);
   });
 
-  // Count unmatched to US (no nsuid_/productCode_ present in merged rows)
+  // Count unmatched-to-US before EU fallback pass
   const usToUnmatched = {};
   for (const r of REGIONS) {
     usToUnmatched[r] = merged.filter(x => !x[`nsuid_${r}`] && !x[`productCode_${r}`]).length;
   }
 
-  // Compute leftovers (region entries not matched to any US)
+  // Leftovers after US pass
   const leftovers = {};
   for (const r of REGIONS) {
     leftovers[r] = regionData[r].filter(g => {
@@ -449,44 +489,122 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
     });
   }
 
-  // ---- Append unmatched EU entries verbatim
-  const euLeftovers = leftovers['eu'] || [];
-  for (const g of euLeftovers) {
-    const clone = { ...g };
-    if (!isNonEmpty(clone.urlKey)) {
-      const uk = getUrlKey(g);
-      if (isNonEmpty(uk)) clone.urlKey = uk;
-    }
-    // keep as-is; imageSquare_eu is inherently present via clone.imageSquare if consumer needs it
-    merged.push(sortKeysPretty(clone));
-  }
-  console.log(`➕ Appended EU-only entries: ${euLeftovers.length}`);
+  // ===== Pass 2: EU fallback base =====
+  const euLeftovers = leftovers.eu || [];
+  const secondaryRegions = ['jp', 'hk', 'as'];
 
-  // write outputs
-  ensureDir(OUT_DIR); ensureDir(LOG_DIR);
+  const secondaryRegionData = {};
+  const secondaryRegionIdx = {};
+  for (const r of secondaryRegions) {
+    secondaryRegionData[r] = [...(leftovers[r] || [])];
+    secondaryRegionIdx[r] = buildRegionIndexes(secondaryRegionData[r], r);
+  }
+
+  let euBaseAppendedCount = 0;
+
+  for (const g of euLeftovers) {
+    const item = { ...g };
+    const wasActiveInitially = item.active_in_base === true;
+
+    item.__activeRegions = new Set();
+    if (item.active_in_base === true) item.__activeRegions.add('eu');
+
+    if (!isNonEmpty(item.urlKey)) {
+      const uk = getUrlKey(item);
+      if (uk) item.urlKey = uk;
+    }
+
+    const strictHit = !!(item.urlKey && STRICT_URLKEYS.has(item.urlKey));
+
+    for (const r of secondaryRegions) {
+      const res = tryMatch(secondaryRegionIdx[r], item, { strictUrlKeyHit: strictHit });
+      if (res?.item) {
+        appendRegionFields(item, r, res.item, {
+          onRaise: () => {
+            if (!wasActiveInitially) {
+              activeRaiseCounts[r] += 1;
+              const title = item.title ? `"${item.title}"` : '';
+              const euNsuid = item.nsuid_eu ?? item.nsuid ?? 'N/A';
+              activeRaiseEvents.push(
+                `raised active_in_base by ${r.toUpperCase()} for EU-base ${title} (EU nsuid: ${euNsuid})`
+              );
+            }
+          }
+        });
+
+        const idN = normalizeNsuid(r, (res.item[`nsuid_${r}`] ?? res.item.nsuid ?? null));
+        if (idN) seen[r].add(idN);
+        if (ruleCounts[r][res.rule] != null) ruleCounts[r][res.rule] += 1;
+
+        // remove matched item so another EU base row can't reuse it
+        const arr = secondaryRegionData[r];
+        const idx = arr.indexOf(res.item);
+        if (idx !== -1) {
+          arr.splice(idx, 1);
+          secondaryRegionIdx[r] = buildRegionIndexes(arr, r);
+        }
+      }
+    }
+
+    if (item.active_in_base !== true) {
+      for (const rc of REGION_CODES_ALL) {
+        const key = `nsuid_${rc}`;
+        if (Object.prototype.hasOwnProperty.call(item, key)) {
+          delete item[key];
+        }
+      }
+    }
+
+    delete item.__matchedRegions;
+    delete item.__activeRegions;
+
+    if (!isNonEmpty(item.urlKey)) {
+      const ukNow = getUrlKey(item);
+      if (ukNow) item.urlKey = ukNow;
+    }
+
+    merged.push(sortKeysPretty(item));
+    euBaseAppendedCount++;
+  }
+
+  // Final leftovers after EU fallback pass
+  const finalLeftovers = {
+    eu: [],
+    jp: secondaryRegionData.jp || [],
+    hk: secondaryRegionData.hk || [],
+    as: secondaryRegionData.as || [],
+  };
+
+  // ===== Write outputs =====
+  ensureDir(OUT_DIR);
+  ensureDir(LOG_DIR);
+
   const clean = merged.map(({ __rowId, __nomatch_debug, ...rest }) => rest);
   fs.writeFileSync(OUT_FILE, JSON.stringify(clean, null, 2), 'utf8');
 
-  // log
+  // ===== Log =====
   const totalAfterAppend = clean.length;
   const logLines = [];
-  logLines.push(`EU-only entries appended to final output: ${euLeftovers.length}`);
+  logLines.push(`EU-base entries appended to final output: ${euBaseAppendedCount}`);
   logLines.push(`Merge run @ ${new Date().toISOString()}`);
   logLines.push(`US base entries: ${US_BASE_COUNT}`);
-  logLines.push(`Final output total (after EU append): ${totalAfterAppend}`);
+  logLines.push(`Final output total (after EU fallback append): ${totalAfterAppend}`);
+
   for (const r of REGIONS) {
     const matchedCount = US_BASE_COUNT - usToUnmatched[r];
-    logLines.push(`Matched ${r.toUpperCase()}: ${matchedCount} / ${US_BASE_COUNT}`);
+    logLines.push(`Matched to US base ${r.toUpperCase()}: ${matchedCount} / ${US_BASE_COUNT}`);
   }
   logLines.push('');
 
-  for (const r of REGIONS) {
-    logLines.push(`${r.toUpperCase()} entries not matched to any US: ${leftovers[r].length}`);
-  }
+  logLines.push(`JP leftovers after US+EU fallback: ${finalLeftovers.jp.length}`);
+  logLines.push(`HK leftovers after US+EU fallback: ${finalLeftovers.hk.length}`);
+  logLines.push(`AS leftovers after US+EU fallback: ${finalLeftovers.as.length}`);
   logLines.push('');
 
   logLines.push('Rule usage (how matches were made):');
-  for (const r of REGIONS) logLines.push(`  ${r.toUpperCase()}: ${JSON.stringify(ruleCounts[r])}`);
+  for (const r of REGIONS) {
+    logLines.push(`  ${r.toUpperCase()}: ${JSON.stringify(ruleCounts[r])}`);
+  }
   logLines.push('');
 
   logLines.push('active_in_base raises (region flipped merged value from false→true):');
@@ -498,9 +616,9 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
   }
   logLines.push('');
 
-  for (const r of REGIONS) {
-    logLines.push(`--- ${r.toUpperCase()} entries not matched to any US ---`);
-    for (const g of leftovers[r]) {
+  for (const r of ['jp', 'hk', 'as']) {
+    logLines.push(`--- ${r.toUpperCase()} entries not matched to any US or EU-base row ---`);
+    for (const g of finalLeftovers[r]) {
       const row = {
         [`nsuid_${r}`]: g[`nsuid_${r}`] ?? g.nsuid ?? null,
         [`productCode_${r}`]: g[`productCode_${r}`] ?? g.productCode ?? null,
@@ -518,12 +636,14 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
 
   // concise console summary
   console.log(`✅ Merged to ${OUT_FILE}`);
-  console.log(`ℹ️ US base: ${US_BASE_COUNT} | EU-only appended: ${euLeftovers.length} | Final total: ${totalAfterAppend}`);
+  console.log(`ℹ️ US base: ${US_BASE_COUNT} | EU-base appended: ${euBaseAppendedCount} | Final total: ${totalAfterAppend}`);
   for (const r of REGIONS) {
     const matchedCount = US_BASE_COUNT - usToUnmatched[r];
-    console.log(`✅ Matched ${r.toUpperCase()}: ${matchedCount} / ${US_BASE_COUNT} | 🚫 ${r.toUpperCase()}→US unmatched: ${leftovers[r].length}`);
+    console.log(`✅ Matched ${r.toUpperCase()} to US base: ${matchedCount} / ${US_BASE_COUNT}`);
   }
+  console.log(`🚫 JP leftovers after US+EU fallback: ${finalLeftovers.jp.length}`);
+  console.log(`🚫 HK leftovers after US+EU fallback: ${finalLeftovers.hk.length}`);
+  console.log(`🚫 AS leftovers after US+EU fallback: ${finalLeftovers.as.length}`);
   console.log(`⬆️ active_in_base raises by region: ${JSON.stringify(activeRaiseCounts)}`);
-  console.log(`📝 nsuid_* pruning: kept only regions with active_in_base === true`);
   console.log(`📝 Log written to ${LOG_FILE}`);
 })();
