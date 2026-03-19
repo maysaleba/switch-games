@@ -18,7 +18,7 @@ const { chromium } = require('playwright');
 // Config
 // =======================
 const START_PAGE = 1;
-const END_PAGE = null; // null = auto stop on empty page
+const END_PAGE = 5; // null = auto stop on empty page
 const AUTO_STOP_ON_EMPTY = true;
 const DELAY_MS_BETWEEN_BATCHES = 500;
 const CONCURRENCY = 2;
@@ -139,7 +139,8 @@ async function createBrowser() {
 
 async function fetchListingPage(browser, pageNum) {
   // const url = `https://store-jp.nintendo.com/list/software?srule=new-arrival&page=${pageNum}`;
-  const url = `https://store-jp.nintendo.com/list/software?softType=TITLE&isSale=true&srule=most-popular&page=${pageNum}`;
+  //const url = `https://store-jp.nintendo.com/list/software?softType=TITLE&isSale=true&srule=most-popular&page=${pageNum}`;
+  const url = `https://store-jp.nintendo.com/list/software?softType=TITLE&isSale=true&srule=new-arrival&page=${pageNum}`;
 
   const page = await browser.newPage({
     userAgent:
