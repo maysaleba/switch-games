@@ -1,20 +1,22 @@
 #!/usr/bin/env node
 /**
- * Fetch HK eShop items (current BASE is recent releases) and append-only save.
+ * Fetch HK eShop items (current BASE is current offers) and append-only save.
  * Output: data/hk_games.json (trimmed fields, aligned with US/EU)
  *
- * Console logs aligned with US/EU fetchers.
+ * Playwright version
  */
 
 const fs = require('fs');
 const path = require('path');
-const axios = require('axios').default;
-const cheerio = require('cheerio');
+const { chromium } = require('playwright');
 
 // ---- CONFIG ----
-//const BASE = "https://store.nintendo.com.hk/digital-games/recent-releases?product_list_order=release-date-asc";
-const BASE = "https://store.nintendo.com.hk/digital-games/current-offers?product_list_limit=24";
-const PAGE_DELAY_MS = 350; // polite delay between listing pages
+// const BASE = "https://store.nintendo.com.hk/digital-games/recent-releases?product_list_order=release-date-asc";
+const BASE = "https://store.nintendo.com.hk/digital-games/current-offers?product_list_order=release-date-desc&product_list_limit=24";
+const PAGE_DELAY_MS = 350;
+const NAV_TIMEOUT_MS = 30000;
+const WAIT_AFTER_LOAD_MS = 1500;
+const MAX_PAGES = 3;
 
 // ---- HELPERS ----
 const delay = (ms) => new Promise(res => setTimeout(res, ms));
@@ -46,7 +48,6 @@ function platformKeyFromName(name) {
   return String(name || 'Nintendo Switch').toLowerCase().replace(/\s+/g, '-');
 }
 
-// ---- add this helper ----
 function buildPageUrl(base, page) {
   const u = new URL(base);
   if (page > 1) {
@@ -57,7 +58,6 @@ function buildPageUrl(base, page) {
   return u.toString();
 }
 
-// slugify title
 function slugifyTitle(s) {
   return String(s || '')
     .trim()
@@ -66,49 +66,8 @@ function slugifyTitle(s) {
     .replace(/^-+|-+$/g, '');
 }
 
-async function scrapePage(page) {
-// const url = page > 1 ? `${BASE}?p=${page}` : BASE;
-  const url = buildPageUrl(BASE, page);
-  const { data: html } = await axios.get(url, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117 Safari/537.36',
-      'Accept-Language': 'zh-HK,zh;q=0.9,en;q=0.8',
-    },
-    timeout: 30000,
-  });
-
-  const $ = cheerio.load(html);
-
-  const items = [];
-  // Walk product cards to reliably extract title + EC links
-  $('.products .product-item').each((_, card) => {
-    const $card = $(card);
-    const $ec = $card.find(`a[href*="ec.nintendo.com"][href*="/titles/"], a[href*="ec.nintendo.com"][href*="/bundles/"]`).first();
-    const ecHref = $ec.attr('href');
-    const nsuid = extractNsuidFromEcUrl(ecHref);
-    if (!nsuid) return;
-
-    // title strategies
-    let title =
-      ($card.find('.product-item-link').text() || '').trim().replace(/\s+/g, ' ') ||
-      ($card.find('img[alt]').attr('alt') || '').trim().replace(/\s+/g, ' ') ||
-      ($ec.attr('title') || '').trim().replace(/\s+/g, ' ');
-    if (!title) title = $card.text().trim().replace(/\s+/g, ' ');
-
-    const url = ecHref ? (ecHref.startsWith('http') ? ecHref : `https:${ecHref}`) : '';
-
-    items.push({ title, nsuid, url });
-  });
-
-  // Dedupe within page
-  const map = new Map();
-  for (const it of items) if (!map.has(it.nsuid)) map.set(it.nsuid, it);
-  return [...map.values()];
-}
-
-// Map raw (title, nsuid, url) → aligned trimmed schema like US/EU
 function mapItemToSchema(it) {
-  const platformName = 'Nintendo Switch'; // HK listing is Switch ecosystem
+  const platformName = 'Nintendo Switch';
   const urlKey = (() => {
     const slug = slugifyTitle(it.title);
     const pkey = platformKeyFromName(platformName);
@@ -131,55 +90,163 @@ function mapItemToSchema(it) {
   };
 }
 
+async function createBrowser() {
+  return chromium.launch({ headless: true });
+}
+
+async function createContext(browser) {
+  const context = await browser.newContext({
+    userAgent:
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
+    locale: 'zh-HK',
+    extraHTTPHeaders: {
+      'Accept-Language': 'zh-HK,zh;q=0.9,en;q=0.8',
+      'Cache-Control': 'no-cache',
+      'Pragma': 'no-cache'
+    }
+  });
+
+  await context.route('**/*', async (route) => {
+    const type = route.request().resourceType();
+    if (type === 'image' || type === 'media' || type === 'font') {
+      return route.abort();
+    }
+    return route.continue();
+  });
+
+  return context;
+}
+
+async function scrapePage(context, pageNum) {
+  const url = buildPageUrl(BASE, pageNum);
+  const page = await context.newPage();
+
+  try {
+    await page.goto(url, {
+      waitUntil: 'domcontentloaded',
+      timeout: NAV_TIMEOUT_MS
+    });
+
+    // Wait for the product cards to appear, or at least for the page to settle.
+    await page.waitForLoadState('networkidle', { timeout: 10000 }).catch(() => {});
+    await page.waitForSelector('.products .product-item', { timeout: 10000 }).catch(() => {});
+    await page.waitForTimeout(WAIT_AFTER_LOAD_MS);
+
+    const extractItems = async () => {
+      return await page.evaluate(() => {
+        const normalize = (s) => String(s || '').trim().replace(/\s+/g, ' ');
+
+        const cards = [...document.querySelectorAll('.products .product-item')];
+        const out = [];
+
+        for (const card of cards) {
+          const ecLink = card.querySelector(
+            'a[href*="ec.nintendo.com"][href*="/titles/"], a[href*="ec.nintendo.com"][href*="/bundles/"]'
+          );
+          const ecHref = ecLink?.getAttribute('href') || '';
+          if (!ecHref) continue;
+
+          let title =
+            normalize(card.querySelector('.product-item-link')?.textContent) ||
+            normalize(card.querySelector('img[alt]')?.getAttribute('alt')) ||
+            normalize(ecLink?.getAttribute('title')) ||
+            normalize(card.textContent);
+
+          const href = ecHref.startsWith('http') ? ecHref : `https:${ecHref}`;
+          out.push({ title, href });
+        }
+
+        return out;
+      });
+    };
+
+    let items;
+    try {
+      items = await extractItems();
+    } catch (err) {
+      if (String(err.message || err).includes('Execution context was destroyed')) {
+        await page.waitForLoadState('networkidle', { timeout: 10000 }).catch(() => {});
+        await page.waitForTimeout(1000);
+        items = await extractItems();
+      } else {
+        throw err;
+      }
+    }
+
+    const mapped = [];
+    const seen = new Set();
+
+    for (const it of items) {
+      const nsuid = extractNsuidFromEcUrl(it.href);
+      if (!nsuid) continue;
+      if (seen.has(nsuid)) continue;
+      seen.add(nsuid);
+
+      mapped.push({
+        title: it.title || '',
+        nsuid,
+        url: it.href || ''
+      });
+    }
+
+    return mapped;
+  } finally {
+    await page.close().catch(() => {});
+  }
+}
+
 async function fetchHKGames() {
   console.log('▶️ Starting HK games fetch...');
 
   const collected = [];
-  const seen = new Set();           // track NSUIDs across pages
-  let page = 1;
-  const MAX_PAGES = 200;            // optional hard cap
+  const seen = new Set();
 
-  while (page <= MAX_PAGES) {
-    try {
-      console.log(`🌏 Fetching HK page ${page}…`);
-      const items = await scrapePage(page);
+  const browser = await createBrowser();
+  const context = await createContext(browser);
 
-      if (!items.length) {
-        console.log(`⏹️  No items found on page ${page}. Stopping.`);
-        break;
+  try {
+    let page = 1;
+
+    while (page <= MAX_PAGES) {
+      try {
+        console.log(`🌏 Fetching HK page ${page}…`);
+        const items = await scrapePage(context, page);
+
+        if (!items.length) {
+          console.log(`⏹️  No items found on page ${page}. Stopping.`);
+          break;
+        }
+
+        const newOnPage = items.filter(it => !seen.has(it.nsuid));
+        console.log(`  ➕ Found ${items.length} items; new this page: ${newOnPage.length}.`);
+
+        for (const it of newOnPage) {
+          collected.push(it);
+          seen.add(it.nsuid);
+        }
+
+        if (newOnPage.length === 0) {
+          console.log(`⏹️  Page ${page} had no new NSUIDs. Stopping to avoid infinite loop.`);
+          break;
+        }
+
+        await delay(PAGE_DELAY_MS);
+        page += 1;
+      } catch (err) {
+        console.warn(`⚠️ Page ${page} failed: ${err.message || err}. Skipping after backoff…`);
+        await delay(1000);
+        page += 1;
       }
-
-      // how many are new on this page?
-      const newOnPage = items.filter(it => !seen.has(it.nsuid));
-      console.log(`  ➕ Found ${items.length} items; new this page: ${newOnPage.length}.`);
-
-      // append only new, and mark seen
-      for (const it of newOnPage) {
-        collected.push(it);
-        seen.add(it.nsuid);
-      }
-
-      // SAFETY STOP: if a page returns 0 new items, we’re likely looping same page
-      if (newOnPage.length === 0) {
-        console.log(`⏹️  Page ${page} had no new NSUIDs. Stopping to avoid infinite loop.`);
-        break;
-      }
-
-      await delay(PAGE_DELAY_MS);
-      page += 1;
-    } catch (err) {
-      console.warn(`⚠️ Page ${page} failed: ${err.message || err}. Skipping after backoff…`);
-      await delay(1000);
-      page += 1;
     }
+  } finally {
+    await context.close().catch(() => {});
+    await browser.close().catch(() => {});
   }
 
-  const uniq = collected; // already de-duped via `seen`
+  const uniq = collected;
   console.log(`▶️ Completed HK games fetch. Total unique: ${uniq.length}`);
   return uniq.map(mapItemToSchema);
 }
-
-
 
 async function main() {
   const outDir = path.join(__dirname, 'data');
@@ -201,7 +268,10 @@ async function main() {
 }
 
 if (require.main === module) {
-  main().catch(err => { console.error(err); process.exit(1); });
+  main().catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
 }
 
 module.exports = { fetchHKGames };
