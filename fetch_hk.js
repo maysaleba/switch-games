@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 /**
- * Fetch HK eShop items (current BASE is current offers) and append-only save.
+ * Fetch HK eShop items (download-code sale filtered to Traditional Chinese support)
+ * and append-only save.
+ *
  * Output: data/hk_games.json (trimmed fields, aligned with US/EU)
  *
  * Playwright version
@@ -11,15 +13,15 @@ const path = require('path');
 const { chromium } = require('playwright');
 
 // ---- CONFIG ----
-// const BASE = "https://store.nintendo.com.hk/digital-games/recent-releases?product_list_order=release-date-asc";
-const BASE = "https://store.nintendo.com.hk/digital-games/current-offers?product_list_order=release-date-desc&product_list_limit=24";
+const BASE =
+  'https://store.nintendo.com.hk/download-code/sale?product_list_dir=desc&product_list_order=release_date&supported_languages=257';
 const PAGE_DELAY_MS = 350;
 const NAV_TIMEOUT_MS = 30000;
 const WAIT_AFTER_LOAD_MS = 1500;
-const MAX_PAGES = 3;
+const MAX_PAGES = 3; // 212 items / 24 per page = 9 currently, 42 is a safe ceiling
 
 // ---- HELPERS ----
-const delay = (ms) => new Promise(res => setTimeout(res, ms));
+const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 function loadJsonArraySafe(filePath) {
   try {
@@ -33,12 +35,26 @@ function loadJsonArraySafe(filePath) {
   }
 }
 
-// Extract a 10+ digit NSUID from ec.nintendo.com URLs under /titles/ or /bundles/
-function extractNsuidFromEcUrl(href) {
+/**
+ * Extract NSUID from either:
+ * - ec.nintendo.com/.../titles/{id}
+ * - ec.nintendo.com/.../bundles/{id}
+ * - store.nintendo.com.hk/{id}
+ */
+function extractNsuid(href) {
   if (!href) return null;
+
   const url = href.startsWith('http') ? href : `https:${href}`;
-  const m = url.match(/\/(?:titles|bundles)\/(\d{10,})/);
-  return m ? m[1] : null;
+
+  // ec.nintendo.com title/bundle URL
+  let m = url.match(/\/(?:titles|bundles)\/(\d{10,})/);
+  if (m) return m[1];
+
+  // direct HK store PDP URL
+  m = url.match(/store\.nintendo\.com\.hk\/(\d{10,})(?:[/?#]|$)/);
+  if (m) return m[1];
+
+  return null;
 }
 
 // Normalize platform key for urlKey
@@ -67,7 +83,10 @@ function slugifyTitle(s) {
 }
 
 function mapItemToSchema(it) {
+  // Default remains Switch because platform enrichment is done later.
+  // This page can include Switch 2 items too, but that can be corrected in enrichment.
   const platformName = 'Nintendo Switch';
+
   const urlKey = (() => {
     const slug = slugifyTitle(it.title);
     const pkey = platformKeyFromName(platformName);
@@ -127,7 +146,6 @@ async function scrapePage(context, pageNum) {
       timeout: NAV_TIMEOUT_MS
     });
 
-    // Wait for the product cards to appear, or at least for the page to settle.
     await page.waitForLoadState('networkidle', { timeout: 10000 }).catch(() => {});
     await page.waitForSelector('.products .product-item', { timeout: 10000 }).catch(() => {});
     await page.waitForTimeout(WAIT_AFTER_LOAD_MS);
@@ -140,20 +158,38 @@ async function scrapePage(context, pageNum) {
         const out = [];
 
         for (const card of cards) {
+          // New page structure uses direct HK store links like /70010000115166
+          const titleLink = card.querySelector('a.product-item-link');
+          const photoLink = card.querySelector('a.product.photo.product-item-photo');
+
+          // Fallback to old ec links if present on other HK pages
           const ecLink = card.querySelector(
             'a[href*="ec.nintendo.com"][href*="/titles/"], a[href*="ec.nintendo.com"][href*="/bundles/"]'
           );
-          const ecHref = ecLink?.getAttribute('href') || '';
-          if (!ecHref) continue;
 
-          let title =
-            normalize(card.querySelector('.product-item-link')?.textContent) ||
+          const primaryLink = titleLink || photoLink || ecLink;
+          const href =
+            primaryLink?.getAttribute('href') ||
+            photoLink?.getAttribute('href') ||
+            titleLink?.getAttribute('href') ||
+            ecLink?.getAttribute('href') ||
+            '';
+
+          if (!href) continue;
+
+          const title =
+            normalize(titleLink?.textContent) ||
             normalize(card.querySelector('img[alt]')?.getAttribute('alt')) ||
-            normalize(ecLink?.getAttribute('title')) ||
+            normalize(primaryLink?.getAttribute('title')) ||
             normalize(card.textContent);
 
-          const href = ecHref.startsWith('http') ? ecHref : `https:${ecHref}`;
-          out.push({ title, href });
+          const fullHref = href.startsWith('http')
+            ? href
+            : href.startsWith('//')
+              ? `https:${href}`
+              : `https://store.nintendo.com.hk${href.startsWith('/') ? '' : '/'}${href}`;
+
+          out.push({ title, href: fullHref });
         }
 
         return out;
@@ -177,7 +213,7 @@ async function scrapePage(context, pageNum) {
     const seen = new Set();
 
     for (const it of items) {
-      const nsuid = extractNsuidFromEcUrl(it.href);
+      const nsuid = extractNsuid(it.href);
       if (!nsuid) continue;
       if (seen.has(nsuid)) continue;
       seen.add(nsuid);
@@ -217,8 +253,23 @@ async function fetchHKGames() {
           break;
         }
 
-        const newOnPage = items.filter(it => !seen.has(it.nsuid));
+        console.log(`📝 Titles on page ${page}:`);
+        items.forEach((it, idx) => {
+          console.log(`  ${idx + 1}. ${it.title} | ${it.nsuid}`);
+        });
+
+        const newOnPage = items.filter((it) => !seen.has(it.nsuid));
         console.log(`  ➕ Found ${items.length} items; new this page: ${newOnPage.length}.`);
+
+        if (newOnPage.length) {
+          console.log(`🆕 New titles on page ${page}:`);
+          newOnPage.forEach((it, idx) => {
+            console.log(`  ${idx + 1}. ${it.title}`);
+            console.log(`     NSUID: ${it.nsuid}`);
+            console.log(`     HK URL: https://store.nintendo.com.hk/${it.nsuid}`);
+            console.log(`     Source URL: ${it.url}`);
+          });
+        }
 
         for (const it of newOnPage) {
           collected.push(it);
@@ -256,9 +307,9 @@ async function main() {
 
   fs.mkdirSync(outDir, { recursive: true });
   const existing = loadJsonArraySafe(outPath);
-  const existingKeys = new Set(existing.map(e => e.nsuid_hk).filter(Boolean));
+  const existingKeys = new Set(existing.map((e) => e.nsuid_hk).filter(Boolean));
 
-  const newEntries = fetched.filter(e => e.nsuid_hk && !existingKeys.has(e.nsuid_hk));
+  const newEntries = fetched.filter((e) => e.nsuid_hk && !existingKeys.has(e.nsuid_hk));
   const merged = existing.concat(newEntries);
 
   fs.writeFileSync(outPath, JSON.stringify(merged, null, 2));
@@ -268,7 +319,7 @@ async function main() {
 }
 
 if (require.main === module) {
-  main().catch(err => {
+  main().catch((err) => {
     console.error(err);
     process.exit(1);
   });
