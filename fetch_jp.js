@@ -96,7 +96,7 @@ function mapApiProduct(p) {
     title: p?.name || "",
     nsuid_jp: nsuid,
     url: nsuid ? `/products/${nsuid}/` : (p?.url || ""),
-    urlKey: nsuid,
+    urlKey: "",
     platform,
     genres: tags,
     releaseDate: p?.releaseDate || null,
