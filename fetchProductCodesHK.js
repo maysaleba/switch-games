@@ -359,8 +359,30 @@ async function getAllDetailsForNsuid(nsuid) {
     merged.first_seen_at  = merged.first_seen_at || prior.first_seen_at || now;
     merged.last_seen_at   = merged.active_in_base ? now : (merged.last_seen_at || now);
 
-    merged.productCode_hk = pickCode(base.productCode_hk, merged.productCode_hk);
-    merged.platform       = pick(base.platform,       merged.platform);
+    // 🔒 HARD-PRESERVE ENRICHED FIELDS FIRST
+
+    merged.productCode_hk =
+      isNonEmpty(merged.productCode_hk)
+        ? merged.productCode_hk
+        : pickCode(base.productCode_hk, merged.productCode_hk);
+
+    merged.platform =
+      isNonEmpty(merged.platform)
+        ? merged.platform
+        : pick(base.platform, merged.platform);
+
+    merged.supportLanguage =
+      (isNonEmpty(merged.supportLanguage) || merged.supportLanguage === "")
+        ? merged.supportLanguage
+        : pickSupportLanguage(base.supportLanguage, merged.supportLanguage);
+
+    // OPTIONAL: also preserve urlKey if you care about it
+    merged.urlKey =
+      isNonEmpty(merged.urlKey)
+        ? merged.urlKey
+        : pick(base.urlKey, merged.urlKey);
+
+    // ---- keep the rest as-is ----
     merged.releaseDate    = pick(base.releaseDate,    merged.releaseDate);
     merged.publisher      = pick(base.publisher,      merged.publisher);
     merged.imageSquare    = pick(base.imageSquare,    merged.imageSquare);
@@ -370,8 +392,6 @@ async function getAllDetailsForNsuid(nsuid) {
     merged.genres         = (Array.isArray(base.genres) && base.genres.length)
                               ? base.genres
                               : (Array.isArray(merged.genres) ? merged.genres : []);
-
-    merged.supportLanguage = pickSupportLanguage(base.supportLanguage, merged.supportLanguage);
 
     working.push(merged);
   }
