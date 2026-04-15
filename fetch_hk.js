@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
- * Fetch HK eShop items (download-code sale filtered to Traditional Chinese support)
+ * Fetch HK eShop items from multiple HK sale sources
  * and append-only save.
  *
- * Output: data/hk_games.json (trimmed fields, aligned with US/EU)
+ * Output: data/hk_games.json
  *
  * Playwright version
  */
@@ -13,12 +13,23 @@ const path = require('path');
 const { chromium } = require('playwright');
 
 // ---- CONFIG ----
-const BASE =
-  'https://store.nintendo.com.hk/download-code/sale?product_list_dir=desc&product_list_order=release_date&supported_languages=257';
+const SOURCES = [
+  {
+    name: 'download-code-sale',
+    baseUrl:
+      'https://store.nintendo.com.hk/download-code/sale?product_list_dir=desc&product_list_order=release_date&supported_languages=257',
+    maxPages: 3
+  },
+  {
+    name: 'digital-games-current-offers',
+    baseUrl: 'https://store.nintendo.com.hk/digital-games/current-offers',
+    maxPages: 1 // only page 1, per your request
+  }
+];
+
 const PAGE_DELAY_MS = 350;
 const NAV_TIMEOUT_MS = 30000;
 const WAIT_AFTER_LOAD_MS = 1500;
-const MAX_PAGES = 3; // 212 items / 24 per page = 9 currently, 42 is a safe ceiling
 
 // ---- HELPERS ----
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
@@ -46,18 +57,15 @@ function extractNsuid(href) {
 
   const url = href.startsWith('http') ? href : `https:${href}`;
 
-  // ec.nintendo.com title/bundle URL
   let m = url.match(/\/(?:titles|bundles)\/(\d{10,})/);
   if (m) return m[1];
 
-  // direct HK store PDP URL
   m = url.match(/store\.nintendo\.com\.hk\/(\d{10,})(?:[/?#]|$)/);
   if (m) return m[1];
 
   return null;
 }
 
-// Normalize platform key for urlKey
 function platformKeyFromName(name) {
   if (name === 'Nintendo Switch') return 'switch';
   if (name === 'Nintendo Switch 2') return 'switch-2';
@@ -66,11 +74,15 @@ function platformKeyFromName(name) {
 
 function buildPageUrl(base, page) {
   const u = new URL(base);
+
+  // Magento pages usually use ?p=2, ?p=3, etc.
+  // Page 1 should not set p.
   if (page > 1) {
     u.searchParams.set('p', String(page));
   } else {
     u.searchParams.delete('p');
   }
+
   return u.toString();
 }
 
@@ -83,8 +95,6 @@ function slugifyTitle(s) {
 }
 
 function mapItemToSchema(it) {
-  // Default remains Switch because platform enrichment is done later.
-  // This page can include Switch 2 items too, but that can be corrected in enrichment.
   const platformName = 'Nintendo Switch';
 
   const urlKey = (() => {
@@ -136,11 +146,12 @@ async function createContext(browser) {
   return context;
 }
 
-async function scrapePage(context, pageNum) {
-  const url = buildPageUrl(BASE, pageNum);
+async function scrapePage(context, sourceName, url) {
   const page = await context.newPage();
 
   try {
+    console.log(`🌏 [${sourceName}] Opening: ${url}`);
+
     await page.goto(url, {
       waitUntil: 'domcontentloaded',
       timeout: NAV_TIMEOUT_MS
@@ -158,11 +169,8 @@ async function scrapePage(context, pageNum) {
         const out = [];
 
         for (const card of cards) {
-          // New page structure uses direct HK store links like /70010000115166
           const titleLink = card.querySelector('a.product-item-link');
           const photoLink = card.querySelector('a.product.photo.product-item-photo');
-
-          // Fallback to old ec links if present on other HK pages
           const ecLink = card.querySelector(
             'a[href*="ec.nintendo.com"][href*="/titles/"], a[href*="ec.nintendo.com"][href*="/bundles/"]'
           );
@@ -181,7 +189,7 @@ async function scrapePage(context, pageNum) {
             normalize(titleLink?.textContent) ||
             normalize(card.querySelector('img[alt]')?.getAttribute('alt')) ||
             normalize(primaryLink?.getAttribute('title')) ||
-            normalize(card.textContent);
+            '';
 
           const fullHref = href.startsWith('http')
             ? href
@@ -221,7 +229,8 @@ async function scrapePage(context, pageNum) {
       mapped.push({
         title: it.title || '',
         nsuid,
-        url: it.href || ''
+        url: it.href || '',
+        source: sourceName
       });
     }
 
@@ -231,72 +240,73 @@ async function scrapePage(context, pageNum) {
   }
 }
 
-async function fetchHKGames() {
-  console.log('▶️ Starting HK games fetch...');
-
+async function fetchFromSource(context, source) {
   const collected = [];
   const seen = new Set();
+
+  for (let pageNum = 1; pageNum <= source.maxPages; pageNum++) {
+    try {
+      const url = buildPageUrl(source.baseUrl, pageNum);
+      const items = await scrapePage(context, source.name, url);
+
+      if (!items.length) {
+        console.log(`⏹️ [${source.name}] No items found on page ${pageNum}.`);
+        break;
+      }
+
+      const newOnPage = items.filter((it) => !seen.has(it.nsuid));
+      console.log(
+        `📦 [${source.name}] Page ${pageNum}: total=${items.length}, new=${newOnPage.length}`
+      );
+
+      for (const it of newOnPage) {
+        collected.push(it);
+        seen.add(it.nsuid);
+      }
+
+      if (newOnPage.length === 0) {
+        console.log(`⏹️ [${source.name}] Page ${pageNum} had no new NSUIDs. Stopping.`);
+        break;
+      }
+
+      await delay(PAGE_DELAY_MS);
+    } catch (err) {
+      console.warn(
+        `⚠️ [${source.name}] Page failed: ${err.message || err}. Continuing...`
+      );
+      await delay(1000);
+    }
+  }
+
+  return collected;
+}
+
+async function fetchHKGames() {
+  console.log('▶️ Starting HK games fetch...');
 
   const browser = await createBrowser();
   const context = await createContext(browser);
 
   try {
-    let page = 1;
+    const allItems = [];
+    const globalSeen = new Set();
 
-    while (page <= MAX_PAGES) {
-      try {
-        console.log(`🌏 Fetching HK page ${page}…`);
-        const items = await scrapePage(context, page);
+    for (const source of SOURCES) {
+      const items = await fetchFromSource(context, source);
 
-        if (!items.length) {
-          console.log(`⏹️  No items found on page ${page}. Stopping.`);
-          break;
-        }
-
-        console.log(`📝 Titles on page ${page}:`);
-        items.forEach((it, idx) => {
-          console.log(`  ${idx + 1}. ${it.title} | ${it.nsuid}`);
-        });
-
-        const newOnPage = items.filter((it) => !seen.has(it.nsuid));
-        console.log(`  ➕ Found ${items.length} items; new this page: ${newOnPage.length}.`);
-
-        if (newOnPage.length) {
-          console.log(`🆕 New titles on page ${page}:`);
-          newOnPage.forEach((it, idx) => {
-            console.log(`  ${idx + 1}. ${it.title}`);
-            console.log(`     NSUID: ${it.nsuid}`);
-            console.log(`     HK URL: https://store.nintendo.com.hk/${it.nsuid}`);
-            console.log(`     Source URL: ${it.url}`);
-          });
-        }
-
-        for (const it of newOnPage) {
-          collected.push(it);
-          seen.add(it.nsuid);
-        }
-
-        if (newOnPage.length === 0) {
-          console.log(`⏹️  Page ${page} had no new NSUIDs. Stopping to avoid infinite loop.`);
-          break;
-        }
-
-        await delay(PAGE_DELAY_MS);
-        page += 1;
-      } catch (err) {
-        console.warn(`⚠️ Page ${page} failed: ${err.message || err}. Skipping after backoff…`);
-        await delay(1000);
-        page += 1;
+      for (const it of items) {
+        if (globalSeen.has(it.nsuid)) continue;
+        globalSeen.add(it.nsuid);
+        allItems.push(it);
       }
     }
+
+    console.log(`▶️ Completed HK games fetch. Total unique across all sources: ${allItems.length}`);
+    return allItems.map(mapItemToSchema);
   } finally {
     await context.close().catch(() => {});
     await browser.close().catch(() => {});
   }
-
-  const uniq = collected;
-  console.log(`▶️ Completed HK games fetch. Total unique: ${uniq.length}`);
-  return uniq.map(mapItemToSchema);
 }
 
 async function main() {
@@ -306,6 +316,7 @@ async function main() {
   const fetched = await fetchHKGames();
 
   fs.mkdirSync(outDir, { recursive: true });
+
   const existing = loadJsonArraySafe(outPath);
   const existingKeys = new Set(existing.map((e) => e.nsuid_hk).filter(Boolean));
 
