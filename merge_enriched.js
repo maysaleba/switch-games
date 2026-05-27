@@ -342,19 +342,30 @@ function tryMatch(regionIdx, baseItem, { strictUrlKeyHit }) {
     }
   }
 
-  if (urlKeyBaseL && regionIdx.k4.has(urlKeyBaseL)) {
-    const candidates = regionIdx.k4.get(urlKeyBaseL) || [];
-    if (candidates.length === 1) return { item: candidates[0], rule: 'k4' };
+if (urlKeyBaseL && regionIdx.k4.has(urlKeyBaseL)) {
+  const candidates = regionIdx.k4.get(urlKeyBaseL) || [];
 
-    if (f4) {
-      for (const cand of candidates) {
-        const candF4 = candidateFirst4(cand);
-        if (candF4 && candF4 === f4) return { item: cand, rule: 'k4' };
+  const titleMatches = candidates.filter(cand =>
+    normalizeTitle(cand.title) === titleBase
+  );
+
+  if (titleMatches.length === 1) {
+    return { item: titleMatches[0], rule: 'k4' };
+  }
+
+  if (titleMatches.length > 1 && f4) {
+    for (const cand of titleMatches) {
+      const candF4 = candidateFirst4(cand);
+      if (candF4 && candF4 === f4) {
+        return { item: cand, rule: 'k4' };
       }
     }
 
-    return { item: candidates[0], rule: 'k4' };
+    return { item: titleMatches[0], rule: 'k4' };
   }
+
+  return null;
+}
 
   if (titleBase && platBase) {
     const keyt = `${titleBase}|${platBase}`;
