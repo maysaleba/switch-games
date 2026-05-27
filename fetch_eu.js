@@ -46,7 +46,14 @@ function loadJsonArraySafe(filePath) {
 
 function euKey(doc) {
   const v = doc?.nsuid_txt;
-  return Array.isArray(v) ? v[0] : v || null;
+  const arr = Array.isArray(v) ? v.map(String) : (v ? [String(v)] : []);
+
+  if (doc?.type === 'GAME') {
+    const preferred7001 = arr.find(id => id.startsWith('7001'));
+    if (preferred7001) return preferred7001;
+  }
+
+  return arr[0] || null;
 }
 
 // prefer non-empty `a`; else non-empty `b`; else `a` (keep types)
