@@ -38,6 +38,15 @@ const regionSets = {
 // ---------- helpers ----------
 const sleep = (ms) => new Promise(res => setTimeout(res, ms));
 
+function toPriceCache(entries) {
+  return entries
+    .map(entry => ({
+      key: getEntryKey(entry),
+      prices: entry.prices || {}
+    }))
+    .filter(x => x.key && Object.keys(x.prices).length > 0);
+}
+
 function loadJsonArraySafe(filePath) {
   try {
     if (!fs.existsSync(filePath)) return [];
@@ -68,7 +77,7 @@ function hydratePreviousPrices(entries) {
   const previousByKey = new Map();
 
   for (const old of previous) {
-    const key = getEntryKey(old);
+    const key = old.key || getEntryKey(old);
     if (key) previousByKey.set(key, old);
   }
 
@@ -423,7 +432,8 @@ function buildCountryBatches(entries) {
     process.exit(1);
   }
 
-  fs.writeFileSync(OUTPUT_FILE, JSON.stringify(entries, null, 2), 'utf8');
+  const priceCache = toPriceCache(entries);
+  fs.writeFileSync(OUTPUT_FILE, JSON.stringify(priceCache, null, 2), 'utf8');
 
   console.log(`✅ Wrote ${OUTPUT_FILE} with ${entries.length} entries`);
 })().catch(err => {

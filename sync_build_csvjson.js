@@ -16,7 +16,8 @@ const dayjs = require('dayjs');
 // -------------------- CONFIG --------------------
 const REMOTE_CSVJSON_URL     = 'https://raw.githubusercontent.com/maysaleba/maysaleba.github.io/main/src/csvjson.json';
 const LOCAL_FALLBACK_CSVJSON = path.resolve('output/csvjson.json');                     // sample fallback if remote fetch fails
-const MERGED_WITH_PRICES     = path.resolve('output/merged_enriched_with_prices.json'); // source file you uploaded
+const MERGED_ENRICHED = path.resolve('output/merged_enriched.json');
+const PRICE_CACHE = path.resolve('output/merged_enriched_with_prices.json');
 const HLTB_JSON              = path.resolve('hltb.json');                                // optional
 const METACRITIC_CSV         = path.resolve('metacritic_switch.csv');                    // local CSV you maintain
 const SLUG_REPLACEMENTS_TXT  = path.resolve('slug_replacements.txt');                    // external replacements
@@ -50,6 +51,35 @@ const REGION_KEY_MAP = {
 const REGULAR_FALLBACK = ['US', 'AU', 'JP', 'KR', 'HK'];
 
 // -------------------- HELPERS --------------------
+function getEntryKey(e) {
+  return String(
+    e.urlKey ||
+    e.nsuid_us ||
+    e.nsuid_eu ||
+    e.nsuid_jp ||
+    e.nsuid_hk ||
+    e.nsuid_as ||
+    e.nsuid_kr ||
+    ''
+  );
+}
+
+function attachPricesFromCache(merged, priceCache) {
+  const priceByKey = new Map();
+
+  for (const row of priceCache || []) {
+    const key = row.key || getEntryKey(row);
+    if (key) priceByKey.set(key, row.prices || {});
+  }
+
+  for (const g of merged) {
+    const key = getEntryKey(g);
+    g.prices = priceByKey.get(key) || {};
+  }
+
+  return merged;
+}
+
 function buildNintendoUrl(u) {
   if (!u) return '';
   const s = String(u).trim();
@@ -308,7 +338,9 @@ function ensureAllRegionKeys(row) {
   console.log(`🔁 Loaded slug replacements: ${SLUG_REPLACEMENTS.size} rules from ${SLUG_REPLACEMENTS_TXT}`);
 
   // 1) load source (only active_in_base = true, and must have at least one sale_end)
-  const merged = readJsonSafe(MERGED_WITH_PRICES) || [];
+  const mergedBase = readJsonSafe(MERGED_ENRICHED) || [];
+  const priceCache = readJsonSafe(PRICE_CACHE) || [];
+  const merged = attachPricesFromCache(mergedBase, priceCache);
   const active = merged.filter(g =>
     g.active_in_base === true &&
     Object.values(g.prices || {}).some(p => p?.sale_end)
@@ -322,52 +354,14 @@ function ensureAllRegionKeys(row) {
   console.log(`✅ active_in_base=true & has sale_end: ${active.length}`);
   console.log(`🚫 dropped for missing sale_end:      ${droppedNoSaleEnd}`);
 
-  // -------------------- OPTION B (duplicate-handling) --------------------
   // Build source index by MATCH slug (replacements for matching ONLY)
-  // - If slug is unique => keep it.
-  // - If duplicate => prefer entry that has US pricing; if tie, prefer more regions.
   const sourceBySlug = new Map();
-
-  function hasUSPrice(game) {
-    const p = game?.prices?.US;
-    return !!(p && (p.sale != null && String(p.sale) !== '' || p.regular != null && String(p.regular) !== ''));
-  }
-  function regionCount(game) {
-    return Object.keys(game?.prices || {}).length;
-  }
-  function pickPreferred(cur, next) {
-    const curHasUS = hasUSPrice(cur);
-    const nxtHasUS = hasUSPrice(next);
-
-    if (!curHasUS && nxtHasUS) return next;
-    if (curHasUS && !nxtHasUS) return cur;
-
-    // tie (both have US or both don't): pick the one with more regions
-    const curCnt = regionCount(cur);
-    const nxtCnt = regionCount(next);
-    if (nxtCnt > curCnt) return next;
-
-    return cur;
-  }
-
-  let duplicateSlugs = 0;
   for (const g of active) {
     const rawSlug   = (g.urlKey || '').trim();
     const matchSlug = applySlugReplacements(rawSlug); // used for matching only
-    if (!matchSlug) continue;
-
-    const cur = sourceBySlug.get(matchSlug);
-    if (!cur) {
-      sourceBySlug.set(matchSlug, g);
-    } else {
-      duplicateSlugs++;
-      sourceBySlug.set(matchSlug, pickPreferred(cur, g));
-    }
+    if (matchSlug) sourceBySlug.set(matchSlug, g);
   }
-
   console.log(`🧭 Source index prepared: ${sourceBySlug.size} unique slugs`);
-  console.log(`🧬 Duplicate slug collisions handled (Option B): ${duplicateSlugs}`);
-  // ----------------------------------------------------------------------
 
   // 2) load csvjson.json (remote → fallback)
   let csvjson;
