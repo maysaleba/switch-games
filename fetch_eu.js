@@ -82,9 +82,12 @@ function normalizeTitleForSlug(s) {
 }
   
   // Normalize platform
-  const platformName = Array.isArray(doc?.system_names_txt) && doc.system_names_txt.length > 0
-    ? doc.system_names_txt[0]
-    : 'Nintendo Switch';
+  const platformName =
+    Array.isArray(doc?.system_names_txt) && doc.system_names_txt.length > 0
+      ? doc.system_names_txt[0]
+      : Array.isArray(doc?.required_system_txt) && doc.required_system_txt.length > 0
+        ? doc.required_system_txt[0]
+        : 'Nintendo Switch';
 
   // Slugify title (Unicode-safe)
   const slugBase = normalizeTitleForSlug(doc?.title || '').trim()
