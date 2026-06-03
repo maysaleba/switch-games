@@ -246,6 +246,10 @@ function loadStrictUrlKeys(filePath) {
 let STRICT_URLKEYS = loadStrictUrlKeys(STRICT_URLKEY_FILE);
 
 // ====== matching helpers ======
+function hasJapaneseText(s) {
+  return /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9faf]/.test(String(s || ''));
+}
+
 function pickBaseNsuid(item) {
   return item.nsuid_us
     ?? item.nsuid_eu
@@ -364,6 +368,10 @@ if (urlKeyBaseL && regionIdx.k4.has(urlKeyBaseL)) {
     return { item: titleMatches[0], rule: 'k4' };
   }
 
+  if (candidates.length === 1 && hasJapaneseText(candidates[0].title)) {
+    return { item: candidates[0], rule: 'k4-jp-title' };
+  }
+
   return null;
 }
 
@@ -426,7 +434,7 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
   for (const r of REGIONS) {
     regionIdx[r] = buildRegionIndexes(regionData[r], r);
     seen[r] = new Set();
-    ruleCounts[r] = { 'strict-urlKey': 0, k1: 0, k2: 0, k3: 0, k4: 0, title: 0 };
+    ruleCounts[r] = { 'strict-urlKey': 0, k1: 0, k2: 0, k3: 0, k4: 0, 'k4-jp-title': 0, title: 0 };
   }
 
   const activeRaiseEvents = [];
