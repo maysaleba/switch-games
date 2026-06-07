@@ -206,7 +206,9 @@ function buildRegionIndexes(arr, region) {
       const pc48 = pcNorm.length >= 8 ? pcNorm.slice(3, 8) : null;
       if (pc48) {
         const key3 = `${f4}|${pc48}|${plat}`;
-        if (!k3.has(key3)) k3.set(key3, item);
+
+        if (!k3.has(key3)) k3.set(key3, []);
+        k3.get(key3).push(item);
       }
     }
 
@@ -339,11 +341,45 @@ function tryMatch(regionIdx, baseItem, { strictUrlKeyHit }) {
       if (regionIdx.k2.has(key2)) return { item: regionIdx.k2.get(key2), rule: 'k2' };
     }
 
-    const pc48 = pcPos4to8(pcU);
-    if (pc48) {
-      const key3 = `${f4}|${pc48}|${platBase}`;
-      if (regionIdx.k3.has(key3)) return { item: regionIdx.k3.get(key3), rule: 'k3' };
+  const pc48 = pcPos4to8(pcU);
+  if (pc48) {
+    const key3 = `${f4}|${pc48}|${platBase}`;
+
+    if (regionIdx.k3.has(key3)) {
+      const candidates = regionIdx.k3.get(key3);
+
+      if (candidates.length === 1) {
+        return { item: candidates[0], rule: 'k3' };
+      }
+
+      const baseNum = Number(String(baseNsuid).replace(/\D+/g, ''));
+
+      const best = candidates
+        .map(cand => {
+          const candNsuid =
+            cand.nsuid_us ??
+            cand.nsuid_eu ??
+            cand.nsuid_jp ??
+            cand.nsuid_hk ??
+            cand.nsuid_as ??
+            cand.nsuid_kr ??
+            cand.nsuid ??
+            '';
+
+          const candNum = Number(String(candNsuid).replace(/\D+/g, ''));
+
+          return {
+            cand,
+            distance: Number.isFinite(baseNum) && Number.isFinite(candNum)
+              ? Math.abs(baseNum - candNum)
+              : Number.MAX_SAFE_INTEGER
+          };
+        })
+        .sort((a, b) => a.distance - b.distance)[0];
+
+      return { item: best.cand, rule: 'k3' };
     }
+  }
   }
 
 if (urlKeyBaseL && regionIdx.k4.has(urlKeyBaseL)) {
