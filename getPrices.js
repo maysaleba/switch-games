@@ -23,7 +23,7 @@ const PRICE_GET_URL     = 'https://api.ec.nintendo.com/v1/price';
 const PRICE_LIST_LIMIT  = 50;
 const PRICE_GET_LANG    = 'en';
 
-const COUNTRY_POOL_SIZE = 2;
+const COUNTRY_POOL_SIZE = 1;
 const BACKOFF_BASE_MS   = 800;
 
 const regionSets = {
