@@ -50,6 +50,16 @@ const REGION_KEY_MAP = {
 // fallback chain for "Price" (regular) column
 const REGULAR_FALLBACK = ['US', 'AU', 'JP', 'KR', 'HK'];
 
+// Countries to completely ignore for specific game slugs.
+// Ignored countries will not affect price, discount, sale dates, or output columns.
+const PRICE_EXCLUSIONS = {
+  'ghost-of-a-tale-switch': ['AR', 'CO'],
+
+  // More examples:
+  // 'another-game-slug': ['JP'],
+  // 'third-game-slug': ['HK', 'SG'],
+};
+
 // -------------------- HELPERS --------------------
 function getEntryKey(e) {
   return String(
@@ -62,6 +72,23 @@ function getEntryKey(e) {
     e.nsuid_kr ||
     ''
   );
+}
+
+function shouldExcludePrice(slug, country) {
+  return PRICE_EXCLUSIONS[slug]?.includes(country) ?? false;
+}
+
+function getFilteredPrices(g) {
+  const rawSlug = (g.urlKey || '').trim();
+  const prices = structuredClone(g.prices || {});
+
+  for (const country of Object.keys(prices)) {
+    if (shouldExcludePrice(rawSlug, country)) {
+      delete prices[country];
+    }
+  }
+
+  return prices;
 }
 
 function attachPricesFromCache(merged, priceCache) {
@@ -341,14 +368,23 @@ function ensureAllRegionKeys(row) {
   const mergedBase = readJsonSafe(MERGED_ENRICHED) || [];
   const priceCache = readJsonSafe(PRICE_CACHE) || [];
   const merged = attachPricesFromCache(mergedBase, priceCache);
-  const active = merged.filter(g =>
-    g.active_in_base === true &&
-    Object.values(g.prices || {}).some(p => p?.sale_end)
-  );
-  const droppedNoSaleEnd = merged.filter(g =>
-    g.active_in_base === true &&
-    !Object.values(g.prices || {}).some(p => p?.sale_end)
-  ).length;
+  const active = merged.filter(g => {
+    const prices = getFilteredPrices(g);
+  
+    return (
+      g.active_in_base === true &&
+      Object.values(prices).some(p => p?.sale_end)
+    );
+  });
+  
+  const droppedNoSaleEnd = merged.filter(g => {
+    const prices = getFilteredPrices(g);
+  
+    return (
+      g.active_in_base === true &&
+      !Object.values(prices).some(p => p?.sale_end)
+    );
+  }).length;
 
   console.log(`📦 merged_enriched_with_prices.json total: ${merged.length}`);
   console.log(`✅ active_in_base=true & has sale_end: ${active.length}`);
@@ -383,7 +419,9 @@ function ensureAllRegionKeys(row) {
 
   // helpers to build rows / compare
   function buildRowFromSource(g) {
-    const prices = g.prices || {};
+    const rawSlug = (g.urlKey || '').trim();
+    const prices = getFilteredPrices(g);
+  
     const saleEnds = [];
     const saleStarts = [];
     for (const [, p] of Object.entries(prices)) {
@@ -399,9 +437,10 @@ function ensureAllRegionKeys(row) {
     const MexPrice    = buildMexPrice(g);
     const Price       = pickRegular(prices);
 
-    // preserve raw slug in output; use replacements+normalize ONLY for Meta
-    const rawSlug  = (g.urlKey || '').trim();
-    const metaSlug = normalizeForMetacritic(applySlugReplacements(rawSlug));
+    // Preserve raw slug in output; use replacements+normalize only for Meta.
+    const metaSlug = normalizeForMetacritic(
+      applySlugReplacements(rawSlug)
+    );
 
     const row = {
       CanadaPrice: prices?.CA?.sale ?? '',
