@@ -54,6 +54,7 @@ const REGULAR_FALLBACK = ['US', 'AU', 'JP', 'KR', 'HK'];
 // Ignored countries will not affect price, discount, sale dates, or output columns.
 const PRICE_EXCLUSIONS = {
   'ghost-of-a-tale-switch': ['AR', 'CO'],
+  'super-meat-boy-forever-switch': ['CO'],
 
   // More examples:
   // 'another-game-slug': ['JP'],
