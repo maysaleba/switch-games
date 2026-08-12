@@ -55,6 +55,7 @@ const REGULAR_FALLBACK = ['US', 'AU', 'JP', 'KR', 'HK'];
 const PRICE_EXCLUSIONS = {
   'ghost-of-a-tale-switch': ['AR', 'CO'],
   'super-meat-boy-forever-switch': ['CO'],
+  'assassins-creed-anniversary-edition-mega-bundle-switch': ['AR'],
 
   // More examples:
   // 'another-game-slug': ['JP'],
