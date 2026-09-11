@@ -138,6 +138,45 @@ function getPlatform(item) {
   return normalizePlatform(item?.platform);
 }
 
+
+function normalizeProductCodeForAsFallback(pc, region) {
+  if (!pc) return null;
+  let s = uc(pc);
+
+  if (region === 'as' && s.endsWith('A')) s = s.slice(0, -1);
+  return s.length >= 5 ? s.slice(0, 3) + s.slice(4) : s;
+}
+
+function findAsFallbackMatch(candidates, baseItem, region) {
+  const baseF4 = first4DigitsFromNsuid(baseItem.nsuid_as ?? baseItem.nsuid, 'as');
+  if (!baseF4) return null;
+
+  const baseCode = normalizeProductCodeForAsFallback(baseItem.productCode_as, 'as');
+  const baseTitle = normalizeTitle(baseItem.title);
+  const basePlatform = getPlatform(baseItem);
+
+  for (const candidate of candidates) {
+    const candidateNsuid = candidate[`nsuid_${region}`] ?? candidate.nsuid;
+    if (first4DigitsFromNsuid(candidateNsuid, region) !== baseF4) continue;
+
+    const candidatePlatform = getPlatform(candidate);
+    if (basePlatform && candidatePlatform && basePlatform !== candidatePlatform) continue;
+
+    const candidateCode = normalizeProductCodeForAsFallback(
+      candidate[`productCode_${region}`] ?? candidate.productCode,
+      region
+    );
+    if (baseCode && candidateCode && baseCode === candidateCode) {
+      return { item: candidate, rule: 'as-fallback-product-code' };
+    }
+
+    if (baseTitle && baseTitle === normalizeTitle(candidate.title)) {
+      return { item: candidate, rule: 'as-fallback-title' };
+    }
+  }
+
+  return null;
+}
 function supportLangField(region) {
   return `supportLanguage_${region}`;
 }
@@ -665,6 +704,33 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
     hk: secondaryRegionData.hk || [],
     as: secondaryRegionData.as || [],
   };
+
+  // Promote AS-only rows when they have a verified JP/HK counterpart.
+  const asFallbackRegions = ['jp', 'hk'];
+  const asFallbackCandidates = Object.fromEntries(
+    asFallbackRegions.map(r => [r, regionData[r]])
+  );
+
+  for (const asItem of finalLeftovers.as) {
+    if (asItem.active_in_base !== true) continue;
+
+    const promoted = { ...asItem };
+    let matchedAny = false;
+
+    for (const r of asFallbackRegions) {
+      const res = findAsFallbackMatch(asFallbackCandidates[r], promoted, r);
+      if (!res?.item) continue;
+
+      appendRegionFields(promoted, r, res.item);
+      matchedAny = true;
+    }
+
+    if (matchedAny) {
+      delete promoted.__matchedRegions;
+      delete promoted.__activeRegions;
+      merged.push(sortKeysPretty(promoted));
+    }
+  }
 
   // ===== Write outputs =====
   ensureDir(OUT_DIR);

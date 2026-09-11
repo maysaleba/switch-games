@@ -253,12 +253,16 @@ function jaccardSimilarity(a, b) {
 function buildImageUrl(g) {
   const imgEU = g.imageSquare_eu && g.imageSquare_eu.trim();
   const img   = g.imageSquare && g.imageSquare.trim();
+  const imgJP = g.imageSquare_jp && g.imageSquare_jp.trim();
 
   if (imgEU) {
     return `https://images.weserv.nl/?url=${imgEU}&w=240`;
   }
   if (img) {
     return `https://images.weserv.nl/?url=${img}&w=240`;
+  }
+  if (imgJP) {
+    return `https://images.weserv.nl/?url=${imgJP}&w=240`;
   }
   if (g.imageKey) {
     if (g.imageKey.startsWith("https")) {
