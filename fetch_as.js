@@ -113,6 +113,7 @@ function mapAsItem(item, productPrefix, platformName) {
   const title = item?.title || "";
   const nsuid = item?.nsuid || "";
   const icode = item?.icode || "";
+  const imageKey = item?.iurl || "";
 
   return {
     title,
@@ -121,8 +122,10 @@ function mapAsItem(item, productPrefix, platformName) {
     platform: platformName,
     genres: [],
     releaseDate: item?.pdate || "",
-    imageSquare: "",
-    imageKey: "",
+    imageSquare: imageKey
+      ? `https://img-eshop.cdn.nintendo.net/i/${imageKey}.jpg`
+      : "",
+    imageKey,
     publisher: "",
     dlcType: "",
     playerCount: "",
