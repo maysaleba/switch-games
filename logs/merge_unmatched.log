@@ -1,20 +1,20 @@
 EU-base entries appended to final output: 3606
-Merge run @ 2026-09-14T19:21:15.002Z
+Merge run @ 2026-09-14T19:34:18.207Z
 US base entries: 31827
 Final output total (after EU fallback append): 35462
-Matched to US base JP: 12683 / 31827
+Matched to US base JP: 12719 / 31827
 Matched to US base HK: 2737 / 31827
 Matched to US base EU: 25751 / 31827
 Matched to US base AS: 2830 / 31827
 
-JP leftovers after US+EU fallback: 4014
+JP leftovers after US+EU fallback: 3978
 HK leftovers after US+EU fallback: 2669
 AS leftovers after US+EU fallback: 129
 
 Rule usage (how matches were made):
-  JP: {"strict-urlKey":0,"k1":0,"k2":12109,"k3":0,"k4":0,"k4-jp-title":3,"title":626}
-  HK: {"strict-urlKey":3,"k1":388,"k2":615,"k3":0,"k4":1597,"k4-jp-title":7,"title":254}
-  EU: {"strict-urlKey":2,"k1":7999,"k2":336,"k3":0,"k4":9812,"k4-jp-title":0,"title":7778}
+  JP: {"strict-urlKey":0,"k1":0,"k2":12145,"k3":0,"k4":0,"k4-jp-title":3,"title":626}
+  HK: {"strict-urlKey":3,"k1":388,"k2":621,"k3":0,"k4":1597,"k4-jp-title":7,"title":248}
+  EU: {"strict-urlKey":2,"k1":7999,"k2":338,"k3":0,"k4":9810,"k4-jp-title":0,"title":7778}
   AS: {"strict-urlKey":1,"k1":0,"k2":0,"k3":0,"k4":3094,"k4-jp-title":0,"title":173}
 
 active_in_base raises (region flipped merged value from false→true):
@@ -19317,7 +19317,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000064808","productCode_jp":"HACPBB96","urlKey":"d70010000064808","title":"2択で恋して胸キュンーかんたん恋愛シミュレーション量産少女なラブコメギャルゲームー","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000059672","productCode_jp":"HACPBARQ","urlKey":"d70010000059672","title":"バンブルビーリタルビーアドベンチャー","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000062691","productCode_jp":"HACPBBM5","urlKey":"d70010000062691","title":"東京あるあるSHOW －みんなで楽しい上京物語イラストクイズ－","platform":"Nintendo Switch","active_in_base":true}
-{"nsuid_jp":"D70010000135522","productCode_jp":"BEEPACRV","urlKey":null,"title":"めっちゃカメレオン","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000102604","productCode_jp":"BEEPAA6Y","urlKey":null,"title":"モンスターハンターワイルズ","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000095701","productCode_jp":"HACPBPHY","urlKey":"d70010000095701","title":"がんばれゴエモン大集合！","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000098264","productCode_jp":"HACPBC9D","urlKey":"d70010000098264","title":"ロマンシング サガ2 リベンジオブザセブン Nintendo Switch 2 Edition","platform":"Nintendo Switch","active_in_base":true}
@@ -19325,17 +19324,12 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000103412","productCode_jp":"BEEPAAMJ","urlKey":"d70010000103412","title":"冒険家エリオットの千年物語","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000120968","productCode_jp":"BEEPAB4Y","urlKey":null,"title":"地球防衛軍5 for Nintendo Switch 2","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000098124","productCode_jp":"HACPBM3G","urlKey":"d70010000098124","title":"空の軌跡 the 1st","platform":"Nintendo Switch","active_in_base":true}
-{"nsuid_jp":"D70010000100026","productCode_jp":"BEEPAAVS","urlKey":"d70010000100026","title":"ドラゴンクエストI＆II","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000105997","productCode_jp":"HACPBM3G","urlKey":"d70010000105997","title":"空の軌跡 the 1st Nintendo Switch 2 Edition","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000099978","productCode_jp":"BEEPAA2P","urlKey":null,"title":"BIOHAZARD requiem","platform":"Nintendo Switch 2","active_in_base":true}
-{"nsuid_jp":"D70010000122502","productCode_jp":"BEEPAB78","urlKey":null,"title":"BIOHAZARD RE:4 Gold Edition","platform":"Nintendo Switch 2","active_in_base":true}
-{"nsuid_jp":"D70010000097758","productCode_jp":"BEEPAAWX","urlKey":"d70010000097758","title":"モンスターハンターストーリーズ3　～運命の双竜～","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000102007","productCode_jp":"BEEPAA59","urlKey":null,"title":"龍が如く 極３ / 龍が如く３外伝 Dark Ties","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000131240","productCode_jp":"HACPBS3Z","urlKey":null,"title":"ハイパー・ユーフォリア","platform":"Nintendo Switch","active_in_base":true}
-{"nsuid_jp":"D70010000126590","productCode_jp":"BEEPACFF","urlKey":null,"title":"エクステトラ","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000103826","productCode_jp":"BEEPAA9T","urlKey":null,"title":"真・三國無双 ORIGINS","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000110087","productCode_jp":"HACPBKRY","urlKey":"d70010000110087","title":"終天教団 Nintendo Switch 2 Edition","platform":"Nintendo Switch","active_in_base":true}
-{"nsuid_jp":"D70010000117155","productCode_jp":"BEEPABQ3","urlKey":null,"title":"BIOHAZARD RE:2 Z Version デラックスエディション","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000131176","productCode_jp":"HACPBW3S","urlKey":null,"title":"いそげヒーロー","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000125895","productCode_jp":"BEEPABTU","urlKey":null,"title":"ヘル・イズ・アス","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000095838","productCode_jp":"BEEPAAFD","urlKey":"d70010000095838","title":"シャインポスト Be Your アイドル！","platform":"Nintendo Switch 2","active_in_base":true}
@@ -19344,17 +19338,14 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000122664","productCode_jp":"HACPBK7X","urlKey":null,"title":"ユミアのアトリエ ～追憶の錬金術士と幻創の地～ Nintendo Switch 2 Edition","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000126711","productCode_jp":"HACPBQV5","urlKey":null,"title":"Unrailed 2:バック・オン・トラック – Nintendo Switch 2 Edition","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000112620","productCode_jp":"HACPBTFS","urlKey":"d70010000112620","title":"泥棒シミュレータ2","platform":"Nintendo Switch","active_in_base":true}
-{"nsuid_jp":"D70010000102549","productCode_jp":"BEEPAAW2","urlKey":"d70010000102549","title":"オクトパストラベラー0","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000005462","productCode_jp":"HACPAMST","urlKey":"d70010000005462","title":"SDガンダム ジージェネレーション ジェネシス for Nintendo Switch","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000019662","productCode_jp":"HACPAT7R","urlKey":"d70010000019662","title":"ドラゴンクエストモンスターズ　テリーのワンダーランドRETRO","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000108550","productCode_jp":"BEEPABHA","urlKey":null,"title":"オクトパストラベラー II","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000135130","productCode_jp":"HACPBWAF","urlKey":null,"title":"アスディバインノット Nintendo Switch 2 Edition","platform":"Nintendo Switch","active_in_base":true}
-{"nsuid_jp":"D70010000122490","productCode_jp":"BEEPAB77","urlKey":null,"title":"BIOHAZARD RE:3 Z Version","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000112870","productCode_jp":"HACPBAF2","urlKey":null,"title":"レッド・デッド・リデンプション™: Nintendo Switch 2 Edition ","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000127767","productCode_jp":"HACPBSV8","urlKey":null,"title":"ムーンライト・ピークス -ヴァンパイアのゴシックライフ- Nintendo Switch 2 Edition","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000019770","productCode_jp":"HACPAUAU","urlKey":"d70010000019770","title":"スーパーロボット大戦Ｘ","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000111421","productCode_jp":"HACPBS8T","urlKey":null,"title":"不確定世界の探偵紳士～悪行双麻の事件ファイル～","platform":"Nintendo Switch","active_in_base":true}
-{"nsuid_jp":"D70010000110770","productCode_jp":"BEEPAA6F","urlKey":null,"title":"コンテントワーニング","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000096650","productCode_jp":"HACPA4QX","urlKey":"d70010000096650","title":"Sid Meier's Civilization® VII (『シドマイヤーズ シヴィライゼーション® VII』) Nintendo Switch 2 Edition","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000101275","productCode_jp":"HACPBQ64","urlKey":"d70010000101275","title":"百合太刀降魔伝","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000016523","productCode_jp":"HACPASYW","urlKey":"d70010000016523","title":"戦国無双４ DX","platform":"Nintendo Switch","active_in_base":true}
@@ -19371,9 +19362,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000120372","productCode_jp":"BEEPAB3R","urlKey":null,"title":"ダレカレ","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000126229","productCode_jp":"HACPBUVE","urlKey":null,"title":"白き鋼鉄のX 1+2 デュアルコレクション Nintendo Switch 2 Edition","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000083287","productCode_jp":"HACPBJ99","urlKey":"d70010000083287","title":"Project:;COLD case.mirage","platform":"Nintendo Switch","active_in_base":true}
-{"nsuid_jp":"D70010000100322","productCode_jp":"BEEPAA3E","urlKey":"d70010000100322","title":"龍が如く 極２","platform":"Nintendo Switch 2","active_in_base":true}
-{"nsuid_jp":"D70010000100317","productCode_jp":"BEEPAA3D","urlKey":"d70010000100317","title":"龍が如く 極","platform":"Nintendo Switch 2","active_in_base":true}
-{"nsuid_jp":"D70010000104466","productCode_jp":"BEEPABAS","urlKey":"d70010000104466","title":"BIOHAZARD 7 resident evil Gold Edition グロテスクVer.","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000100103","productCode_jp":"BEEPAA22","urlKey":null,"title":"ライザのアトリエ ～常闇の女王と秘密の隠れ家～ DX","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000087780","productCode_jp":"HACPBLTF","urlKey":"d70010000087780","title":"制服カノジョ2","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000049289","productCode_jp":"HACPA7G4","urlKey":"d70010000049289","title":"太閤立志伝Ⅴ DX","platform":"Nintendo Switch","active_in_base":true}
@@ -19383,8 +19371,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000105944","productCode_jp":"BEEPABC6","urlKey":null,"title":"零 ～紅い蝶～ REMAKE","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000134364","productCode_jp":"HACPBXMV","urlKey":null,"title":"湯けむり美女と旅館デートメモリー","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000071920","productCode_jp":"HACPBEW6","urlKey":"d70010000071920","title":"制服カノジョ","platform":"Nintendo Switch","active_in_base":true}
-{"nsuid_jp":"D70010000113814","productCode_jp":"BEEPABPZ","urlKey":null,"title":"違う冬のぼくら","platform":"Nintendo Switch 2","active_in_base":true}
-{"nsuid_jp":"D70010000104465","productCode_jp":"BEEPABAU","urlKey":"d70010000104465","title":"BIOHAZARD VILLAGE Z Version Gold Edition","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000036939","productCode_jp":"HACPA2XE","urlKey":"d70010000036939","title":"地球防衛軍３ for Nintendo Switch","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000066786","productCode_jp":"HACPBCU9","urlKey":"d70010000066786","title":"ゲームセンターCX 有野の挑戦状 1+2 REPLAY","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000126955","productCode_jp":"HACPBWAT","urlKey":null,"title":"全国中学受験 偏差値55テストー義務教育をやり直し常識教養小学校教科書クイズー","platform":"Nintendo Switch","active_in_base":true}
@@ -19415,7 +19401,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000038242","productCode_jp":"HACPA3FQ","urlKey":"d70010000038242","title":"G-MODEアーカイブス30 ソーサリアン","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000132785","productCode_jp":"HACPBXDF","urlKey":null,"title":"くるくる回そう！方向幕コレクション for Nintendo Switch™ 近畿日本鉄道編 PART3 近鉄南大阪線","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000120236","productCode_jp":"BEEPAB3J","urlKey":null,"title":"黒洞々","platform":"Nintendo Switch 2","active_in_base":true}
-{"nsuid_jp":"D70010000106328","productCode_jp":"BEEPABD4","urlKey":null,"title":"SIMPLEシリーズ for Nintendo Switch 2 Vol.1 THE 麻雀","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000035250","productCode_jp":"HACPAZ9A","urlKey":"d70010000035250","title":"金色ラブリッチェ-Golden Time-","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000054867","productCode_jp":"HACPA893","urlKey":"d70010000054867","title":"ワンダーボーイ アルティメット コレクション","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000034830","productCode_jp":"HACPAZ3S","urlKey":"d70010000034830","title":"金色ラブリッチェ","platform":"Nintendo Switch","active_in_base":true}
@@ -19431,8 +19416,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000105177","productCode_jp":"BEEPABBS","urlKey":null,"title":"『WWE 2K26』通常版","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000055069","productCode_jp":"HACPA884","urlKey":"d70010000055069","title":"遊戯王ラッシュデュエル 最強バトルロイヤル!! いくぞ!ゴーラッシュ!! スペシャルエディション","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000012964","productCode_jp":"HACPAQ9H","urlKey":"d70010000012964","title":"殺人探偵ジャック・ザ・リッパー","platform":"Nintendo Switch","active_in_base":true}
-{"nsuid_jp":"D70010000106335","productCode_jp":"BEEPABD5","urlKey":null,"title":"SIMPLEシリーズ for Nintendo Switch 2 Vol.3 THE カード&カジノ","platform":"Nintendo Switch 2","active_in_base":true}
-{"nsuid_jp":"D70010000120765","productCode_jp":"BEEPAB4G","urlKey":null,"title":"ヘイスト","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000018093","productCode_jp":"HACPATJB","urlKey":"d70010000018093","title":"神獄塔 メアリスケルター2 for Nintendo Switch","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000082302","productCode_jp":"HACPBJWH","urlKey":"d70010000082302","title":"制服カノジョ まよいごエンゲージ","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000105579","productCode_jp":"BEEPABCH","urlKey":null,"title":"『ゴルフ PGAツアー 2K25』","platform":"Nintendo Switch 2","active_in_base":true}
@@ -19483,7 +19466,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000061084","productCode_jp":"HACPBA7H","urlKey":"d70010000061084","title":"フローラル・フローラブ","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000062451","productCode_jp":"HACPBBKN","urlKey":"d70010000062451","title":"花咲ワークスプリング！","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000056178","productCode_jp":"HACPA9NP","urlKey":"d70010000056178","title":"アイドル雀士スーチーパイII サターントリビュート","platform":"Nintendo Switch","active_in_base":true}
-{"nsuid_jp":"D70010000111669","productCode_jp":"BEEPABLT","urlKey":null,"title":"ピープル・オブ・ノート","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000019685","productCode_jp":"HACPAT8F","urlKey":"d70010000019685","title":"ラズベリーキューブ","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000032569","productCode_jp":"HACPAYXT","urlKey":"d70010000032569","title":"ワガママハイスペック","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000044277","productCode_jp":"HACPA5RH","urlKey":"d70010000044277","title":"ファントム・キングダム","platform":"Nintendo Switch","active_in_base":true}
@@ -19520,7 +19502,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000012258","productCode_jp":"HACPAQ2M","urlKey":"d70010000012258","title":"カードファイト!! ヴァンガード エクス","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000134234","productCode_jp":"HACPBXME","urlKey":null,"title":"モン娘モンタージュパズル","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000036397","productCode_jp":"HACPA2RP","urlKey":"d70010000036397","title":"G-MODEアーカイブス28 セパスチャンネル","platform":"Nintendo Switch","active_in_base":true}
-{"nsuid_jp":"D70010000101470","productCode_jp":"BEEPAA49","urlKey":null,"title":"SIMPLEシリーズ for Nintendo Switch 2 Vol.2 THE ビリヤード","platform":"Nintendo Switch 2","active_in_base":true}
 {"nsuid_jp":"D70010000074634","productCode_jp":"HACPBFWG","urlKey":"d70010000074634","title":"暗号仕掛けの世界ー頭脳で攻略ひらめき脳トレ謎解き推理ゲームー","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000075167","productCode_jp":"HACPBF5L","urlKey":"d70010000075167","title":"おくだけスタディ 基本の化学式ー指一本で理科実験かんたん勉強学習教養ゲームー","platform":"Nintendo Switch","active_in_base":true}
 {"nsuid_jp":"D70010000136498","productCode_jp":"HACPBXZ6","urlKey":null,"title":"ドS上司とドキドキオフィスパズル","platform":"Nintendo Switch","active_in_base":true}
@@ -19691,7 +19672,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000004246","productCode_jp":"HACPALNY","urlKey":"d70010000004246","title":"Conga Master Cruisin","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000079168","productCode_jp":"HACPBGQB","urlKey":"d70010000079168","title":"全国小学生あなうめ英語クイズー基礎が身につく語学勉強学習教養早押しクイズー","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000063151","productCode_jp":"HACPBBSG","urlKey":"d70010000063151","title":"ハラスメントに気をつけて　ー社会で役立つマナー講座学習クイズゲームー","platform":"Nintendo Switch"}
-{"nsuid_jp":"D70010000118535","productCode_jp":"BEEPABB2","urlKey":null,"title":"スターサンド・アイランド","platform":"Nintendo Switch 2"}
 {"nsuid_jp":"D70010000112488","productCode_jp":"HACPBHCY","urlKey":"d70010000112488","title":"Teenage Mutant Ninja Turtles スプリンターの運命 Nintendo Switch 2 Edition","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000130923","productCode_jp":"HACPBW2K","urlKey":null,"title":"ギャルたちのナイトフォトパズル 〜きらめく夜と彼女たちの一枚〜","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000123995","productCode_jp":"BEEPABLN","urlKey":null,"title":"巨人殺し: 冥界の怒涛","platform":"Nintendo Switch 2"}
@@ -19728,7 +19708,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000097969","productCode_jp":"HACPBP6J","urlKey":"d70010000097969","title":"脳トレクイズ いれかえ四字熟語ーパズルで楽しく国語学習遊んで学べる勉強教養脳トレゲームー","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000087540","productCode_jp":"HACPBLQE","urlKey":"d70010000087540","title":"小学生で知りたい しくじり偉人伝ー教科書のあの人の失敗！歴史○×クイズ学習雑学教養勉強ゲームー","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000067424","productCode_jp":"HACPBC5W","urlKey":"d70010000067424","title":"ビジュアルクイズこれな〜んだ?ー写真で脳トレひらめきクイズゲームー","platform":"Nintendo Switch"}
-{"nsuid_jp":"D70010000127433","productCode_jp":"BEEPAB4D","urlKey":null,"title":"Moss: 忘れられた秘宝 (Moss: The Forgotten Relic)","platform":"Nintendo Switch 2"}
 {"nsuid_jp":"D70010000132305","productCode_jp":"HACPA75G","urlKey":null,"title":"Another Crab's Treasure - Nintendo Switch 2 Edition","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000081891","productCode_jp":"HACPBJQS","urlKey":"d70010000081891","title":"Cthulhu Mythos ADV 闇に囁く狂気＆呪禍に沈む島","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000129332","productCode_jp":"HACPBWPT","urlKey":null,"title":"ゴーストストライク","platform":"Nintendo Switch"}
@@ -19744,7 +19723,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000083755","productCode_jp":"HACPBGDK","urlKey":"d70010000083755","title":"『ボウと月夜の碧い花』デジタルデラックス","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000106567","productCode_jp":"BEEPABES","urlKey":null,"title":"Villion:Code","platform":"Nintendo Switch 2"}
 {"nsuid_jp":"D70010000106566","productCode_jp":"HACPBSGB","urlKey":null,"title":"Villion:Code","platform":"Nintendo Switch"}
-{"nsuid_jp":"D70010000102973","productCode_jp":"BEEPAA7Z","urlKey":null,"title":"アンダーパー ゴルフ アーキテクト","platform":"Nintendo Switch 2"}
 {"nsuid_jp":"D70010000104136","productCode_jp":"HACPA8QF","urlKey":null,"title":"ソニックレーシング クロスワールド：Nintendo Switch 2 Edition","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000135728","productCode_jp":"HACPBTWU","urlKey":null,"title":"Blood Dungeon ブラッドダンジョン - Nintendo Switch 2 Edition","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000092575","productCode_jp":"HACPBNGK","urlKey":"d70010000092575","title":"G-MODEアーカイブス+ 牧場物語モバイル みのりの島","platform":"Nintendo Switch"}
@@ -19780,7 +19758,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000128501","productCode_jp":"HACPBWE7","urlKey":null,"title":"ぶいちゅ～バトル 登録者数じゃない！力で決める！","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000126102","productCode_jp":"HACPBVFX","urlKey":null,"title":"東方ゆっくりマウンテン Nintendo Switch 2 Edition","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000131889","productCode_jp":"HACPBW7R","urlKey":null,"title":"異常空間パトロール〜見てはいけない間違い探し〜","platform":"Nintendo Switch"}
-{"nsuid_jp":"D70010000119766","productCode_jp":"BEEPABXB","urlKey":null,"title":"ジュラシック・ワールド・エボリューション2: コンプリート エディション","platform":"Nintendo Switch 2"}
 {"nsuid_jp":"D70010000125396","productCode_jp":"HACPBV2C","urlKey":null,"title":"WinterCraft: Survival in the Forest","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000119609","productCode_jp":"HACPBUVF","urlKey":null,"title":"霧のロンドンと王家の秘密 〜シャーロックホームズ/ボヘミアの醜聞〜","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000065966","productCode_jp":"HACPBB3V","urlKey":"d70010000065966","title":"究極の選択!?ヤバめな心理テストー当たる!占い性格診断で深層心理がわかっちゃう!?ー","platform":"Nintendo Switch"}
@@ -19833,7 +19810,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000106651","productCode_jp":"HACPBSHA","urlKey":null,"title":"テレネットふくぶくろ","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000113334","productCode_jp":"HACPBTK9","urlKey":null,"title":"三国志正史　天舞スピリッツ","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000085407","productCode_jp":"HACPBKZ4","urlKey":"d70010000085407","title":"ドラゴンドリル　小２コレクション","platform":"Nintendo Switch"}
-{"nsuid_jp":"D70010000118043","productCode_jp":"BEEPABW8","urlKey":null,"title":"Moonlighter 2: The Endless Vault ムーンライター2：エンドレス・ヴォルト","platform":"Nintendo Switch 2"}
 {"nsuid_jp":"D70010000113333","productCode_jp":"HACPBTK8","urlKey":null,"title":"斬Ⅲスピリッツ","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000057232","productCode_jp":"HACPA9X8","urlKey":"d70010000057232","title":"ゆるゆる劇場-劇場版-完結編三部作","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000063972","productCode_jp":"HACPBBZT","urlKey":"d70010000063972","title":"ふしぎ駄菓子屋 銭天堂　ふしぎ駄菓子ばなし50選","platform":"Nintendo Switch"}
@@ -19889,7 +19865,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000085526","productCode_jp":"HACPBK3D","urlKey":"d70010000085526","title":"くるくるパズルつないでどうぶつー点つなぎで動物雑学かんたん勉強学習教養知育パズルー","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000084369","productCode_jp":"HACPBKM3","urlKey":"d70010000084369","title":"クイズで身につく教養 物理学者編 〜小学生から大人まで遊べる雑学教養クイズゲーム〜","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000060823","productCode_jp":"HACPBA4V","urlKey":"d70010000060823","title":"日常うんちく図鑑ーイラストで学べる雑学教養博識クイズ－","platform":"Nintendo Switch"}
-{"nsuid_jp":"D70010000117369","productCode_jp":"HACPBUEF","urlKey":null,"title":"エンジェルラプソディー","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000080212","productCode_jp":"HACPBHW4","urlKey":"d70010000080212","title":"超難問！絶対音感クイズーならべてかんたん音楽勉強学習教養知育パズルー","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000122830","productCode_jp":"HACPBVGX","urlKey":null,"title":"ぽちっとスタディ クイズで簡体中文基礎単語ー4択クイズで中国語学習勉強教養語学テストー","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000122026","productCode_jp":"HACPBVCG","urlKey":null,"title":"脳を鍛えるIQパターンクイズー論理思考を極める4択脳トレー","platform":"Nintendo Switch"}
@@ -19915,7 +19890,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000106289","productCode_jp":"BEEPAA3P","urlKey":null,"title":"ギア・クラブ アンリミテッド 3","platform":"Nintendo Switch 2"}
 {"nsuid_jp":"D70010000110104","productCode_jp":"HACPBP2R","urlKey":"d70010000110104","title":"4PGP - Nintendo Switch 2 Edition","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000105102","productCode_jp":"HACPA828","urlKey":null,"title":"ザ・ランブルフィッシュ２- Nintendo Switch 2 Edition","platform":"Nintendo Switch"}
-{"nsuid_jp":"D70010000117631","productCode_jp":"BEEPABML","urlKey":"d70010000117631","title":"スヌーピーとワクワクひみつクラブ","platform":"Nintendo Switch 2"}
 {"nsuid_jp":"D70010000087541","productCode_jp":"HACPBLCU","urlKey":"d70010000087541","title":"わくわくゲームファクトリー Mind Render　作って遊んでシェアしよう！","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000097285","productCode_jp":"HACPBPY5","urlKey":"d70010000097285","title":"ピンチ50連発!! FEAT. Fischer's -フィッシャーズ- ～最恐アスレチック島と秘密のキノコ～","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000029009","productCode_jp":"HACPAXSC","urlKey":"d70010000029009","title":"私だけいれば問題ないよね","platform":"Nintendo Switch"}
@@ -19923,7 +19897,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000040060","productCode_jp":"HACPA35X","urlKey":"d70010000040060","title":"英雄伝説 閃の軌跡I：改 -Thors Military Academy 1204-","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000040396","productCode_jp":"HACPA4AU","urlKey":"d70010000040396","title":"英雄伝説 閃の軌跡II：改 -The Erebonian Civil War-","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000090053","productCode_jp":"HACPBLHH","urlKey":"d70010000090053","title":"ToHeart","platform":"Nintendo Switch"}
-{"nsuid_jp":"D70010000118954","productCode_jp":"BEEPABY2","urlKey":null,"title":"コーヒートーク トーキョー","platform":"Nintendo Switch 2"}
 {"nsuid_jp":"D70010000070241","productCode_jp":"HACPBEAS","urlKey":"d70010000070241","title":"神次次元ゲイム ネプテューヌRe;Birth3 V CENTURY","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000070240","productCode_jp":"HACPBEAR","urlKey":"d70010000070240","title":"超次次元ゲイム ネプテューヌRe;Birth2 SISTERS GENERATION","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000070239","productCode_jp":"HACPBEAQ","urlKey":"d70010000070239","title":"超次次元ゲイム ネプテューヌRe;Birth1","platform":"Nintendo Switch"}
@@ -19942,7 +19915,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000056793","productCode_jp":"HACPA9UH","urlKey":"d70010000056793","title":"結合男子","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000088123","productCode_jp":"HACPBLXX","urlKey":"d70010000088123","title":"マスターオブモンスターズSSB","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000092737","productCode_jp":"HACPBNJD","urlKey":"d70010000092737","title":"バニーガーデン2","platform":"Nintendo Switch"}
-{"nsuid_jp":"D70010000000035","productCode_jp":"HACPBAAC","urlKey":"d70010000000035","title":"ぷよぷよ™テトリス®Ｓ スペシャルプライス","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000095691","productCode_jp":"HACPBPHS","urlKey":"d70010000095691","title":"へべれけ ばにーがーでん","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000024250","productCode_jp":"HACPAV3D","urlKey":"d70010000024250","title":"NG","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000076809","productCode_jp":"HACPBGPE","urlKey":null,"title":"ファンタジスタ明日翔","platform":"Nintendo Switch"}
@@ -20117,7 +20089,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000078928","productCode_jp":"HACPBHGS","urlKey":"d70010000078928","title":"五等分の花嫁 ごとぱずストーリー 2nd","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000011591","productCode_jp":"HACPAQNQ","urlKey":"d70010000011591","title":"テト字ス","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000088245","productCode_jp":"HACPBLYU","urlKey":"d70010000088245","title":"爆盛食堂","platform":"Nintendo Switch"}
-{"nsuid_jp":"D70010000114733","productCode_jp":"BEEPABSD","urlKey":"d70010000114733","title":"元祖 落とし寿司 めびうす for Nintendo Switch 2","platform":"Nintendo Switch 2"}
 {"nsuid_jp":"D70010000076981","productCode_jp":"HACPBGQU","urlKey":"d70010000076981","title":"リアルタイムバトルオセロ","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000013894","productCode_jp":"HACPARQN","urlKey":"d70010000013894","title":"メモリーズオフ-Innocent Fille- for Dearest","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000076650","productCode_jp":"HACPBGMZ","urlKey":"d70010000076650","title":"遊んでチェスが強くなる！ 銀星チェスDX","platform":"Nintendo Switch"}
@@ -20125,7 +20096,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000118259","productCode_jp":"HACPBUK6","urlKey":"d70010000118259","title":"くるくる回そう！方向幕コレクション for Nintendo Switch™ -東武鉄道編 東武東上線- 鉄道方向幕シミュレーター","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000052738","productCode_jp":"HACPA8KS","urlKey":"d70010000052738","title":"桃太郎電鉄ワールド ～地球は希望でまわってる！～","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000110439","productCode_jp":"HACPACBA","urlKey":null,"title":"あつまれ どうぶつの森 Nintendo Switch 2 Edition","platform":"Nintendo Switch"}
-{"nsuid_jp":"D70010000098992","productCode_jp":"BEEPAASV","urlKey":null,"title":"ドラゴンクエストVII Reimagined","platform":"Nintendo Switch 2"}
 {"nsuid_jp":"D70010000017651","productCode_jp":"HACPATC5","urlKey":"d70010000017651","title":"ぷるきゃらフレンズ　ほっぺちゃんとサンリオキャラクターズ","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000120684","productCode_jp":"HACPBGED","urlKey":null,"title":"ホビット庄の物語 ～指輪物語™の世界から～ Nintendo Switch 2 Edition","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000028108","productCode_jp":"HACPAXFE","urlKey":"d70010000028108","title":"いっしょにあそぼ～♪コウペンちゃん","platform":"Nintendo Switch"}
@@ -20149,7 +20119,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000047194","productCode_jp":"HACPA6R9","urlKey":"d70010000047194","title":"鉄道にっぽん！路線たび 三岐鉄道編","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000053953","productCode_jp":"HACPA8YZ","urlKey":"d70010000053953","title":"鉄道にっぽん！路線たび 明知鉄道編","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000110604","productCode_jp":"HACPBD8W","urlKey":"d70010000110604","title":"異世界輪舞 ～御社も異世界もブラックなのでここから先はホワイトライフを目指します！～ Nintendo Switch 2 Edition","platform":"Nintendo Switch"}
-{"nsuid_jp":"D70010000106457","productCode_jp":"BEEPABEG","urlKey":"d70010000106457","title":"リップルアイランド　カイルとキャルのレストラン","platform":"Nintendo Switch 2"}
 {"nsuid_jp":"D70010000094022","productCode_jp":"HACPBNZP","urlKey":"d70010000094022","title":"ヘルメネウスの箱庭","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000021937","productCode_jp":"HACPAU87","urlKey":"d70010000021937","title":"激Jパチスロ ハナハナ祭り！TOP5勢ぞろいSP","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000121553","productCode_jp":"HACPBSZF","urlKey":"d70010000121553","title":"フルーツマウンテン パーティ Nintendo Switch 2 Edition","platform":"Nintendo Switch"}
@@ -20190,7 +20159,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000078281","productCode_jp":"HACPBD4Z","urlKey":"d70010000078281","title":"ハココロV","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000012343","productCode_jp":"HACPAQ3W","urlKey":"d70010000012343","title":"うみねこのなく頃に咲 ～猫箱と夢想の交響曲～","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000112653","productCode_jp":"BEEPABM4","urlKey":null,"title":"COTTOn ROCK WITH YOU　-ORIENTAL NIGHT DREAMS- ","platform":"Nintendo Switch 2"}
-{"nsuid_jp":"D70010000112494","productCode_jp":"BEEPABLH","urlKey":null,"title":"近畿霊務局","platform":"Nintendo Switch 2"}
 {"nsuid_jp":"D70010000008825","productCode_jp":"HACPAPHF","urlKey":"d70010000008825","title":"ひぐらしのなく頃に奉","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000022049","productCode_jp":"HACPAUX4","urlKey":"d70010000022049","title":"幻想牢獄のカレイドスコープ","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000086466","productCode_jp":"HACPBLC8","urlKey":"d70010000086466","title":"幻想牢獄のカレイドスコープ2","platform":"Nintendo Switch"}
@@ -20231,7 +20199,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000032155","productCode_jp":"HACPAYQR","urlKey":"d70010000032155","title":"モンスターファーム２","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000017484","productCode_jp":"HACPAD2D","urlKey":"d70010000017484","title":"信長の野望･大志 with パワーアップキット","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000042503","productCode_jp":"HACPA44V","urlKey":"d70010000042503","title":"さくらの雲＊スカアレットの恋","platform":"Nintendo Switch"}
-{"nsuid_jp":"D70010000128382","productCode_jp":"BEEPACH7","urlKey":null,"title":"でこれいと・でこれいしょん","platform":"Nintendo Switch 2"}
 {"nsuid_jp":"D70010000024612","productCode_jp":"HACPAV6L","urlKey":"d70010000024612","title":"千里の棋譜 ～現代将棋ミステリー～","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000021642","productCode_jp":"HACPAU46","urlKey":"d70010000021642","title":"モンスターファーム","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000033518","productCode_jp":"HACPAZGJ","urlKey":"d70010000033518","title":"NINJA GAIDEN: マスターコレクション Version D","platform":"Nintendo Switch"}
@@ -20367,8 +20334,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000034232","productCode_jp":"HACPAZSB","urlKey":"d70010000034232","title":"秋田・男鹿ミステリー案内 凍える銀鈴花","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000026116","productCode_jp":"HACPAWGN","urlKey":"d70010000026116","title":"スペースインベーダー90","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000126148","productCode_jp":"HACPBUME","urlKey":null,"title":"ヴィラン転生 ～死亡確定の悪役モブに転生したけど２回も死にたくないので暗躍してやる！～ Nintendo Switch 2 Edition","platform":"Nintendo Switch"}
-{"nsuid_jp":"D70010000100067","productCode_jp":"BEEPAAG9","urlKey":"d70010000100067","title":"アサシン クリード シャドウズ","platform":"Nintendo Switch 2"}
-{"nsuid_jp":"D70010000100339","productCode_jp":"BEEPAA3H","urlKey":"d70010000100339","title":"ザ・ローグ：プリンス オブ ペルシャ","platform":"Nintendo Switch 2"}
 {"nsuid_jp":"D70010000049945","productCode_jp":"HACPA7F5","urlKey":"d70010000049945","title":"王国商店街","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000037064","productCode_jp":"HACPA2Y8","urlKey":"d70010000037064","title":"ハーヴェストグリーン","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000120672","productCode_jp":"HACPBU3J","urlKey":null,"title":"G-MODEアーカイブス+ DIGITAL DEVIL SAGA アバタール・チューナー A's TEST Server完全版","platform":"Nintendo Switch"}
@@ -20388,7 +20353,6 @@ The Complete Case Files" (US nsuid: 70010000066559)
 {"nsuid_jp":"D70010000110721","productCode_jp":"HACPBLNQ","urlKey":"d70010000110721","title":"ノベルズローグ ～異世界古書堂と封印の魔女～ Nintendo Switch 2 Edition","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000052695","productCode_jp":"HACPA8KB","urlKey":"d70010000052695","title":"義賊探偵ノスリ","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000113885","productCode_jp":"HACPBTPY","urlKey":null,"title":"Starry☆Sky～Spring Memories～","platform":"Nintendo Switch"}
-{"nsuid_jp":"D70010000105508","productCode_jp":"BEEPABCF","urlKey":"d70010000105508","title":"Bubsy 4D (やまねこバブジー 4D)","platform":"Nintendo Switch 2"}
 {"nsuid_jp":"D70010000022569","productCode_jp":"HACPAVJM","urlKey":"d70010000022569","title":"ぷちっとクラスター","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000079363","productCode_jp":"HACPBHMA","urlKey":"d70010000079363","title":"謎検スマート対策","platform":"Nintendo Switch"}
 {"nsuid_jp":"D70010000062363","productCode_jp":"HACPBBDK","urlKey":"d70010000062363","title":"仙狐さんといっしょ","platform":"Nintendo Switch"}

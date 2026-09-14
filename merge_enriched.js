@@ -305,14 +305,17 @@ function pickBaseNsuid(item) {
 }
 
 function pickBaseProductCode(item) {
-  return item.productCode_us
-    ?? item.productCode_eu
-    ?? item.productCode_jp
-    ?? item.productCode_hk
-    ?? item.productCode_as
-    ?? item.productCode_kr
-    ?? item.productCode
-    ?? null;
+  const codes = [
+    item.productCode_us,
+    item.productCode_eu,
+    item.productCode_jp,
+    item.productCode_hk,
+    item.productCode_as,
+    item.productCode_kr,
+    item.productCode,
+  ];
+
+  return codes.find(isNonEmpty) ?? null;
 }
 
 function detectBaseRegion(item) {
@@ -611,6 +614,23 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
 
     return sortKeysPretty(item);
   });
+
+  // Revisit unmatched JP rows after AS has been attached to US-base entries.
+  for (const item of merged) {
+    if (isNonEmpty(item.nsuid_jp) || isNonEmpty(item.productCode_jp)) continue;
+
+    const uk = getUrlKey(item);
+    const res = tryMatch(regionIdx.jp, item, {
+      strictUrlKeyHit: !!(uk && STRICT_URLKEYS.has(uk))
+    });
+    if (!res?.item) continue;
+
+    appendRegionFields(item, 'jp', res.item);
+
+    const idN = normalizeNsuid('jp', res.item.nsuid_jp ?? res.item.nsuid ?? null);
+    if (idN) seen.jp.add(idN);
+    if (ruleCounts.jp[res.rule] != null) ruleCounts.jp[res.rule] += 1;
+  }
 
   // Count unmatched-to-US before EU fallback pass
   const usToUnmatched = {};
