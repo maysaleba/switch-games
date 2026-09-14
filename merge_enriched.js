@@ -523,14 +523,6 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
   if (isNonEmpty(imgSqVal) && !isNonEmpty(base[imgSqKey])) {
     base[imgSqKey] = String(imgSqVal).trim();
   }
-  if (isNonEmpty(imgSqVal) && !isNonEmpty(base.imageSquare)) {
-    base.imageSquare = String(imgSqVal).trim();
-  }
-
-  const imgKeyVal = matched?.imageKey ?? matched?.image_key ?? null;
-  if (isNonEmpty(imgKeyVal) && !isNonEmpty(base.imageKey)) {
-    base.imageKey = String(imgKeyVal).trim();
-  }
 
   if (matched && matched.active_in_base === true) {
     if (base.active_in_base !== true && typeof onRaise === 'function') onRaise();
@@ -743,6 +735,9 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
     if (asItem.active_in_base !== true) continue;
 
     const promoted = { ...asItem };
+    if (isNonEmpty(promoted.imageSquare) && !isNonEmpty(promoted.imageSquare_as)) {
+      promoted.imageSquare_as = String(promoted.imageSquare).trim();
+    }
     let matchedAny = false;
 
     for (const r of asFallbackRegions) {

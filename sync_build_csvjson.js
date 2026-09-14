@@ -252,21 +252,26 @@ function jaccardSimilarity(a, b) {
 
 function buildImageUrl(g) {
   const imgEU = g.imageSquare_eu && g.imageSquare_eu.trim();
-  const img   = g.imageSquare && g.imageSquare.trim();
   const imgJP = g.imageSquare_jp && g.imageSquare_jp.trim();
+  const img   = g.imageSquare && g.imageSquare.trim();
+  const imgAS = g.imageSquare_as && g.imageSquare_as.trim();
+  const proxy = (url) => `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=240`;
 
   if (imgEU) {
-    return `https://images.weserv.nl/?url=${imgEU}&w=240`;
-  }
-  if (img) {
-    return `https://images.weserv.nl/?url=${img}&w=240`;
+    return proxy(imgEU);
   }
   if (imgJP) {
-    return `https://images.weserv.nl/?url=${imgJP}&w=240`;
+    return proxy(imgJP);
+  }
+  if (img) {
+    return proxy(img);
+  }
+  if (imgAS) {
+    return proxy(imgAS);
   }
   if (g.imageKey) {
     if (g.imageKey.startsWith("https")) {
-      return `https://images.weserv.nl/?url=${g.imageKey}&w=240`;
+      return proxy(g.imageKey);
     }
     return `https://images.weserv.nl/?url=https://assets.nintendo.com/image/upload/${g.imageKey}&w=240`;
   }
