@@ -289,10 +289,17 @@ function buildMexPrice(g) {
 }
 function pickRegular(prices) {
   for (const code of REGULAR_FALLBACK) {
-    const p = prices?.[code]?.regular;
-    if (p != null && String(p) !== '') return p;
+    const p = prices?.[code];
+    const regular = p?.regular;
+    if (regular != null && String(regular) !== '') {
+      return {
+        code,
+        currency: p?.regular_currency || '',
+        value: String(regular)
+      };
+    }
   }
-  return '';
+  return { code: '', currency: '', value: '' };
 }
 
 function toCsvValue(v) {
@@ -446,7 +453,9 @@ function ensureAllRegionKeys(row) {
     const hltb        = safeHLTB(hltbData, g.title || '');
     const Image       = buildImageUrl(g);
     const MexPrice    = buildMexPrice(g);
-    const Price       = pickRegular(prices);
+    const regularPick = pickRegular(prices);
+    const Price       = regularPick.value;
+    const Currency    = regularPick.currency;
 
     // Preserve raw slug in output; use replacements+normalize only for Meta.
     const metaSlug = normalizeForMetacritic(
@@ -486,6 +495,7 @@ function ensureAllRegionKeys(row) {
       NumberofPlayers: 'https://shope.ee/5ALD8alAHo',
       NorwayPrice: prices?.NO?.sale ?? '',
       Price,
+      Currency,
       MexicoPrice: prices?.MX?.sale ?? '',
       MainExtra: hltb.MainExtra,
       SalePrice: salePriceUS,
@@ -516,7 +526,7 @@ function ensureAllRegionKeys(row) {
 
   function pricesDiffer(existing, fresh) {
     const keysToCheck = new Set(Object.values(REGION_KEY_MAP).concat([
-      'PercentOff','SaleEnds','SaleStarted','Price','Image','MexPrice'
+      'PercentOff','SaleEnds','SaleStarted','Price','Currency','Image','MexPrice'
     ]));
     for (const k of keysToCheck) {
       if ((existing?.[k] ?? '') !== (fresh?.[k] ?? '')) return true;
