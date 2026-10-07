@@ -108,6 +108,9 @@ jobs:
       - name: Get Prices
         run: node getPrices.js
 
+      - name: Track lowest prices
+        run: node track_lowest.js
+
       - name: Sync & Build csvjson
         run: node sync_build_csvjson.js
 
@@ -135,7 +138,8 @@ jobs:
             data/us_games_enriched.json \
             data/as_games_enriched.json \
             output/merged_enriched.json \
-            output/merged_enriched_with_prices.json
+            output/merged_enriched_with_prices.json \
+            output/lowest_prices.json
       
           if ! git diff --cached --quiet; then
             git commit -m "CI: update enriched & regional outputs [skip ci]"
