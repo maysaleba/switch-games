@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-// Records the lowest sale price seen per game key and country. Run after getPrices.js.
 const fs = require('fs');
 const path = require('path');
 
@@ -7,6 +6,7 @@ const PRICES_FILE = path.resolve('output/merged_enriched_with_prices.json');
 const LOWEST_FILE = path.resolve('output/lowest_prices.json');
 const STATUS_FILE = path.resolve('output/current_sale_status.json');
 const CSVJSON_FILE = path.resolve('csvjson.json');
+const FX_URL = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json';
 
 const load = (file, fallback) => {
   try {
@@ -16,116 +16,186 @@ const load = (file, fallback) => {
   }
 };
 
-const entries = load(PRICES_FILE, []);
-const lowest = load(LOWEST_FILE, {});
-const csvRows = load(CSVJSON_FILE, []);
-const today = new Date().toISOString().slice(0, 10);
-const now = Date.now();
+function activeSaleFor(price, now) {
+  const sale = Number(price?.sale);
+  if (price?.sale == null || price.sale === '' || !Number.isFinite(sale)) return null;
 
-if (!Array.isArray(entries) || !Array.isArray(csvRows) || !lowest || Array.isArray(lowest) || typeof lowest !== 'object') {
-  throw new Error('Expected price-cache and csvjson arrays, plus a lowest-price object');
+  const start = price.sale_start || null;
+  const end = price.sale_end || null;
+  const startTime = start ? Date.parse(start) : null;
+  const endTime = end ? Date.parse(end) : NaN;
+  if (start && (!Number.isFinite(startTime) || startTime > now)) return null;
+  if (!Number.isFinite(endTime) || endTime <= now) return null;
+
+  return { sale, start, end };
 }
 
-let added = 0, lowered = 0, matched = 0, aboveLow = 0, unknown = 0, currencyMismatch = 0;
-const observedSales = new Set();
-const csvSlugs = new Set(csvRows.map(row => row.Slug).filter(Boolean));
+async function fetchUsdRates() {
+  const response = await fetch(FX_URL, { signal: AbortSignal.timeout(15000) });
+  if (!response.ok) throw new Error(`Exchange-rate request failed: HTTP ${response.status}`);
+  const data = await response.json();
+  const rates = data?.usd;
+  if (!rates || !Number.isFinite(Number(rates.php)) || Number(rates.php) <= 0) {
+    throw new Error('Exchange-rate response has no valid USD→PHP rate');
+  }
+  return { rates, date: data.date || 'unknown' };
+}
 
-for (const { key, prices } of entries) {
-  if (!key) continue;
+function makePhpConverter(rates) {
+  const phpPerUsd = Number(rates.php);
+  return (amount, currency) => {
+    const unitsPerUsd = Number(rates[String(currency || '').toLowerCase()]);
+    if (!Number.isFinite(amount) || !Number.isFinite(unitsPerUsd) || unitsPerUsd <= 0) return null;
+    return (amount / unitsPerUsd) * phpPerUsd;
+  };
+}
 
-  for (const [country, p] of Object.entries(prices || {})) {
-    const sale = Number(p.sale);
-    if (p.sale == null || p.sale === '' || !Number.isFinite(sale)) continue;
+function findGlobalCheapestPhp(lowest, entries, toPhp, now) {
+  const result = {};
+  for (const [key, countries] of Object.entries(lowest)) {
+    let minimum = Infinity;
 
-    const currency = p.sale_currency || p.regular_currency;
-    const saleStart = p.sale_start || null;
-    const saleEnd = p.sale_end || null;
-    const saleStartTime = saleStart ? Date.parse(saleStart) : null;
-    const saleEndTime = saleEnd ? Date.parse(saleEnd) : NaN;
-    if (saleStart && (!Number.isFinite(saleStartTime) || saleStartTime > now)) continue;
-    const activeSale = Number.isFinite(saleEndTime) && saleEndTime > now;
-
-    lowest[key] = lowest[key] || {};
-    const prev = lowest[key][country];
-    const saleKey = `${key}\0${country}`;
-    const sameSale = activeSale && prev?.currentSale &&
-      (saleStart || saleEnd) &&
-      prev.currentSale.saleStart === saleStart &&
-      prev.currentSale.saleEnd === saleEnd &&
-      prev.currentSale.price === sale &&
-      prev.currentSale.currency === currency;
-
-    let status = null;
-
-    if (!prev) {
-      added++;
-      lowest[key][country] = { price: sale, currency, date: today };
-      if (activeSale) {
-        status = 'unknown';
-        unknown++;
-      }
-    } else if (prev.currency !== currency) {
-      if (activeSale) {
-        currencyMismatch++;
-        status = 'unknown';
-      }
-    } else if (sameSale) {
-      status = prev.currentSale.status;
-    } else if (sale < prev.price) {
-      if (activeSale) {
-        status = 'new_low';
-        lowered++;
-      }
-      prev.price = sale;
-      prev.currency = currency;
-      prev.date = today;
-    } else if (activeSale && sale === prev.price) {
-      status = 'matches_low';
-      matched++;
-    } else if (activeSale) {
-      status = 'not_low';
-      aboveLow++;
+    for (const record of Object.values(countries || {})) {
+      const converted = toPhp(Number(record?.price), record?.currency);
+      if (converted == null) continue;
+      minimum = Math.min(minimum, converted);
     }
 
-    if (!activeSale) continue;
-
-    const countryRecord = lowest[key][country];
-    countryRecord.currentSale = {
-      price: sale,
-      currency,
-      status,
-      saleStart,
-      saleEnd,
-      observedAt: today
-    };
-    observedSales.add(saleKey);
+    if (Number.isFinite(minimum)) result[key] = minimum;
   }
-}
 
-for (const [key, record] of Object.entries(lowest)) {
-  for (const [country, countryRecord] of Object.entries(record || {})) {
-    if (countryRecord?.currentSale && !observedSales.has(`${key}\0${country}`)) {
-      delete countryRecord.currentSale;
+  for (const { key, prices } of entries) {
+    if (!key) continue;
+    for (const price of Object.values(prices || {})) {
+      const activeSale = activeSaleFor(price, now);
+      if (!activeSale) continue;
+      const currency = price.sale_currency || price.regular_currency;
+      const converted = toPhp(activeSale.sale, currency);
+      if (converted == null) continue;
+      result[key] = Math.min(result[key] ?? Infinity, converted);
     }
   }
+
+  return result;
 }
 
-const statusFeed = Object.fromEntries(
-  [...csvSlugs].map(slug => [slug, {}])
-);
-for (const [key, record] of Object.entries(lowest)) {
-  if (!csvSlugs.has(key)) continue;
+async function main() {
+  const entries = load(PRICES_FILE, []);
+  const lowest = load(LOWEST_FILE, {});
+  const csvRows = load(CSVJSON_FILE, []);
+  const today = new Date().toISOString().slice(0, 10);
+  const now = Date.now();
 
-  for (const [country, countryRecord] of Object.entries(record || {})) {
-    const status = countryRecord?.currentSale?.status;
-    if (!status) continue;
-    statusFeed[key] = statusFeed[key] || {};
-    statusFeed[key][country] = status;
+  if (!Array.isArray(entries) || !Array.isArray(csvRows) || !lowest || Array.isArray(lowest) || typeof lowest !== 'object') {
+    throw new Error('Expected price-cache and csvjson arrays, plus a lowest-price object');
   }
+
+  const rateData = await fetchUsdRates();
+  const rates = rateData.rates;
+  const toPhp = makePhpConverter(rates);
+  const globalCheapestPhp = findGlobalCheapestPhp(lowest, entries, toPhp, now);
+  const csvSlugs = new Set(csvRows.map(row => row.Slug).filter(Boolean));
+  const observedSales = new Set();
+  let added = 0, lowered = 0, matched = 0, aboveLow = 0, unknown = 0, currencyMismatch = 0;
+
+  for (const { key, prices } of entries) {
+    if (!key) continue;
+
+    for (const [country, price] of Object.entries(prices || {})) {
+      const sale = Number(price?.sale);
+      if (price?.sale == null || price.sale === '' || !Number.isFinite(sale)) continue;
+
+      const currency = price.sale_currency || price.regular_currency;
+      const activeSale = activeSaleFor(price, now);
+      lowest[key] = lowest[key] || {};
+      let record = lowest[key][country];
+      const hadComparableLow = Boolean(record && record.currency === currency && Number.isFinite(Number(record.price)));
+      const sameSale = activeSale && record?.currentSale &&
+        record.currentSale.saleStart === activeSale.start &&
+        record.currentSale.saleEnd === activeSale.end &&
+        Number(record.currentSale.price) === activeSale.sale &&
+        record.currentSale.currency === currency;
+      const historicReferencePrice = sameSale && record.currentSale.statusRule === 'global_php_v5'
+        ? record.currentSale.historicPrice
+        : hadComparableLow ? Number(record.price) : null;
+      let status = null;
+
+      if (!record) {
+        record = lowest[key][country] = { price: sale, currency, date: today };
+        added++;
+      }
+
+      if (activeSale) {
+        const salePhp = toPhp(sale, currency);
+        const cheapestPhp = globalCheapestPhp[key];
+        if (salePhp == null || cheapestPhp == null) {
+          status = 'unknown';
+          unknown++;
+        } else if (salePhp > cheapestPhp + 0.01) {
+          status = 'not_low';
+          aboveLow++;
+        } else if (record.currency !== currency || historicReferencePrice == null) {
+          status = 'unknown';
+          if (record.currency !== currency) currencyMismatch++;
+          else unknown++;
+        } else if (sale < Number(historicReferencePrice)) {
+          status = 'new_low';
+          lowered++;
+        } else if (sale === Number(historicReferencePrice)) {
+          status = 'matches_low';
+          matched++;
+        } else {
+          status = 'not_low';
+          aboveLow++;
+        }
+      }
+
+      if (activeSale && record.currency === currency && sale < Number(record.price)) {
+        record.price = sale;
+        record.currency = currency;
+        record.date = today;
+      }
+
+      if (!activeSale) continue;
+
+      record.currentSale = {
+        price: activeSale.sale,
+        currency,
+        status: status || 'unknown',
+        statusRule: 'global_php_v5',
+        historicPrice: historicReferencePrice,
+        saleStart: activeSale.start,
+        saleEnd: activeSale.end
+      };
+      observedSales.add(`${key}\0${country}`);
+    }
+  }
+
+  for (const [key, countries] of Object.entries(lowest)) {
+    for (const [country, record] of Object.entries(countries || {})) {
+      if (record?.currentSale && !observedSales.has(`${key}\0${country}`)) delete record.currentSale;
+    }
+  }
+
+  const statusFeed = Object.fromEntries([...csvSlugs].map(slug => [slug, {}]));
+  for (const [key, countries] of Object.entries(lowest)) {
+    if (!csvSlugs.has(key)) continue;
+    for (const [country, record] of Object.entries(countries || {})) {
+      if (record?.currentSale?.status) {
+        statusFeed[key][country] = record.currentSale.status;
+      }
+    }
+  }
+
+  fs.writeFileSync(LOWEST_FILE, JSON.stringify(lowest, null, 2), 'utf8');
+  fs.writeFileSync(STATUS_FILE, JSON.stringify(statusFeed), 'utf8');
+  console.log(`lowest_prices: +${added} new, ${lowered} global new lows, ${currencyMismatch} currency mismatches skipped`);
+  console.log(`Sale comparison: ${lowered} new lows, ${matched} matches, ${aboveLow} not lows, ${unknown} unknown`);
+  console.log(`Global minimum countries determined using USD→PHP rates dated ${rateData.date}`);
+  console.log(`Wrote ${Object.keys(statusFeed).length} games to ${STATUS_FILE}`);
 }
 
-fs.writeFileSync(LOWEST_FILE, JSON.stringify(lowest, null, 2), 'utf8');
-fs.writeFileSync(STATUS_FILE, JSON.stringify(statusFeed), 'utf8');
-console.log(`lowest_prices: +${added} new, ${lowered} lowered, ${currencyMismatch} currency mismatches skipped`);
-console.log(`Sale comparison: ${lowered} new lows, ${matched} matches, ${aboveLow} not lows, ${unknown} unknown`);
-console.log(`Wrote ${Object.keys(statusFeed).length} games to ${STATUS_FILE}`);
+main().catch(error => {
+  console.error(error);
+  process.exit(1);
+});
