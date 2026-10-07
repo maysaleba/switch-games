@@ -50,13 +50,26 @@ function makePhpConverter(rates) {
   };
 }
 
-function findGlobalCheapestPhp(lowest, entries, toPhp, now) {
+function convertRankPriceToPhp(amount, currency, country, rates, toPhp) {
+  if (country !== 'AR' || currency !== 'ARS') return toPhp(amount, currency);
+
+  const ars = Number(amount);
+  const phpPerARS = Number(rates.php) / Number(rates.ars);
+  if (!Number.isFinite(ars) || ars <= 0 || !Number.isFinite(phpPerARS) || phpPerARS <= 0) return null;
+
+  const basePhp = ars * phpPerARS;
+  const regionalityTax = basePhp * 1.21 * ((1500 - 12100 * phpPerARS) / (12100 * phpPerARS));
+  const argentinaVat = basePhp * 0.21;
+  return basePhp + argentinaVat + regionalityTax;
+}
+
+function findGlobalCheapestPhp(lowest, entries, toPhp, rates, now) {
   const result = {};
   for (const [key, countries] of Object.entries(lowest)) {
     let minimum = Infinity;
 
-    for (const record of Object.values(countries || {})) {
-      const converted = toPhp(Number(record?.price), record?.currency);
+    for (const [country, record] of Object.entries(countries || {})) {
+      const converted = convertRankPriceToPhp(Number(record?.price), record?.currency, country, rates, toPhp);
       if (converted == null) continue;
       minimum = Math.min(minimum, converted);
     }
@@ -66,11 +79,11 @@ function findGlobalCheapestPhp(lowest, entries, toPhp, now) {
 
   for (const { key, prices } of entries) {
     if (!key) continue;
-    for (const price of Object.values(prices || {})) {
+    for (const [country, price] of Object.entries(prices || {})) {
       const activeSale = activeSaleFor(price, now);
       if (!activeSale) continue;
       const currency = price.sale_currency || price.regular_currency;
-      const converted = toPhp(activeSale.sale, currency);
+      const converted = convertRankPriceToPhp(activeSale.sale, currency, country, rates, toPhp);
       if (converted == null) continue;
       result[key] = Math.min(result[key] ?? Infinity, converted);
     }
@@ -93,7 +106,7 @@ async function main() {
   const rateData = await fetchUsdRates();
   const rates = rateData.rates;
   const toPhp = makePhpConverter(rates);
-  const globalCheapestPhp = findGlobalCheapestPhp(lowest, entries, toPhp, now);
+  const globalCheapestPhp = findGlobalCheapestPhp(lowest, entries, toPhp, rates, now);
   const csvSlugs = new Set(csvRows.map(row => row.Slug).filter(Boolean));
   const observedSales = new Set();
   let added = 0, lowered = 0, matched = 0, aboveLow = 0, unknown = 0, currencyMismatch = 0;
@@ -126,7 +139,7 @@ async function main() {
       }
 
       if (activeSale) {
-        const salePhp = toPhp(sale, currency);
+        const salePhp = convertRankPriceToPhp(sale, currency, country, rates, toPhp);
         const cheapestPhp = globalCheapestPhp[key];
         if (salePhp == null || cheapestPhp == null) {
           status = 'unknown';
