@@ -161,17 +161,17 @@ jobs:
           : "${PAT:?PERSONAL_ACCESS_TOKEN secret is required to push to website repo}"
 
           # Sanity check
-          ls -lh csvjson.json csvjson.csv output/current_sale_status.json
+          ls -lh csvjson.json csvjson.csv
 
           git clone --depth 1 "https://x-access-token:${PAT}@github.com/${WEBSITE_REPO}.git" publish
 
           mkdir -p publish/src
-          cp -f csvjson.json csvjson.csv output/current_sale_status.json publish/src/
+          cp -f csvjson.json csvjson.csv publish/src/
 
           cd publish
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/csvjson.json src/csvjson.csv src/current_sale_status.json
+          git add src/csvjson.json src/csvjson.csv
 
           if ! git diff --cached --quiet; then
             git commit -m "CI: update website data artifacts under src/"
