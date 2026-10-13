@@ -434875,10 +434875,10 @@
       "JP": {
         "regular": "2050",
         "regular_currency": "JPY",
-        "sale": "820",
-        "sale_currency": "JPY",
-        "sale_start": "2026-09-16T00:00:00Z",
-        "sale_end": "2026-10-12T23:59:59Z"
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
       }
     }
   },
@@ -558927,67 +558927,6 @@
     }
   },
   {
-    "key": "wild-rose-broken-compass-switch",
-    "prices": {
-      "US": {
-        "regular": "19.99",
-        "regular_currency": "USD",
-        "sale": "9.99",
-        "sale_currency": "USD",
-        "sale_start": "2026-10-08T16:00:00Z",
-        "sale_end": "2026-10-23T06:59:59Z"
-      },
-      "MX": {
-        "regular": "344.23",
-        "regular_currency": "MXN",
-        "sale": "172.11",
-        "sale_currency": "MXN",
-        "sale_start": "2026-10-08T16:00:00Z",
-        "sale_end": "2026-10-23T06:59:59Z"
-      },
-      "BR": {
-        "regular": "102.09",
-        "regular_currency": "BRL",
-        "sale": "51.04",
-        "sale_currency": "BRL",
-        "sale_start": "2026-10-08T16:00:00Z",
-        "sale_end": "2026-10-23T06:59:59Z"
-      },
-      "CA": {
-        "regular": "28.05",
-        "regular_currency": "CAD",
-        "sale": "14.02",
-        "sale_currency": "CAD",
-        "sale_start": "2026-10-08T16:00:00Z",
-        "sale_end": "2026-10-23T06:59:59Z"
-      },
-      "CO": {
-        "regular": "6323366",
-        "regular_currency": "COP",
-        "sale": "3161683",
-        "sale_currency": "COP",
-        "sale_start": "2026-10-08T16:00:00Z",
-        "sale_end": "2026-10-23T06:59:59Z"
-      },
-      "AR": {
-        "regular": "30269.52",
-        "regular_currency": "ARS",
-        "sale": "15134.76",
-        "sale_currency": "ARS",
-        "sale_start": "2026-10-08T16:00:00Z",
-        "sale_end": "2026-10-23T06:59:59Z"
-      },
-      "PE": {
-        "regular": "67.46",
-        "regular_currency": "PEN",
-        "sale": "33.73",
-        "sale_currency": "PEN",
-        "sale_start": "2026-10-08T16:00:00Z",
-        "sale_end": "2026-10-23T06:59:59Z"
-      }
-    }
-  },
-  {
     "key": "winter-burrow-switch",
     "prices": {
       "US": {
@@ -616166,6 +616105,67 @@
         "sale_currency": "PEN",
         "sale_start": "2026-10-09T07:00:00Z",
         "sale_end": "2026-10-24T06:59:59Z"
+      }
+    }
+  },
+  {
+    "key": "splash-of-color-mountains-edition-switch",
+    "prices": {
+      "US": {
+        "regular": "5.99",
+        "regular_currency": "USD",
+        "sale": "2.99",
+        "sale_currency": "USD",
+        "sale_start": "2026-09-19T17:00:00Z",
+        "sale_end": "2026-11-18T07:59:59Z"
+      },
+      "MX": {
+        "regular": "103",
+        "regular_currency": "MXN",
+        "sale": "51.50",
+        "sale_currency": "MXN",
+        "sale_start": "2026-09-19T17:00:00Z",
+        "sale_end": "2026-11-18T07:59:59Z"
+      },
+      "BR": {
+        "regular": "30",
+        "regular_currency": "BRL",
+        "sale": "15",
+        "sale_currency": "BRL",
+        "sale_start": "2026-09-19T17:00:00Z",
+        "sale_end": "2026-11-18T07:59:59Z"
+      },
+      "CA": {
+        "regular": "8.15",
+        "regular_currency": "CAD",
+        "sale": "4.07",
+        "sale_currency": "CAD",
+        "sale_start": "2026-09-19T17:00:00Z",
+        "sale_end": "2026-11-18T07:59:59Z"
+      },
+      "CO": {
+        "regular": "21250",
+        "regular_currency": "COP",
+        "sale": "10625",
+        "sale_currency": "COP",
+        "sale_start": "2026-09-19T17:00:00Z",
+        "sale_end": "2026-11-18T07:59:59Z"
+      },
+      "AR": {
+        "regular": null,
+        "regular_currency": null,
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "PE": {
+        "regular": "20.5",
+        "regular_currency": "PEN",
+        "sale": "10.25",
+        "sale_currency": "PEN",
+        "sale_start": "2026-09-19T17:00:00Z",
+        "sale_end": "2026-11-18T07:59:59Z"
       }
     }
   },
@@ -730173,67 +730173,6 @@
     }
   },
   {
-    "key": "splash-of-color-mountains-edition-switch",
-    "prices": {
-      "US": {
-        "regular": "5.99",
-        "regular_currency": "USD",
-        "sale": "2.99",
-        "sale_currency": "USD",
-        "sale_start": "2026-09-19T17:00:00Z",
-        "sale_end": "2026-11-18T07:59:59Z"
-      },
-      "MX": {
-        "regular": "103",
-        "regular_currency": "MXN",
-        "sale": "51.50",
-        "sale_currency": "MXN",
-        "sale_start": "2026-09-19T17:00:00Z",
-        "sale_end": "2026-11-18T07:59:59Z"
-      },
-      "BR": {
-        "regular": "30",
-        "regular_currency": "BRL",
-        "sale": "15",
-        "sale_currency": "BRL",
-        "sale_start": "2026-09-19T17:00:00Z",
-        "sale_end": "2026-11-18T07:59:59Z"
-      },
-      "CA": {
-        "regular": "8.15",
-        "regular_currency": "CAD",
-        "sale": "4.07",
-        "sale_currency": "CAD",
-        "sale_start": "2026-09-19T17:00:00Z",
-        "sale_end": "2026-11-18T07:59:59Z"
-      },
-      "CO": {
-        "regular": "21250",
-        "regular_currency": "COP",
-        "sale": "10625",
-        "sale_currency": "COP",
-        "sale_start": "2026-09-19T17:00:00Z",
-        "sale_end": "2026-11-18T07:59:59Z"
-      },
-      "AR": {
-        "regular": null,
-        "regular_currency": null,
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
-      },
-      "PE": {
-        "regular": "20.5",
-        "regular_currency": "PEN",
-        "sale": "10.25",
-        "sale_currency": "PEN",
-        "sale_start": "2026-09-19T17:00:00Z",
-        "sale_end": "2026-11-18T07:59:59Z"
-      }
-    }
-  },
-  {
     "key": "nanostorm-switch",
     "prices": {
       "US": {
@@ -755179,6 +755118,67 @@
         "sale_currency": null,
         "sale_start": null,
         "sale_end": null
+      }
+    }
+  },
+  {
+    "key": "wild-rose-broken-compass-switch",
+    "prices": {
+      "US": {
+        "regular": "19.99",
+        "regular_currency": "USD",
+        "sale": "9.99",
+        "sale_currency": "USD",
+        "sale_start": "2026-10-08T16:00:00Z",
+        "sale_end": "2026-10-23T06:59:59Z"
+      },
+      "MX": {
+        "regular": "344.23",
+        "regular_currency": "MXN",
+        "sale": "172.11",
+        "sale_currency": "MXN",
+        "sale_start": "2026-10-08T16:00:00Z",
+        "sale_end": "2026-10-23T06:59:59Z"
+      },
+      "BR": {
+        "regular": "102.09",
+        "regular_currency": "BRL",
+        "sale": "51.04",
+        "sale_currency": "BRL",
+        "sale_start": "2026-10-08T16:00:00Z",
+        "sale_end": "2026-10-23T06:59:59Z"
+      },
+      "CA": {
+        "regular": "28.05",
+        "regular_currency": "CAD",
+        "sale": "14.02",
+        "sale_currency": "CAD",
+        "sale_start": "2026-10-08T16:00:00Z",
+        "sale_end": "2026-10-23T06:59:59Z"
+      },
+      "CO": {
+        "regular": "6323366",
+        "regular_currency": "COP",
+        "sale": "3161683",
+        "sale_currency": "COP",
+        "sale_start": "2026-10-08T16:00:00Z",
+        "sale_end": "2026-10-23T06:59:59Z"
+      },
+      "AR": {
+        "regular": "30269.52",
+        "regular_currency": "ARS",
+        "sale": "15134.76",
+        "sale_currency": "ARS",
+        "sale_start": "2026-10-08T16:00:00Z",
+        "sale_end": "2026-10-23T06:59:59Z"
+      },
+      "PE": {
+        "regular": "67.46",
+        "regular_currency": "PEN",
+        "sale": "33.73",
+        "sale_currency": "PEN",
+        "sale_start": "2026-10-08T16:00:00Z",
+        "sale_end": "2026-10-23T06:59:59Z"
       }
     }
   },
