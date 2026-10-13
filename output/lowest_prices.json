@@ -22913,9 +22913,18 @@
       "date": "2026-07-07"
     },
     "NZ": {
-      "price": 4.79,
+      "price": 3.59,
       "currency": "NZD",
-      "date": "2026-07-07"
+      "date": "2026-10-13",
+      "currentSale": {
+        "price": 3.59,
+        "currency": "NZD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 4.79,
+        "saleStart": "2026-10-13T02:00:00Z",
+        "saleEnd": "2026-11-10T10:59:59Z"
+      }
     },
     "NO": {
       "price": 29,
