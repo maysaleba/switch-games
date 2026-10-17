@@ -220074,22 +220074,58 @@
     "US": {
       "price": 5.24,
       "currency": "USD",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 5.24,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 5.24,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-11-01T06:59:59Z"
+      }
     },
     "MX": {
       "price": 62.64,
       "currency": "MXN",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 62.64,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 62.64,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-11-01T06:59:59Z"
+      }
     },
     "BR": {
       "price": 16.44,
       "currency": "BRL",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 16.44,
+        "currency": "BRL",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 16.44,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-11-01T06:59:59Z"
+      }
     },
     "CA": {
       "price": 6.82,
       "currency": "CAD",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 6.82,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 6.82,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-11-01T06:59:59Z"
+      }
     }
   },
   "swordship-switch": {
@@ -380601,19 +380637,46 @@
   },
   "sniper-elite-4-season-pass-70070000010992-switch": {
     "US": {
-      "price": 14.99,
+      "price": 10.49,
       "currency": "USD",
-      "date": "2026-07-07"
+      "date": "2026-10-17",
+      "currentSale": {
+        "price": 10.49,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 14.99,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-10-27T06:59:59Z"
+      }
     },
     "MX": {
-      "price": 290.9,
+      "price": 203.63,
       "currency": "MXN",
-      "date": "2026-07-07"
+      "date": "2026-10-17",
+      "currentSale": {
+        "price": 203.63,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 290.9,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-10-27T06:59:59Z"
+      }
     },
     "CA": {
-      "price": 18.89,
+      "price": 13.22,
       "currency": "CAD",
-      "date": "2026-07-07"
+      "date": "2026-10-17",
+      "currentSale": {
+        "price": 13.22,
+        "currency": "CAD",
+        "status": "new_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 18.89,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-10-27T06:59:59Z"
+      }
     }
   },
   "sniper-elite-4-silent-warfare-weapons-pack-70050000022489-switch": {
@@ -585384,34 +585447,102 @@
   },
   "the-oregon-trail-digital-deluxe-bundle-switch": {
     "US": {
-      "price": 12.86,
+      "price": 11.99,
       "currency": "USD",
-      "date": "2026-07-07"
+      "date": "2026-10-17",
+      "currentSale": {
+        "price": 11.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 12.86,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-11-07T07:59:59Z"
+      }
     },
     "MX": {
-      "price": 249.59,
+      "price": 230.39,
       "currency": "MXN",
-      "date": "2026-07-07"
+      "date": "2026-10-17",
+      "currentSale": {
+        "price": 230.39,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 249.59,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-11-07T07:59:59Z"
+      }
     },
     "BR": {
-      "price": 60.44,
+      "price": 55.79,
       "currency": "BRL",
-      "date": "2026-07-07"
+      "date": "2026-10-17",
+      "currentSale": {
+        "price": 55.79,
+        "currency": "BRL",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 60.44,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-11-07T07:59:59Z"
+      }
     },
     "CA": {
-      "price": 16.76,
+      "price": 15.47,
       "currency": "CAD",
-      "date": "2026-07-07"
+      "date": "2026-10-17",
+      "currentSale": {
+        "price": 15.47,
+        "currency": "CAD",
+        "status": "new_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 16.76,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-11-07T07:59:59Z"
+      }
     },
     "CO": {
-      "price": 44849,
+      "price": 41399,
       "currency": "COP",
-      "date": "2026-07-07"
+      "date": "2026-10-17",
+      "currentSale": {
+        "price": 41399,
+        "currency": "COP",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 44849,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-11-07T07:59:59Z"
+      }
     },
     "PE": {
-      "price": 44.85,
+      "price": 41.4,
       "currency": "PEN",
-      "date": "2026-07-07"
+      "date": "2026-10-17",
+      "currentSale": {
+        "price": 41.4,
+        "currency": "PEN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 44.85,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-11-07T07:59:59Z"
+      }
+    },
+    "AR": {
+      "price": 10799.64,
+      "currency": "ARS",
+      "date": "2026-10-17",
+      "currentSale": {
+        "price": 10799.64,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-11-07T07:59:59Z"
+      }
     }
   },
   "car-heist-simulator-thief-mechanic-street-crime-switch": {
@@ -585516,39 +585647,102 @@
   },
   "carmen-sandiego-deluxe-edition-switch": {
     "US": {
-      "price": 19.99,
+      "price": 17.49,
       "currency": "USD",
-      "date": "2026-07-07"
+      "date": "2026-10-17",
+      "currentSale": {
+        "price": 17.49,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 19.99,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-11-07T07:59:59Z"
+      }
     },
     "MX": {
-      "price": 383.2,
+      "price": 335.3,
       "currency": "MXN",
-      "date": "2026-07-07"
+      "date": "2026-10-17",
+      "currentSale": {
+        "price": 335.3,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 383.2,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-11-07T07:59:59Z"
+      }
     },
     "BR": {
-      "price": 101.95,
+      "price": 89.21,
       "currency": "BRL",
-      "date": "2026-07-07"
+      "date": "2026-10-17",
+      "currentSale": {
+        "price": 89.21,
+        "currency": "BRL",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 101.95,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-11-07T07:59:59Z"
+      }
     },
     "CA": {
-      "price": 27.19,
+      "price": 23.79,
       "currency": "CAD",
-      "date": "2026-07-07"
+      "date": "2026-10-17",
+      "currentSale": {
+        "price": 23.79,
+        "currency": "CAD",
+        "status": "new_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 27.19,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-11-07T07:59:59Z"
+      }
     },
     "CO": {
-      "price": 78960,
+      "price": 69090,
       "currency": "COP",
-      "date": "2026-07-07"
+      "date": "2026-10-17",
+      "currentSale": {
+        "price": 69090,
+        "currency": "COP",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 78960,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-11-07T07:59:59Z"
+      }
     },
     "AR": {
-      "price": 20197.99,
+      "price": 17673.24,
       "currency": "ARS",
-      "date": "2026-07-07"
+      "date": "2026-10-17",
+      "currentSale": {
+        "price": 17673.24,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 20197.99,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-11-07T07:59:59Z"
+      }
     },
     "PE": {
-      "price": 71.96,
+      "price": 62.96,
       "currency": "PEN",
-      "date": "2026-07-07"
+      "date": "2026-10-17",
+      "currentSale": {
+        "price": 62.96,
+        "currency": "PEN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 71.96,
+        "saleStart": "2026-10-17T16:00:00Z",
+        "saleEnd": "2026-11-07T07:59:59Z"
+      }
     }
   },
   "fit-my-cat-feline-frenzy-edition-switch": {
