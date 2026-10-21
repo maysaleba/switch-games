@@ -35764,9 +35764,18 @@
   },
   "regalia-of-men-and-monarchs-royal-edition-switch": {
     "US": {
-      "price": 3.74,
+      "price": 2.49,
       "currency": "USD",
-      "date": "2026-08-27"
+      "date": "2026-10-21",
+      "currentSale": {
+        "price": 2.49,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 3.74,
+        "saleStart": "2026-10-20T22:00:00Z",
+        "saleEnd": "2026-11-01T06:59:59Z"
+      }
     },
     "MX": {
       "price": 42.99,
@@ -169538,9 +169547,18 @@
   },
   "project-warlock-switch": {
     "US": {
-      "price": 2.99,
+      "price": 1.99,
       "currency": "USD",
-      "date": "2026-08-27"
+      "date": "2026-10-21",
+      "currentSale": {
+        "price": 1.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 2.99,
+        "saleStart": "2026-10-20T22:00:00Z",
+        "saleEnd": "2026-11-01T06:59:59Z"
+      }
     },
     "MX": {
       "price": 42.99,
@@ -504190,9 +504208,18 @@
   },
   "shardpunk-switch": {
     "US": {
-      "price": 11.04,
+      "price": 9.34,
       "currency": "USD",
-      "date": "2026-08-27"
+      "date": "2026-10-21",
+      "currentSale": {
+        "price": 9.34,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 11.04,
+        "saleStart": "2026-10-20T22:00:00Z",
+        "saleEnd": "2026-11-01T06:59:59Z"
+      }
     },
     "MX": {
       "price": 164.45,
@@ -518399,9 +518426,18 @@
       }
     },
     "US": {
-      "price": 7.99,
+      "price": 6.99,
       "currency": "USD",
-      "date": "2026-08-27"
+      "date": "2026-10-21",
+      "currentSale": {
+        "price": 6.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 7.99,
+        "saleStart": "2026-10-20T22:00:00Z",
+        "saleEnd": "2026-11-01T06:59:59Z"
+      }
     },
     "MX": {
       "price": 123.9,
@@ -1249336,27 +1249372,72 @@
     "ZA": {
       "price": 90,
       "currency": "ZAR",
-      "date": "2026-08-12"
+      "date": "2026-08-12",
+      "currentSale": {
+        "price": 90,
+        "currency": "ZAR",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 90,
+        "saleStart": "2026-10-20T23:00:00Z",
+        "saleEnd": "2026-11-04T21:59:59Z"
+      }
     },
     "AU": {
       "price": 7.5,
       "currency": "AUD",
-      "date": "2026-08-12"
+      "date": "2026-08-12",
+      "currentSale": {
+        "price": 7.5,
+        "currency": "AUD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 7.5,
+        "saleStart": "2026-10-20T23:00:00Z",
+        "saleEnd": "2026-11-04T12:59:59Z"
+      }
     },
     "NZ": {
       "price": 8.25,
       "currency": "NZD",
-      "date": "2026-08-12"
+      "date": "2026-08-12",
+      "currentSale": {
+        "price": 8.25,
+        "currency": "NZD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 8.25,
+        "saleStart": "2026-10-20T23:00:00Z",
+        "saleEnd": "2026-11-04T10:59:59Z"
+      }
     },
     "NO": {
       "price": 54,
       "currency": "NOK",
-      "date": "2026-08-12"
+      "date": "2026-08-12",
+      "currentSale": {
+        "price": 54,
+        "currency": "NOK",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 54,
+        "saleStart": "2026-10-20T23:00:00Z",
+        "saleEnd": "2026-11-04T22:59:59Z"
+      }
     },
     "PL": {
       "price": 20,
       "currency": "PLN",
-      "date": "2026-08-12"
+      "date": "2026-08-12",
+      "currentSale": {
+        "price": 20,
+        "currency": "PLN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 20,
+        "saleStart": "2026-10-20T23:00:00Z",
+        "saleEnd": "2026-11-04T22:59:59Z"
+      }
     },
     "JP": {
       "price": 660,
