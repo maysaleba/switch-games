@@ -28,7 +28,7 @@ const BACKOFF_BASE_MS   = 800;
 
 const regionSets = {
   US: ['US', 'MX', 'BR', 'CA', 'CO', 'AR', 'PE'],
-  EU: ['ZA', 'AU', 'NZ', 'NO', 'PL'],
+  EU: ['ZA', 'AU', 'NZ', 'NO', 'PL', 'CH'],
   JP: ['JP'],
   KR: ['KR'],
   HK: ['HK'],

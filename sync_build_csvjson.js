@@ -39,6 +39,7 @@ const REGION_KEY_MAP = {
   NZ: 'NewZealandPrice',
   PL: 'PolandPrice',
   NO: 'NorwayPrice',
+  CH: 'SwitzerlandPrice',
   JP: 'JapanPrice',
   KR: 'KoreaPrice',
   HK: 'HongKongPrice',
