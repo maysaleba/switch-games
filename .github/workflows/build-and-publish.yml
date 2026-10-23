@@ -40,6 +40,22 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Select region group
+        env:
+          SCHEDULE: ${{ github.event.schedule }}
+          INPUT_GROUP: ${{ inputs.price_group }}
+        shell: bash
+        run: |
+          # Cron strings must match the schedule above.
+          case "$SCHEDULE" in
+            '7 15 * * *'|'7 3 * * *') GROUP=asia ;;
+            '7 0 * * *'|'7 13 * * *') GROUP=eu ;;
+            '7 6 * * *'|'7 17 * * *') GROUP=us ;;
+            *) GROUP="${INPUT_GROUP:-all}" ;;  # manual run
+          esac
+          echo "Region group: $GROUP"
+          echo "GROUP=$GROUP" >> "$GITHUB_ENV"
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
@@ -49,7 +65,9 @@ jobs:
       - name: Install dependencies
         run: npm ci --include=dev
 
+      # Only HK and JP fetches use a browser.
       - name: Install Playwright Chromium
+        if: ${{ env.GROUP == 'asia' || env.GROUP == 'all' }}
         run: npx playwright install chromium --with-deps
 
       # Detect if GCP secret exists
@@ -74,7 +92,7 @@ jobs:
       # =========================
       # Parallel region fetches
       # =========================
-      - name: Fetch all regions in parallel
+      - name: Fetch regions in parallel
         shell: bash
         run: |
           set -euo pipefail
@@ -85,13 +103,16 @@ jobs:
           run_us() { echo "=== US start ==="; node fetch_us.js; node fetchProductCodesUS.js; echo "=== US done ==="; }
           run_as() { echo "=== AS start ==="; node fetch_as.js; echo "=== AS done ==="; }
       
-          run_eu &  PID_EU=$!
-          run_hk &  PID_HK=$!
-          run_jp &  PID_JP=$!
-          run_us &  PID_US=$!
-          run_as &  PID_AS=$!
+          PIDS=()
+          if [ "$GROUP" = all ] || [ "$GROUP" = eu ];   then run_eu & PIDS+=($!); fi
+          if [ "$GROUP" = all ] || [ "$GROUP" = us ];   then run_us & PIDS+=($!); fi
+          if [ "$GROUP" = all ] || [ "$GROUP" = asia ]; then
+            run_hk & PIDS+=($!)
+            run_jp & PIDS+=($!)
+            run_as & PIDS+=($!)
+          fi
       
-          wait $PID_EU $PID_HK $PID_JP $PID_US $PID_AS
+          for pid in "${PIDS[@]}"; do wait "$pid"; done
 
       - name: Verify regional outputs exist
         shell: bash
@@ -118,20 +139,7 @@ jobs:
           path: logs/merge_unmatched.log
 
       - name: Get Prices
-        env:
-          SCHEDULE: ${{ github.event.schedule }}
-          INPUT_GROUP: ${{ inputs.price_group }}
-        shell: bash
-        run: |
-          # Cron strings must match the schedule above.
-          case "$SCHEDULE" in
-            '7 15 * * *'|'7 3 * * *') GROUP=asia ;;
-            '7 0 * * *'|'7 13 * * *') GROUP=eu ;;
-            '7 6 * * *'|'7 17 * * *') GROUP=us ;;
-            *) GROUP="${INPUT_GROUP:-all}" ;;  # manual run
-          esac
-          echo "Price group: $GROUP"
-          node getPrices.js "$GROUP"
+        run: node getPrices.js "$GROUP"
 
       - name: Sync & Build csvjson
         run: node sync_build_csvjson.js
