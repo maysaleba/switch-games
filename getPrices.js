@@ -35,6 +35,21 @@ const regionSets = {
   AS: ['TH', 'SG', 'MY'],
 };
 
+// Usage: node getPrices.js [us|eu|asia|all]  (default: all). Other groups keep cached prices.
+const GROUPS = {
+  us:   ['US'],
+  eu:   ['EU'],
+  asia: ['JP', 'KR', 'HK', 'AS'],
+};
+const groupArg = (process.argv[2] || 'all').toLowerCase();
+if (groupArg !== 'all' && !GROUPS[groupArg]) {
+  console.error(`Unknown group "${groupArg}". Use: us | eu | asia | all`);
+  process.exit(1);
+}
+const ACTIVE_COUNTRIES = new Set(
+  (groupArg === 'all' ? Object.keys(regionSets) : GROUPS[groupArg]).flatMap(k => regionSets[k])
+);
+
 // ---------- helpers ----------
 const sleep = (ms) => new Promise(res => setTimeout(res, ms));
 
@@ -316,6 +331,8 @@ function buildCountryBatches(entries) {
   let skippedActiveKnownSales = 0;
 
   const upsert = (country, id, idx) => {
+    if (!ACTIVE_COUNTRIES.has(country)) return;
+
     if (saleStillActive(entries[idx], country)) {
       skippedActiveKnownSales++;
       return;
@@ -397,7 +414,7 @@ function buildCountryBatches(entries) {
     process.exit(1);
   }
 
-  console.log(`Loaded ${entries.length} entries`);
+  console.log(`Loaded ${entries.length} entries (group: ${groupArg})`);
 
   hydratePreviousPrices(entries);
 
