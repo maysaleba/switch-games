@@ -40,6 +40,17 @@ const LOG_FILE = path.join(LOG_DIR, 'merge_unmatched.log');
 const ENABLE_TITLE_FALLBACK = true;
 const STRICT_URLKEY_FILE = 'strict_urlkeys.txt';
 
+// Explicit cross-region matches for products that don't share automatic match keys.
+// Keys are US NSUIDs; values are NSUIDs from the source region.
+const MANUAL_MATCHES = {
+  jp: {
+    '70070000021423': {
+      nsuid: 'D70070000021437', // Monster Hunter Stories Collection / JP 1+2 Double Pack
+      supportLanguage: 'en',
+    },
+  },
+};
+
 // ====== utils ======
 function readJson(p) { return JSON.parse(fs.readFileSync(p, 'utf8')); }
 function ensureDir(d) { if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true }); }
@@ -328,6 +339,22 @@ function detectBaseRegion(item) {
   return 'us';
 }
 
+function findManualMatch(region, baseItem, candidates) {
+  const baseNsuid = normalizeNsuid('us', baseItem.nsuid_us ?? baseItem.nsuid);
+  const override = MANUAL_MATCHES[region]?.[baseNsuid];
+  if (!override) return null;
+
+  const normalizedTarget = normalizeNsuid(region, override.nsuid);
+  const match = candidates.find(candidate => {
+    const candidateNsuid = candidate[`nsuid_${region}`] ?? candidate.nsuid;
+    return normalizeNsuid(region, candidateNsuid) === normalizedTarget;
+  }) ?? null;
+
+  return match && override.supportLanguage
+    ? { ...match, supportLanguage: override.supportLanguage }
+    : match;
+}
+
 function candidateFirst4(cand) {
   return (
     first4DigitsFromNsuid(cand.nsuid_us ?? cand.nsuid, 'us') ||
@@ -548,7 +575,7 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
   for (const r of REGIONS) {
     regionIdx[r] = buildRegionIndexes(regionData[r], r);
     seen[r] = new Set();
-    ruleCounts[r] = { 'strict-urlKey': 0, k1: 0, k2: 0, k3: 0, k4: 0, 'k4-jp-title': 0, title: 0 };
+    ruleCounts[r] = { manual: 0, 'strict-urlKey': 0, k1: 0, k2: 0, k3: 0, k4: 0, 'k4-jp-title': 0, title: 0 };
   }
 
   const activeRaiseEvents = [];
@@ -566,7 +593,10 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
     const strictHit = !!(uk && STRICT_URLKEYS.has(uk));
 
     for (const r of REGIONS) {
-      const res = tryMatch(regionIdx[r], item, { strictUrlKeyHit: strictHit });
+      const manualMatch = findManualMatch(r, item, regionData[r]);
+      const res = manualMatch
+        ? { item: manualMatch, rule: 'manual' }
+        : tryMatch(regionIdx[r], item, { strictUrlKeyHit: strictHit });
       if (res?.item) {
         appendRegionFields(item, r, res.item, {
           onRaise: () => {
