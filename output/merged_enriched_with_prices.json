@@ -511903,6 +511903,147 @@
     }
   },
   {
+    "key": "crymelight-switch-2",
+    "prices": {
+      "US": {
+        "regular": "19.99",
+        "regular_currency": "USD",
+        "sale": "17.99",
+        "sale_currency": "USD",
+        "sale_start": "2026-09-16T15:00:00Z",
+        "sale_end": "2026-11-04T14:59:59Z"
+      },
+      "MX": {
+        "regular": "259.99",
+        "regular_currency": "MXN",
+        "sale": "233.99",
+        "sale_currency": "MXN",
+        "sale_start": "2026-09-16T15:00:00Z",
+        "sale_end": "2026-11-04T14:59:59Z"
+      },
+      "BR": {
+        "regular": "67.99",
+        "regular_currency": "BRL",
+        "sale": "61.19",
+        "sale_currency": "BRL",
+        "sale_start": "2026-09-16T15:00:00Z",
+        "sale_end": "2026-11-04T14:59:59Z"
+      },
+      "CA": {
+        "regular": "23.99",
+        "regular_currency": "CAD",
+        "sale": "21.59",
+        "sale_currency": "CAD",
+        "sale_start": "2026-09-16T15:00:00Z",
+        "sale_end": "2026-11-04T14:59:59Z"
+      },
+      "CO": {
+        "regular": "48999",
+        "regular_currency": "COP",
+        "sale": "44099",
+        "sale_currency": "COP",
+        "sale_start": "2026-09-16T15:00:00Z",
+        "sale_end": "2026-11-04T14:59:59Z"
+      },
+      "AR": {
+        "regular": "30215",
+        "regular_currency": "ARS",
+        "sale": "27193.50",
+        "sale_currency": "ARS",
+        "sale_start": "2026-09-16T15:00:00Z",
+        "sale_end": "2026-11-04T14:59:59Z"
+      },
+      "PE": {
+        "regular": "48.49",
+        "regular_currency": "PEN",
+        "sale": "43.64",
+        "sale_currency": "PEN",
+        "sale_start": "2026-09-16T15:00:00Z",
+        "sale_end": "2026-11-04T14:59:59Z"
+      },
+      "JP": {
+        "regular": "3278",
+        "regular_currency": "JPY",
+        "sale": "2950",
+        "sale_currency": "JPY",
+        "sale_start": "2026-09-16T15:00:00Z",
+        "sale_end": "2026-11-04T14:59:59Z"
+      },
+      "ZA": {
+        "regular": "195",
+        "regular_currency": "ZAR",
+        "sale": "175.50",
+        "sale_currency": "ZAR",
+        "sale_start": "2026-09-16T22:00:00Z",
+        "sale_end": "2026-11-04T21:59:59Z"
+      },
+      "AU": {
+        "regular": "28.5",
+        "regular_currency": "AUD",
+        "sale": "25.65",
+        "sale_currency": "AUD",
+        "sale_start": "2026-09-16T22:00:00Z",
+        "sale_end": "2026-11-04T12:59:59Z"
+      },
+      "NZ": {
+        "regular": "30.99",
+        "regular_currency": "NZD",
+        "sale": "27.89",
+        "sale_currency": "NZD",
+        "sale_start": "2026-09-16T22:00:00Z",
+        "sale_end": "2026-11-04T10:59:59Z"
+      },
+      "NO": {
+        "regular": "235",
+        "regular_currency": "NOK",
+        "sale": "211",
+        "sale_currency": "NOK",
+        "sale_start": "2026-09-16T22:00:00Z",
+        "sale_end": "2026-11-04T22:59:59Z"
+      },
+      "PL": {
+        "regular": "84.99",
+        "regular_currency": "PLN",
+        "sale": "76.49",
+        "sale_currency": "PLN",
+        "sale_start": "2026-09-16T22:00:00Z",
+        "sale_end": "2026-11-04T22:59:59Z"
+      },
+      "TH": {
+        "regular": "730",
+        "regular_currency": "THB",
+        "sale": "657",
+        "sale_currency": "THB",
+        "sale_start": "2026-09-30T17:00:00Z",
+        "sale_end": "2026-11-04T16:59:59Z"
+      },
+      "SG": {
+        "regular": "26.6",
+        "regular_currency": "SGD",
+        "sale": "23.94",
+        "sale_currency": "SGD",
+        "sale_start": "2026-09-30T16:00:00Z",
+        "sale_end": "2026-11-04T15:59:59Z"
+      },
+      "MY": {
+        "regular": "93",
+        "regular_currency": "MYR",
+        "sale": "83.70",
+        "sale_currency": "MYR",
+        "sale_start": "2026-09-30T16:00:00Z",
+        "sale_end": "2026-11-04T15:59:59Z"
+      },
+      "CH": {
+        "regular": "17.49",
+        "regular_currency": "CHF",
+        "sale": "15.74",
+        "sale_currency": "CHF",
+        "sale_start": "2026-09-16T22:00:00Z",
+        "sale_end": "2026-11-04T22:59:59Z"
+      }
+    }
+  },
+  {
     "key": "cubers-arena-switch",
     "prices": {
       "US": {
@@ -566219,123 +566360,6 @@
         "sale_currency": "CHF",
         "sale_start": "2026-10-22T13:00:00Z",
         "sale_end": "2026-11-01T22:59:59Z"
-      }
-    }
-  },
-  {
-    "key": "the-eerie-surroundings-switch",
-    "prices": {
-      "US": {
-        "regular": "3.99",
-        "regular_currency": "USD",
-        "sale": "1.99",
-        "sale_currency": "USD",
-        "sale_start": "2026-10-20T16:00:00Z",
-        "sale_end": "2026-11-01T06:59:59Z"
-      },
-      "MX": {
-        "regular": "72.2",
-        "regular_currency": "MXN",
-        "sale": "42.99",
-        "sale_currency": "MXN",
-        "sale_start": "2026-10-20T16:00:00Z",
-        "sale_end": "2026-11-01T06:59:59Z"
-      },
-      "BR": {
-        "regular": "21.63",
-        "regular_currency": "BRL",
-        "sale": "12.00",
-        "sale_currency": "BRL",
-        "sale_start": "2026-10-20T16:00:00Z",
-        "sale_end": "2026-11-01T06:59:59Z"
-      },
-      "CA": {
-        "regular": "5.99",
-        "regular_currency": "CAD",
-        "sale": "2.99",
-        "sale_currency": "CAD",
-        "sale_start": "2026-10-20T16:00:00Z",
-        "sale_end": "2026-11-01T06:59:59Z"
-      },
-      "CO": {
-        "regular": "16000",
-        "regular_currency": "COP",
-        "sale": "9000",
-        "sale_currency": "COP",
-        "sale_start": "2026-10-20T16:00:00Z",
-        "sale_end": "2026-11-01T06:59:59Z"
-      },
-      "AR": {
-        "regular": "3600",
-        "regular_currency": "ARS",
-        "sale": "2800",
-        "sale_currency": "ARS",
-        "sale_start": "2026-10-20T16:00:00Z",
-        "sale_end": "2026-11-01T06:59:59Z"
-      },
-      "PE": {
-        "regular": "16",
-        "regular_currency": "PEN",
-        "sale": "8",
-        "sale_currency": "PEN",
-        "sale_start": "2026-10-20T16:00:00Z",
-        "sale_end": "2026-11-01T06:59:59Z"
-      },
-      "ZA": {
-        "regular": "72",
-        "regular_currency": "ZAR",
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
-      },
-      "AU": {
-        "regular": "6",
-        "regular_currency": "AUD",
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
-      },
-      "NZ": {
-        "regular": "6.6",
-        "regular_currency": "NZD",
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
-      },
-      "NO": {
-        "regular": "44",
-        "regular_currency": "NOK",
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
-      },
-      "PL": {
-        "regular": "16",
-        "regular_currency": "PLN",
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
-      },
-      "JP": {
-        "regular": "750",
-        "regular_currency": "JPY",
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
-      },
-      "CH": {
-        "regular": "5.6",
-        "regular_currency": "CHF",
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
       }
     }
   },
@@ -656331,147 +656355,6 @@
     }
   },
   {
-    "key": "crymelight-switch-2",
-    "prices": {
-      "US": {
-        "regular": "19.99",
-        "regular_currency": "USD",
-        "sale": "17.99",
-        "sale_currency": "USD",
-        "sale_start": "2026-09-16T15:00:00Z",
-        "sale_end": "2026-11-04T14:59:59Z"
-      },
-      "MX": {
-        "regular": "259.99",
-        "regular_currency": "MXN",
-        "sale": "233.99",
-        "sale_currency": "MXN",
-        "sale_start": "2026-09-16T15:00:00Z",
-        "sale_end": "2026-11-04T14:59:59Z"
-      },
-      "BR": {
-        "regular": "67.99",
-        "regular_currency": "BRL",
-        "sale": "61.19",
-        "sale_currency": "BRL",
-        "sale_start": "2026-09-16T15:00:00Z",
-        "sale_end": "2026-11-04T14:59:59Z"
-      },
-      "CA": {
-        "regular": "23.99",
-        "regular_currency": "CAD",
-        "sale": "21.59",
-        "sale_currency": "CAD",
-        "sale_start": "2026-09-16T15:00:00Z",
-        "sale_end": "2026-11-04T14:59:59Z"
-      },
-      "CO": {
-        "regular": "48999",
-        "regular_currency": "COP",
-        "sale": "44099",
-        "sale_currency": "COP",
-        "sale_start": "2026-09-16T15:00:00Z",
-        "sale_end": "2026-11-04T14:59:59Z"
-      },
-      "AR": {
-        "regular": "30215",
-        "regular_currency": "ARS",
-        "sale": "27193.50",
-        "sale_currency": "ARS",
-        "sale_start": "2026-09-16T15:00:00Z",
-        "sale_end": "2026-11-04T14:59:59Z"
-      },
-      "PE": {
-        "regular": "48.49",
-        "regular_currency": "PEN",
-        "sale": "43.64",
-        "sale_currency": "PEN",
-        "sale_start": "2026-09-16T15:00:00Z",
-        "sale_end": "2026-11-04T14:59:59Z"
-      },
-      "JP": {
-        "regular": "3278",
-        "regular_currency": "JPY",
-        "sale": "2950",
-        "sale_currency": "JPY",
-        "sale_start": "2026-09-16T15:00:00Z",
-        "sale_end": "2026-11-04T14:59:59Z"
-      },
-      "ZA": {
-        "regular": "195",
-        "regular_currency": "ZAR",
-        "sale": "175.50",
-        "sale_currency": "ZAR",
-        "sale_start": "2026-09-16T22:00:00Z",
-        "sale_end": "2026-11-04T21:59:59Z"
-      },
-      "AU": {
-        "regular": "28.5",
-        "regular_currency": "AUD",
-        "sale": "25.65",
-        "sale_currency": "AUD",
-        "sale_start": "2026-09-16T22:00:00Z",
-        "sale_end": "2026-11-04T12:59:59Z"
-      },
-      "NZ": {
-        "regular": "30.99",
-        "regular_currency": "NZD",
-        "sale": "27.89",
-        "sale_currency": "NZD",
-        "sale_start": "2026-09-16T22:00:00Z",
-        "sale_end": "2026-11-04T10:59:59Z"
-      },
-      "NO": {
-        "regular": "235",
-        "regular_currency": "NOK",
-        "sale": "211",
-        "sale_currency": "NOK",
-        "sale_start": "2026-09-16T22:00:00Z",
-        "sale_end": "2026-11-04T22:59:59Z"
-      },
-      "PL": {
-        "regular": "84.99",
-        "regular_currency": "PLN",
-        "sale": "76.49",
-        "sale_currency": "PLN",
-        "sale_start": "2026-09-16T22:00:00Z",
-        "sale_end": "2026-11-04T22:59:59Z"
-      },
-      "TH": {
-        "regular": "730",
-        "regular_currency": "THB",
-        "sale": "657",
-        "sale_currency": "THB",
-        "sale_start": "2026-09-30T17:00:00Z",
-        "sale_end": "2026-11-04T16:59:59Z"
-      },
-      "SG": {
-        "regular": "26.6",
-        "regular_currency": "SGD",
-        "sale": "23.94",
-        "sale_currency": "SGD",
-        "sale_start": "2026-09-30T16:00:00Z",
-        "sale_end": "2026-11-04T15:59:59Z"
-      },
-      "MY": {
-        "regular": "93",
-        "regular_currency": "MYR",
-        "sale": "83.70",
-        "sale_currency": "MYR",
-        "sale_start": "2026-09-30T16:00:00Z",
-        "sale_end": "2026-11-04T15:59:59Z"
-      },
-      "CH": {
-        "regular": "17.49",
-        "regular_currency": "CHF",
-        "sale": "15.74",
-        "sale_currency": "CHF",
-        "sale_start": "2026-09-16T22:00:00Z",
-        "sale_end": "2026-11-04T22:59:59Z"
-      }
-    }
-  },
-  {
     "key": "cryogear-switch",
     "prices": {
       "US": {
@@ -711855,6 +711738,123 @@
     }
   },
   {
+    "key": "forest-ranger-life-simulator-switch",
+    "prices": {
+      "US": {
+        "regular": "8.99",
+        "regular_currency": "USD",
+        "sale": "2.99",
+        "sale_currency": "USD",
+        "sale_start": "2026-10-15T07:00:00Z",
+        "sale_end": "2026-10-29T06:59:59Z"
+      },
+      "MX": {
+        "regular": "189.99",
+        "regular_currency": "MXN",
+        "sale": "63.26",
+        "sale_currency": "MXN",
+        "sale_start": "2026-10-15T07:00:00Z",
+        "sale_end": "2026-10-29T06:59:59Z"
+      },
+      "BR": {
+        "regular": "59.99",
+        "regular_currency": "BRL",
+        "sale": "19.97",
+        "sale_currency": "BRL",
+        "sale_start": "2026-10-15T07:00:00Z",
+        "sale_end": "2026-10-29T06:59:59Z"
+      },
+      "CA": {
+        "regular": "12.99",
+        "regular_currency": "CAD",
+        "sale": "4.32",
+        "sale_currency": "CAD",
+        "sale_start": "2026-10-15T07:00:00Z",
+        "sale_end": "2026-10-29T06:59:59Z"
+      },
+      "CO": {
+        "regular": "36999",
+        "regular_currency": "COP",
+        "sale": "12320",
+        "sale_currency": "COP",
+        "sale_start": "2026-10-15T07:00:00Z",
+        "sale_end": "2026-10-29T06:59:59Z"
+      },
+      "AR": {
+        "regular": "9999.99",
+        "regular_currency": "ARS",
+        "sale": "3329.99",
+        "sale_currency": "ARS",
+        "sale_start": "2026-10-15T07:00:00Z",
+        "sale_end": "2026-10-29T06:59:59Z"
+      },
+      "PE": {
+        "regular": "33.99",
+        "regular_currency": "PEN",
+        "sale": "11.31",
+        "sale_currency": "PEN",
+        "sale_start": "2026-10-15T07:00:00Z",
+        "sale_end": "2026-10-29T06:59:59Z"
+      },
+      "ZA": {
+        "regular": "179.9",
+        "regular_currency": "ZAR",
+        "sale": "59.90",
+        "sale_currency": "ZAR",
+        "sale_start": "2026-10-14T22:00:00Z",
+        "sale_end": "2026-10-28T21:59:59Z"
+      },
+      "AU": {
+        "regular": "14.99",
+        "regular_currency": "AUD",
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "NZ": {
+        "regular": "16.99",
+        "regular_currency": "NZD",
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "NO": {
+        "regular": "109",
+        "regular_currency": "NOK",
+        "sale": "36",
+        "sale_currency": "NOK",
+        "sale_start": "2026-10-14T22:00:00Z",
+        "sale_end": "2026-10-28T22:59:59Z"
+      },
+      "PL": {
+        "regular": "39.99",
+        "regular_currency": "PLN",
+        "sale": "13.31",
+        "sale_currency": "PLN",
+        "sale_start": "2026-10-14T22:00:00Z",
+        "sale_end": "2026-10-28T22:59:59Z"
+      },
+      "JP": {
+        "regular": "1399",
+        "regular_currency": "JPY",
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "CH": {
+        "regular": "8.99",
+        "regular_currency": "CHF",
+        "sale": "2.99",
+        "sale_currency": "CHF",
+        "sale_start": "2026-10-14T22:00:00Z",
+        "sale_end": "2026-10-28T22:59:59Z"
+      }
+    }
+  },
+  {
     "key": "formula-racing-grand-prix-league-switch",
     "prices": {
       "US": {
@@ -737164,6 +737164,75 @@
     }
   },
   {
+    "key": "anime-waifu-simulator-sakura-garden-deluxe-edition-switch",
+    "prices": {
+      "MX": {
+        "regular": "399.99",
+        "regular_currency": "MXN",
+        "sale": "199.99",
+        "sale_currency": "MXN",
+        "sale_start": "2026-10-15T16:00:00Z",
+        "sale_end": "2026-11-02T07:59:59Z"
+      },
+      "US": {
+        "regular": "19.99",
+        "regular_currency": "USD",
+        "sale": "9.99",
+        "sale_currency": "USD",
+        "sale_start": "2026-10-15T16:00:00Z",
+        "sale_end": "2026-11-02T07:59:59Z"
+      },
+      "CA": {
+        "regular": "29.99",
+        "regular_currency": "CAD",
+        "sale": "14.99",
+        "sale_currency": "CAD",
+        "sale_start": "2026-10-15T16:00:00Z",
+        "sale_end": "2026-11-02T07:59:59Z"
+      },
+      "BR": {
+        "regular": "129.99",
+        "regular_currency": "BRL",
+        "sale": "64.99",
+        "sale_currency": "BRL",
+        "sale_start": "2026-10-15T16:00:00Z",
+        "sale_end": "2026-11-02T07:59:59Z"
+      },
+      "AR": {
+        "regular": "18999.99",
+        "regular_currency": "ARS",
+        "sale": "9499.99",
+        "sale_currency": "ARS",
+        "sale_start": "2026-10-15T16:00:00Z",
+        "sale_end": "2026-11-02T07:59:59Z"
+      },
+      "CO": {
+        "regular": "79999",
+        "regular_currency": "COP",
+        "sale": "39999",
+        "sale_currency": "COP",
+        "sale_start": "2026-10-15T16:00:00Z",
+        "sale_end": "2026-11-02T07:59:59Z"
+      },
+      "PE": {
+        "regular": "79.99",
+        "regular_currency": "PEN",
+        "sale": "39.99",
+        "sale_currency": "PEN",
+        "sale_start": "2026-10-15T16:00:00Z",
+        "sale_end": "2026-11-02T07:59:59Z"
+      },
+      "JP": {
+        "regular": "2980",
+        "regular_currency": "JPY",
+        "sale": "1490",
+        "sale_currency": "JPY",
+        "sale_start": "2026-10-14T15:00:00Z",
+        "sale_end": "2026-11-01T14:59:59Z"
+      }
+    }
+  },
+  {
     "key": "anime-waifu-simulator-sakura-spirit-songs-70050000055854-switch",
     "prices": {
       "US": {
@@ -751022,176 +751091,6 @@
         "sale_currency": "PEN",
         "sale_start": "2026-10-15T16:00:00Z",
         "sale_end": "2026-11-02T07:59:59Z"
-      }
-    }
-  },
-  {
-    "key": "formula-racing-pro-2026-prime-edition-switch",
-    "prices": {
-      "US": {
-        "regular": "10.99",
-        "regular_currency": "USD",
-        "sale": "1.99",
-        "sale_currency": "USD",
-        "sale_start": "2026-10-09T07:00:00Z",
-        "sale_end": "2026-10-30T06:59:59Z"
-      },
-      "MX": {
-        "regular": "237.45",
-        "regular_currency": "MXN",
-        "sale": "42.99",
-        "sale_currency": "MXN",
-        "sale_start": "2026-10-09T07:00:00Z",
-        "sale_end": "2026-10-30T06:59:59Z"
-      },
-      "BR": {
-        "regular": "66.25",
-        "regular_currency": "BRL",
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
-      },
-      "CA": {
-        "regular": "15.4",
-        "regular_currency": "CAD",
-        "sale": "2.79",
-        "sale_currency": "CAD",
-        "sale_start": "2026-10-09T07:00:00Z",
-        "sale_end": "2026-10-30T06:59:59Z"
-      },
-      "CO": {
-        "regular": "47495",
-        "regular_currency": "COP",
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
-      },
-      "AR": {
-        "regular": "15465",
-        "regular_currency": "ARS",
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
-      },
-      "PE": {
-        "regular": "41.35",
-        "regular_currency": "PEN",
-        "sale": "7.49",
-        "sale_currency": "PEN",
-        "sale_start": "2026-10-09T07:00:00Z",
-        "sale_end": "2026-10-30T06:59:59Z"
-      }
-    }
-  },
-  {
-    "key": "formula-racing-supercharged-duo-70050000053199-switch",
-    "prices": {
-      "US": {
-        "regular": "3.99",
-        "regular_currency": "USD",
-        "sale": "1.99",
-        "sale_currency": "USD",
-        "sale_start": "2026-10-15T16:00:00Z",
-        "sale_end": "2026-11-02T07:59:59Z"
-      },
-      "MX": {
-        "regular": "79.85",
-        "regular_currency": "MXN",
-        "sale": "39.92",
-        "sale_currency": "MXN",
-        "sale_start": "2026-10-15T16:00:00Z",
-        "sale_end": "2026-11-02T07:59:59Z"
-      },
-      "BR": {
-        "regular": "19.99",
-        "regular_currency": "BRL",
-        "sale": "9.99",
-        "sale_currency": "BRL",
-        "sale_start": "2026-10-15T16:00:00Z",
-        "sale_end": "2026-11-02T07:59:59Z"
-      },
-      "CA": {
-        "regular": "5.49",
-        "regular_currency": "CAD",
-        "sale": "2.74",
-        "sale_currency": "CAD",
-        "sale_start": "2026-10-15T16:00:00Z",
-        "sale_end": "2026-11-02T07:59:59Z"
-      },
-      "CO": {
-        "regular": "16999",
-        "regular_currency": "COP",
-        "sale": "8499",
-        "sale_currency": "COP",
-        "sale_start": "2026-10-15T16:00:00Z",
-        "sale_end": "2026-11-02T07:59:59Z"
-      },
-      "AR": {
-        "regular": "3900",
-        "regular_currency": "ARS",
-        "sale": "1950",
-        "sale_currency": "ARS",
-        "sale_start": "2026-10-15T16:00:00Z",
-        "sale_end": "2026-11-02T07:59:59Z"
-      },
-      "PE": {
-        "regular": "14.99",
-        "regular_currency": "PEN",
-        "sale": "7.49",
-        "sale_currency": "PEN",
-        "sale_start": "2026-10-15T16:00:00Z",
-        "sale_end": "2026-11-02T07:59:59Z"
-      },
-      "ZA": {
-        "regular": "89",
-        "regular_currency": "ZAR",
-        "sale": "44.50",
-        "sale_currency": "ZAR",
-        "sale_start": "2026-10-15T13:00:00Z",
-        "sale_end": "2026-11-01T21:59:59Z"
-      },
-      "AU": {
-        "regular": "7.99",
-        "regular_currency": "AUD",
-        "sale": "3.99",
-        "sale_currency": "AUD",
-        "sale_start": "2026-10-15T13:00:00Z",
-        "sale_end": "2026-11-01T12:59:59Z"
-      },
-      "NZ": {
-        "regular": "7.99",
-        "regular_currency": "NZD",
-        "sale": "3.99",
-        "sale_currency": "NZD",
-        "sale_start": "2026-10-15T13:00:00Z",
-        "sale_end": "2026-11-01T10:59:59Z"
-      },
-      "NO": {
-        "regular": "54",
-        "regular_currency": "NOK",
-        "sale": "27",
-        "sale_currency": "NOK",
-        "sale_start": "2026-10-15T13:00:00Z",
-        "sale_end": "2026-11-01T22:59:59Z"
-      },
-      "PL": {
-        "regular": "19.99",
-        "regular_currency": "PLN",
-        "sale": "9.99",
-        "sale_currency": "PLN",
-        "sale_start": "2026-10-15T13:00:00Z",
-        "sale_end": "2026-11-01T22:59:59Z"
-      },
-      "CH": {
-        "regular": "4.99",
-        "regular_currency": "CHF",
-        "sale": "2.49",
-        "sale_currency": "CHF",
-        "sale_start": "2026-10-15T13:00:00Z",
-        "sale_end": "2026-11-01T22:59:59Z"
       }
     }
   },
@@ -768555,6 +768454,115 @@
     }
   },
   {
+    "key": "formula-racing-supercharged-duo-70050000053199-switch",
+    "prices": {
+      "US": {
+        "regular": "3.99",
+        "regular_currency": "USD",
+        "sale": "1.99",
+        "sale_currency": "USD",
+        "sale_start": "2026-10-15T16:00:00Z",
+        "sale_end": "2026-11-02T07:59:59Z"
+      },
+      "MX": {
+        "regular": "79.85",
+        "regular_currency": "MXN",
+        "sale": "39.92",
+        "sale_currency": "MXN",
+        "sale_start": "2026-10-15T16:00:00Z",
+        "sale_end": "2026-11-02T07:59:59Z"
+      },
+      "BR": {
+        "regular": "19.99",
+        "regular_currency": "BRL",
+        "sale": "9.99",
+        "sale_currency": "BRL",
+        "sale_start": "2026-10-15T16:00:00Z",
+        "sale_end": "2026-11-02T07:59:59Z"
+      },
+      "CA": {
+        "regular": "5.49",
+        "regular_currency": "CAD",
+        "sale": "2.74",
+        "sale_currency": "CAD",
+        "sale_start": "2026-10-15T16:00:00Z",
+        "sale_end": "2026-11-02T07:59:59Z"
+      },
+      "CO": {
+        "regular": "16999",
+        "regular_currency": "COP",
+        "sale": "8499",
+        "sale_currency": "COP",
+        "sale_start": "2026-10-15T16:00:00Z",
+        "sale_end": "2026-11-02T07:59:59Z"
+      },
+      "AR": {
+        "regular": "3900",
+        "regular_currency": "ARS",
+        "sale": "1950",
+        "sale_currency": "ARS",
+        "sale_start": "2026-10-15T16:00:00Z",
+        "sale_end": "2026-11-02T07:59:59Z"
+      },
+      "PE": {
+        "regular": "14.99",
+        "regular_currency": "PEN",
+        "sale": "7.49",
+        "sale_currency": "PEN",
+        "sale_start": "2026-10-15T16:00:00Z",
+        "sale_end": "2026-11-02T07:59:59Z"
+      },
+      "ZA": {
+        "regular": "89",
+        "regular_currency": "ZAR",
+        "sale": "44.50",
+        "sale_currency": "ZAR",
+        "sale_start": "2026-10-15T13:00:00Z",
+        "sale_end": "2026-11-01T21:59:59Z"
+      },
+      "AU": {
+        "regular": "7.99",
+        "regular_currency": "AUD",
+        "sale": "3.99",
+        "sale_currency": "AUD",
+        "sale_start": "2026-10-15T13:00:00Z",
+        "sale_end": "2026-11-01T12:59:59Z"
+      },
+      "NZ": {
+        "regular": "7.99",
+        "regular_currency": "NZD",
+        "sale": "3.99",
+        "sale_currency": "NZD",
+        "sale_start": "2026-10-15T13:00:00Z",
+        "sale_end": "2026-11-01T10:59:59Z"
+      },
+      "NO": {
+        "regular": "54",
+        "regular_currency": "NOK",
+        "sale": "27",
+        "sale_currency": "NOK",
+        "sale_start": "2026-10-15T13:00:00Z",
+        "sale_end": "2026-11-01T22:59:59Z"
+      },
+      "PL": {
+        "regular": "19.99",
+        "regular_currency": "PLN",
+        "sale": "9.99",
+        "sale_currency": "PLN",
+        "sale_start": "2026-10-15T13:00:00Z",
+        "sale_end": "2026-11-01T22:59:59Z"
+      },
+      "CH": {
+        "regular": "4.99",
+        "regular_currency": "CHF",
+        "sale": "2.49",
+        "sale_currency": "CHF",
+        "sale_start": "2026-10-15T13:00:00Z",
+        "sale_end": "2026-11-01T22:59:59Z"
+      }
+    }
+  },
+  {
     "key": "goat-simulator-3-super-duper-pack-70050000069523-switch-2",
     "prices": {
       "US": {
@@ -774685,123 +774693,6 @@
         "sale_currency": null,
         "sale_start": null,
         "sale_end": null
-      }
-    }
-  },
-  {
-    "key": "esports-legend-switch",
-    "prices": {
-      "US": {
-        "regular": "11.99",
-        "regular_currency": "USD",
-        "sale": "5.99",
-        "sale_currency": "USD",
-        "sale_start": "2026-10-20T16:00:00Z",
-        "sale_end": "2026-11-01T06:59:59Z"
-      },
-      "MX": {
-        "regular": "235",
-        "regular_currency": "MXN",
-        "sale": "117.50",
-        "sale_currency": "MXN",
-        "sale_start": "2026-10-20T16:00:00Z",
-        "sale_end": "2026-11-01T06:59:59Z"
-      },
-      "BR": {
-        "regular": null,
-        "regular_currency": null,
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
-      },
-      "CA": {
-        "regular": "15.99",
-        "regular_currency": "CAD",
-        "sale": "7.99",
-        "sale_currency": "CAD",
-        "sale_start": "2026-10-20T16:00:00Z",
-        "sale_end": "2026-11-01T06:59:59Z"
-      },
-      "CO": {
-        "regular": null,
-        "regular_currency": null,
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
-      },
-      "AR": {
-        "regular": null,
-        "regular_currency": null,
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
-      },
-      "PE": {
-        "regular": null,
-        "regular_currency": null,
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
-      },
-      "ZA": {
-        "regular": "179",
-        "regular_currency": "ZAR",
-        "sale": "89.50",
-        "sale_currency": "ZAR",
-        "sale_start": "2026-10-22T13:00:00Z",
-        "sale_end": "2026-11-01T21:59:59Z"
-      },
-      "AU": {
-        "regular": "17.99",
-        "regular_currency": "AUD",
-        "sale": "8.99",
-        "sale_currency": "AUD",
-        "sale_start": "2026-10-22T13:00:00Z",
-        "sale_end": "2026-11-01T12:59:59Z"
-      },
-      "NZ": {
-        "regular": "18.99",
-        "regular_currency": "NZD",
-        "sale": "9.49",
-        "sale_currency": "NZD",
-        "sale_start": "2026-10-22T13:00:00Z",
-        "sale_end": "2026-11-01T10:59:59Z"
-      },
-      "NO": {
-        "regular": "110",
-        "regular_currency": "NOK",
-        "sale": "55",
-        "sale_currency": "NOK",
-        "sale_start": "2026-10-22T13:00:00Z",
-        "sale_end": "2026-11-01T22:59:59Z"
-      },
-      "PL": {
-        "regular": "44",
-        "regular_currency": "PLN",
-        "sale": "22",
-        "sale_currency": "PLN",
-        "sale_start": "2026-10-22T13:00:00Z",
-        "sale_end": "2026-11-01T22:59:59Z"
-      },
-      "JP": {
-        "regular": "1280",
-        "regular_currency": "JPY",
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
-      },
-      "CH": {
-        "regular": "15.4",
-        "regular_currency": "CHF",
-        "sale": "7.70",
-        "sale_currency": "CHF",
-        "sale_start": "2026-10-22T13:00:00Z",
-        "sale_end": "2026-11-01T22:59:59Z"
       }
     }
   },
@@ -784024,6 +783915,123 @@
       },
       "CH": {
         "regular": "49.9",
+        "regular_currency": "CHF",
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      }
+    }
+  },
+  {
+    "key": "the-eerie-surroundings-switch",
+    "prices": {
+      "US": {
+        "regular": "3.99",
+        "regular_currency": "USD",
+        "sale": "1.99",
+        "sale_currency": "USD",
+        "sale_start": "2026-10-20T16:00:00Z",
+        "sale_end": "2026-11-01T06:59:59Z"
+      },
+      "MX": {
+        "regular": "72.2",
+        "regular_currency": "MXN",
+        "sale": "42.99",
+        "sale_currency": "MXN",
+        "sale_start": "2026-10-20T16:00:00Z",
+        "sale_end": "2026-11-01T06:59:59Z"
+      },
+      "BR": {
+        "regular": "21.63",
+        "regular_currency": "BRL",
+        "sale": "12.00",
+        "sale_currency": "BRL",
+        "sale_start": "2026-10-20T16:00:00Z",
+        "sale_end": "2026-11-01T06:59:59Z"
+      },
+      "CA": {
+        "regular": "5.99",
+        "regular_currency": "CAD",
+        "sale": "2.99",
+        "sale_currency": "CAD",
+        "sale_start": "2026-10-20T16:00:00Z",
+        "sale_end": "2026-11-01T06:59:59Z"
+      },
+      "CO": {
+        "regular": "16000",
+        "regular_currency": "COP",
+        "sale": "9000",
+        "sale_currency": "COP",
+        "sale_start": "2026-10-20T16:00:00Z",
+        "sale_end": "2026-11-01T06:59:59Z"
+      },
+      "AR": {
+        "regular": "3600",
+        "regular_currency": "ARS",
+        "sale": "2800",
+        "sale_currency": "ARS",
+        "sale_start": "2026-10-20T16:00:00Z",
+        "sale_end": "2026-11-01T06:59:59Z"
+      },
+      "PE": {
+        "regular": "16",
+        "regular_currency": "PEN",
+        "sale": "8",
+        "sale_currency": "PEN",
+        "sale_start": "2026-10-20T16:00:00Z",
+        "sale_end": "2026-11-01T06:59:59Z"
+      },
+      "ZA": {
+        "regular": "72",
+        "regular_currency": "ZAR",
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "AU": {
+        "regular": "6",
+        "regular_currency": "AUD",
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "NZ": {
+        "regular": "6.6",
+        "regular_currency": "NZD",
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "NO": {
+        "regular": "44",
+        "regular_currency": "NOK",
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "PL": {
+        "regular": "16",
+        "regular_currency": "PLN",
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "JP": {
+        "regular": "750",
+        "regular_currency": "JPY",
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "CH": {
+        "regular": "5.6",
         "regular_currency": "CHF",
         "sale": null,
         "sale_currency": null,
@@ -804879,6 +804887,67 @@
         "sale_currency": "PEN",
         "sale_start": "2026-10-20T16:00:00Z",
         "sale_end": "2026-11-01T06:59:59Z"
+      }
+    }
+  },
+  {
+    "key": "formula-racing-pro-2026-prime-edition-switch",
+    "prices": {
+      "US": {
+        "regular": "10.99",
+        "regular_currency": "USD",
+        "sale": "1.99",
+        "sale_currency": "USD",
+        "sale_start": "2026-10-09T07:00:00Z",
+        "sale_end": "2026-10-30T06:59:59Z"
+      },
+      "MX": {
+        "regular": "237.45",
+        "regular_currency": "MXN",
+        "sale": "42.99",
+        "sale_currency": "MXN",
+        "sale_start": "2026-10-09T07:00:00Z",
+        "sale_end": "2026-10-30T06:59:59Z"
+      },
+      "BR": {
+        "regular": "66.25",
+        "regular_currency": "BRL",
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "CA": {
+        "regular": "15.4",
+        "regular_currency": "CAD",
+        "sale": "2.79",
+        "sale_currency": "CAD",
+        "sale_start": "2026-10-09T07:00:00Z",
+        "sale_end": "2026-10-30T06:59:59Z"
+      },
+      "CO": {
+        "regular": "47495",
+        "regular_currency": "COP",
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "AR": {
+        "regular": "15465",
+        "regular_currency": "ARS",
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "PE": {
+        "regular": "41.35",
+        "regular_currency": "PEN",
+        "sale": "7.49",
+        "sale_currency": "PEN",
+        "sale_start": "2026-10-09T07:00:00Z",
+        "sale_end": "2026-10-30T06:59:59Z"
       }
     }
   },
@@ -963188,6 +963257,123 @@
     }
   },
   {
+    "key": "esports-legend-switch",
+    "prices": {
+      "US": {
+        "regular": "11.99",
+        "regular_currency": "USD",
+        "sale": "5.99",
+        "sale_currency": "USD",
+        "sale_start": "2026-10-20T16:00:00Z",
+        "sale_end": "2026-11-01T06:59:59Z"
+      },
+      "MX": {
+        "regular": "235",
+        "regular_currency": "MXN",
+        "sale": "117.50",
+        "sale_currency": "MXN",
+        "sale_start": "2026-10-20T16:00:00Z",
+        "sale_end": "2026-11-01T06:59:59Z"
+      },
+      "BR": {
+        "regular": null,
+        "regular_currency": null,
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "CA": {
+        "regular": "15.99",
+        "regular_currency": "CAD",
+        "sale": "7.99",
+        "sale_currency": "CAD",
+        "sale_start": "2026-10-20T16:00:00Z",
+        "sale_end": "2026-11-01T06:59:59Z"
+      },
+      "CO": {
+        "regular": null,
+        "regular_currency": null,
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "AR": {
+        "regular": null,
+        "regular_currency": null,
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "PE": {
+        "regular": null,
+        "regular_currency": null,
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "ZA": {
+        "regular": "179",
+        "regular_currency": "ZAR",
+        "sale": "89.50",
+        "sale_currency": "ZAR",
+        "sale_start": "2026-10-22T13:00:00Z",
+        "sale_end": "2026-11-01T21:59:59Z"
+      },
+      "AU": {
+        "regular": "17.99",
+        "regular_currency": "AUD",
+        "sale": "8.99",
+        "sale_currency": "AUD",
+        "sale_start": "2026-10-22T13:00:00Z",
+        "sale_end": "2026-11-01T12:59:59Z"
+      },
+      "NZ": {
+        "regular": "18.99",
+        "regular_currency": "NZD",
+        "sale": "9.49",
+        "sale_currency": "NZD",
+        "sale_start": "2026-10-22T13:00:00Z",
+        "sale_end": "2026-11-01T10:59:59Z"
+      },
+      "NO": {
+        "regular": "110",
+        "regular_currency": "NOK",
+        "sale": "55",
+        "sale_currency": "NOK",
+        "sale_start": "2026-10-22T13:00:00Z",
+        "sale_end": "2026-11-01T22:59:59Z"
+      },
+      "PL": {
+        "regular": "44",
+        "regular_currency": "PLN",
+        "sale": "22",
+        "sale_currency": "PLN",
+        "sale_start": "2026-10-22T13:00:00Z",
+        "sale_end": "2026-11-01T22:59:59Z"
+      },
+      "JP": {
+        "regular": "1280",
+        "regular_currency": "JPY",
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "CH": {
+        "regular": "15.4",
+        "regular_currency": "CHF",
+        "sale": "7.70",
+        "sale_currency": "CHF",
+        "sale_start": "2026-10-22T13:00:00Z",
+        "sale_end": "2026-11-01T22:59:59Z"
+      }
+    }
+  },
+  {
     "key": "i-am-an-air-traffic-controller-airport-hero-centrair-20th-anniversary-switch",
     "prices": {
       "US": {
@@ -964003,192 +964189,6 @@
         "sale_currency": null,
         "sale_start": null,
         "sale_end": null
-      }
-    }
-  },
-  {
-    "key": "forest-ranger-life-simulator-switch",
-    "prices": {
-      "US": {
-        "regular": "8.99",
-        "regular_currency": "USD",
-        "sale": "2.99",
-        "sale_currency": "USD",
-        "sale_start": "2026-10-15T07:00:00Z",
-        "sale_end": "2026-10-29T06:59:59Z"
-      },
-      "MX": {
-        "regular": "189.99",
-        "regular_currency": "MXN",
-        "sale": "63.26",
-        "sale_currency": "MXN",
-        "sale_start": "2026-10-15T07:00:00Z",
-        "sale_end": "2026-10-29T06:59:59Z"
-      },
-      "BR": {
-        "regular": "59.99",
-        "regular_currency": "BRL",
-        "sale": "19.97",
-        "sale_currency": "BRL",
-        "sale_start": "2026-10-15T07:00:00Z",
-        "sale_end": "2026-10-29T06:59:59Z"
-      },
-      "CA": {
-        "regular": "12.99",
-        "regular_currency": "CAD",
-        "sale": "4.32",
-        "sale_currency": "CAD",
-        "sale_start": "2026-10-15T07:00:00Z",
-        "sale_end": "2026-10-29T06:59:59Z"
-      },
-      "CO": {
-        "regular": "36999",
-        "regular_currency": "COP",
-        "sale": "12320",
-        "sale_currency": "COP",
-        "sale_start": "2026-10-15T07:00:00Z",
-        "sale_end": "2026-10-29T06:59:59Z"
-      },
-      "AR": {
-        "regular": "9999.99",
-        "regular_currency": "ARS",
-        "sale": "3329.99",
-        "sale_currency": "ARS",
-        "sale_start": "2026-10-15T07:00:00Z",
-        "sale_end": "2026-10-29T06:59:59Z"
-      },
-      "PE": {
-        "regular": "33.99",
-        "regular_currency": "PEN",
-        "sale": "11.31",
-        "sale_currency": "PEN",
-        "sale_start": "2026-10-15T07:00:00Z",
-        "sale_end": "2026-10-29T06:59:59Z"
-      },
-      "ZA": {
-        "regular": "179.9",
-        "regular_currency": "ZAR",
-        "sale": "59.90",
-        "sale_currency": "ZAR",
-        "sale_start": "2026-10-14T22:00:00Z",
-        "sale_end": "2026-10-28T21:59:59Z"
-      },
-      "AU": {
-        "regular": "14.99",
-        "regular_currency": "AUD",
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
-      },
-      "NZ": {
-        "regular": "16.99",
-        "regular_currency": "NZD",
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
-      },
-      "NO": {
-        "regular": "109",
-        "regular_currency": "NOK",
-        "sale": "36",
-        "sale_currency": "NOK",
-        "sale_start": "2026-10-14T22:00:00Z",
-        "sale_end": "2026-10-28T22:59:59Z"
-      },
-      "PL": {
-        "regular": "39.99",
-        "regular_currency": "PLN",
-        "sale": "13.31",
-        "sale_currency": "PLN",
-        "sale_start": "2026-10-14T22:00:00Z",
-        "sale_end": "2026-10-28T22:59:59Z"
-      },
-      "JP": {
-        "regular": "1399",
-        "regular_currency": "JPY",
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
-      },
-      "CH": {
-        "regular": "8.99",
-        "regular_currency": "CHF",
-        "sale": "2.99",
-        "sale_currency": "CHF",
-        "sale_start": "2026-10-14T22:00:00Z",
-        "sale_end": "2026-10-28T22:59:59Z"
-      }
-    }
-  },
-  {
-    "key": "anime-waifu-simulator-sakura-garden-deluxe-edition-switch",
-    "prices": {
-      "MX": {
-        "regular": "399.99",
-        "regular_currency": "MXN",
-        "sale": "199.99",
-        "sale_currency": "MXN",
-        "sale_start": "2026-10-15T16:00:00Z",
-        "sale_end": "2026-11-02T07:59:59Z"
-      },
-      "US": {
-        "regular": "19.99",
-        "regular_currency": "USD",
-        "sale": "9.99",
-        "sale_currency": "USD",
-        "sale_start": "2026-10-15T16:00:00Z",
-        "sale_end": "2026-11-02T07:59:59Z"
-      },
-      "CA": {
-        "regular": "29.99",
-        "regular_currency": "CAD",
-        "sale": "14.99",
-        "sale_currency": "CAD",
-        "sale_start": "2026-10-15T16:00:00Z",
-        "sale_end": "2026-11-02T07:59:59Z"
-      },
-      "BR": {
-        "regular": "129.99",
-        "regular_currency": "BRL",
-        "sale": "64.99",
-        "sale_currency": "BRL",
-        "sale_start": "2026-10-15T16:00:00Z",
-        "sale_end": "2026-11-02T07:59:59Z"
-      },
-      "AR": {
-        "regular": "18999.99",
-        "regular_currency": "ARS",
-        "sale": "9499.99",
-        "sale_currency": "ARS",
-        "sale_start": "2026-10-15T16:00:00Z",
-        "sale_end": "2026-11-02T07:59:59Z"
-      },
-      "CO": {
-        "regular": "79999",
-        "regular_currency": "COP",
-        "sale": "39999",
-        "sale_currency": "COP",
-        "sale_start": "2026-10-15T16:00:00Z",
-        "sale_end": "2026-11-02T07:59:59Z"
-      },
-      "PE": {
-        "regular": "79.99",
-        "regular_currency": "PEN",
-        "sale": "39.99",
-        "sale_currency": "PEN",
-        "sale_start": "2026-10-15T16:00:00Z",
-        "sale_end": "2026-11-02T07:59:59Z"
-      },
-      "JP": {
-        "regular": "2980",
-        "regular_currency": "JPY",
-        "sale": "1490",
-        "sale_currency": "JPY",
-        "sale_start": "2026-10-14T15:00:00Z",
-        "sale_end": "2026-11-01T14:59:59Z"
       }
     }
   },
