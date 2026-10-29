@@ -804251,10 +804251,10 @@
       "JP": {
         "regular": "1000",
         "regular_currency": "JPY",
-        "sale": "500",
-        "sale_currency": "JPY",
-        "sale_start": "2026-10-09T06:00:00Z",
-        "sale_end": "2026-10-29T05:59:59Z"
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
       },
       "CH": {
         "regular": "7",
@@ -3497944,6 +3497944,43 @@
         "sale_currency": "MYR",
         "sale_start": "2026-10-28T16:00:00Z",
         "sale_end": "2026-11-04T15:59:59Z"
+      }
+    }
+  },
+  {
+    "key": "black-lilys-tale-switch",
+    "prices": {
+      "JP": {
+        "regular": "3480",
+        "regular_currency": "JPY",
+        "sale": "2000",
+        "sale_currency": "JPY",
+        "sale_start": "2026-10-28T15:00:00Z",
+        "sale_end": "2026-11-05T14:59:59Z"
+      },
+      "TH": {
+        "regular": "790",
+        "regular_currency": "THB",
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "SG": {
+        "regular": "28",
+        "regular_currency": "SGD",
+        "sale": "15.99",
+        "sale_currency": "SGD",
+        "sale_start": "2026-10-28T16:00:00Z",
+        "sale_end": "2026-11-05T15:59:59Z"
+      },
+      "MY": {
+        "regular": "89",
+        "regular_currency": "MYR",
+        "sale": "50.99",
+        "sale_currency": "MYR",
+        "sale_start": "2026-10-28T16:00:00Z",
+        "sale_end": "2026-11-05T15:59:59Z"
       }
     }
   },
