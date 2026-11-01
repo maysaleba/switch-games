@@ -290217,12 +290217,10 @@
     "dlcType": "ROM Bundle",
     "playerCount": "4+",
     "imageKey": "store/software/switch/70070000019466/dc5a6b1c57a73d4234d85810f6c04351bd8c2d418be05756253494011f146a92",
-    "nsuid_us": "70070000019466",
-    "nsuid_hk": "70070000019467",
     "productCode_us": "HACYA8MQC",
     "productCode_hk": "HACYA8MQD000001",
     "supportLanguage_hk": "en",
-    "active_in_base": true,
+    "active_in_base": false,
     "first_seen_at": "2025-08-30T13:17:35.537Z",
     "last_seen_at": "2026-10-17T07:09:05.481Z"
   },
@@ -364083,13 +364081,17 @@
     "playerCount": "Single player",
     "imageSquare": "https://assets.nintendo.com/image/upload/q_auto/f_auto/store/software/switch/70010000130653/7fbe086622893616429aa0c94c75422ec2b408ba10f06125ef675f63c8138737",
     "imageSquare_eu": "https://assets.nintendo.eu/image/private/f_auto,q_auto,w_500/r1pp0efaumztf3x154vj",
+    "imageSquare_jp": "https://store-jp.nintendo.com/dw/image/v2/BFGJ_PRD/on/demandware.static/-/Sites-all-master-catalog/ja_JP/dw9ab66fc8/products/D70010000130655/squareHeroBanner/7fbe086622893616429aa0c94c75422ec2b408ba10f06125ef675f63c8138737.jpg?sw=346&strip=false",
     "imageSquare_as": "https://img-eshop.cdn.nintendo.net/i/5e39889489bce0881607d4a29bfbe66c6d7f2055453f6d3370d978074d495dd3.jpg",
     "imageKey": "store/software/switch/70010000130653/5e39889489bce0881607d4a29bfbe66c6d7f2055453f6d3370d978074d495dd3",
     "nsuid_us": "70010000130653",
     "nsuid_eu": "70010000130654",
+    "nsuid_jp": "70010000130655",
     "nsuid_as": "70010000130658",
     "productCode_us": "HACPBWYSA",
+    "productCode_jp": "HACPBWYS",
     "productCode_as": "HACPBWYSA",
+    "supportLanguage_jp": "en",
     "supportLanguage_as": "en",
     "active_in_base": true,
     "first_seen_at": "2026-09-18T18:40:09.634Z",
@@ -379751,11 +379753,14 @@
     "playerCount": "Single player",
     "imageSquare_eu": "https://www.nintendo.com/eu/media/images/11_square_images/games_18/nintendo_switch_download_software/1x1_NSwitchDS_AtelierMarieRemakeTheAlchemistOfSalburg_image500w.jpg",
     "imageKey": "store/software/switch/70070000017205/8b74d55a6324c7b72b303edb426e9263aa06a5a32bd59fc981fbdb15b7b3242c",
+    "nsuid_us": "70070000017205",
+    "nsuid_eu": "70070000017204",
+    "nsuid_hk": "70070000017323",
     "productCode_us": "HACYBANAD",
     "productCode_eu": "HACYBANAC",
     "productCode_hk": "HACYBANAF000001",
     "supportLanguage_hk": "en",
-    "active_in_base": false,
+    "active_in_base": true,
     "first_seen_at": "2025-08-30T13:17:35.537Z",
     "last_seen_at": "2026-09-29T00:37:26.933Z"
   },
@@ -384346,14 +384351,11 @@
     "playerCount": "4+",
     "imageSquare_eu": "https://www.nintendo.com/eu/media/images/assets/nintendo_switch_games/dragonballsparkingzero/1x1_DragonBallSparkingZero_image500w.jpg",
     "imageKey": "store/software/switch/70070000029670/55efad6dc29364c064f593c8bdc4e6a78ab6b5ca7a245da7f3e2de898b04eae2",
-    "nsuid_us": "70070000029670",
-    "nsuid_eu": "70070000029669",
-    "nsuid_hk": "70070000029678",
     "productCode_us": "HACYBNFLJ",
     "productCode_eu": "HACYBNFLH",
     "productCode_hk": "HACYBNFLN000001",
     "supportLanguage_hk": "en",
-    "active_in_base": true,
+    "active_in_base": false,
     "first_seen_at": "2025-08-30T13:17:35.537Z",
     "last_seen_at": "2026-09-27T23:26:42.979Z"
   },
@@ -661436,12 +661438,10 @@
     "imageSquare": "https://assets.nintendo.com/image/fetch/q_auto/f_auto/https://atum-img-lp1.cdn.nintendo.net/i/c/137562c2ff4146f68f8ad3a744dc61cd_1024",
     "imageSquare_jp": "https://store-jp.nintendo.com/dw/image/v2/BFGJ_PRD/on/demandware.static/-/Sites-all-master-catalog/ja_JP/dw27ffddff/products/D70010000078764/squareHeroBanner/9666bdf16b37e0ba170f166250e561a20a6686975e7c004cc427ae7c0f823b4c.jpg?sw=346&strip=false",
     "imageKey": "ncom/software/switch/70010000099279/d45672c87f8c7373edf5a14edf572fac8d81f2daedd6852b1e4e8dd8feecefad",
-    "nsuid_us": "70010000099279",
-    "nsuid_jp": "70010000078764",
     "productCode_us": "HACPBGMTX",
     "productCode_jp": "HACPBGMT",
     "supportLanguage_jp": "en",
-    "active_in_base": true,
+    "active_in_base": false,
     "first_seen_at": "2025-08-30T13:17:35.537Z",
     "last_seen_at": "2025-08-30T13:17:35.537Z"
   },
@@ -759156,12 +759156,16 @@
     "dlcType": "GAME",
     "playerCount": 1,
     "imageSquare": "https://www.nintendo.com/eu/media/images/assets/nintendo_switch_games/bluereflectionquartet_1/1x1_BlueReflectionQuartet_image500w.jpg",
+    "imageSquare_jp": "https://store-jp.nintendo.com/dw/image/v2/BFGJ_PRD/on/demandware.static/-/Sites-all-master-catalog/ja_JP/dwb2f700f4/products/D70010000104118/squareHeroBanner/5ed6ec24101078c186b2c6e259b13309ecb421b2f294acb98d49a46296d689e0.jpg?sw=346&strip=false",
     "imageSquare_as": "https://img-eshop.cdn.nintendo.net/i/1dbe3b33842cc437079a25f38d2420370aaa0214223fceb91604a0be0297121a.jpg",
     "imageKey": "",
     "nsuid_eu": "70010000124491",
+    "nsuid_jp": "70010000104118",
     "nsuid_as": "70010000124723",
     "productCode_eu": "",
+    "productCode_jp": "HACPBRTD",
     "productCode_as": "HACPBRTDA",
+    "supportLanguage_jp": "en",
     "supportLanguage_as": "en",
     "active_in_base": true,
     "first_seen_at": "2026-06-23T17:32:15.208Z",
@@ -759182,12 +759186,16 @@
     "dlcType": "GAME",
     "playerCount": 1,
     "imageSquare": "https://www.nintendo.com/eu/media/images/assets/nintendo_switch_2_games/bluereflectionquartet/1x1_BlueReflectionQuartet_image500w.jpg",
+    "imageSquare_jp": "https://store-jp.nintendo.com/dw/image/v2/BFGJ_PRD/on/demandware.static/-/Sites-all-master-catalog/ja_JP/dw1f08d397/products/D70010000109873/squareHeroBanner/5ed6ec24101078c186b2c6e259b13309ecb421b2f294acb98d49a46296d689e0.jpg?sw=346&strip=false",
     "imageSquare_as": "https://img-eshop.cdn.nintendo.net/i/1dbe3b33842cc437079a25f38d2420370aaa0214223fceb91604a0be0297121a.jpg",
     "imageKey": "",
     "nsuid_eu": "70010000124483",
+    "nsuid_jp": "70010000109873",
     "nsuid_as": "70010000124722",
     "productCode_eu": "",
+    "productCode_jp": "BEEPABJA",
     "productCode_as": "BEEPABJAA",
+    "supportLanguage_jp": "en",
     "supportLanguage_as": "en",
     "active_in_base": true,
     "first_seen_at": "2026-06-23T17:32:15.208Z",
@@ -825785,12 +825793,16 @@
     "dlcType": "GAME",
     "playerCount": 5,
     "imageSquare": "https://www.nintendo.com/eu/media/images/assets/nintendo_switch_2_games/wolongfallendynastycompleteedition/1x1_WoLongFallenDynastyCompleteEdition_image500w.jpg",
+    "imageSquare_jp": "https://store-jp.nintendo.com/dw/image/v2/BFGJ_PRD/on/demandware.static/-/Sites-all-master-catalog/ja_JP/dw0b9fae9e/products/D70010000129265/squareHeroBanner/8182590087c40d83901f528dd0b9c7f4e1a0889d8af50f1227704c5d952730fb.jpg?sw=346&strip=false",
     "imageSquare_as": "https://img-eshop.cdn.nintendo.net/i/31bcae2075173fb9e6017103e0bf4f0a568551564e81c3a3f2d30b26f544637e.jpg",
     "imageKey": "",
     "nsuid_eu": "70010000129264",
+    "nsuid_jp": "70010000129265",
     "nsuid_as": "70010000129268",
     "productCode_eu": "",
+    "productCode_jp": "BEEPAAEU",
     "productCode_as": "BEEPAAEUA",
+    "supportLanguage_jp": "en",
     "supportLanguage_as": "en",
     "active_in_base": true,
     "first_seen_at": "2026-07-23T17:07:20.101Z",
@@ -831574,8 +831586,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-10-28T20:13:57.665Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Kaiju Girls: Trap Giant Monster & Fall in Love",
@@ -831599,8 +831611,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-10-28T20:13:57.665Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Billionaire Secret Affair: Forbidden Desire Girls",
@@ -831624,8 +831636,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-10-21T19:42:01.049Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Billionaire Secret Affair: Forbidden Desire Boys",
@@ -831649,8 +831661,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-10-21T19:42:01.049Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Make it! Karaage",
@@ -831674,8 +831686,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-10-14T19:45:53.455Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "The Trolley Solution",
@@ -831699,8 +831711,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-10-28T20:13:57.665Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Bō: Path of the Teal Lotus Digital Deluxe",
@@ -831723,8 +831735,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-10-21T19:42:01.049Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "SEGA AGES Thunder Force IV",
@@ -831748,8 +831760,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-10-21T19:42:01.049Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Trials® Rising",
@@ -831773,8 +831785,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-10-21T19:42:01.049Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Kids Sudoku",
@@ -831798,8 +831810,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-10-21T19:42:01.049Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Death Game",
@@ -831823,8 +831835,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-10-21T19:42:01.049Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "100 Romantic Hidden Cats",
@@ -831848,8 +831860,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-09-09T18:53:55.231Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "RISK: The Game of Global Domination",
@@ -831873,8 +831885,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-08-26T21:19:52.090Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "the Game of LIFE for Nintendo Switch",
@@ -831897,8 +831909,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-07-01T17:44:50.772Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Magic Exposure",
@@ -831922,8 +831934,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-06-10T18:32:26.817Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Hentai Waifu",
@@ -831947,8 +831959,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-06-10T18:32:26.817Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Disney Music Parade -Encore-",
@@ -831971,8 +831983,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-06-10T18:32:26.817Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Hentai Waifu 2",
@@ -831996,8 +832008,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-06-10T18:32:26.817Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Puzztrail",
@@ -832021,8 +832033,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-05-27T18:27:12.144Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Pororo Sports Day: Sports Party Game",
@@ -832046,8 +832058,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-05-06T17:26:51.053Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Ore Klast",
@@ -832071,8 +832083,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-04-29T17:21:19.302Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Desert Storm War",
@@ -832096,8 +832108,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-03-25T19:44:49.816Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Asterix & Obelix XXL 2",
@@ -832120,8 +832132,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-03-25T16:56:40.604Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Fitness Boxing feat. HATSUNE MIKU Exercise with Miku",
@@ -832144,8 +832156,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-03-25T16:56:40.604Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Real Hentai 2",
@@ -832169,8 +832181,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-03-25T19:44:49.816Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Cyanotype Daydream -The Girl Who Dreamed the World-",
@@ -832193,8 +832205,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-03-18T16:59:55.908Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "PATONEKO QUEST Ⅱ",
@@ -832218,8 +832230,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-03-11T19:41:15.912Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Bare Knuckle IV",
@@ -832242,8 +832254,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-01-31T21:17:46.997Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Street Racer Collection",
@@ -832267,8 +832279,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-01-31T21:17:46.997Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Disney Miraness Fitness",
@@ -832292,8 +832304,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-01-31T21:17:46.997Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Momotaro Dentetsu: Showa, Heisei, Reiwa mo Teiban! ~ Asia Edition",
@@ -832316,8 +832328,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-01-31T21:17:46.997Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "The LEGO® NINJAGO® Movie Videogame",
@@ -832340,8 +832352,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-01-31T21:17:46.997Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Psyvariar 3",
@@ -832365,8 +832377,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-05-27T18:27:12.144Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "The Great Villainess: Strategy of Lily",
@@ -832390,8 +832402,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-10-28T20:13:57.665Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   },
   {
     "title": "Witchbrook",
@@ -832415,7 +832427,7 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-10-28T20:13:57.665Z",
-    "last_seen_at": "2026-11-01T10:23:45.423Z",
-    "last_checked_at": "2026-11-01T10:23:45.423Z"
+    "last_seen_at": "2026-11-01T19:33:03.242Z",
+    "last_checked_at": "2026-11-01T19:33:03.242Z"
   }
 ]
