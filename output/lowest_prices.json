@@ -10430,7 +10430,7 @@
       "currentSale": {
         "price": 101.99,
         "currency": "MXN",
-        "status": "new_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 118.99,
         "saleStart": "2026-11-06T17:00:00Z",
@@ -10444,7 +10444,7 @@
       "currentSale": {
         "price": 29.99,
         "currency": "BRL",
-        "status": "not_low",
+        "status": "new_low",
         "statusRule": "global_php_v5",
         "historicPrice": 34.99,
         "saleStart": "2026-11-06T17:00:00Z",
@@ -22554,7 +22554,16 @@
     "JP": {
       "price": 440,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 440,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 440,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-21T14:59:59Z"
+      }
     }
   },
   "action-games-bundle-5-in-1-switch": {
@@ -45074,7 +45083,16 @@
     "HK": {
       "price": 239,
       "currency": "HKD",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 355,
+        "currency": "HKD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 239,
+        "saleStart": "2026-11-07T16:00:00Z",
+        "saleEnd": "2026-11-12T15:59:59Z"
+      }
     },
     "US": {
       "price": 34.99,
@@ -62129,7 +62147,7 @@
       "currentSale": {
         "price": 31.99,
         "currency": "NZD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 31.99,
         "saleStart": "2026-10-22T13:00:00Z",
@@ -73262,7 +73280,16 @@
     "JP": {
       "price": 199,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 199,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 199,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-23T14:59:59Z"
+      }
     },
     "ZA": {
       "price": 35.9,
@@ -97004,6 +97031,20 @@
       "price": 42.5,
       "currency": "PLN",
       "date": "2026-07-07"
+    },
+    "JP": {
+      "price": 1320,
+      "currency": "JPY",
+      "date": "2026-11-07",
+      "currentSale": {
+        "price": 1320,
+        "currency": "JPY",
+        "status": "unknown",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-15T14:59:59Z"
+      }
     }
   },
   "doku-girls-switch": {
@@ -100385,7 +100426,16 @@
     "JP": {
       "price": 440,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 487,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 440,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-21T14:59:59Z"
+      }
     }
   },
   "district-evolution-switch": {
@@ -101500,7 +101550,16 @@
     "JP": {
       "price": 440,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 487,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 440,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-21T14:59:59Z"
+      }
     }
   },
   "sun-haven-switch": {
@@ -104416,7 +104475,7 @@
       "currentSale": {
         "price": 2.79,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.79,
         "saleStart": "2026-11-03T17:00:00Z",
@@ -104472,7 +104531,7 @@
       "currentSale": {
         "price": 7.8,
         "currency": "PLN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 7.8,
         "saleStart": "2026-11-03T14:00:00Z",
@@ -104733,7 +104792,7 @@
       "currentSale": {
         "price": 480,
         "currency": "JPY",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 480,
         "saleStart": "2026-11-06T15:00:00Z",
@@ -119528,7 +119587,16 @@
     "JP": {
       "price": 1050,
       "currency": "JPY",
-      "date": "2026-07-29"
+      "date": "2026-07-29",
+      "currentSale": {
+        "price": 1050,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 1050,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-22T14:59:59Z"
+      }
     },
     "ZA": {
       "price": 153,
@@ -137546,7 +137614,7 @@
       "currentSale": {
         "price": 2.79,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.79,
         "saleStart": "2026-11-03T17:00:00Z",
@@ -137602,7 +137670,7 @@
       "currentSale": {
         "price": 7.8,
         "currency": "PLN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 7.8,
         "saleStart": "2026-11-03T14:00:00Z",
@@ -166908,7 +166976,16 @@
     "JP": {
       "price": 988,
       "currency": "JPY",
-      "date": "2026-07-29"
+      "date": "2026-07-29",
+      "currentSale": {
+        "price": 988,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 988,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-22T14:59:59Z"
+      }
     },
     "ZA": {
       "price": 130,
@@ -175733,7 +175810,16 @@
     "JP": {
       "price": 440,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 460,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 440,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-21T14:59:59Z"
+      }
     }
   },
   "aces-of-the-luftwaffe-squadron-switch": {
@@ -178579,7 +178665,16 @@
     "JP": {
       "price": 462,
       "currency": "JPY",
-      "date": "2026-07-29"
+      "date": "2026-07-29",
+      "currentSale": {
+        "price": 462,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 462,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-22T14:59:59Z"
+      }
     },
     "ZA": {
       "price": 80.5,
@@ -179077,7 +179172,7 @@
       "currentSale": {
         "price": 1.99,
         "currency": "USD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 1.99,
         "saleStart": "2026-10-26T07:00:00Z",
@@ -179119,7 +179214,7 @@
       "currentSale": {
         "price": 2.8,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.8,
         "saleStart": "2026-10-26T07:00:00Z",
@@ -194742,7 +194837,16 @@
     "JP": {
       "price": 199,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 199,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 199,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-23T14:59:59Z"
+      }
     },
     "TH": {
       "price": 65,
@@ -195755,7 +195859,16 @@
     "JP": {
       "price": 440,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 440,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 440,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-21T14:59:59Z"
+      }
     }
   },
   "crafting-block-world-magic-dungeons-adventure-switch": {
@@ -196516,7 +196629,16 @@
     "JP": {
       "price": 512,
       "currency": "JPY",
-      "date": "2026-07-29"
+      "date": "2026-07-29",
+      "currentSale": {
+        "price": 512,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 512,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-22T14:59:59Z"
+      }
     },
     "ZA": {
       "price": 32.5,
@@ -202961,7 +203083,16 @@
     "JP": {
       "price": 299,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 299,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 299,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-23T14:59:59Z"
+      }
     },
     "AU": {
       "price": 4.49,
@@ -207342,7 +207473,7 @@
       "currentSale": {
         "price": 9.99,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 9.99,
         "saleStart": "2026-10-29T16:00:00Z",
@@ -207398,7 +207529,7 @@
       "currentSale": {
         "price": 117.25,
         "currency": "ZAR",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 117.25,
         "saleStart": "2026-10-29T14:00:00Z",
@@ -226409,7 +226540,7 @@
       "currentSale": {
         "price": 1.99,
         "currency": "USD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 1.99,
         "saleStart": "2026-10-26T07:00:00Z",
@@ -226451,7 +226582,7 @@
       "currentSale": {
         "price": 2.8,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.8,
         "saleStart": "2026-10-26T07:00:00Z",
@@ -240948,7 +241079,16 @@
     "JP": {
       "price": 199,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 199,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 199,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-23T14:59:59Z"
+      }
     },
     "AU": {
       "price": 2.99,
@@ -244002,7 +244142,16 @@
     "JP": {
       "price": 290,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 290,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 290,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-21T14:59:59Z"
+      }
     }
   },
   "banana-treasures-island-switch": {
@@ -244609,7 +244758,16 @@
     "JP": {
       "price": 486,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 486,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 486,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-21T14:59:59Z"
+      }
     }
   },
   "baroque-shooting-reversed-switch": {
@@ -261234,7 +261392,7 @@
       "currentSale": {
         "price": 50.99,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 50.99,
         "saleStart": "2026-11-04T08:00:00Z",
@@ -261248,7 +261406,7 @@
       "currentSale": {
         "price": 14.99,
         "currency": "BRL",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 14.99,
         "saleStart": "2026-11-04T08:00:00Z",
@@ -276232,7 +276390,7 @@
       "currentSale": {
         "price": 79.5,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 79.5,
         "saleStart": "2026-10-17T07:00:00Z",
@@ -276260,7 +276418,7 @@
       "currentSale": {
         "price": 5.99,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 5.99,
         "saleStart": "2026-10-17T07:00:00Z",
@@ -278164,7 +278322,7 @@
       "currentSale": {
         "price": 7.49,
         "currency": "PEN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 7.49,
         "saleStart": "2026-11-02T17:00:00Z",
@@ -278206,7 +278364,7 @@
       "currentSale": {
         "price": 35.95,
         "currency": "ZAR",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 35.95,
         "saleStart": "2026-11-01T22:00:00Z",
@@ -286166,7 +286324,7 @@
       "currentSale": {
         "price": 2.99,
         "currency": "USD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.99,
         "saleStart": "2026-11-07T08:00:00Z",
@@ -291793,7 +291951,7 @@
       "currentSale": {
         "price": 1.99,
         "currency": "USD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 1.99,
         "saleStart": "2026-10-26T07:00:00Z",
@@ -291821,7 +291979,7 @@
       "currentSale": {
         "price": 2.8,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.8,
         "saleStart": "2026-10-26T07:00:00Z",
@@ -298980,7 +299138,16 @@
     "JP": {
       "price": 749,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 749,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 749,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-21T14:59:59Z"
+      }
     }
   },
   "cottonville-switch": {
@@ -304977,7 +305144,7 @@
       "currentSale": {
         "price": 50.99,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 50.99,
         "saleStart": "2026-11-04T08:00:00Z",
@@ -304991,7 +305158,7 @@
       "currentSale": {
         "price": 14.99,
         "currency": "BRL",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 14.99,
         "saleStart": "2026-11-04T08:00:00Z",
@@ -313463,7 +313630,7 @@
       "currentSale": {
         "price": 77.97,
         "currency": "NZD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 77.97,
         "saleStart": "2026-10-22T13:00:00Z",
@@ -315017,7 +315184,7 @@
       "currentSale": {
         "price": 480,
         "currency": "JPY",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 480,
         "saleStart": "2026-10-23T15:00:00Z",
@@ -321452,7 +321619,16 @@
     "JP": {
       "price": 547,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 547,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 547,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-19T14:59:59Z"
+      }
     }
   },
   "sports-car-driver-switch": {
@@ -324315,7 +324491,7 @@
       "currentSale": {
         "price": 56.99,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 56.99,
         "saleStart": "2026-10-18T16:00:00Z",
@@ -324399,7 +324575,7 @@
       "currentSale": {
         "price": 480,
         "currency": "JPY",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 480,
         "saleStart": "2026-10-23T15:00:00Z",
@@ -332236,7 +332412,7 @@
       "currentSale": {
         "price": 10,
         "currency": "NOK",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 10,
         "saleStart": "2026-10-27T14:00:00Z",
@@ -332250,7 +332426,7 @@
       "currentSale": {
         "price": 4.2,
         "currency": "PLN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 4.2,
         "saleStart": "2026-10-27T14:00:00Z",
@@ -336355,7 +336531,7 @@
       "currentSale": {
         "price": 1.99,
         "currency": "USD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 1.99,
         "saleStart": "2026-10-26T07:00:00Z",
@@ -336397,7 +336573,7 @@
       "currentSale": {
         "price": 2.8,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.8,
         "saleStart": "2026-10-26T07:00:00Z",
@@ -337304,7 +337480,7 @@
       "currentSale": {
         "price": 17.5,
         "currency": "BRL",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 17.5,
         "saleStart": "2026-10-31T07:00:00Z",
@@ -337318,7 +337494,7 @@
       "currentSale": {
         "price": 4.49,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 4.49,
         "saleStart": "2026-10-31T07:00:00Z",
@@ -337637,7 +337813,7 @@
       "currentSale": {
         "price": 17.5,
         "currency": "BRL",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 17.5,
         "saleStart": "2026-10-31T07:00:00Z",
@@ -337651,7 +337827,7 @@
       "currentSale": {
         "price": 4.49,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 4.49,
         "saleStart": "2026-10-31T07:00:00Z",
@@ -338552,7 +338728,7 @@
       "currentSale": {
         "price": 64.99,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 64.99,
         "saleStart": "2026-11-02T17:00:00Z",
@@ -338636,7 +338812,7 @@
       "currentSale": {
         "price": 83.16,
         "currency": "NZD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 83.16,
         "saleStart": "2026-11-02T14:00:00Z",
@@ -345844,7 +346020,16 @@
     "JP": {
       "price": 199,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 199,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 199,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-23T14:59:59Z"
+      }
     },
     "AU": {
       "price": 2.99,
@@ -347872,7 +348057,7 @@
       "currentSale": {
         "price": 7.99,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 7.99,
         "saleStart": "2026-10-29T16:00:00Z",
@@ -347928,7 +348113,7 @@
       "currentSale": {
         "price": 93.8,
         "currency": "ZAR",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 93.8,
         "saleStart": "2026-10-29T14:00:00Z",
@@ -352026,24 +352211,60 @@
       "date": "2026-07-07"
     },
     "JP": {
-      "price": 2376,
+      "price": 2227,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-11-07",
+      "currentSale": {
+        "price": 2227,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 2376,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-17T14:59:59Z"
+      }
     },
     "TH": {
-      "price": 396,
+      "price": 371,
       "currency": "THB",
-      "date": "2026-07-07"
+      "date": "2026-11-07",
+      "currentSale": {
+        "price": 371,
+        "currency": "THB",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 396,
+        "saleStart": "2026-11-07T16:00:00Z",
+        "saleEnd": "2026-11-17T15:59:59Z"
+      }
     },
     "SG": {
-      "price": 17.6,
+      "price": 16.5,
       "currency": "SGD",
-      "date": "2026-07-07"
+      "date": "2026-11-07",
+      "currentSale": {
+        "price": 16.5,
+        "currency": "SGD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 17.6,
+        "saleStart": "2026-11-07T16:00:00Z",
+        "saleEnd": "2026-11-17T15:59:59Z"
+      }
     },
     "MY": {
-      "price": 48.8,
+      "price": 45.75,
       "currency": "MYR",
-      "date": "2026-07-07"
+      "date": "2026-11-07",
+      "currentSale": {
+        "price": 45.75,
+        "currency": "MYR",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 48.8,
+        "saleStart": "2026-11-07T16:00:00Z",
+        "saleEnd": "2026-11-17T15:59:59Z"
+      }
     }
   },
   "outbound-switch-2": {
@@ -352126,24 +352347,60 @@
       "date": "2026-07-07"
     },
     "JP": {
-      "price": 2376,
+      "price": 2227,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-11-07",
+      "currentSale": {
+        "price": 2227,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 2376,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-17T14:59:59Z"
+      }
     },
     "TH": {
-      "price": 396,
+      "price": 371,
       "currency": "THB",
-      "date": "2026-07-07"
+      "date": "2026-11-07",
+      "currentSale": {
+        "price": 371,
+        "currency": "THB",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 396,
+        "saleStart": "2026-11-07T16:00:00Z",
+        "saleEnd": "2026-11-17T15:59:59Z"
+      }
     },
     "SG": {
-      "price": 17.6,
+      "price": 16.5,
       "currency": "SGD",
-      "date": "2026-07-07"
+      "date": "2026-11-07",
+      "currentSale": {
+        "price": 16.5,
+        "currency": "SGD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 17.6,
+        "saleStart": "2026-11-07T16:00:00Z",
+        "saleEnd": "2026-11-17T15:59:59Z"
+      }
     },
     "MY": {
-      "price": 48.8,
+      "price": 45.75,
       "currency": "MYR",
-      "date": "2026-07-07"
+      "date": "2026-11-07",
+      "currentSale": {
+        "price": 45.75,
+        "currency": "MYR",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 48.8,
+        "saleStart": "2026-11-07T16:00:00Z",
+        "saleEnd": "2026-11-17T15:59:59Z"
+      }
     }
   },
   "pac-man-world-2-re-pac-switch": {
@@ -357726,7 +357983,16 @@
     "JP": {
       "price": 440,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 440,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 440,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-21T14:59:59Z"
+      }
     }
   },
   "truckzilla-monster-truck-mega-ramp-switch": {
@@ -367155,7 +367421,7 @@
       "currentSale": {
         "price": 17.5,
         "currency": "BRL",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 17.5,
         "saleStart": "2026-10-31T07:00:00Z",
@@ -367169,7 +367435,7 @@
       "currentSale": {
         "price": 4.49,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 4.49,
         "saleStart": "2026-10-31T07:00:00Z",
@@ -401770,7 +402036,7 @@
       "currentSale": {
         "price": 1.99,
         "currency": "USD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 1.99,
         "saleStart": "2026-10-26T07:00:00Z",
@@ -401812,7 +402078,7 @@
       "currentSale": {
         "price": 2.8,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.8,
         "saleStart": "2026-10-26T07:00:00Z",
@@ -405119,7 +405385,7 @@
       "currentSale": {
         "price": 13.99,
         "currency": "BRL",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 13.99,
         "saleStart": "2026-10-29T07:00:00Z",
@@ -405133,7 +405399,7 @@
       "currentSale": {
         "price": 3.59,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 3.59,
         "saleStart": "2026-10-29T07:00:00Z",
@@ -407581,7 +407847,7 @@
       "currentSale": {
         "price": 2.99,
         "currency": "USD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.99,
         "saleStart": "2026-10-31T07:00:00Z",
@@ -407595,7 +407861,7 @@
       "currentSale": {
         "price": 55.99,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 55.99,
         "saleStart": "2026-10-31T07:00:00Z",
@@ -426725,7 +426991,7 @@
       "currentSale": {
         "price": 50.87,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 50.87,
         "saleStart": "2026-11-05T08:00:00Z",
@@ -426739,7 +427005,7 @@
       "currentSale": {
         "price": 14.96,
         "currency": "BRL",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 14.96,
         "saleStart": "2026-11-05T08:00:00Z",
@@ -430835,7 +431101,7 @@
       "currentSale": {
         "price": 2.99,
         "currency": "USD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.99,
         "saleStart": "2026-11-07T08:00:00Z",
@@ -437297,7 +437563,7 @@
       "currentSale": {
         "price": 9.28,
         "currency": "CAD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 9.28,
         "saleStart": "2026-11-02T17:00:00Z",
@@ -437395,7 +437661,7 @@
       "currentSale": {
         "price": 62,
         "currency": "NOK",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 62,
         "saleStart": "2026-11-02T14:00:00Z",
@@ -450291,7 +450557,7 @@
       "currentSale": {
         "price": 42.99,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 42.99,
         "saleStart": "2026-10-20T07:00:00Z",
@@ -450319,7 +450585,7 @@
       "currentSale": {
         "price": 3.24,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 3.24,
         "saleStart": "2026-10-20T07:00:00Z",
@@ -457128,22 +457394,58 @@
     "JP": {
       "price": 479,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 479,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 479,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-21T14:59:59Z"
+      }
     },
     "TH": {
       "price": 98,
       "currency": "THB",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 98,
+        "currency": "THB",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 98,
+        "saleStart": "2026-11-07T17:00:00Z",
+        "saleEnd": "2026-11-21T16:59:59Z"
+      }
     },
     "SG": {
       "price": 3.89,
       "currency": "SGD",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 3.89,
+        "currency": "SGD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 3.89,
+        "saleStart": "2026-11-07T16:00:00Z",
+        "saleEnd": "2026-11-21T15:59:59Z"
+      }
     },
     "MY": {
       "price": 12.59,
       "currency": "MYR",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 12.59,
+        "currency": "MYR",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 12.59,
+        "saleStart": "2026-11-07T16:00:00Z",
+        "saleEnd": "2026-11-21T15:59:59Z"
+      }
     }
   },
   "monstrous-lovers-switch": {
@@ -465068,7 +465370,7 @@
       "currentSale": {
         "price": 50.99,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 50.99,
         "saleStart": "2026-11-04T08:00:00Z",
@@ -465082,7 +465384,7 @@
       "currentSale": {
         "price": 14.99,
         "currency": "BRL",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 14.99,
         "saleStart": "2026-11-04T08:00:00Z",
@@ -472930,7 +473232,7 @@
       "currentSale": {
         "price": 17.5,
         "currency": "BRL",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 17.5,
         "saleStart": "2026-10-31T07:00:00Z",
@@ -472944,7 +473246,7 @@
       "currentSale": {
         "price": 4.49,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 4.49,
         "saleStart": "2026-10-31T07:00:00Z",
@@ -492898,7 +493200,16 @@
     "JP": {
       "price": 400,
       "currency": "JPY",
-      "date": "2026-07-20"
+      "date": "2026-07-20",
+      "currentSale": {
+        "price": 400,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 400,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-12-04T14:59:59Z"
+      }
     }
   },
   "turret-rampage-switch": {
@@ -512666,7 +512977,7 @@
       "currentSale": {
         "price": 50.99,
         "currency": "MXN",
-        "status": "new_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 68.69,
         "saleStart": "2026-11-05T17:00:00Z",
@@ -512708,7 +513019,7 @@
       "currentSale": {
         "price": 14.99,
         "currency": "BRL",
-        "status": "not_low",
+        "status": "new_low",
         "statusRule": "global_php_v5",
         "historicPrice": 20.59,
         "saleStart": "2026-11-05T17:00:00Z",
@@ -515747,7 +516058,16 @@
     "JP": {
       "price": 199,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 199,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 199,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-23T14:59:59Z"
+      }
     },
     "AU": {
       "price": 2.99,
@@ -522895,7 +523215,7 @@
       "currentSale": {
         "price": 2.99,
         "currency": "USD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.99,
         "saleStart": "2026-11-02T08:00:00Z",
@@ -526295,7 +526615,16 @@
     "JP": {
       "price": 199,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 199,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 199,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-23T14:59:59Z"
+      }
     },
     "AU": {
       "price": 2.99,
@@ -528365,7 +528694,7 @@
       "currentSale": {
         "price": 2.99,
         "currency": "USD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.99,
         "saleStart": "2026-10-31T07:00:00Z",
@@ -538294,7 +538623,7 @@
       "currentSale": {
         "price": 2.99,
         "currency": "USD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.99,
         "saleStart": "2026-10-28T07:00:00Z",
@@ -538336,7 +538665,7 @@
       "currentSale": {
         "price": 4.22,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 4.22,
         "saleStart": "2026-10-28T07:00:00Z",
@@ -541444,7 +541773,7 @@
       "currentSale": {
         "price": 2.99,
         "currency": "USD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.99,
         "saleStart": "2026-10-27T07:00:00Z",
@@ -543582,7 +543911,7 @@
       "currentSale": {
         "price": 2.99,
         "currency": "USD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.99,
         "saleStart": "2026-10-26T07:00:00Z",
@@ -546886,7 +547215,7 @@
       "currentSale": {
         "price": 2.99,
         "currency": "USD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.99,
         "saleStart": "2026-10-25T07:00:00Z",
@@ -547179,7 +547508,7 @@
       "currentSale": {
         "price": 2.99,
         "currency": "USD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.99,
         "saleStart": "2026-10-25T07:00:00Z",
@@ -568382,7 +568711,16 @@
     "JP": {
       "price": 199,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 199,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 199,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-23T14:59:59Z"
+      }
     },
     "US": {
       "price": 1.99,
@@ -571838,7 +572176,16 @@
     "JP": {
       "price": 199,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 199,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 199,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-23T14:59:59Z"
+      }
     },
     "US": {
       "price": 1.99,
@@ -586087,7 +586434,16 @@
     "JP": {
       "price": 199,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 199,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 199,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-23T14:59:59Z"
+      }
     },
     "US": {
       "price": 1.99,
@@ -587380,7 +587736,16 @@
     "JP": {
       "price": 299,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 299,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 299,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-23T14:59:59Z"
+      }
     },
     "US": {
       "price": 2.99,
@@ -589012,7 +589377,16 @@
     "JP": {
       "price": 199,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 199,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 199,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-23T14:59:59Z"
+      }
     },
     "US": {
       "price": 1.99,
@@ -628628,7 +629002,7 @@
       "currentSale": {
         "price": 9.5,
         "currency": "PLN",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 9.5,
         "saleStart": "2026-10-30T14:00:00Z",
@@ -676294,7 +676668,7 @@
       "currentSale": {
         "price": 24.5,
         "currency": "ZAR",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 24.5,
         "saleStart": "2026-11-06T14:00:00Z",
@@ -676322,7 +676696,7 @@
       "currentSale": {
         "price": 14,
         "currency": "NOK",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 14,
         "saleStart": "2026-11-06T14:00:00Z",
@@ -679055,7 +679429,7 @@
       "currentSale": {
         "price": 92,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 92,
         "saleStart": "2026-11-06T17:00:00Z",
@@ -679069,7 +679443,7 @@
       "currentSale": {
         "price": 27,
         "currency": "BRL",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 27,
         "saleStart": "2026-11-06T17:00:00Z",
@@ -710273,7 +710647,7 @@
       "currentSale": {
         "price": 180,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 180,
         "saleStart": "2026-11-03T17:00:00Z",
@@ -710301,7 +710675,7 @@
       "currentSale": {
         "price": 13.5,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 13.5,
         "saleStart": "2026-11-03T17:00:00Z",
@@ -732020,7 +732394,7 @@
       "currentSale": {
         "price": 77.36,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 77.36,
         "saleStart": "2026-10-29T16:00:00Z",
@@ -825258,7 +825632,7 @@
       "currentSale": {
         "price": 10.79,
         "currency": "NZD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 10.79,
         "saleStart": "2026-11-04T14:00:00Z",
@@ -825333,7 +825707,7 @@
       "currentSale": {
         "price": 33,
         "currency": "BRL",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 33,
         "saleStart": "2026-11-04T17:00:00Z",
@@ -844946,9 +845320,18 @@
       }
     },
     "JP": {
-      "price": 600,
+      "price": 480,
       "currency": "JPY",
-      "date": "2026-09-05"
+      "date": "2026-11-07",
+      "currentSale": {
+        "price": 480,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 600,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-14T14:59:59Z"
+      }
     },
     "CH": {
       "price": 5,
@@ -878571,7 +878954,7 @@
       "currentSale": {
         "price": 52.2,
         "currency": "ZAR",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 52.2,
         "saleStart": "2026-10-22T13:00:00Z",
@@ -894633,7 +895016,7 @@
       "currentSale": {
         "price": 183.99,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 183.99,
         "saleStart": "2026-11-04T08:00:00Z",
@@ -894647,7 +895030,7 @@
       "currentSale": {
         "price": 53.99,
         "currency": "BRL",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 53.99,
         "saleStart": "2026-11-04T08:00:00Z",
@@ -913139,7 +913522,7 @@
       "currentSale": {
         "price": 56.99,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 56.99,
         "saleStart": "2026-11-01T17:00:00Z",
@@ -913244,7 +913627,7 @@
       "currentSale": {
         "price": 480,
         "currency": "JPY",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 480,
         "saleStart": "2026-11-06T15:00:00Z",
@@ -913283,7 +913666,7 @@
       "currentSale": {
         "price": 56.99,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 56.99,
         "saleStart": "2026-11-01T17:00:00Z",
@@ -913418,7 +913801,7 @@
       "currentSale": {
         "price": 56.99,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 56.99,
         "saleStart": "2026-11-01T17:00:00Z",
@@ -931227,7 +931610,7 @@
       "currentSale": {
         "price": 1.99,
         "currency": "USD",
-        "status": "new_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.29,
         "saleStart": "2026-10-27T16:00:00Z",
@@ -931269,7 +931652,7 @@
       "currentSale": {
         "price": 2.8,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "new_low",
         "statusRule": "global_php_v5",
         "historicPrice": 3.22,
         "saleStart": "2026-10-27T16:00:00Z",
@@ -955854,7 +956237,7 @@
       "currentSale": {
         "price": 12.78,
         "currency": "NZD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 12.78,
         "saleStart": "2026-10-23T13:00:00Z",
@@ -978773,7 +979156,7 @@
       "currentSale": {
         "price": 439.5,
         "currency": "MXN",
-        "status": "new_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 527.4,
         "saleStart": "2026-10-30T16:00:00Z",
@@ -978815,7 +979198,7 @@
       "currentSale": {
         "price": 76450,
         "currency": "COP",
-        "status": "not_low",
+        "status": "new_low",
         "statusRule": "global_php_v5",
         "historicPrice": 91740,
         "saleStart": "2026-10-30T16:00:00Z",
@@ -1039415,7 +1039798,7 @@
       "currentSale": {
         "price": 43.6,
         "currency": "BRL",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 43.6,
         "saleStart": "2026-11-05T08:00:00Z",
@@ -1039429,7 +1039812,7 @@
       "currentSale": {
         "price": 11.19,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 11.19,
         "saleStart": "2026-11-05T08:00:00Z",
@@ -1040554,7 +1040937,16 @@
     "JP": {
       "price": 146,
       "currency": "JPY",
-      "date": "2026-09-13"
+      "date": "2026-09-13",
+      "currentSale": {
+        "price": 146,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 146,
+        "saleStart": "2026-10-28T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     }
   },
   "paint-it-christmas-edition-switch": {
@@ -1040645,7 +1041037,16 @@
     "JP": {
       "price": 121,
       "currency": "JPY",
-      "date": "2026-09-13"
+      "date": "2026-09-13",
+      "currentSale": {
+        "price": 121,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 121,
+        "saleStart": "2026-10-28T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     }
   },
   "puzzle-collection-complete-edition-switch": {
@@ -1040736,7 +1041137,16 @@
     "JP": {
       "price": 104,
       "currency": "JPY",
-      "date": "2026-09-13"
+      "date": "2026-09-13",
+      "currentSale": {
+        "price": 104,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 104,
+        "saleStart": "2026-10-28T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     }
   },
   "snap-together-new-challenges-switch": {
@@ -1040827,7 +1041237,16 @@
     "JP": {
       "price": 147,
       "currency": "JPY",
-      "date": "2026-09-13"
+      "date": "2026-09-13",
+      "currentSale": {
+        "price": 147,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 147,
+        "saleStart": "2026-10-28T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     },
     "AR": {
       "price": 2800,
@@ -1040923,7 +1041342,16 @@
     "JP": {
       "price": 100,
       "currency": "JPY",
-      "date": "2026-09-13"
+      "date": "2026-09-13",
+      "currentSale": {
+        "price": 100,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 100,
+        "saleStart": "2026-10-28T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     }
   },
   "kittens-head-football-spooky-edition-switch": {
@@ -1041014,7 +1041442,16 @@
     "JP": {
       "price": 114,
       "currency": "JPY",
-      "date": "2026-09-13"
+      "date": "2026-09-13",
+      "currentSale": {
+        "price": 114,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 114,
+        "saleStart": "2026-10-28T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     }
   },
   "kittens-head-football-winter-edition-switch": {
@@ -1041105,7 +1041542,16 @@
     "JP": {
       "price": 114,
       "currency": "JPY",
-      "date": "2026-09-13"
+      "date": "2026-09-13",
+      "currentSale": {
+        "price": 114,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 114,
+        "saleStart": "2026-10-28T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     }
   },
   "paint-it-spooky-edition-switch": {
@@ -1041196,7 +1041642,16 @@
     "JP": {
       "price": 119,
       "currency": "JPY",
-      "date": "2026-09-13"
+      "date": "2026-09-13",
+      "currentSale": {
+        "price": 119,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 119,
+        "saleStart": "2026-10-28T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     }
   },
   "paint-it-yummy-edition-switch": {
@@ -1041287,7 +1041742,16 @@
     "JP": {
       "price": 123,
       "currency": "JPY",
-      "date": "2026-09-13"
+      "date": "2026-09-13",
+      "currentSale": {
+        "price": 123,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 123,
+        "saleStart": "2026-10-28T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     },
     "AR": {
       "price": 2800,
@@ -1041534,7 +1041998,16 @@
     "JP": {
       "price": 143,
       "currency": "JPY",
-      "date": "2026-09-13"
+      "date": "2026-09-13",
+      "currentSale": {
+        "price": 143,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 143,
+        "saleStart": "2026-10-28T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     },
     "AR": {
       "price": 2800,
@@ -1075883,22 +1076356,58 @@
     "JP": {
       "price": 1639,
       "currency": "JPY",
-      "date": "2026-09-15"
+      "date": "2026-09-15",
+      "currentSale": {
+        "price": 1639,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 1639,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-29T14:59:59Z"
+      }
     },
     "TH": {
       "price": 345,
       "currency": "THB",
-      "date": "2026-09-15"
+      "date": "2026-09-15",
+      "currentSale": {
+        "price": 345,
+        "currency": "THB",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 345,
+        "saleStart": "2026-11-07T17:00:00Z",
+        "saleEnd": "2026-11-29T16:59:59Z"
+      }
     },
     "SG": {
       "price": 14.99,
       "currency": "SGD",
-      "date": "2026-09-15"
+      "date": "2026-09-15",
+      "currentSale": {
+        "price": 14.99,
+        "currency": "SGD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 14.99,
+        "saleStart": "2026-11-07T16:00:00Z",
+        "saleEnd": "2026-11-29T15:59:59Z"
+      }
     },
     "MY": {
       "price": 49.5,
       "currency": "MYR",
-      "date": "2026-09-15"
+      "date": "2026-09-15",
+      "currentSale": {
+        "price": 49.5,
+        "currency": "MYR",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 49.5,
+        "saleStart": "2026-11-07T16:00:00Z",
+        "saleEnd": "2026-11-29T15:59:59Z"
+      }
     },
     "NO": {
       "price": 124,
@@ -1103423,7 +1103932,7 @@
       "currentSale": {
         "price": 2.99,
         "currency": "USD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.99,
         "saleStart": "2026-10-25T07:00:00Z",
@@ -1103465,7 +1103974,7 @@
       "currentSale": {
         "price": 4.22,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 4.22,
         "saleStart": "2026-10-25T07:00:00Z",
@@ -1104844,7 +1105353,7 @@
       "currentSale": {
         "price": 242.1,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 242.1,
         "saleStart": "2026-10-22T07:00:00Z",
@@ -1104858,7 +1105367,7 @@
       "currentSale": {
         "price": 71.1,
         "currency": "BRL",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 71.1,
         "saleStart": "2026-10-22T07:00:00Z",
@@ -1105014,7 +1105523,7 @@
       "currentSale": {
         "price": 242.1,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 242.1,
         "saleStart": "2026-10-22T07:00:00Z",
@@ -1105028,7 +1105537,7 @@
       "currentSale": {
         "price": 71.1,
         "currency": "BRL",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 71.1,
         "saleStart": "2026-10-22T07:00:00Z",
@@ -1105184,7 +1105693,7 @@
       "currentSale": {
         "price": 242.1,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 242.1,
         "saleStart": "2026-10-22T07:00:00Z",
@@ -1105198,7 +1105707,7 @@
       "currentSale": {
         "price": 71.1,
         "currency": "BRL",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 71.1,
         "saleStart": "2026-10-22T07:00:00Z",
@@ -1133393,7 +1133902,7 @@
       "currentSale": {
         "price": 49.09,
         "currency": "BRL",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 49.09,
         "saleStart": "2026-10-15T16:00:00Z",
@@ -1133823,7 +1134332,7 @@
       "currentSale": {
         "price": 49.09,
         "currency": "BRL",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 49.09,
         "saleStart": "2026-10-15T16:00:00Z",
@@ -1136036,7 +1136545,7 @@
       "currentSale": {
         "price": 2.99,
         "currency": "USD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.99,
         "saleStart": "2026-10-27T07:00:00Z",
@@ -1138908,7 +1139417,16 @@
     "JP": {
       "price": 1030,
       "currency": "JPY",
-      "date": "2026-07-30"
+      "date": "2026-07-30",
+      "currentSale": {
+        "price": 1030,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 1030,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-22T14:59:59Z"
+      }
     },
     "US": {
       "price": 9.89,
@@ -1151604,7 +1152122,7 @@
       "currentSale": {
         "price": 150.3,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 150.3,
         "saleStart": "2026-10-15T16:00:00Z",
@@ -1167874,7 +1168392,7 @@
       "currentSale": {
         "price": 50.99,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 50.99,
         "saleStart": "2026-10-29T07:00:00Z",
@@ -1167888,7 +1168406,7 @@
       "currentSale": {
         "price": 14.99,
         "currency": "BRL",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 14.99,
         "saleStart": "2026-10-29T07:00:00Z",
@@ -1170498,7 +1171016,7 @@
       "currentSale": {
         "price": 50.99,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 50.99,
         "saleStart": "2026-10-30T07:00:00Z",
@@ -1170512,7 +1171030,7 @@
       "currentSale": {
         "price": 14.99,
         "currency": "BRL",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 14.99,
         "saleStart": "2026-10-30T07:00:00Z",
@@ -1184049,7 +1184567,7 @@
       "currentSale": {
         "price": 50.99,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 50.99,
         "saleStart": "2026-10-30T07:00:00Z",
@@ -1184063,7 +1184581,7 @@
       "currentSale": {
         "price": 14.99,
         "currency": "BRL",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 14.99,
         "saleStart": "2026-10-30T07:00:00Z",
@@ -1194935,7 +1195453,7 @@
       "currentSale": {
         "price": 2.3,
         "currency": "CHF",
-        "status": "not_low",
+        "status": "unknown",
         "statusRule": "global_php_v5",
         "historicPrice": null,
         "saleStart": "2026-10-30T23:00:00Z",
@@ -1195305,7 +1195823,7 @@
       "currentSale": {
         "price": 5.09,
         "currency": "NZD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 5.09,
         "saleStart": "2026-10-30T11:00:00Z",
@@ -1195403,7 +1195921,7 @@
       "currentSale": {
         "price": 52.79,
         "currency": "MXN",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 52.79,
         "saleStart": "2026-10-31T07:00:00Z",
@@ -1210616,7 +1211134,7 @@
       "currentSale": {
         "price": 2.99,
         "currency": "USD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.99,
         "saleStart": "2026-11-02T08:00:00Z",
@@ -1255783,7 +1256301,7 @@
       "currentSale": {
         "price": 27.3,
         "currency": "BRL",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 27.3,
         "saleStart": "2026-10-30T16:00:00Z",
@@ -1255797,7 +1256315,7 @@
       "currentSale": {
         "price": 6.99,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 6.99,
         "saleStart": "2026-10-30T16:00:00Z",
@@ -1275025,12 +1275543,30 @@
     "SG": {
       "price": 9.18,
       "currency": "SGD",
-      "date": "2026-09-23"
+      "date": "2026-09-23",
+      "currentSale": {
+        "price": 13.77,
+        "currency": "SGD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 9.18,
+        "saleStart": "2026-11-07T16:00:00Z",
+        "saleEnd": "2026-11-15T15:59:59Z"
+      }
     },
     "MY": {
       "price": 29.8,
       "currency": "MYR",
-      "date": "2026-09-23"
+      "date": "2026-09-23",
+      "currentSale": {
+        "price": 44.7,
+        "currency": "MYR",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 29.8,
+        "saleStart": "2026-11-07T16:00:00Z",
+        "saleEnd": "2026-11-15T15:59:59Z"
+      }
     },
     "HK": {
       "price": 77,
@@ -1275049,7 +1275585,16 @@
     "TH": {
       "price": 229,
       "currency": "THB",
-      "date": "2026-09-23"
+      "date": "2026-09-23",
+      "currentSale": {
+        "price": 344,
+        "currency": "THB",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 229,
+        "saleStart": "2026-11-07T16:00:00Z",
+        "saleEnd": "2026-11-15T15:59:59Z"
+      }
     },
     "US": {
       "price": 7.99,
@@ -1288792,7 +1289337,7 @@
       "currentSale": {
         "price": 52.58,
         "currency": "MXN",
-        "status": "new_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 52.64,
         "saleStart": "2026-11-07T08:00:00Z",
@@ -1288806,7 +1289351,7 @@
       "currentSale": {
         "price": 15.52,
         "currency": "BRL",
-        "status": "not_low",
+        "status": "new_low",
         "statusRule": "global_php_v5",
         "historicPrice": 15.54,
         "saleStart": "2026-11-07T08:00:00Z",
@@ -1376700,7 +1377245,7 @@
       "currentSale": {
         "price": 717,
         "currency": "JPY",
-        "status": "not_low",
+        "status": "new_low",
         "statusRule": "global_php_v5",
         "historicPrice": 861,
         "saleStart": "2026-11-03T15:00:00Z",
@@ -1376826,7 +1377371,7 @@
       "currentSale": {
         "price": 8.17,
         "currency": "NZD",
-        "status": "new_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 9.81,
         "saleStart": "2026-11-01T11:00:00Z",
@@ -1405289,7 +1405834,7 @@
       "currentSale": {
         "price": 18.85,
         "currency": "ZAR",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 18.85,
         "saleStart": "2026-10-29T14:00:00Z",
@@ -1405401,7 +1405946,7 @@
       "currentSale": {
         "price": 1.61,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 1.61,
         "saleStart": "2026-10-29T16:00:00Z",
@@ -1450092,7 +1450637,16 @@
     "HK": {
       "price": 279,
       "currency": "HKD",
-      "date": "2026-09-17"
+      "date": "2026-09-17",
+      "currentSale": {
+        "price": 355,
+        "currency": "HKD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 279,
+        "saleStart": "2026-11-07T16:00:00Z",
+        "saleEnd": "2026-11-12T15:59:59Z"
+      }
     }
   },
   "disney-miraness-fitness-switch": {
@@ -1452273,7 +1452827,7 @@
       "currentSale": {
         "price": 116,
         "currency": "THB",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 116,
         "saleStart": "2026-09-17T16:00:00Z",
@@ -1455055,7 +1455609,7 @@
       "currentSale": {
         "price": 2.99,
         "currency": "USD",
-        "status": "not_low",
+        "status": "matches_low",
         "statusRule": "global_php_v5",
         "historicPrice": 2.99,
         "saleStart": "2026-11-04T08:00:00Z",
@@ -1455069,7 +1455623,7 @@
       "currentSale": {
         "price": 56.08,
         "currency": "MXN",
-        "status": "new_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 56.19,
         "saleStart": "2026-11-04T08:00:00Z",
@@ -1455564,7 +1456118,7 @@
       "currentSale": {
         "price": 50.99,
         "currency": "MXN",
-        "status": "new_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 59.99,
         "saleStart": "2026-11-04T08:00:00Z",
@@ -1455578,7 +1456132,7 @@
       "currentSale": {
         "price": 14.99,
         "currency": "BRL",
-        "status": "not_low",
+        "status": "new_low",
         "statusRule": "global_php_v5",
         "historicPrice": 17.39,
         "saleStart": "2026-11-04T08:00:00Z",
@@ -1459118,7 +1459672,7 @@
       "currentSale": {
         "price": 50.99,
         "currency": "MXN",
-        "status": "new_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 57.49,
         "saleStart": "2026-11-06T08:00:00Z",
@@ -1459132,7 +1459686,7 @@
       "currentSale": {
         "price": 14.99,
         "currency": "BRL",
-        "status": "not_low",
+        "status": "new_low",
         "statusRule": "global_php_v5",
         "historicPrice": 15.99,
         "saleStart": "2026-11-06T08:00:00Z",
@@ -1463399,7 +1463953,7 @@
       "currentSale": {
         "price": 50.99,
         "currency": "MXN",
-        "status": "new_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 55.74,
         "saleStart": "2026-11-07T08:00:00Z",
@@ -1463413,7 +1463967,7 @@
       "currentSale": {
         "price": 14.99,
         "currency": "BRL",
-        "status": "not_low",
+        "status": "new_low",
         "statusRule": "global_php_v5",
         "historicPrice": 16.24,
         "saleStart": "2026-11-07T08:00:00Z",
@@ -1505875,7 +1506429,7 @@
       "currentSale": {
         "price": 2.04,
         "currency": "NZD",
-        "status": "unknown",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": null,
         "saleStart": "2026-10-16T23:00:00Z",
@@ -1556502,7 +1557056,7 @@
       "currentSale": {
         "price": 159.2,
         "currency": "MXN",
-        "status": "unknown",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": null,
         "saleStart": "2026-10-30T16:00:00Z",
@@ -1556530,7 +1557084,7 @@
       "currentSale": {
         "price": 11.99,
         "currency": "CAD",
-        "status": "not_low",
+        "status": "unknown",
         "statusRule": "global_php_v5",
         "historicPrice": null,
         "saleStart": "2026-10-30T16:00:00Z",
@@ -1576752,6 +1577306,20 @@
         "saleStart": "2026-11-07T08:00:00Z",
         "saleEnd": "2026-12-07T06:59:59Z"
       }
+    },
+    "JP": {
+      "price": 850,
+      "currency": "JPY",
+      "date": "2026-11-07",
+      "currentSale": {
+        "price": 850,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-04T15:00:00Z",
+        "saleEnd": "2026-12-01T14:59:59Z"
+      }
     }
   },
   "cmsr-switch": {
@@ -1576837,6 +1577405,22 @@
         "historicPrice": null,
         "saleStart": "2026-11-07T14:00:00Z",
         "saleEnd": "2026-12-05T22:59:59Z"
+      }
+    }
+  },
+  "rainbow-diamonds-switch": {
+    "JP": {
+      "price": 150,
+      "currency": "JPY",
+      "date": "2026-11-07",
+      "currentSale": {
+        "price": 150,
+        "currency": "JPY",
+        "status": "unknown",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-07T15:00:00Z",
+        "saleEnd": "2026-11-21T14:59:59Z"
       }
     }
   }
