@@ -33,13 +33,14 @@ const regionSets = {
   KR: ['KR'],
   HK: ['HK'],
   AS: ['TH', 'SG', 'MY'],
+  PH: ['PH'],
 };
 
 // Usage: node getPrices.js [us|eu|asia|all]  (default: all). Other groups keep cached prices.
 const GROUPS = {
   us:   ['US'],
   eu:   ['EU'],
-  asia: ['JP', 'KR', 'HK', 'AS'],
+  asia: ['JP', 'KR', 'HK', 'AS', 'PH'],
 };
 const groupArg = (process.argv[2] || 'all').toLowerCase();
 if (groupArg !== 'all' && !GROUPS[groupArg]) {
@@ -359,6 +360,10 @@ function buildCountryBatches(entries) {
 
     if (e.nsuid_as) {
       regionSets.AS.forEach(c => upsert(c, String(e.nsuid_as), idx));
+    }
+
+    if (e.nsuid_ph || e.nsuid_as) {
+      regionSets.PH.forEach(c => upsert(c, String(e.nsuid_ph || e.nsuid_as), idx));
     }
 
     if (e.nsuid_jp && supportsEnglishForRegion(e, 'JP')) {

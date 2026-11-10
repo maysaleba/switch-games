@@ -45,7 +45,8 @@ const REGION_KEY_MAP = {
   HK: 'HongKongPrice',
   MY: 'MalaysiaPrice',
   SG: 'SingaporePrice',
-  TH: 'ThailandPrice'
+  TH: 'ThailandPrice',
+  PH: 'PhilippinesPrice'
 };
 
 // fallback chain for "Price" (regular) column

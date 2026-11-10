@@ -206,12 +206,25 @@ function pickSupportLanguage(item) {
 }
 
 function sortKeysPretty(item) {
+  // The Philippines shares the Asia-region catalog NSUIDs.
+  const philippinesAliases = {
+    nsuid_ph: 'nsuid_as',
+    productCode_ph: 'productCode_as',
+    supportLanguage_ph: 'supportLanguage_as',
+    imageSquare_ph: 'imageSquare_as',
+  };
+  for (const [phKey, asKey] of Object.entries(philippinesAliases)) {
+    if (!Object.prototype.hasOwnProperty.call(item, phKey) && isNonEmpty(item[asKey])) {
+      item[phKey] = item[asKey];
+    }
+  }
+
   const preferred = [
     'title','url','urlKey','platform','genres','releaseDate','publisher','dlcType','playerCount',
-    'imageSquare','imageSquare_us','imageSquare_eu','imageSquare_jp','imageSquare_hk','imageSquare_as','imageSquare_kr','imageKey',
-    'nsuid_us','nsuid_eu','nsuid_jp','nsuid_hk','nsuid_as','nsuid_kr',
-    'productCode_us','productCode_eu','productCode_jp','productCode_hk','productCode_as','productCode_kr',
-    'supportLanguage_us','supportLanguage_eu','supportLanguage_jp','supportLanguage_hk','supportLanguage_as','supportLanguage_kr',
+    'imageSquare','imageSquare_us','imageSquare_eu','imageSquare_jp','imageSquare_hk','imageSquare_as','imageSquare_ph','imageSquare_kr','imageKey',
+    'nsuid_us','nsuid_eu','nsuid_jp','nsuid_hk','nsuid_as','nsuid_ph','nsuid_kr',
+    'productCode_us','productCode_eu','productCode_jp','productCode_hk','productCode_as','productCode_ph','productCode_kr',
+    'supportLanguage_us','supportLanguage_eu','supportLanguage_jp','supportLanguage_hk','supportLanguage_as','supportLanguage_ph','supportLanguage_kr',
     'active_in_base',
   ];
   const out = {};
