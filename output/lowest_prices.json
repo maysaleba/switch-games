@@ -29359,7 +29359,16 @@
     "JP": {
       "price": 1000,
       "currency": "JPY",
-      "date": "2026-07-14"
+      "date": "2026-07-14",
+      "currentSale": {
+        "price": 1013,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 1000,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     },
     "NZ": {
       "price": 6.6,
@@ -31360,12 +31369,30 @@
     "JP": {
       "price": 1313,
       "currency": "JPY",
-      "date": "2026-07-14"
+      "date": "2026-07-14",
+      "currentSale": {
+        "price": 1313,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 1313,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     },
     "HK": {
       "price": 89,
       "currency": "HKD",
-      "date": "2026-07-14"
+      "date": "2026-07-14",
+      "currentSale": {
+        "price": 89,
+        "currency": "HKD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 89,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-24T15:59:59Z"
+      }
     },
     "NZ": {
       "price": 9.9,
@@ -32727,7 +32754,16 @@
     "JP": {
       "price": 220,
       "currency": "JPY",
-      "date": "2026-07-14"
+      "date": "2026-07-14",
+      "currentSale": {
+        "price": 440,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 220,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     },
     "AU": {
       "price": 6,
@@ -34421,7 +34457,16 @@
     "JP": {
       "price": 175,
       "currency": "JPY",
-      "date": "2026-07-23"
+      "date": "2026-07-23",
+      "currentSale": {
+        "price": 175,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 175,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-12-07T14:59:59Z"
+      }
     },
     "CH": {
       "price": 2.79,
@@ -85315,7 +85360,16 @@
     "JP": {
       "price": 465,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 466,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 465,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     }
   },
   "cyberage-definitive-edition-switch": {
@@ -90872,7 +90926,16 @@
     "JP": {
       "price": 449,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 449,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 449,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     }
   },
   "picture-the-difference-2-switch": {
@@ -174440,7 +174503,16 @@
     "JP": {
       "price": 600,
       "currency": "JPY",
-      "date": "2026-09-16"
+      "date": "2026-09-16",
+      "currentSale": {
+        "price": 600,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 600,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-12-01T14:59:59Z"
+      }
     },
     "CH": {
       "price": 5.49,
@@ -218700,7 +218772,16 @@
     "JP": {
       "price": 200,
       "currency": "JPY",
-      "date": "2026-09-16"
+      "date": "2026-09-16",
+      "currentSale": {
+        "price": 200,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 200,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-12-01T14:59:59Z"
+      }
     },
     "MX": {
       "price": 42.99,
@@ -225558,12 +225639,30 @@
     "JP": {
       "price": 2739,
       "currency": "JPY",
-      "date": "2026-09-09"
+      "date": "2026-09-09",
+      "currentSale": {
+        "price": 2739,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 2739,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     },
     "HK": {
       "price": 119,
       "currency": "HKD",
-      "date": "2026-09-09"
+      "date": "2026-09-09",
+      "currentSale": {
+        "price": 119,
+        "currency": "HKD",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 119,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-24T15:59:59Z"
+      }
     },
     "NZ": {
       "price": 46.2,
@@ -225630,12 +225729,30 @@
     "JP": {
       "price": 2739,
       "currency": "JPY",
-      "date": "2026-09-09"
+      "date": "2026-09-09",
+      "currentSale": {
+        "price": 2739,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 2739,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     },
     "HK": {
       "price": 119,
       "currency": "HKD",
-      "date": "2026-09-09"
+      "date": "2026-09-09",
+      "currentSale": {
+        "price": 119,
+        "currency": "HKD",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 119,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-24T15:59:59Z"
+      }
     },
     "NZ": {
       "price": 46.2,
@@ -273019,7 +273136,16 @@
     "JP": {
       "price": 449,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 449,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 449,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     },
     "CH": {
       "price": 2.39,
@@ -294920,7 +295046,16 @@
     "JP": {
       "price": 1150,
       "currency": "JPY",
-      "date": "2026-09-16"
+      "date": "2026-09-16",
+      "currentSale": {
+        "price": 1150,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 1150,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-12-01T14:59:59Z"
+      }
     },
     "CH": {
       "price": 10,
@@ -329507,7 +329642,16 @@
     "JP": {
       "price": 599,
       "currency": "JPY",
-      "date": "2026-08-06"
+      "date": "2026-08-06",
+      "currentSale": {
+        "price": 599,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 599,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     },
     "ZA": {
       "price": 59.95,
@@ -331778,7 +331922,16 @@
     "JP": {
       "price": 400,
       "currency": "JPY",
-      "date": "2026-09-16"
+      "date": "2026-09-16",
+      "currentSale": {
+        "price": 400,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 400,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-12-01T14:59:59Z"
+      }
     },
     "CH": {
       "price": 3.5,
@@ -347989,7 +348142,16 @@
     "JP": {
       "price": 440,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 440,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 440,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     }
   },
   "flame-keeper-switch": {
@@ -354817,17 +354979,44 @@
     "TH": {
       "price": 588,
       "currency": "THB",
-      "date": "2026-09-15"
+      "date": "2026-09-15",
+      "currentSale": {
+        "price": 590,
+        "currency": "THB",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 588,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     },
     "SG": {
       "price": 23.8,
       "currency": "SGD",
-      "date": "2026-09-15"
+      "date": "2026-09-15",
+      "currentSale": {
+        "price": 23.8,
+        "currency": "SGD",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 23.8,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     },
     "MY": {
       "price": 76.8,
       "currency": "MYR",
-      "date": "2026-09-15"
+      "date": "2026-09-15",
+      "currentSale": {
+        "price": 76.8,
+        "currency": "MYR",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 76.8,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     },
     "ZA": {
       "price": 524.3,
@@ -354853,6 +355042,20 @@
       "price": 118.3,
       "currency": "PLN",
       "date": "2026-07-21"
+    },
+    "PH": {
+      "price": 1010,
+      "currency": "PHP",
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 1010,
+        "currency": "PHP",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     }
   },
   "pac-man-world-2-re-pac-switch-2": {
@@ -354908,17 +355111,44 @@
     "TH": {
       "price": 588,
       "currency": "THB",
-      "date": "2026-09-15"
+      "date": "2026-09-15",
+      "currentSale": {
+        "price": 590,
+        "currency": "THB",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 588,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     },
     "SG": {
       "price": 23.8,
       "currency": "SGD",
-      "date": "2026-09-15"
+      "date": "2026-09-15",
+      "currentSale": {
+        "price": 23.8,
+        "currency": "SGD",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 23.8,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     },
     "MY": {
       "price": 76.8,
       "currency": "MYR",
-      "date": "2026-09-15"
+      "date": "2026-09-15",
+      "currentSale": {
+        "price": 76.8,
+        "currency": "MYR",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 76.8,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     },
     "ZA": {
       "price": 524.3,
@@ -354944,6 +355174,20 @@
       "price": 118.3,
       "currency": "PLN",
       "date": "2026-07-21"
+    },
+    "PH": {
+      "price": 1010,
+      "currency": "PHP",
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 1010,
+        "currency": "PHP",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     }
   },
   "paint-it-switch": {
@@ -362256,9 +362500,18 @@
       "date": "2026-10-01"
     },
     "JP": {
-      "price": 1990,
+      "price": 1791,
       "currency": "JPY",
-      "date": "2026-10-01"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 1791,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 1990,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-25T14:59:59Z"
+      }
     }
   },
   "wizmans-world-re-try-switch": {
@@ -430873,7 +431126,16 @@
     "JP": {
       "price": 1120,
       "currency": "JPY",
-      "date": "2026-09-16"
+      "date": "2026-09-16",
+      "currentSale": {
+        "price": 1120,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 1120,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-12-01T14:59:59Z"
+      }
     }
   },
   "the-long-journey-home-switch": {
@@ -468894,9 +469156,18 @@
       "date": "2026-07-07"
     },
     "JP": {
-      "price": 540,
+      "price": 400,
       "currency": "JPY",
-      "date": "2026-09-16"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 400,
+        "currency": "JPY",
+        "status": "new_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 540,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-12-01T14:59:59Z"
+      }
     }
   },
   "metro-2033-redux-switch": {
@@ -501455,9 +501726,18 @@
       "date": "2026-07-07"
     },
     "HK": {
-      "price": 599,
+      "price": 490,
       "currency": "HKD",
-      "date": "2026-07-07"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 490,
+        "currency": "HKD",
+        "status": "new_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 599,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     }
   },
   "synth-riders-80s-mixtape-side-a-music-pack-70050000071155-switch": {
@@ -515874,7 +516154,16 @@
     "JP": {
       "price": 400,
       "currency": "JPY",
-      "date": "2026-09-16"
+      "date": "2026-09-16",
+      "currentSale": {
+        "price": 400,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 400,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-12-01T14:59:59Z"
+      }
     },
     "CH": {
       "price": 3.87,
@@ -575068,19 +575357,46 @@
   },
   "tales-of-berseria-remastered-switch": {
     "TH": {
-      "price": 1030,
+      "price": 830,
       "currency": "THB",
-      "date": "2026-09-15"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 830,
+        "currency": "THB",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 1030,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     },
     "SG": {
-      "price": 37,
+      "price": 29.8,
       "currency": "SGD",
-      "date": "2026-07-07"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 29.8,
+        "currency": "SGD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 37,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     },
     "MY": {
-      "price": 125.5,
+      "price": 100,
       "currency": "MYR",
-      "date": "2026-07-07"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 100,
+        "currency": "MYR",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 125.5,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     },
     "ZA": {
       "price": 561.75,
@@ -575146,6 +575462,20 @@
       "price": 5197,
       "currency": "JPY",
       "date": "2026-07-28"
+    },
+    "PH": {
+      "price": 1298,
+      "currency": "PHP",
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 1298,
+        "currency": "PHP",
+        "status": "unknown",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     }
   },
   "umihara-kawase-bazooka-switch": {
@@ -636761,7 +637091,16 @@
     "JP": {
       "price": 100,
       "currency": "JPY",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 100,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 100,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-12-01T14:59:59Z"
+      }
     }
   },
   "hell-well-switch": {
@@ -660145,9 +660484,18 @@
   },
   "super-robot-wars-y-deluxe-edition-switch": {
     "HK": {
-      "price": 599,
+      "price": 490,
       "currency": "HKD",
-      "date": "2026-07-07"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 490,
+        "currency": "HKD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 599,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     },
     "US": {
       "price": 56.99,
@@ -708270,9 +708618,18 @@
       "date": "2026-07-21"
     },
     "JP": {
-      "price": 600,
+      "price": 500,
       "currency": "JPY",
-      "date": "2026-09-16"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 500,
+        "currency": "JPY",
+        "status": "new_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 600,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-12-01T14:59:59Z"
+      }
     },
     "CH": {
       "price": 9.99,
@@ -724220,7 +724577,16 @@
     "JP": {
       "price": 629,
       "currency": "JPY",
-      "date": "2026-07-15"
+      "date": "2026-07-15",
+      "currentSale": {
+        "price": 740,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 629,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-18T14:59:59Z"
+      }
     },
     "CH": {
       "price": 8.4,
@@ -778374,7 +778740,16 @@
     "JP": {
       "price": 433,
       "currency": "JPY",
-      "date": "2026-07-13"
+      "date": "2026-07-13",
+      "currentSale": {
+        "price": 435,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 433,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     },
     "US": {
       "price": 2.99,
@@ -807649,9 +808024,18 @@
   },
   "ark-dinosaur-discovery-switch": {
     "JP": {
-      "price": 715,
+      "price": 500,
       "currency": "JPY",
-      "date": "2026-07-14"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 500,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 715,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     },
     "ZA": {
       "price": 45,
@@ -807701,9 +808085,18 @@
   },
   "ark-survival-evolved-switch": {
     "JP": {
-      "price": 2090,
+      "price": 1000,
       "currency": "JPY",
-      "date": "2026-07-14"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 1000,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 2090,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     },
     "ZA": {
       "price": 87.25,
@@ -906414,7 +906807,16 @@
     "JP": {
       "price": 175,
       "currency": "JPY",
-      "date": "2026-07-23"
+      "date": "2026-07-23",
+      "currentSale": {
+        "price": 175,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 175,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-12-07T14:59:59Z"
+      }
     },
     "AU": {
       "price": 3.59,
@@ -963037,7 +963439,16 @@
     "HK": {
       "price": 105,
       "currency": "HKD",
-      "date": "2026-07-21"
+      "date": "2026-07-21",
+      "currentSale": {
+        "price": 105,
+        "currency": "HKD",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 105,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     },
     "US": {
       "price": 14.99,
@@ -964913,7 +965324,16 @@
     "HK": {
       "price": 74,
       "currency": "HKD",
-      "date": "2026-07-21"
+      "date": "2026-07-21",
+      "currentSale": {
+        "price": 75,
+        "currency": "HKD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 74,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     },
     "US": {
       "price": 7.99,
@@ -974308,22 +974728,58 @@
     "TH": {
       "price": 488,
       "currency": "THB",
-      "date": "2026-09-15"
+      "date": "2026-09-15",
+      "currentSale": {
+        "price": 490,
+        "currency": "THB",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 488,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     },
     "SG": {
       "price": 19.8,
       "currency": "SGD",
-      "date": "2026-07-21"
+      "date": "2026-07-21",
+      "currentSale": {
+        "price": 19.8,
+        "currency": "SGD",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 19.8,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     },
     "MY": {
       "price": 63.8,
       "currency": "MYR",
-      "date": "2026-07-21"
+      "date": "2026-07-21",
+      "currentSale": {
+        "price": 63.8,
+        "currency": "MYR",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 63.8,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     },
     "HK": {
       "price": 118,
       "currency": "HKD",
-      "date": "2026-09-15"
+      "date": "2026-09-15",
+      "currentSale": {
+        "price": 118,
+        "currency": "HKD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 118,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     },
     "JP": {
       "price": 2970,
@@ -974364,6 +974820,20 @@
       "price": 43.75,
       "currency": "PEN",
       "date": "2026-10-20"
+    },
+    "PH": {
+      "price": 840,
+      "currency": "PHP",
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 840,
+        "currency": "PHP",
+        "status": "unknown",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     }
   },
   "train-life-a-railway-simulator-switch": {
@@ -1022830,22 +1023300,58 @@
     "TH": {
       "price": 109,
       "currency": "THB",
-      "date": "2026-09-24"
+      "date": "2026-09-24",
+      "currentSale": {
+        "price": 109,
+        "currency": "THB",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 109,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-20T15:59:59Z"
+      }
     },
     "SG": {
       "price": 5.85,
       "currency": "SGD",
-      "date": "2026-09-24"
+      "date": "2026-09-24",
+      "currentSale": {
+        "price": 5.85,
+        "currency": "SGD",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 5.85,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-20T15:59:59Z"
+      }
     },
     "MY": {
       "price": 13.79,
       "currency": "MYR",
-      "date": "2026-09-24"
+      "date": "2026-09-24",
+      "currentSale": {
+        "price": 13.79,
+        "currency": "MYR",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 13.79,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-20T15:59:59Z"
+      }
     },
     "JP": {
       "price": 740,
       "currency": "JPY",
-      "date": "2026-09-24"
+      "date": "2026-09-24",
+      "currentSale": {
+        "price": 740,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 740,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-20T14:59:59Z"
+      }
     },
     "US": {
       "price": 5.99,
@@ -1022901,6 +1023407,20 @@
       "price": 23.99,
       "currency": "PLN",
       "date": "2026-09-24"
+    },
+    "PH": {
+      "price": 177,
+      "currency": "PHP",
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 177,
+        "currency": "PHP",
+        "status": "unknown",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-20T15:59:59Z"
+      }
     }
   },
   "classic-games-collection-vol-1-switch": {
@@ -1062630,17 +1063150,44 @@
     "TH": {
       "price": 109,
       "currency": "THB",
-      "date": "2026-09-24"
+      "date": "2026-09-24",
+      "currentSale": {
+        "price": 109,
+        "currency": "THB",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 109,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-20T15:59:59Z"
+      }
     },
     "SG": {
       "price": 5.85,
       "currency": "SGD",
-      "date": "2026-09-24"
+      "date": "2026-09-24",
+      "currentSale": {
+        "price": 5.85,
+        "currency": "SGD",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 5.85,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-20T15:59:59Z"
+      }
     },
     "MY": {
       "price": 13.79,
       "currency": "MYR",
-      "date": "2026-09-24"
+      "date": "2026-09-24",
+      "currentSale": {
+        "price": 13.79,
+        "currency": "MYR",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 13.79,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-20T15:59:59Z"
+      }
     },
     "US": {
       "price": 5.99,
@@ -1062676,6 +1063223,20 @@
       "price": 19.8,
       "currency": "PEN",
       "date": "2026-09-24"
+    },
+    "PH": {
+      "price": 177,
+      "currency": "PHP",
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 177,
+        "currency": "PHP",
+        "status": "unknown",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-20T15:59:59Z"
+      }
     }
   },
   "shrink-rooms-switch": {
@@ -1120769,7 +1121330,16 @@
     "JP": {
       "price": 2420,
       "currency": "JPY",
-      "date": "2026-07-29"
+      "date": "2026-07-29",
+      "currentSale": {
+        "price": 2420,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 2420,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-29T14:59:59Z"
+      }
     },
     "US": {
       "price": 19.99,
@@ -1191980,22 +1192550,58 @@
     "TH": {
       "price": 96,
       "currency": "THB",
-      "date": "2026-09-26"
+      "date": "2026-09-26",
+      "currentSale": {
+        "price": 96,
+        "currency": "THB",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 96,
+        "saleStart": "2026-11-10T17:00:00Z",
+        "saleEnd": "2026-11-24T16:59:59Z"
+      }
     },
     "SG": {
       "price": 4.11,
       "currency": "SGD",
-      "date": "2026-09-26"
+      "date": "2026-09-26",
+      "currentSale": {
+        "price": 4.11,
+        "currency": "SGD",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 4.11,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-24T15:59:59Z"
+      }
     },
     "MY": {
       "price": 11.97,
       "currency": "MYR",
-      "date": "2026-09-26"
+      "date": "2026-09-26",
+      "currentSale": {
+        "price": 11.97,
+        "currency": "MYR",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 11.97,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-24T15:59:59Z"
+      }
     },
     "JP": {
       "price": 486,
       "currency": "JPY",
-      "date": "2026-09-26"
+      "date": "2026-09-26",
+      "currentSale": {
+        "price": 486,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 486,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     },
     "ZA": {
       "price": 53.85,
@@ -1206491,22 +1207097,58 @@
     "TH": {
       "price": 100,
       "currency": "THB",
-      "date": "2026-09-26"
+      "date": "2026-09-26",
+      "currentSale": {
+        "price": 100,
+        "currency": "THB",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 100,
+        "saleStart": "2026-11-10T17:00:00Z",
+        "saleEnd": "2026-11-24T16:59:59Z"
+      }
     },
     "SG": {
-      "price": 3.74,
+      "price": 3.73,
       "currency": "SGD",
-      "date": "2026-09-26"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 3.73,
+        "currency": "SGD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 3.74,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-24T15:59:59Z"
+      }
     },
     "MY": {
-      "price": 12.37,
+      "price": 12.34,
       "currency": "MYR",
-      "date": "2026-09-26"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 12.34,
+        "currency": "MYR",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 12.37,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-24T15:59:59Z"
+      }
     },
     "JP": {
-      "price": 487,
+      "price": 486,
       "currency": "JPY",
-      "date": "2026-09-26"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 486,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 487,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     }
   },
   "pick-my-heart-chapter-2-new-faces-switch": {
@@ -1210060,7 +1210702,16 @@
     "JP": {
       "price": 449,
       "currency": "JPY",
-      "date": "2026-08-04"
+      "date": "2026-08-04",
+      "currentSale": {
+        "price": 449,
+        "currency": "JPY",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 449,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-24T14:59:59Z"
+      }
     },
     "ZA": {
       "price": 53.95,
@@ -1214996,17 +1215647,44 @@
     "TH": {
       "price": 109,
       "currency": "THB",
-      "date": "2026-08-05"
+      "date": "2026-08-05",
+      "currentSale": {
+        "price": 109,
+        "currency": "THB",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 109,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-20T15:59:59Z"
+      }
     },
     "SG": {
       "price": 5.85,
       "currency": "SGD",
-      "date": "2026-08-05"
+      "date": "2026-08-05",
+      "currentSale": {
+        "price": 5.85,
+        "currency": "SGD",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 5.85,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-20T15:59:59Z"
+      }
     },
     "MY": {
       "price": 13.79,
       "currency": "MYR",
-      "date": "2026-08-05"
+      "date": "2026-08-05",
+      "currentSale": {
+        "price": 13.79,
+        "currency": "MYR",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 13.79,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-20T15:59:59Z"
+      }
     },
     "US": {
       "price": 5.99,
@@ -1215062,6 +1215740,20 @@
       "price": 24,
       "currency": "PLN",
       "date": "2026-08-06"
+    },
+    "PH": {
+      "price": 177,
+      "currency": "PHP",
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 177,
+        "currency": "PHP",
+        "status": "unknown",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-20T15:59:59Z"
+      }
     }
   },
   "andro-dunos-2-switch": {
@@ -1217245,24 +1217937,60 @@
   },
   "underling-uprising-switch": {
     "JP": {
-      "price": 990,
+      "price": 792,
       "currency": "JPY",
-      "date": "2026-09-24"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 792,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 990,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-20T14:59:59Z"
+      }
     },
     "TH": {
-      "price": 162,
+      "price": 130,
       "currency": "THB",
-      "date": "2026-09-24"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 130,
+        "currency": "THB",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 162,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-20T15:59:59Z"
+      }
     },
     "SG": {
-      "price": 8.12,
+      "price": 6.5,
       "currency": "SGD",
-      "date": "2026-09-24"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 6.5,
+        "currency": "SGD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 8.12,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-20T15:59:59Z"
+      }
     },
     "MY": {
-      "price": 22.5,
+      "price": 18,
       "currency": "MYR",
-      "date": "2026-09-24"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 18,
+        "currency": "MYR",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 22.5,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-20T15:59:59Z"
+      }
     },
     "US": {
       "price": 7.49,
@@ -1217323,6 +1218051,20 @@
       "price": 31.49,
       "currency": "PLN",
       "date": "2026-09-24"
+    },
+    "PH": {
+      "price": 280,
+      "currency": "PHP",
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 280,
+        "currency": "PHP",
+        "status": "unknown",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-20T15:59:59Z"
+      }
     }
   },
   "supermarket-simulator-25-switch": {
@@ -1360776,19 +1361518,46 @@
   },
   "jurassic-world-evolution-2-complete-edition-switch-2": {
     "TH": {
-      "price": 1315,
+      "price": 1127,
       "currency": "THB",
-      "date": "2026-10-05"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 1127,
+        "currency": "THB",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 1315,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-15T15:59:59Z"
+      }
     },
     "SG": {
-      "price": 56.17,
+      "price": 48.15,
       "currency": "SGD",
-      "date": "2026-10-05"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 48.15,
+        "currency": "SGD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 56.17,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-15T15:59:59Z"
+      }
     },
     "MY": {
-      "price": 163.8,
+      "price": 140.4,
       "currency": "MYR",
-      "date": "2026-10-05"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 140.4,
+        "currency": "MYR",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 163.8,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-15T15:59:59Z"
+      }
     },
     "ZA": {
       "price": 756,
@@ -1360851,9 +1361620,32 @@
       "date": "2026-10-06"
     },
     "JP": {
-      "price": 4900,
+      "price": 4200,
       "currency": "JPY",
-      "date": "2026-10-05"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 4200,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 4900,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-15T14:59:59Z"
+      }
+    },
+    "PH": {
+      "price": 1665,
+      "currency": "PHP",
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 1665,
+        "currency": "PHP",
+        "status": "unknown",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-11-15T15:59:59Z"
+      }
     }
   },
   "silent-raid-switch": {
@@ -1362548,9 +1363340,18 @@
   },
   "mai-child-of-ages-switch": {
     "JP": {
-      "price": 1834,
+      "price": 1729,
       "currency": "JPY",
-      "date": "2026-08-31"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 1729,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 1834,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-11-26T14:59:59Z"
+      }
     },
     "ZA": {
       "price": 183.6,
@@ -1419567,7 +1420368,7 @@
       "currentSale": {
         "price": 109.86,
         "currency": "CAD",
-        "status": "matches_low",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": 109.86,
         "saleStart": "2026-11-02T17:00:00Z",
@@ -1419614,6 +1420415,20 @@
         "historicPrice": 230.62,
         "saleStart": "2026-11-02T17:00:00Z",
         "saleEnd": "2026-11-16T07:59:59Z"
+      }
+    },
+    "HK": {
+      "price": 118,
+      "currency": "HKD",
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 118,
+        "currency": "HKD",
+        "status": "unknown",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
       }
     }
   },
@@ -1423922,9 +1424737,18 @@
   },
   "banner-of-the-maid-switch": {
     "JP": {
-      "price": 1030,
+      "price": 780,
       "currency": "JPY",
-      "date": "2026-09-16"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 780,
+        "currency": "JPY",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 1030,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-12-01T14:59:59Z"
+      }
     },
     "US": {
       "price": 5.09,
@@ -1425888,9 +1426712,18 @@
   },
   "zengeon-switch": {
     "JP": {
-      "price": 300,
+      "price": 200,
       "currency": "JPY",
-      "date": "2026-09-16"
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 200,
+        "currency": "JPY",
+        "status": "new_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 300,
+        "saleStart": "2026-11-10T15:00:00Z",
+        "saleEnd": "2026-12-01T14:59:59Z"
+      }
     },
     "ZA": {
       "price": 108,
@@ -1461067,6 +1461900,20 @@
       "price": 381.75,
       "currency": "PLN",
       "date": "2026-09-30"
+    },
+    "HK": {
+      "price": 118,
+      "currency": "HKD",
+      "date": "2026-11-10",
+      "currentSale": {
+        "price": 118,
+        "currency": "HKD",
+        "status": "unknown",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-10T16:00:00Z",
+        "saleEnd": "2026-12-06T15:59:59Z"
+      }
     }
   },
   "digimon-story-time-stranger-deluxe-edition-switch-2": {
