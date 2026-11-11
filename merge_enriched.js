@@ -127,6 +127,42 @@ function normalizeTitle(s) {
     .trim();
 }
 
+function detectEdition(title) {
+  const text = String(title || '').toLowerCase();
+  const editionMatchers = [
+    ['ultimate', [/\bultimate(?:\s+edition)?\b/, /終極版/, /终极版/, /アルティメット/]],
+    ['deluxe', [/\bdeluxe(?:\s+edition)?\b/, /豪華版/, /豪华版/, /デラックス/]],
+    ['definitive', [/\bdefinitive(?:\s+edition)?\b/, /決定版/, /決定的な版/]],
+    ['complete', [/\bcomplete(?:\s+edition)?\b/, /完整版/, /完全版/]],
+    ['collector', [/\bcollector(?:'s)?(?:\s+edition)?\b/, /收藏版/, /コレクターズ/]],
+    ['gold', [/\bgold(?:\s+edition)?\b/, /黃金版/, /黄金版/]],
+    ['premium', [/\bpremium(?:\s+edition)?\b/, /高級版/]],
+    ['standard', [/\bstandard(?:\s+edition)?\b/, /標準版/, /标准版/]],
+  ];
+
+  const matches = editionMatchers
+    .filter(([, patterns]) => patterns.some(pattern => pattern.test(text)))
+    .map(([edition]) => edition);
+
+  return matches.length === 1 ? matches[0] : null;
+}
+
+function findUniqueEditionMatch(candidates, baseItem) {
+  const baseEdition = detectEdition(baseItem?.title);
+  if (!baseEdition) return null;
+
+  const candidateEditions = candidates.map(item => ({
+    item,
+    edition: detectEdition(item?.title),
+  }));
+
+  // Fail closed: only use edition labels if every candidate is classified and
+  // exactly one candidate has the same edition as the base title.
+  if (candidateEditions.some(candidate => !candidate.edition)) return null;
+  const matches = candidateEditions.filter(candidate => candidate.edition === baseEdition);
+  return matches.length === 1 ? matches[0].item : null;
+}
+
 // ---- platform/product helpers ----
 function normalizeProductCodeForRegion(pc, region) {
   if (!pc) return null;
@@ -429,33 +465,8 @@ function tryMatch(regionIdx, baseItem, { strictUrlKeyHit }) {
           if (candidates.length === 1) {
             return { item: candidates[0], rule: 'k2' };
           }
-
-          const baseNum = Number(String(baseNsuid).replace(/\D+/g, ''));
-
-          const best = candidates
-            .map(cand => {
-              const candNsuid =
-                cand.nsuid_us ??
-                cand.nsuid_eu ??
-                cand.nsuid_jp ??
-                cand.nsuid_hk ??
-                cand.nsuid_as ??
-                cand.nsuid_kr ??
-                cand.nsuid ??
-                '';
-
-              const candNum = Number(String(candNsuid).replace(/\D+/g, ''));
-
-              return {
-                cand,
-                distance: Number.isFinite(baseNum) && Number.isFinite(candNum)
-                  ? Math.abs(baseNum - candNum)
-                  : Number.MAX_SAFE_INTEGER
-              };
-            })
-            .sort((a, b) => a.distance - b.distance)[0];
-
-          return { item: best.cand, rule: 'k2' };
+          const editionMatch = findUniqueEditionMatch(candidates, baseItem);
+          if (editionMatch) return { item: editionMatch, rule: 'k2-edition' };
         }
       }
 
@@ -469,33 +480,8 @@ function tryMatch(regionIdx, baseItem, { strictUrlKeyHit }) {
       if (candidates.length === 1) {
         return { item: candidates[0], rule: 'k3' };
       }
-
-      const baseNum = Number(String(baseNsuid).replace(/\D+/g, ''));
-
-      const best = candidates
-        .map(cand => {
-          const candNsuid =
-            cand.nsuid_us ??
-            cand.nsuid_eu ??
-            cand.nsuid_jp ??
-            cand.nsuid_hk ??
-            cand.nsuid_as ??
-            cand.nsuid_kr ??
-            cand.nsuid ??
-            '';
-
-          const candNum = Number(String(candNsuid).replace(/\D+/g, ''));
-
-          return {
-            cand,
-            distance: Number.isFinite(baseNum) && Number.isFinite(candNum)
-              ? Math.abs(baseNum - candNum)
-              : Number.MAX_SAFE_INTEGER
-          };
-        })
-        .sort((a, b) => a.distance - b.distance)[0];
-
-      return { item: best.cand, rule: 'k3' };
+      const editionMatch = findUniqueEditionMatch(candidates, baseItem);
+      if (editionMatch) return { item: editionMatch, rule: 'k3-edition' };
     }
   }
   }
@@ -588,7 +574,7 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
   for (const r of REGIONS) {
     regionIdx[r] = buildRegionIndexes(regionData[r], r);
     seen[r] = new Set();
-    ruleCounts[r] = { manual: 0, 'strict-urlKey': 0, k1: 0, k2: 0, k3: 0, k4: 0, 'k4-jp-title': 0, title: 0 };
+    ruleCounts[r] = { manual: 0, 'strict-urlKey': 0, k1: 0, k2: 0, 'k2-edition': 0, k3: 0, 'k3-edition': 0, k4: 0, 'k4-jp-title': 0, title: 0 };
   }
 
   const activeRaiseEvents = [];

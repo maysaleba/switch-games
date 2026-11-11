@@ -5,7 +5,8 @@
  * - MASTER (union): keeps everything ever seen; never drops rows when base changes.
  * - CURRENT snapshot: only items present in today's base (active_in_base=true).
  * - Non-destructive merge: base blanks can't wipe enriched values.
- * - PRESERVE SENTINEL: productCode_us === "" stays "", never reprocessed.
+ * - Preserve explicit empty sentinel values; retry missing/invalid codes.
+ * - Diagnostics: --check-url <product-url> or --refresh-nsuid <nsuid>
  *
  * Reads:
  *   data/us_games.json                  <-- from fetch_us.js (Algolia)
@@ -18,6 +19,7 @@
 const fs = require("fs");
 const path = require("path");
 const https = require("https");
+const cheerio = require("cheerio");
 
 const IN_PATH     = "data/us_games.json";
 const OUT_MASTER  = "data/us_games_enriched.json";
@@ -56,19 +58,64 @@ async function fetchText(url) {
   });
 }
 
-function extractHACAnywhere(text) {
-  if (!text) return null;
-  const m = String(text).match(/\bHAC[0-9A-Z\-]{4,}\b/i);
-  return m?m[0].toUpperCase():null;
+function normalizeProductCode(value) {
+  const code = String(value ?? "").trim().toUpperCase();
+  // Observed US eShop codes are HAC/BEE followed by six alphanumeric characters.
+  // This rejects page slugs and prose such as "HACK-G-U-LAST-RECODE-SWITCH".
+  return /^(?:HAC|BEE)[A-Z0-9]{6}$/.test(code) ? code : null;
 }
+
 function extractProductCodeFromHtml(html) {
-  const m1 = html.match(/<meta[^>]+itemprop=["']sku["'][^>]+content=["']([^"']+)["']/i);
-  if (m1&&m1[1]) return m1[1].trim();
-  const m2 = html.match(/itemprop=["']sku["'][^>]*>\s*([^<>\s][^<]*)\s*</i);
-  if (m2&&m2[1]) return m2[1].trim();
-  const m3 = html.match(/>\s*(SKU|Model)\s*<\/[^>]+>[\s\S]{0,200}?([A-Z0-9\-_]{4,})/i);
-  if (m3&&m3[2]) return m3[2].trim();
-  return extractHACAnywhere(html);
+  if (!html) return null;
+
+  const $ = cheerio.load(html);
+  const candidates = [];
+
+  // Read only product-specific SKU fields, not arbitrary page text or links.
+  $('meta[itemprop="sku"][content], meta[name="sku"][content], [itemprop="sku"], [data-product-sku]').each((_, el) => {
+    const node = $(el);
+    candidates.push(
+      node.attr("content") ||
+      node.attr("data-product-sku") ||
+      node.text()
+    );
+  });
+
+  // Nintendo product pages often expose productCode in serialized application data.
+  function collectJsonProductCodes(value) {
+    if (Array.isArray(value)) {
+      for (const child of value) collectJsonProductCodes(child);
+      return;
+    }
+    if (!value || typeof value !== "object") return;
+
+    for (const [key, child] of Object.entries(value)) {
+      if (key.toLowerCase() === "productcode" && typeof child === "string") candidates.push(child);
+      if (key.toLowerCase() === "sku" && typeof child === "string") candidates.push(child);
+      collectJsonProductCodes(child);
+    }
+  }
+
+  $('script').each((_, el) => {
+    const text = $(el).contents().text().trim();
+    if (!text) return;
+    try {
+      collectJsonProductCodes(JSON.parse(text));
+    } catch {
+      // Some scripts are executable JavaScript, not standalone JSON.
+    }
+  });
+
+  // Match only the value of an explicitly named productCode field in serialized data.
+  // Never search for HAC/BEE-looking text without this field name.
+  const productCodeField = /["']productCode["']\s*:\s*["']((?:HAC|BEE)[A-Z0-9]{6})["']/gi;
+  for (const match of html.matchAll(productCodeField)) candidates.push(match[1]);
+
+  for (const candidate of candidates) {
+    const code = normalizeProductCode(candidate);
+    if (code) return code;
+  }
+  return null;
 }
 
 // --- fetch per game ---
@@ -79,7 +126,8 @@ async function getProductCodeForUrl(url) {
   if (!html) return { url, productCode:null, result:"ERROR", error:String(err) };
   const code=extractProductCodeFromHtml(html);
   if (code) return { url, productCode:code, result:"FOUND" };
-  return { url, productCode:"", result:"NO_CODE" };
+  // Leave missing codes retryable; an empty string is reserved as an explicit skip sentinel.
+  return { url, productCode:null, result:"NO_CODE" };
 }
 
 function resolveUSUrl(raw) {
@@ -103,6 +151,50 @@ async function mapWithConcurrency(items, limit, fn, baseDelayMs=0) {
 }
 
 // --- MAIN ---
+if (process.argv[2] === "--check-url") {
+  const url = process.argv[3];
+  if (!url) {
+    console.error("Usage: node fetchProductCodesUS.js --check-url <product-url>");
+    process.exit(1);
+  }
+  getProductCodeForUrl(url)
+    .then(result => console.log(JSON.stringify(result, null, 2)))
+    .catch(error => {
+      console.error(error);
+      process.exitCode = 1;
+    });
+} else if (process.argv[2] === "--refresh-nsuid") {
+  const nsuid = process.argv[3];
+  if (!nsuid) {
+    console.error("Usage: node fetchProductCodesUS.js --refresh-nsuid <nsuid>");
+    process.exit(1);
+  }
+
+  (async () => {
+    const master = loadJsonSafe(OUT_MASTER, []);
+    const game = Array.isArray(master)
+      ? master.find(item => String(item.nsuid_us || item.nsuid || "") === nsuid)
+      : null;
+    if (!game) throw new Error(`NSUID ${nsuid} was not found in ${OUT_MASTER}`);
+
+    const url = resolveUSUrl(game.url);
+    if (!url) throw new Error(`No product URL found for NSUID ${nsuid}`);
+
+    const result = await getProductCodeForUrl(url);
+    if (result.result !== "FOUND") {
+      throw new Error(`No valid product code found for ${nsuid} (${result.result})`);
+    }
+
+    game.productCode_us = result.productCode;
+    game.last_checked_at = nowIso();
+    saveJsonPretty(OUT_MASTER, master);
+    saveJsonPretty(OUT_CURRENT, master.filter(item => item.active_in_base));
+    console.log(JSON.stringify({ nsuid, title: game.title, ...result }, null, 2));
+  })().catch(error => {
+    console.error(error);
+    process.exit(1);
+  });
+} else {
 (async()=>{
   ensureDir(OUT_MASTER);
 
@@ -147,7 +239,10 @@ async function mapWithConcurrency(items, limit, fn, baseDelayMs=0) {
     if(merged.active_in_base) merged.last_seen_at=now;
     else merged.last_seen_at=merged.last_seen_at||now;
 
-    merged.productCode_us = pickCode(base.productCode_us, merged.productCode_us);
+    const pickedProductCode = pickCode(base.productCode_us, merged.productCode_us);
+    merged.productCode_us = pickedProductCode === ""
+      ? ""
+      : (normalizeProductCode(pickedProductCode) || pickedProductCode);
 
     working.push(merged);
   }
@@ -156,7 +251,7 @@ async function mapWithConcurrency(items, limit, fn, baseDelayMs=0) {
     if(!g.active_in_base) return false;
     const code=g.productCode_us;
     if(code==="") return false;
-    if(typeof code==="string" && code.trim()) return false;
+    if(normalizeProductCode(code)) return false;
     const url=resolveUSUrl(g.url); return !!url;
   });
 
@@ -195,3 +290,4 @@ async function mapWithConcurrency(items, limit, fn, baseDelayMs=0) {
 
   console.log(`Done. Processed=${processed}, FOUND=${found}, EMPTY="${markedEmpty}", NULL=${markedNull}. Master: ${OUT_MASTER} | Current: ${OUT_CURRENT}`);
 })();
+}
