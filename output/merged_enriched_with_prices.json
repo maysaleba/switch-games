@@ -3434504,26 +3434504,26 @@
       "TH": {
         "regular": "890",
         "regular_currency": "THB",
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
+        "sale": "801",
+        "sale_currency": "THB",
+        "sale_start": "2026-11-12T02:00:00Z",
+        "sale_end": "2026-12-04T14:59:59Z"
       },
       "SG": {
         "regular": "34.9",
         "regular_currency": "SGD",
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
+        "sale": "31.41",
+        "sale_currency": "SGD",
+        "sale_start": "2026-11-12T02:00:00Z",
+        "sale_end": "2026-12-04T14:59:59Z"
       },
       "MY": {
         "regular": "99",
         "regular_currency": "MYR",
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
+        "sale": "89.10",
+        "sale_currency": "MYR",
+        "sale_start": "2026-11-12T02:00:00Z",
+        "sale_end": "2026-12-04T14:59:59Z"
       },
       "CH": {
         "regular": "25",
@@ -3434536,10 +3434536,10 @@
       "PH": {
         "regular": "1450",
         "regular_currency": "PHP",
-        "sale": null,
-        "sale_currency": null,
-        "sale_start": null,
-        "sale_end": null
+        "sale": "1305",
+        "sale_currency": "PHP",
+        "sale_start": "2026-11-12T02:00:00Z",
+        "sale_end": "2026-12-04T14:59:59Z"
       }
     }
   },
@@ -3473059,6 +3473059,38 @@
       "CH": {
         "regular": "30",
         "regular_currency": "CHF",
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "TH": {
+        "regular": "1640",
+        "regular_currency": "THB",
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "SG": {
+        "regular": "61",
+        "regular_currency": "SGD",
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "MY": {
+        "regular": "209",
+        "regular_currency": "MYR",
+        "sale": null,
+        "sale_currency": null,
+        "sale_start": null,
+        "sale_end": null
+      },
+      "PH": {
+        "regular": "2620",
+        "regular_currency": "PHP",
         "sale": null,
         "sale_currency": null,
         "sale_start": null,
@@ -3562657,51 +3562689,6 @@
     }
   },
   {
-    "key": "eternal-palace-sakura-switch",
-    "prices": {
-      "JP": {
-        "regular": "1500",
-        "regular_currency": "JPY",
-        "sale": "1200",
-        "sale_currency": "JPY",
-        "sale_start": "2026-11-04T15:00:00Z",
-        "sale_end": "2026-11-18T14:59:59Z"
-      },
-      "TH": {
-        "regular": "239",
-        "regular_currency": "THB",
-        "sale": "191",
-        "sale_currency": "THB",
-        "sale_start": "2026-11-04T17:00:00Z",
-        "sale_end": "2026-11-18T16:59:59Z"
-      },
-      "SG": {
-        "regular": "13.49",
-        "regular_currency": "SGD",
-        "sale": "10.79",
-        "sale_currency": "SGD",
-        "sale_start": "2026-11-04T16:00:00Z",
-        "sale_end": "2026-11-18T15:59:59Z"
-      },
-      "MY": {
-        "regular": "30.49",
-        "regular_currency": "MYR",
-        "sale": "24.39",
-        "sale_currency": "MYR",
-        "sale_start": "2026-11-04T16:00:00Z",
-        "sale_end": "2026-11-18T15:59:59Z"
-      },
-      "PH": {
-        "regular": "499",
-        "regular_currency": "PHP",
-        "sale": "399",
-        "sale_currency": "PHP",
-        "sale_start": "2026-11-04T16:00:00Z",
-        "sale_end": "2026-11-18T15:59:59Z"
-      }
-    }
-  },
-  {
     "key": "zomblox-switch",
     "prices": {
       "JP": {
@@ -3562788,6 +3562775,51 @@
         "sale_currency": null,
         "sale_start": null,
         "sale_end": null
+      }
+    }
+  },
+  {
+    "key": "eternal-palace-sakura-switch",
+    "prices": {
+      "JP": {
+        "regular": "1500",
+        "regular_currency": "JPY",
+        "sale": "1200",
+        "sale_currency": "JPY",
+        "sale_start": "2026-11-04T15:00:00Z",
+        "sale_end": "2026-11-18T14:59:59Z"
+      },
+      "TH": {
+        "regular": "239",
+        "regular_currency": "THB",
+        "sale": "191",
+        "sale_currency": "THB",
+        "sale_start": "2026-11-04T17:00:00Z",
+        "sale_end": "2026-11-18T16:59:59Z"
+      },
+      "SG": {
+        "regular": "13.49",
+        "regular_currency": "SGD",
+        "sale": "10.79",
+        "sale_currency": "SGD",
+        "sale_start": "2026-11-04T16:00:00Z",
+        "sale_end": "2026-11-18T15:59:59Z"
+      },
+      "MY": {
+        "regular": "30.49",
+        "regular_currency": "MYR",
+        "sale": "24.39",
+        "sale_currency": "MYR",
+        "sale_start": "2026-11-04T16:00:00Z",
+        "sale_end": "2026-11-18T15:59:59Z"
+      },
+      "PH": {
+        "regular": "499",
+        "regular_currency": "PHP",
+        "sale": "399",
+        "sale_currency": "PHP",
+        "sale_start": "2026-11-04T16:00:00Z",
+        "sale_end": "2026-11-18T15:59:59Z"
       }
     }
   },
