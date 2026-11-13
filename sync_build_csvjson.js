@@ -224,7 +224,7 @@ function safeHLTB(hltbData, title) {
   if (!hltbData || !Array.isArray(hltbData) || !title) {
     return { MainStory: '', MainExtra: '', Completionist: '', LowestPrice: '' };
   }
-  const clean = (t) => String(t).replace(/[^a-zA-Z0-9:+ ]/g, '').trim().toLowerCase();
+  const clean = (t) => String(t).replace(/:/g, '').replace(/[^a-zA-Z0-9+ ]/g, '').trim().toLowerCase();
   const normalizeHLTBTitle = (t) => clean(String(t).replace(
     /\s*(?:[-–—:]\s*)?(?:for\s+)?nintendo\s+switch\s*(?:™\s*)?(?:2\s*)?(?:edition)?\s*$/i,
     ''
