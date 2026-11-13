@@ -58,6 +58,7 @@ const PRICE_EXCLUSIONS = {
   'ghost-of-a-tale-switch': ['AR', 'CO'],
   'super-meat-boy-forever-switch': ['CO'],
   'assassins-creed-anniversary-edition-mega-bundle-switch': ['AR'],
+  'digimon-story-time-stranger-ultimate-edition-switch': ['HK'],
 
   // More examples:
   // 'another-game-slug': ['JP'],
