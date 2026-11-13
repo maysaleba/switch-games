@@ -570,6 +570,10 @@ function ensureAllRegionKeys(row) {
       kept++;
       // keep row, but ensure SCORE/URL/platform/genre fresh & region keys present
       const keptRow = { ...row };
+      keptRow.MainStory = rebuilt.MainStory;
+      keptRow.MainExtra = rebuilt.MainExtra;
+      keptRow.Completionist = rebuilt.Completionist;
+      keptRow.LowestPrice = rebuilt.LowestPrice;
       // compute meta slug with replacements+normalize even when keeping
       const metaSlug = normalizeForMetacritic(applySlugReplacements(rebuilt.Slug));
       keptRow.SCORE = rebuilt.SCORE || keptRow.SCORE || '';
