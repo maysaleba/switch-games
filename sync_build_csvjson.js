@@ -225,7 +225,11 @@ function safeHLTB(hltbData, title) {
     return { MainStory: '', MainExtra: '', Completionist: '', LowestPrice: '' };
   }
   const clean = (t) => String(t).replace(/[^a-zA-Z0-9:+ ]/g, '').trim().toLowerCase();
-  const target = clean(
+  const normalizeHLTBTitle = (t) => clean(String(t).replace(
+    /\s*(?:[-–—:]\s*)?(?:for\s+)?nintendo\s+switch\s*(?:™\s*)?(?:2\s*)?(?:edition)?\s*$/i,
+    ''
+  ));
+  const target = normalizeHLTBTitle(
     title
       .replace('CRISIS CORE –FINAL FANTASY VII– REUNION', 'CRISIS CORE: FINAL FANTASY VII REUNION')
       .replace('Prince of Persia The Lost Crown', 'Prince of Persia: The Lost Crown')
@@ -233,7 +237,7 @@ function safeHLTB(hltbData, title) {
   let best = null;
   let bestScore = 0;
   for (const row of hltbData) {
-    const t = clean(row.game_name || '');
+    const t = normalizeHLTBTitle(row.game_name || '');
     const sim = jaccardSimilarity(target, t);
     if (sim > bestScore) { bestScore = sim; best = row; if (sim === 1) break; }
   }
