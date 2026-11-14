@@ -12,6 +12,7 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const dayjs = require('dayjs');
+const { createHltbMatcher } = require('./hltb-matcher');
 
 // -------------------- CONFIG --------------------
 const REMOTE_CSVJSON_URL     = 'https://raw.githubusercontent.com/maysaleba/maysaleba.github.io/main/src/csvjson.json';
@@ -219,44 +220,6 @@ function normalizeForMetacritic(slug) {
   return slug.replace(/-switch(?:-2)?$/, '');
 }
 
-// HLTB fuzzy (simple + dependency-free)
-function safeHLTB(hltbData, title) {
-  if (!hltbData || !Array.isArray(hltbData) || !title) {
-    return { MainStory: '', MainExtra: '', Completionist: '', LowestPrice: '' };
-  }
-  const clean = (t) => String(t).replace(/:/g, '').replace(/[^a-zA-Z0-9+ ]/g, '').trim().toLowerCase();
-  const normalizeHLTBTitle = (t) => clean(String(t).replace(
-    /\s*(?:[-–—:]\s*)?(?:for\s+)?nintendo\s+switch\s*(?:™\s*)?(?:2\s*)?(?:edition)?\s*$/i,
-    ''
-  ));
-  const target = normalizeHLTBTitle(
-    title
-      .replace('CRISIS CORE –FINAL FANTASY VII– REUNION', 'CRISIS CORE: FINAL FANTASY VII REUNION')
-      .replace('Prince of Persia The Lost Crown', 'Prince of Persia: The Lost Crown')
-  );
-  let best = null;
-  let bestScore = 0;
-  for (const row of hltbData) {
-    const t = normalizeHLTBTitle(row.game_name || '');
-    const sim = jaccardSimilarity(target, t);
-    if (sim > bestScore) { bestScore = sim; best = row; if (sim === 1) break; }
-  }
-  if (!best || bestScore < 0.9) return { MainStory: '', MainExtra: '', Completionist: '', LowestPrice: '' };
-  return {
-    MainStory: Math.round((best.comp_main || 0) / 3600) || '',
-    MainExtra: Math.round((best.comp_plus || 0) / 3600) || '',
-    Completionist: Math.round((best.comp_100 || 0) / 3600) || '',
-    LowestPrice: best.game_id ? `/game/${best.game_id}` : ''
-  };
-}
-function jaccardSimilarity(a, b) {
-  const A = new Set(a.split(' ').filter(Boolean));
-  const B = new Set(b.split(' ').filter(Boolean));
-  const inter = [...A].filter((x) => B.has(x)).length;
-  const uni = new Set([...A, ...B]).size || 1;
-  return inter / uni;
-}
-
 function buildImageUrl(g) {
   const imgEU = g.imageSquare_eu && g.imageSquare_eu.trim();
   const imgJP = g.imageSquare_jp && g.imageSquare_jp.trim();
@@ -439,6 +402,7 @@ function ensureAllRegionKeys(row) {
   // 3) optional HLTB + Metacritic
   const hltbData = readJsonSafe(HLTB_JSON);
   console.log(`📘 HLTB present: ${!!hltbData} ${hltbData ? `(${hltbData.length} rows)` : ''}`);
+  const matchHLTB = createHltbMatcher(hltbData);
   const metaMap = loadMetacriticMap();
   console.log(`🟣 Metacritic rows loaded: ${metaMap.size}`);
 
@@ -457,7 +421,7 @@ function ensureAllRegionKeys(row) {
     const SaleStarted = saleStarts.length ? dayjs(Math.max(...saleStarts)).format('YYYY-MM-DD') : '';
     const salePriceUS = prices?.US?.sale ?? '';
     const PercentOff  = computeMaxPercentOffAcrossRegions(prices);
-    const hltb        = safeHLTB(hltbData, g.title || '');
+    const hltb        = matchHLTB(g.title || '');
     const Image       = buildImageUrl(g);
     const MexPrice    = buildMexPrice(g);
     const regularPick = pickRegular(prices);
