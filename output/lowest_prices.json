@@ -612426,7 +612426,16 @@
     "HK": {
       "price": 166,
       "currency": "HKD",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 166,
+        "currency": "HKD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 166,
+        "saleStart": "2026-11-15T16:00:00Z",
+        "saleEnd": "2026-11-30T15:59:59Z"
+      }
     },
     "US": {
       "price": 13.49,
