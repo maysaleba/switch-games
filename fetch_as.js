@@ -4,9 +4,10 @@
  *  - Switch 1 feed (HACP + urlKey suffix "-switch" + platform "Nintendo Switch")
  *  - Switch 2 feed (BEEP + urlKey suffix "-switch-2" + platform "Nintendo Switch 2")
  *
- * English gating:
- *  - Keep only items where response lang contains "en" or "en_US" (also accepts en-US, en_GB etc.)
- *  - For kept items, output supportLanguage: "en"
+ * Language gating:
+ *  - Keep items whose response lang contains English, plus items where lang is missing/null.
+ *  - Reject items with an explicit language list that contains no English.
+ *  - Output supportLanguage: "en" only when English is confirmed; leave it blank when unknown.
  *
  * Output:
  *  - data/as_games_enriched.json            (MASTER grow-forever union)
@@ -107,8 +108,12 @@ function mapAsItem(item, productPrefix, platformName) {
   // ✅ SG response uses `lang` (array). Fall back to `language` just in case.
   const langField = item?.lang ?? item?.language ?? null;
 
-  // 🚫 DROP if no English
-  if (!hasEnglish(langField)) return null;
+  // Previous behavior: drop items whenever English was not confirmed.
+  // Uncomment this and remove the conditional below to restore it:
+  // if (!hasEnglish(langField)) return null;
+
+  // A null/missing lang is unknown, not proof that English is unsupported.
+  if (langField != null && !hasEnglish(langField)) return null;
 
   const title = item?.title || "";
   const nsuid = item?.nsuid || "";
@@ -132,8 +137,9 @@ function mapAsItem(item, productPrefix, platformName) {
     nsuid_as: nsuid,
     productCode_as: icode ? `${productPrefix}${icode}` : "",
 
-    // ✅ required output
-    supportLanguage: "en",
+    // Record English only when the feed confirms it; blank lets master data retain
+    // any manually supplied value when Nintendo omits language metadata.
+    supportLanguage: hasEnglish(langField) ? "en" : "",
   };
 }
 
