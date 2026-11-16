@@ -51,7 +51,7 @@ const REGION_KEY_MAP = {
 };
 
 // fallback chain for "Price" (regular) column
-const REGULAR_FALLBACK = ['US', 'AU', 'JP', 'KR', 'HK'];
+const REGULAR_FALLBACK = ['US', 'AU', 'JP', 'PH', 'HK'];
 
 // Countries to completely ignore for specific game slugs.
 // Ignored countries will not affect price, discount, sale dates, or output columns.
