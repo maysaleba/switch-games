@@ -552,11 +552,6 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
     base[imgSqKey] = String(imgSqVal).trim();
   }
 
-  // The PH pre-price pass supplies the initial discounted-price snapshot.
-  if (region === 'as' && matched?.prices?.PH) {
-    base.prices = { ...(base.prices || {}), PH: matched.prices.PH };
-  }
-
   if (matched && matched.active_in_base === true) {
     if (base.active_in_base !== true && typeof onRaise === 'function') onRaise();
     base.active_in_base = true;

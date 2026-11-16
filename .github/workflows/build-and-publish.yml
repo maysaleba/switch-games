@@ -101,7 +101,7 @@ jobs:
           run_hk() { echo "=== HK start ==="; node fetch_hk.js; node fetchProductCodesHK.js; echo "=== HK done ==="; }
           run_jp() { echo "=== JP start ==="; node fetch_jp.js; node fetchProductCodesJP.js; echo "=== JP done ==="; }
           run_us() { echo "=== US start ==="; node fetch_us.js; node fetchProductCodesUS.js; echo "=== US done ==="; }
-          run_ph() { echo "=== PH start ==="; node fetch_ph.js; node price_ph.js; echo "=== PH done ==="; }
+          run_ph() { echo "=== PH start ==="; node fetch_ph.js; echo "=== PH done ==="; }
       
           PIDS=()
           if [ "$GROUP" = all ] || [ "$GROUP" = eu ];   then run_eu & PIDS+=($!); fi

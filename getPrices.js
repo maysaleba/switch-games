@@ -106,10 +106,7 @@ function hydratePreviousPrices(entries) {
     const old = previousByKey.get(key);
 
     if (old?.prices) {
-      // PH is refreshed before merge. Never resurrect an old PH price when the
-      // latest PH pre-price pass found no active discount for this game.
-      const { PH: _oldPhPrice, ...otherCachedPrices } = old.prices;
-      entry.prices = { ...otherCachedPrices, ...(entry.prices || {}) };
+      entry.prices = { ...old.prices, ...(entry.prices || {}) };
       copied++;
     }
   }
@@ -363,8 +360,10 @@ function buildCountryBatches(entries) {
       regionSets.EU.forEach(c => upsert(c, String(e.nsuid_eu), idx));
     }
 
-    // PH is priced independently before merge; retain its attached PH snapshot
-    // and do not request PH or AS prices again here.
+    const phNsuid = e.nsuid_ph ?? e.nsuid_as;
+    if (phNsuid) {
+      regionSets.PH.forEach(c => upsert(c, String(phNsuid), idx));
+    }
 
     if (e.nsuid_jp && supportsEnglishForRegion(e, 'JP')) {
       regionSets.JP.forEach(c => upsert(c, String(e.nsuid_jp), idx));

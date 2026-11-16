@@ -1,6 +1,6 @@
 /**
  * Nintendo Philippines eShop catalog scraper.
- * Fetches every search page and retains catalog items regardless of sales status.
+ * Fetches every search page and marks catalog items on sale using sale_flg.
  * Requires: npm install axios
  * Run: node fetch_ph.js
  * Optional: node fetch_ph.js --include-all-languages
@@ -44,6 +44,10 @@ function platformOf(item) {
     ? 'Nintendo Switch 2' : 'Nintendo Switch';
 }
 
+function isOnSale(item) {
+  return String(item?.sale_flg ?? '') === '1';
+}
+
 function mapItem(item) {
   const language = item?.lang ?? item?.language ?? null;
 
@@ -57,6 +61,7 @@ function mapItem(item) {
   const icode = String(item?.icode || '');
   const imageKey = item?.iurl || '';
   const prefix = platform === 'Nintendo Switch 2' ? 'BEEP' : 'HACP';
+  const phOnSale = isOnSale(item);
 
   return {
     title,
@@ -74,7 +79,10 @@ function mapItem(item) {
     playerCount: '',
     nsuid_as: nsuid,
     productCode_as: icode ? `${prefix}${icode}` : '',
-    supportLanguage: hasEnglish(language) ? 'en' : ''
+    supportLanguage: hasEnglish(language) ? 'en' : '',
+    sale_flg: String(item?.sale_flg ?? ''),
+    ph_on_sale: phOnSale,
+    active_in_base: phOnSale
   };
 }
 
@@ -188,7 +196,13 @@ async function main() {
       }
     }
 
-    merged.active_in_base = Boolean(fresh);
+    if (merged.prices?.PH) {
+      delete merged.prices.PH;
+      if (Object.keys(merged.prices).length === 0) delete merged.prices;
+    }
+    delete merged.ph_price_checked_at;
+
+    merged.active_in_base = Boolean(fresh?.ph_on_sale);
     merged.first_seen_at = old.first_seen_at || now;
     merged.last_seen_at = fresh ? now : (old.last_seen_at || now);
     merged.last_checked_at = fresh ? now : (old.last_checked_at || now);
@@ -199,16 +213,21 @@ async function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
   fs.writeFileSync(MASTER, JSON.stringify(output, null, 2), 'utf8');
 
-  const active = output.filter(x => x.active_in_base);
-  fs.writeFileSync(CURRENT, JSON.stringify(active, null, 2), 'utf8');
+  const currentCatalog = output.filter(x => fetched.has(String(x.nsuid_as)));
+  const onSale = currentCatalog.filter(x => x.active_in_base === true);
+  fs.writeFileSync(CURRENT, JSON.stringify(currentCatalog, null, 2), 'utf8');
 
-  console.log(`Done. Raw items: ${received}; active PH catalog items: ${active.length}; master: ${output.length}`);
+  console.log(`Done. Raw items: ${received}; current PH catalog: ${currentCatalog.length}; marked on sale: ${onSale.length}; master: ${output.length}`);
   console.log(`Missing IDs: ${missingId}; excluded by language: ${filteredLanguage}`);
   console.log(`Saved: ${MASTER}\nSaved: ${CURRENT}`);
   console.log('Note: Switch 2 platform detection is heuristic; inspect API fields for precise classification.');
 }
 
-main().catch(err => {
-  console.error('Scrape failed; output not overwritten:', err.message);
-  process.exitCode = 1;
-});
+if (require.main === module) {
+  main().catch(err => {
+    console.error('Scrape failed; output not overwritten:', err.message);
+    process.exitCode = 1;
+  });
+}
+
+module.exports = { isOnSale, mapItem };

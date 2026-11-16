@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 /**
- * Pre-price the freshly fetched Philippines catalog before regional merge.
- * Saves PH price snapshots to the PH master and keeps only discounted items
- * in ph_games_enriched_current.json for merge_enriched.js.
+ * Deprecated: PH prices are now fetched by getPrices.js after regional merge.
  */
 const fs = require('fs');
 const path = require('path');
@@ -71,6 +69,8 @@ async function fetchChunk(ids, attempt = 0) {
 }
 
 async function priceCatalog() {
+  throw new Error('Deprecated: run fetch_ph.js, merge_enriched.js, then getPrices.js asia/all for PH pricing.');
+
   if (!fs.existsSync(CURRENT)) throw new Error(`Missing PH catalog snapshot: ${CURRENT}`);
   const catalog = loadArray(CURRENT);
   const ids = [...new Set(catalog.map(item => String(item?.nsuid_as || '').trim()).filter(Boolean))];
