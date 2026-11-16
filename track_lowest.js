@@ -128,7 +128,6 @@ async function main() {
       const hadComparableLow = Boolean(record && record.currency === currency && Number.isFinite(Number(record.price)));
       const sameSale = activeSale && record?.currentSale &&
         record.currentSale.saleStart === activeSale.start &&
-        record.currentSale.saleEnd === activeSale.end &&
         Number(record.currentSale.price) === activeSale.sale &&
         record.currentSale.currency === currency;
       const historicReferencePrice = sameSale && record.currentSale.statusRule === 'global_php_v5'

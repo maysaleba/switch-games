@@ -27,8 +27,10 @@ const COUNTRY_POOL_SIZE = 1;
 const BACKOFF_BASE_MS   = 800;
 
 const regionSets = {
-  US: ['US', 'MX', 'BR', 'CA', 'CO', 'AR', 'PE'],
-  EU: ['ZA', 'AU', 'NZ', 'NO', 'PL', 'CH'],
+  //US: ['US', 'MX', 'BR', 'CA', 'CO', 'AR', 'PE'],
+  //EU: ['ZA', 'AU', 'NZ', 'NO', 'PL', 'CH'],
+  US: ['US', 'MX', 'BR', 'CA', 'AR'],
+  EU: ['AU', 'NZ', 'NO', 'PL', 'CH'],
   JP: ['JP'],
   KR: ['KR'],
   HK: ['HK'],
