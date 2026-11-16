@@ -12,9 +12,10 @@
  *   - If ANY matched source has active_in_base === true → merged.active_in_base = true.
  *
  * This version adds:
- *   - AS fields in pretty output ordering
+ *   - Asia/PH fields in pretty output ordering
  *   - A second merge pass using unmatched EU rows as fallback base rows
- *   - Leftover JP/HK/AS can merge into EU-base rows when no US row exists
+ *   - Leftover JP/HK/PH can merge into EU-base rows when no US row exists
+ *   - Active PH-only rows are retained even without a US/EU/JP/HK counterpart
  */
 
 const fs = require('fs');
@@ -26,11 +27,12 @@ const INPUTS = {
   jp: 'data/jp_games_enriched.json',
   hk: 'data/hk_games_enriched.json',
   eu: 'data/eu_games_enriched.json',
-  as: 'data/as_games_enriched.json'
+  // PH scraper shares the Asia catalog identifiers/schema, retained internally as `as`.
+  as: 'data/ph_games_enriched_current.json'
   // kr: 'data/kr_games_enriched.json',
 };
 
-const REGIONS = ['jp', 'hk', 'eu', 'as'];                // non-US regions we try to match
+const REGIONS = ['jp', 'hk', 'eu', 'as'];                // `as` is populated by the PH scraper
 const REGION_CODES_ALL = ['us', 'jp', 'hk', 'eu', 'as']; // used for pruning nsuid_*
 const OUT_DIR = 'output';
 const LOG_DIR = 'logs';
@@ -550,6 +552,11 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
     base[imgSqKey] = String(imgSqVal).trim();
   }
 
+  // The PH pre-price pass supplies the initial discounted-price snapshot.
+  if (region === 'as' && matched?.prices?.PH) {
+    base.prices = { ...(base.prices || {}), PH: matched.prices.PH };
+  }
+
   if (matched && matched.active_in_base === true) {
     if (base.active_in_base !== true && typeof onRaise === 'function') onRaise();
     base.active_in_base = true;
@@ -754,7 +761,9 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
     as: secondaryRegionData.as || [],
   };
 
-  // Promote AS-only rows when they have a verified JP/HK counterpart.
+  // Promote every active PH/Asia leftover, even without a US/EU/JP/HK base match.
+  // The PH fetcher marks only ssitu=onsale entries active, so this also retains
+  // PH-only listings that would otherwise be absent from the US/EU-based merge.
   const asFallbackRegions = ['jp', 'hk'];
   const asFallbackCandidates = Object.fromEntries(
     asFallbackRegions.map(r => [r, regionData[r]])
@@ -767,21 +776,16 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
     if (isNonEmpty(promoted.imageSquare) && !isNonEmpty(promoted.imageSquare_as)) {
       promoted.imageSquare_as = String(promoted.imageSquare).trim();
     }
-    let matchedAny = false;
-
     for (const r of asFallbackRegions) {
       const res = findAsFallbackMatch(asFallbackCandidates[r], promoted, r);
       if (!res?.item) continue;
 
       appendRegionFields(promoted, r, res.item);
-      matchedAny = true;
     }
 
-    if (matchedAny) {
-      delete promoted.__matchedRegions;
-      delete promoted.__activeRegions;
-      merged.push(sortKeysPretty(promoted));
-    }
+    delete promoted.__matchedRegions;
+    delete promoted.__activeRegions;
+    merged.push(sortKeysPretty(promoted));
   }
 
   // ===== Write outputs =====
@@ -801,13 +805,14 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
 
   for (const r of REGIONS) {
     const matchedCount = US_BASE_COUNT - usToUnmatched[r];
-    logLines.push(`Matched to US base ${r.toUpperCase()}: ${matchedCount} / ${US_BASE_COUNT}`);
+    const regionName = r === 'as' ? 'PH' : r.toUpperCase();
+    logLines.push(`Matched to US base ${regionName}: ${matchedCount} / ${US_BASE_COUNT}`);
   }
   logLines.push('');
 
   logLines.push(`JP leftovers after US+EU fallback: ${finalLeftovers.jp.length}`);
   logLines.push(`HK leftovers after US+EU fallback: ${finalLeftovers.hk.length}`);
-  logLines.push(`AS leftovers after US+EU fallback: ${finalLeftovers.as.length}`);
+  logLines.push(`PH leftovers after US+EU fallback (active rows appended): ${finalLeftovers.as.length}`);
   logLines.push('');
 
   logLines.push('Rule usage (how matches were made):');
@@ -826,7 +831,8 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
   logLines.push('');
 
   for (const r of ['jp', 'hk', 'as']) {
-    logLines.push(`--- ${r.toUpperCase()} entries not matched to any US or EU-base row ---`);
+    const regionName = r === 'as' ? 'PH' : r.toUpperCase();
+    logLines.push(`--- ${regionName} entries not matched to any US or EU-base row ---`);
     for (const g of finalLeftovers[r]) {
       const row = {
         [`nsuid_${r}`]: g[`nsuid_${r}`] ?? g.nsuid ?? null,
@@ -848,11 +854,12 @@ function appendRegionFields(base, region, matched, { onRaise } = {}) {
   console.log(`ℹ️ US base: ${US_BASE_COUNT} | EU-base appended: ${euBaseAppendedCount} | Final total: ${totalAfterAppend}`);
   for (const r of REGIONS) {
     const matchedCount = US_BASE_COUNT - usToUnmatched[r];
-    console.log(`✅ Matched ${r.toUpperCase()} to US base: ${matchedCount} / ${US_BASE_COUNT}`);
+    const regionName = r === 'as' ? 'PH' : r.toUpperCase();
+    console.log(`✅ Matched ${regionName} to US base: ${matchedCount} / ${US_BASE_COUNT}`);
   }
   console.log(`🚫 JP leftovers after US+EU fallback: ${finalLeftovers.jp.length}`);
   console.log(`🚫 HK leftovers after US+EU fallback: ${finalLeftovers.hk.length}`);
-  console.log(`🚫 AS leftovers after US+EU fallback: ${finalLeftovers.as.length}`);
+  console.log(`✅ PH unmatched rows retained: ${finalLeftovers.as.filter(item => item.active_in_base === true).length}`);
   console.log(`⬆️ active_in_base raises by region: ${JSON.stringify(activeRaiseCounts)}`);
   console.log(`📝 Log written to ${LOG_FILE}`);
 })();
