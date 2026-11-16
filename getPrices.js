@@ -34,7 +34,7 @@ const regionSets = {
   JP: ['JP'],
   KR: ['KR'],
   HK: ['HK'],
-  AS: ['TH', 'SG', 'MY'],
+  AS: [], // TH, SG, and MY are disabled; their old cached values are filtered during sync.
   PH: ['PH'],
 };
 

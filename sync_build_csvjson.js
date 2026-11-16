@@ -53,8 +53,12 @@ const REGION_KEY_MAP = {
 // fallback chain for "Price" (regular) column
 const REGULAR_FALLBACK = ['US', 'AU', 'JP', 'PH', 'HK'];
 
-// Countries to completely ignore for specific game slugs.
-// Ignored countries will not affect price, discount, sale dates, or output columns.
+// Countries disabled from price fetching. Ignore their cached values too, so
+// stale prices cannot qualify a game for output or populate regional columns.
+// Keep this list aligned with countries removed from getPrices.js regionSets.
+const IGNORED_PRICE_COUNTRIES = new Set(['CO', 'PE', 'ZA', 'TH', 'SG', 'MY']);
+
+// Additional country exclusions for individual game slugs.
 const PRICE_EXCLUSIONS = {
   'ghost-of-a-tale-switch': ['AR', 'CO'],
   'super-meat-boy-forever-switch': ['CO'],
@@ -81,7 +85,8 @@ function getEntryKey(e) {
 }
 
 function shouldExcludePrice(slug, country) {
-  return PRICE_EXCLUSIONS[slug]?.includes(country) ?? false;
+  return IGNORED_PRICE_COUNTRIES.has(country) ||
+    (PRICE_EXCLUSIONS[slug]?.includes(country) ?? false);
 }
 
 function getFilteredPrices(g) {
@@ -95,6 +100,28 @@ function getFilteredPrices(g) {
   }
 
   return prices;
+}
+
+function isCurrentlyDiscounted(price, now = new Date()) {
+  if (!price || price.sale == null || price.sale === '' ||
+      price.regular == null || price.regular === '' || !price.sale_end) {
+    return false;
+  }
+
+  const sale = Number(price.sale);
+  const regular = Number(price.regular);
+  const end = new Date(price.sale_end);
+  if (!Number.isFinite(sale) || !Number.isFinite(regular) || sale >= regular ||
+      Number.isNaN(end.getTime()) || end <= now) {
+    return false;
+  }
+
+  if (price.sale_start) {
+    const start = new Date(price.sale_start);
+    if (Number.isNaN(start.getTime()) || start > now) return false;
+  }
+
+  return true;
 }
 
 function attachPricesFromCache(merged, priceCache) {
@@ -351,31 +378,32 @@ function ensureAllRegionKeys(row) {
   // 0) quick info about external replacements
   console.log(`🔁 Loaded slug replacements: ${SLUG_REPLACEMENTS.size} rules from ${SLUG_REPLACEMENTS_TXT}`);
 
-  // 1) load source (only active_in_base = true, and must have at least one sale_end)
+  // 1) load source (only active_in_base = true, and currently discounted in an included region)
   const mergedBase = readJsonSafe(MERGED_ENRICHED) || [];
   const priceCache = readJsonSafe(PRICE_CACHE) || [];
   const merged = attachPricesFromCache(mergedBase, priceCache);
+  const now = new Date();
   const active = merged.filter(g => {
     const prices = getFilteredPrices(g);
   
     return (
       g.active_in_base === true &&
-      Object.values(prices).some(p => p?.sale_end)
+      Object.values(prices).some(p => isCurrentlyDiscounted(p, now))
     );
   });
   
-  const droppedNoSaleEnd = merged.filter(g => {
+  const droppedNoCurrentSale = merged.filter(g => {
     const prices = getFilteredPrices(g);
   
     return (
       g.active_in_base === true &&
-      !Object.values(prices).some(p => p?.sale_end)
+      !Object.values(prices).some(p => isCurrentlyDiscounted(p, now))
     );
   }).length;
 
   console.log(`📦 merged_enriched_with_prices.json total: ${merged.length}`);
   console.log(`✅ active_in_base=true & has sale_end: ${active.length}`);
-  console.log(`🚫 dropped for missing sale_end:      ${droppedNoSaleEnd}`);
+  console.log(`🚫 dropped for no current included-region discount: ${droppedNoCurrentSale}`);
 
   // Build source index by MATCH slug (replacements for matching ONLY)
   const sourceBySlug = new Map();
