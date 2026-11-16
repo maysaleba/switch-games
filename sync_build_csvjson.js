@@ -224,17 +224,21 @@ function buildImageUrl(g) {
   const imgEU = g.imageSquare_eu && g.imageSquare_eu.trim();
   const imgJP = g.imageSquare_jp && g.imageSquare_jp.trim();
   const img   = g.imageSquare && g.imageSquare.trim();
+  const imgPH = g.imageSquare_ph && g.imageSquare_ph.trim();
   const imgAS = g.imageSquare_as && g.imageSquare_as.trim();
   const proxy = (url) => `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=240`;
 
-  if (imgEU) {
-    return proxy(imgEU);
+  if (img) {
+    return proxy(img);
+  }
+  if (imgPH) {
+    return proxy(imgPH);
   }
   if (imgJP) {
     return proxy(imgJP);
   }
-  if (img) {
-    return proxy(img);
+  if (imgEU) {
+    return proxy(imgEU);
   }
   if (imgAS) {
     return proxy(imgAS);
