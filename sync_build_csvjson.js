@@ -227,22 +227,17 @@ function buildImageUrl(g) {
   const imgPH = g.imageSquare_ph && g.imageSquare_ph.trim();
   const imgAS = g.imageSquare_as && g.imageSquare_as.trim();
   const proxy = (url) => `https://images.weserv.nl/?url=${encodeURIComponent(url)}&w=240`;
+  const nsuid = String(
+    g.nsuid_us ?? g.nsuid_eu ?? g.nsuid_jp ?? g.nsuid_hk ??
+    g.nsuid_as ?? g.nsuid_ph ?? g.nsuid_kr ?? g.nsuid ?? ''
+  );
 
-  if (img) {
-    return proxy(img);
-  }
-  if (imgPH) {
-    return proxy(imgPH);
-  }
-  if (imgJP) {
-    return proxy(imgJP);
-  }
-  if (imgEU) {
-    return proxy(imgEU);
-  }
-  if (imgAS) {
-    return proxy(imgAS);
-  }
+  const preferredImages = nsuid.startsWith('7001')
+    ? [imgEU, img, imgPH, imgJP, imgAS]
+    : [img, imgPH, imgJP, imgEU, imgAS];
+  const preferredImage = preferredImages.find(Boolean);
+  if (preferredImage) return proxy(preferredImage);
+
   if (g.imageKey) {
     if (g.imageKey.startsWith("https")) {
       return proxy(g.imageKey);

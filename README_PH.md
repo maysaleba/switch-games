@@ -46,7 +46,7 @@ The merger internally calls the PH source region `as` because it shares the Asia
 
 The generated CSV/JSON uses `PhilippinesPrice` for the PH sale price when available (falling back to the PH regular price in the region-price mapping). The generic `Price` column is a regular price selected in this order: US → AU → JP → PH → HK. The first non-empty regular price wins, and its regular currency is written to `Currency`.
 
-Image selection in `sync_build_csvjson.js` is ordered: `imageSquare` → `imageSquare_ph` → `imageSquare_jp` → `imageSquare_eu` → `imageSquare_as` → `imageKey`. The selected image URL is sent through the weserv image proxy at width 240. Since the PH scraper initially supplies its image as the generic `imageSquare` field, the final image depends on which generic and regional image fields are present on the merged record.
+Image selection in `sync_build_csvjson.js` depends on the first available NSUID, checked in this order: US → EU → JP → HK → AS → PH → KR → generic `nsuid`. If that NSUID begins with `7001`, image priority is `imageSquare_eu` → `imageSquare` → `imageSquare_ph` → `imageSquare_jp` → `imageSquare_as`; otherwise it is `imageSquare` → `imageSquare_ph` → `imageSquare_jp` → `imageSquare_eu` → `imageSquare_as`. `imageKey` is the fallback if none of those image fields is populated. The selected image URL is sent through the weserv image proxy at width 240. Since the PH scraper initially supplies its image as the generic `imageSquare` field, the final image depends on which generic and regional image fields are present on the merged record.
 
 ## Typical run order and test
 
