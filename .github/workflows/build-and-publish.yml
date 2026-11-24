@@ -8,13 +8,6 @@ on:
         type: choice
         default: all
         options: [all, us, eu, asia]
-  schedule:
-    - cron: '7 15 * * *'  # asia 3:07 AM NZST
-    - cron: '7 3 * * *'   # asia 3:07 PM NZST
-    - cron: '7 0 * * *'   # eu 12:07 PM NZST
-    - cron: '7 13 * * *'  # eu 1:07 AM NZST
-    - cron: '7 6 * * *'   # us 6:07 PM NZST
-    - cron: '7 17 * * *'  # us 5:07 AM NZST
 
 permissions:
   contents: write   # required so we can push to current repo
@@ -42,17 +35,10 @@ jobs:
 
       - name: Select region group
         env:
-          SCHEDULE: ${{ github.event.schedule }}
           INPUT_GROUP: ${{ inputs.price_group }}
         shell: bash
         run: |
-          # Cron strings must match the schedule above.
-          case "$SCHEDULE" in
-            '7 15 * * *'|'7 3 * * *') GROUP=asia ;;
-            '7 0 * * *'|'7 13 * * *') GROUP=eu ;;
-            '7 6 * * *'|'7 17 * * *') GROUP=us ;;
-            *) GROUP="${INPUT_GROUP:-all}" ;;  # manual run
-          esac
+          GROUP="${INPUT_GROUP:-all}"
           echo "Region group: $GROUP"
           echo "GROUP=$GROUP" >> "$GITHUB_ENV"
 
