@@ -42620,22 +42620,58 @@
     "US": {
       "price": 12.49,
       "currency": "USD",
-      "date": "2026-11-19"
+      "date": "2026-11-19",
+      "currentSale": {
+        "price": 12.49,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 12.49,
+        "saleStart": "2026-11-19T17:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "MX": {
       "price": 206.25,
       "currency": "MXN",
-      "date": "2026-11-19"
+      "date": "2026-11-19",
+      "currentSale": {
+        "price": 206.25,
+        "currency": "MXN",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 206.25,
+        "saleStart": "2026-11-19T17:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "BR": {
       "price": 64.97,
       "currency": "BRL",
-      "date": "2026-11-19"
+      "date": "2026-11-19",
+      "currentSale": {
+        "price": 64.97,
+        "currency": "BRL",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 64.97,
+        "saleStart": "2026-11-19T17:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "CA": {
       "price": 16.74,
       "currency": "CAD",
-      "date": "2026-11-19"
+      "date": "2026-11-19",
+      "currentSale": {
+        "price": 16.74,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 16.74,
+        "saleStart": "2026-11-19T17:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "CO": {
       "price": 64750,
@@ -42645,7 +42681,16 @@
     "AR": {
       "price": 10249.75,
       "currency": "ARS",
-      "date": "2026-11-19"
+      "date": "2026-11-19",
+      "currentSale": {
+        "price": 10249.75,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 10249.75,
+        "saleStart": "2026-11-19T17:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "PE": {
       "price": 61.25,
@@ -42655,16 +42700,7 @@
     "JP": {
       "price": 3294,
       "currency": "JPY",
-      "date": "2026-07-14",
-      "currentSale": {
-        "price": 3294,
-        "currency": "JPY",
-        "status": "not_low",
-        "statusRule": "global_php_v5",
-        "historicPrice": 3294,
-        "saleStart": "2026-11-17T15:00:00Z",
-        "saleEnd": "2026-11-30T14:59:59Z"
-      }
+      "date": "2026-07-14"
     },
     "ZA": {
       "price": 332.15,
@@ -148564,22 +148600,58 @@
     "US": {
       "price": 19.99,
       "currency": "USD",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 29.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 19.99,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "MX": {
       "price": 449.5,
       "currency": "MXN",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 674.25,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 449.5,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "BR": {
       "price": 99.5,
       "currency": "BRL",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 149.25,
+        "currency": "BRL",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 99.5,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "CA": {
       "price": 27.49,
       "currency": "CAD",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 41.24,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 27.49,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "CO": {
       "price": 79999,
@@ -148589,7 +148661,16 @@
     "AR": {
       "price": 16999.5,
       "currency": "ARS",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 25499.25,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 16999.5,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "PE": {
       "price": 74.5,
@@ -148613,16 +148694,7 @@
     "HK": {
       "price": 159,
       "currency": "HKD",
-      "date": "2026-07-20",
-      "currentSale": {
-        "price": 239,
-        "currency": "HKD",
-        "status": "not_low",
-        "statusRule": "global_php_v5",
-        "historicPrice": 159,
-        "saleStart": "2026-11-16T16:00:00Z",
-        "saleEnd": "2026-11-29T15:59:59Z"
-      }
+      "date": "2026-07-20"
     },
     "ZA": {
       "price": 324.95,
@@ -220722,22 +220794,58 @@
     "US": {
       "price": 29.99,
       "currency": "USD",
-      "date": "2026-11-19"
+      "date": "2026-11-19",
+      "currentSale": {
+        "price": 29.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 29.99,
+        "saleStart": "2026-11-19T17:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "MX": {
       "price": 504.5,
       "currency": "MXN",
-      "date": "2026-11-19"
+      "date": "2026-11-19",
+      "currentSale": {
+        "price": 504.5,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 504.5,
+        "saleStart": "2026-11-19T17:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "BR": {
       "price": 149.95,
       "currency": "BRL",
-      "date": "2026-11-19"
+      "date": "2026-11-19",
+      "currentSale": {
+        "price": 149.95,
+        "currency": "BRL",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 149.95,
+        "saleStart": "2026-11-19T17:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "CA": {
       "price": 39.99,
       "currency": "CAD",
-      "date": "2026-11-19"
+      "date": "2026-11-19",
+      "currentSale": {
+        "price": 39.99,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 39.99,
+        "saleStart": "2026-11-19T17:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "CO": {
       "price": 131400,
@@ -220747,7 +220855,16 @@
     "AR": {
       "price": 34999.5,
       "currency": "ARS",
-      "date": "2026-11-19"
+      "date": "2026-11-19",
+      "currentSale": {
+        "price": 34999.5,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 34999.5,
+        "saleStart": "2026-11-19T17:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "PE": {
       "price": 114,
@@ -236580,16 +236697,7 @@
     "PH": {
       "price": 339,
       "currency": "PHP",
-      "date": "2026-11-10",
-      "currentSale": {
-        "price": 339,
-        "currency": "PHP",
-        "status": "not_low",
-        "statusRule": "global_php_v5",
-        "historicPrice": 339,
-        "saleStart": "2026-10-30T16:00:00Z",
-        "saleEnd": "2026-11-26T15:59:59Z"
-      }
+      "date": "2026-11-10"
     }
   },
   "before-the-green-moon-switch": {
@@ -328786,16 +328894,7 @@
     "HK": {
       "price": 139,
       "currency": "HKD",
-      "date": "2026-09-06",
-      "currentSale": {
-        "price": 191,
-        "currency": "HKD",
-        "status": "not_low",
-        "statusRule": "global_php_v5",
-        "historicPrice": 139,
-        "saleStart": "2026-11-22T16:00:00Z",
-        "saleEnd": "2026-12-13T15:59:59Z"
-      }
+      "date": "2026-09-06"
     },
     "ZA": {
       "price": 337.05,
@@ -344009,22 +344108,58 @@
     "US": {
       "price": 12.49,
       "currency": "USD",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 12.49,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 12.49,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "MX": {
       "price": 249.99,
       "currency": "MXN",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 249.99,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 249.99,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "BR": {
       "price": 62.49,
       "currency": "BRL",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 62.49,
+        "currency": "BRL",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 62.49,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "CA": {
       "price": 12.49,
       "currency": "CAD",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 12.49,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 12.49,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "CO": {
       "price": 62000,
@@ -344034,7 +344169,16 @@
     "AR": {
       "price": 3249.75,
       "currency": "ARS",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 3249.75,
+        "currency": "ARS",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 3249.75,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "PE": {
       "price": 49.25,
@@ -352171,22 +352315,58 @@
     "US": {
       "price": 8.99,
       "currency": "USD",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 11.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 8.99,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "MX": {
       "price": 179.85,
       "currency": "MXN",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 239.8,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 179.85,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "BR": {
       "price": 44.99,
       "currency": "BRL",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 59.99,
+        "currency": "BRL",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 44.99,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "CA": {
       "price": 8.99,
       "currency": "CAD",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 11.99,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 8.99,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "CO": {
       "price": 44400,
@@ -357255,17 +357435,44 @@
     "US": {
       "price": 2.79,
       "currency": "USD",
-      "date": "2026-08-09"
+      "date": "2026-08-09",
+      "currentSale": {
+        "price": 3.19,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 2.79,
+        "saleStart": "2026-11-19T17:00:00Z",
+        "saleEnd": "2026-12-10T07:59:59Z"
+      }
     },
     "MX": {
       "price": 52.49,
       "currency": "MXN",
-      "date": "2026-08-09"
+      "date": "2026-08-09",
+      "currentSale": {
+        "price": 59.99,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 52.49,
+        "saleStart": "2026-11-19T17:00:00Z",
+        "saleEnd": "2026-12-10T07:59:59Z"
+      }
     },
     "CA": {
       "price": 3.49,
       "currency": "CAD",
-      "date": "2026-08-09"
+      "date": "2026-08-09",
+      "currentSale": {
+        "price": 3.99,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 3.49,
+        "saleStart": "2026-11-19T17:00:00Z",
+        "saleEnd": "2026-12-10T07:59:59Z"
+      }
     },
     "CH": {
       "price": 2.96,
@@ -360100,22 +360307,58 @@
     "US": {
       "price": 12.99,
       "currency": "USD",
-      "date": "2026-11-22"
+      "date": "2026-11-22",
+      "currentSale": {
+        "price": 12.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 12.99,
+        "saleStart": "2026-11-22T17:00:00Z",
+        "saleEnd": "2026-12-13T07:59:59Z"
+      }
     },
     "MX": {
       "price": 148.19,
       "currency": "MXN",
-      "date": "2026-11-22"
+      "date": "2026-11-22",
+      "currentSale": {
+        "price": 148.19,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 148.19,
+        "saleStart": "2026-11-22T17:00:00Z",
+        "saleEnd": "2026-12-13T07:59:59Z"
+      }
     },
     "BR": {
       "price": 25.99,
       "currency": "BRL",
-      "date": "2026-11-22"
+      "date": "2026-11-22",
+      "currentSale": {
+        "price": 25.99,
+        "currency": "BRL",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 25.99,
+        "saleStart": "2026-11-22T17:00:00Z",
+        "saleEnd": "2026-12-13T07:59:59Z"
+      }
     },
     "CA": {
       "price": 16.89,
       "currency": "CAD",
-      "date": "2026-11-22"
+      "date": "2026-11-22",
+      "currentSale": {
+        "price": 16.89,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 16.89,
+        "saleStart": "2026-11-22T17:00:00Z",
+        "saleEnd": "2026-12-13T07:59:59Z"
+      }
     },
     "CO": {
       "price": 33250,
@@ -360125,7 +360368,16 @@
     "AR": {
       "price": 9750,
       "currency": "ARS",
-      "date": "2026-11-22"
+      "date": "2026-11-22",
+      "currentSale": {
+        "price": 9750,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 9750,
+        "saleStart": "2026-11-22T17:00:00Z",
+        "saleEnd": "2026-12-13T07:59:59Z"
+      }
     },
     "PE": {
       "price": 30.1,
@@ -362483,22 +362735,58 @@
     "US": {
       "price": 26.24,
       "currency": "USD",
-      "date": "2026-09-05"
+      "date": "2026-09-05",
+      "currentSale": {
+        "price": 26.24,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 26.24,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "MX": {
       "price": 496.91,
       "currency": "MXN",
-      "date": "2026-09-05"
+      "date": "2026-09-05",
+      "currentSale": {
+        "price": 496.91,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 496.91,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "BR": {
       "price": 140.67,
       "currency": "BRL",
-      "date": "2026-09-05"
+      "date": "2026-09-05",
+      "currentSale": {
+        "price": 140.67,
+        "currency": "BRL",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 140.67,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "CA": {
       "price": 37.04,
       "currency": "CAD",
-      "date": "2026-09-05"
+      "date": "2026-09-05",
+      "currentSale": {
+        "price": 37.04,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 37.04,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "CO": {
       "price": 101262,
@@ -362508,7 +362796,16 @@
     "AR": {
       "price": 38067.34,
       "currency": "ARS",
-      "date": "2026-09-05"
+      "date": "2026-09-05",
+      "currentSale": {
+        "price": 38067.34,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 38067.34,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "PE": {
       "price": 88.79,
@@ -363100,22 +363397,58 @@
     "US": {
       "price": 29.99,
       "currency": "USD",
-      "date": "2026-11-19"
+      "date": "2026-11-19",
+      "currentSale": {
+        "price": 29.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 29.99,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "MX": {
       "price": 599.4,
       "currency": "MXN",
-      "date": "2026-11-19"
+      "date": "2026-11-19",
+      "currentSale": {
+        "price": 599.4,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 599.4,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "BR": {
       "price": 149.4,
       "currency": "BRL",
-      "date": "2026-11-19"
+      "date": "2026-11-19",
+      "currentSale": {
+        "price": 149.4,
+        "currency": "BRL",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 149.4,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "CA": {
       "price": 38.99,
       "currency": "CAD",
-      "date": "2026-11-19"
+      "date": "2026-11-19",
+      "currentSale": {
+        "price": 38.99,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 38.99,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "CO": {
       "price": 142999,
@@ -363125,7 +363458,16 @@
     "AR": {
       "price": 31799.4,
       "currency": "ARS",
-      "date": "2026-11-19"
+      "date": "2026-11-19",
+      "currentSale": {
+        "price": 31799.4,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 31799.4,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "PE": {
       "price": 116.35,
@@ -363140,16 +363482,7 @@
     "HK": {
       "price": 239,
       "currency": "HKD",
-      "date": "2026-11-16",
-      "currentSale": {
-        "price": 239,
-        "currency": "HKD",
-        "status": "not_low",
-        "statusRule": "global_php_v5",
-        "historicPrice": 239,
-        "saleStart": "2026-11-16T16:00:00Z",
-        "saleEnd": "2026-11-29T15:59:59Z"
-      }
+      "date": "2026-11-16"
     },
     "ZA": {
       "price": 617.45,
@@ -410514,22 +410847,58 @@
     "US": {
       "price": 13.99,
       "currency": "USD",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 13.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 13.99,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "MX": {
       "price": 279.8,
       "currency": "MXN",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 279.8,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 279.8,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "BR": {
       "price": 69.99,
       "currency": "BRL",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 69.99,
+        "currency": "BRL",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 69.99,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "CA": {
       "price": 13.99,
       "currency": "CAD",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 13.99,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 13.99,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "CO": {
       "price": 68800,
@@ -410539,7 +410908,16 @@
     "AR": {
       "price": 3399.8,
       "currency": "ARS",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 3399.8,
+        "currency": "ARS",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 3399.8,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "PE": {
       "price": 56.2,
@@ -434635,22 +435013,58 @@
     "US": {
       "price": 14.99,
       "currency": "USD",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 17.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 14.99,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "MX": {
       "price": 265.5,
       "currency": "MXN",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 318.6,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 265.5,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "BR": {
       "price": 81.75,
       "currency": "BRL",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 98.1,
+        "currency": "BRL",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 81.75,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "CA": {
       "price": 17.49,
       "currency": "CAD",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 20.99,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 17.49,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "CO": {
       "price": 59485,
@@ -434660,7 +435074,16 @@
     "AR": {
       "price": 13750,
       "currency": "ARS",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 16500,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 13750,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "PE": {
       "price": 56.25,
@@ -443909,22 +444332,58 @@
     "US": {
       "price": 24.99,
       "currency": "USD",
-      "date": "2026-09-05"
+      "date": "2026-09-05",
+      "currentSale": {
+        "price": 24.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 24.99,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "MX": {
       "price": 499.5,
       "currency": "MXN",
-      "date": "2026-09-05"
+      "date": "2026-09-05",
+      "currentSale": {
+        "price": 499.5,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 499.5,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "BR": {
       "price": 124.5,
       "currency": "BRL",
-      "date": "2026-09-05"
+      "date": "2026-09-05",
+      "currentSale": {
+        "price": 124.5,
+        "currency": "BRL",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 124.5,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "CA": {
       "price": 32.49,
       "currency": "CAD",
-      "date": "2026-09-05"
+      "date": "2026-09-05",
+      "currentSale": {
+        "price": 32.49,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 32.49,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "CO": {
       "price": 136900,
@@ -443934,7 +444393,16 @@
     "AR": {
       "price": 24029.5,
       "currency": "ARS",
-      "date": "2026-09-05"
+      "date": "2026-09-05",
+      "currentSale": {
+        "price": 24029.5,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 24029.5,
+        "saleStart": "2026-11-19T08:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "PE": {
       "price": 94.5,
@@ -443944,16 +444412,7 @@
     "HK": {
       "price": 189,
       "currency": "HKD",
-      "date": "2026-09-04",
-      "currentSale": {
-        "price": 189,
-        "currency": "HKD",
-        "status": "not_low",
-        "statusRule": "global_php_v5",
-        "historicPrice": 189,
-        "saleStart": "2026-11-18T16:00:00Z",
-        "saleEnd": "2026-12-02T15:59:59Z"
-      }
+      "date": "2026-09-04"
     },
     "AU": {
       "price": 37.5,
@@ -456094,19 +456553,46 @@
   },
   "race-with-ryan-road-trip-deluxe-edition-switch": {
     "US": {
-      "price": 5.99,
+      "price": 4.49,
       "currency": "USD",
-      "date": "2026-07-07"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 4.49,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 5.99,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "MX": {
-      "price": 121.5,
+      "price": 91.12,
       "currency": "MXN",
-      "date": "2026-07-07"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 91.12,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 121.5,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "CA": {
-      "price": 7.8,
+      "price": 5.85,
       "currency": "CAD",
-      "date": "2026-07-07"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 5.85,
+        "currency": "CAD",
+        "status": "new_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 7.8,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     }
   },
   "rage-swarm-complete-edition-switch": {
@@ -474284,22 +474770,58 @@
     "US": {
       "price": 13.99,
       "currency": "USD",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 17.49,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 13.99,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "MX": {
       "price": 279.99,
       "currency": "MXN",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 349.99,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 279.99,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "BR": {
       "price": 72.34,
       "currency": "BRL",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 90.42,
+        "currency": "BRL",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 72.34,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "CA": {
       "price": 17.59,
       "currency": "CAD",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 21.99,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 17.59,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     }
   },
   "get-fit-beach-girls-switch": {
@@ -475199,22 +475721,58 @@
     "US": {
       "price": 12.24,
       "currency": "USD",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 12.24,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 12.24,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "MX": {
       "price": 244.99,
       "currency": "MXN",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 244.99,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 244.99,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "BR": {
       "price": 63.29,
       "currency": "BRL",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 63.29,
+        "currency": "BRL",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 63.29,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "CA": {
       "price": 15.39,
       "currency": "CAD",
-      "date": "2026-07-07"
+      "date": "2026-07-07",
+      "currentSale": {
+        "price": 15.39,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 15.39,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     }
   },
   "12-party-games-collection-switch": {
@@ -475519,24 +476077,60 @@
   },
   "teenage-mutant-ninja-turtles-mutants-unleashed-digital-deluxe-edition-switch": {
     "US": {
-      "price": 14.99,
+      "price": 12.49,
       "currency": "USD",
-      "date": "2026-07-07"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 12.49,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 14.99,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "MX": {
-      "price": 300,
+      "price": 250,
       "currency": "MXN",
-      "date": "2026-07-07"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 250,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 300,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "BR": {
-      "price": 77.49,
+      "price": 64.58,
       "currency": "BRL",
-      "date": "2026-07-07"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 64.58,
+        "currency": "BRL",
+        "status": "new_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 77.49,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "CA": {
-      "price": 19.49,
+      "price": 16.24,
       "currency": "CAD",
-      "date": "2026-07-07"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 16.24,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 19.49,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     }
   },
   "aaa-clock-ultimate-edition-switch": {
@@ -476036,24 +476630,60 @@
   },
   "fast-and-furious-spy-racers-rise-of-sh1ft3r-complete-edition-switch": {
     "US": {
-      "price": 11.49,
+      "price": 9.19,
       "currency": "USD",
-      "date": "2026-07-07"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 9.19,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 11.49,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "MX": {
-      "price": 219.75,
+      "price": 175.8,
       "currency": "MXN",
-      "date": "2026-07-07"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 175.8,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 219.75,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "BR": {
-      "price": 58.33,
+      "price": 46.67,
       "currency": "BRL",
-      "date": "2026-07-07"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 46.67,
+        "currency": "BRL",
+        "status": "new_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 58.33,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "CA": {
-      "price": 14.47,
+      "price": 11.57,
       "currency": "CAD",
-      "date": "2026-07-07"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 11.57,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 14.47,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     }
   },
   "fit-my-cat-complete-plus-switch": {
@@ -527986,22 +528616,58 @@
     "US": {
       "price": 14.99,
       "currency": "USD",
-      "date": "2026-11-17"
+      "date": "2026-11-17",
+      "currentSale": {
+        "price": 14.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 14.99,
+        "saleStart": "2026-11-16T17:00:00Z",
+        "saleEnd": "2026-12-07T07:59:59Z"
+      }
     },
     "MX": {
       "price": 282.5,
       "currency": "MXN",
-      "date": "2026-11-17"
+      "date": "2026-11-17",
+      "currentSale": {
+        "price": 282.5,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 282.5,
+        "saleStart": "2026-11-16T17:00:00Z",
+        "saleEnd": "2026-12-07T07:59:59Z"
+      }
     },
     "BR": {
       "price": 85,
       "currency": "BRL",
-      "date": "2026-11-17"
+      "date": "2026-11-17",
+      "currentSale": {
+        "price": 85,
+        "currency": "BRL",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 85,
+        "saleStart": "2026-11-16T17:00:00Z",
+        "saleEnd": "2026-12-07T07:59:59Z"
+      }
     },
     "CA": {
       "price": 19.99,
       "currency": "CAD",
-      "date": "2026-11-17"
+      "date": "2026-11-17",
+      "currentSale": {
+        "price": 19.99,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 19.99,
+        "saleStart": "2026-11-16T17:00:00Z",
+        "saleEnd": "2026-12-07T07:59:59Z"
+      }
     },
     "CO": {
       "price": 81884,
@@ -528011,7 +528677,16 @@
     "AR": {
       "price": 19466.75,
       "currency": "ARS",
-      "date": "2026-11-17"
+      "date": "2026-11-17",
+      "currentSale": {
+        "price": 19466.75,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 19466.75,
+        "saleStart": "2026-11-16T17:00:00Z",
+        "saleEnd": "2026-12-07T07:59:59Z"
+      }
     },
     "PE": {
       "price": 70.99,
@@ -643812,22 +644487,58 @@
     "US": {
       "price": 6.79,
       "currency": "USD",
-      "date": "2026-07-08"
+      "date": "2026-07-08",
+      "currentSale": {
+        "price": 6.79,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 6.79,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-11-30T07:59:59Z"
+      }
     },
     "MX": {
       "price": 84.99,
       "currency": "MXN",
-      "date": "2026-07-08"
+      "date": "2026-07-08",
+      "currentSale": {
+        "price": 84.99,
+        "currency": "MXN",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 84.99,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-11-30T07:59:59Z"
+      }
     },
     "BR": {
       "price": 29.75,
       "currency": "BRL",
-      "date": "2026-07-08"
+      "date": "2026-07-08",
+      "currentSale": {
+        "price": 29.75,
+        "currency": "BRL",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 29.75,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-11-30T07:59:59Z"
+      }
     },
     "CA": {
       "price": 8.49,
       "currency": "CAD",
-      "date": "2026-07-08"
+      "date": "2026-07-08",
+      "currentSale": {
+        "price": 8.49,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 8.49,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-11-30T07:59:59Z"
+      }
     },
     "CO": {
       "price": 19550,
@@ -664018,22 +664729,58 @@
     "US": {
       "price": 27.99,
       "currency": "USD",
-      "date": "2026-07-15"
+      "date": "2026-07-15",
+      "currentSale": {
+        "price": 27.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 27.99,
+        "saleStart": "2026-11-16T17:00:00Z",
+        "saleEnd": "2026-12-01T07:59:59Z"
+      }
     },
     "MX": {
       "price": 459.99,
       "currency": "MXN",
-      "date": "2026-07-15"
+      "date": "2026-07-15",
+      "currentSale": {
+        "price": 459.99,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 459.99,
+        "saleStart": "2026-11-16T17:00:00Z",
+        "saleEnd": "2026-12-01T07:59:59Z"
+      }
     },
     "BR": {
       "price": 111.99,
       "currency": "BRL",
-      "date": "2026-07-15"
+      "date": "2026-07-15",
+      "currentSale": {
+        "price": 111.99,
+        "currency": "BRL",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 111.99,
+        "saleStart": "2026-11-16T17:00:00Z",
+        "saleEnd": "2026-12-01T07:59:59Z"
+      }
     },
     "CA": {
       "price": 35.99,
       "currency": "CAD",
-      "date": "2026-07-15"
+      "date": "2026-07-15",
+      "currentSale": {
+        "price": 35.99,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 35.99,
+        "saleStart": "2026-11-16T17:00:00Z",
+        "saleEnd": "2026-12-01T07:59:59Z"
+      }
     },
     "CO": {
       "price": 83200,
@@ -664043,7 +664790,16 @@
     "AR": {
       "price": 23199.6,
       "currency": "ARS",
-      "date": "2026-07-15"
+      "date": "2026-07-15",
+      "currentSale": {
+        "price": 23199.6,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 23199.6,
+        "saleStart": "2026-11-16T17:00:00Z",
+        "saleEnd": "2026-12-01T07:59:59Z"
+      }
     },
     "PE": {
       "price": 78,
@@ -668470,22 +669226,58 @@
     "US": {
       "price": 41.99,
       "currency": "USD",
-      "date": "2026-11-17"
+      "date": "2026-11-17",
+      "currentSale": {
+        "price": 41.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 41.99,
+        "saleStart": "2026-11-16T17:00:00Z",
+        "saleEnd": "2026-12-01T07:59:59Z"
+      }
     },
     "MX": {
       "price": 699.99,
       "currency": "MXN",
-      "date": "2026-11-17"
+      "date": "2026-11-17",
+      "currentSale": {
+        "price": 699.99,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 699.99,
+        "saleStart": "2026-11-16T17:00:00Z",
+        "saleEnd": "2026-12-01T07:59:59Z"
+      }
     },
     "BR": {
       "price": 167.99,
       "currency": "BRL",
-      "date": "2026-11-17"
+      "date": "2026-11-17",
+      "currentSale": {
+        "price": 167.99,
+        "currency": "BRL",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 167.99,
+        "saleStart": "2026-11-16T17:00:00Z",
+        "saleEnd": "2026-12-01T07:59:59Z"
+      }
     },
     "CA": {
       "price": 55.99,
       "currency": "CAD",
-      "date": "2026-11-17"
+      "date": "2026-11-17",
+      "currentSale": {
+        "price": 55.99,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 55.99,
+        "saleStart": "2026-11-16T17:00:00Z",
+        "saleEnd": "2026-12-01T07:59:59Z"
+      }
     },
     "CO": {
       "price": 143920,
@@ -668495,7 +669287,16 @@
     "AR": {
       "price": 34999.3,
       "currency": "ARS",
-      "date": "2026-11-17"
+      "date": "2026-11-17",
+      "currentSale": {
+        "price": 34999.3,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 34999.3,
+        "saleStart": "2026-11-16T17:00:00Z",
+        "saleEnd": "2026-12-01T07:59:59Z"
+      }
     },
     "PE": {
       "price": 134.4,
@@ -910799,22 +911600,58 @@
     "US": {
       "price": 7.2,
       "currency": "USD",
-      "date": "2026-11-17"
+      "date": "2026-11-17",
+      "currentSale": {
+        "price": 7.2,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 7.2,
+        "saleStart": "2026-11-17T08:00:00Z",
+        "saleEnd": "2026-12-09T07:59:59Z"
+      }
     },
     "MX": {
       "price": 72,
       "currency": "MXN",
-      "date": "2026-11-17"
+      "date": "2026-11-17",
+      "currentSale": {
+        "price": 72,
+        "currency": "MXN",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 72,
+        "saleStart": "2026-11-17T08:00:00Z",
+        "saleEnd": "2026-12-09T07:59:59Z"
+      }
     },
     "BR": {
       "price": 38.4,
       "currency": "BRL",
-      "date": "2026-11-17"
+      "date": "2026-11-17",
+      "currentSale": {
+        "price": 38.4,
+        "currency": "BRL",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 38.4,
+        "saleStart": "2026-11-17T08:00:00Z",
+        "saleEnd": "2026-12-09T07:59:59Z"
+      }
     },
     "CA": {
       "price": 8.16,
       "currency": "CAD",
-      "date": "2026-11-17"
+      "date": "2026-11-17",
+      "currentSale": {
+        "price": 8.16,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 8.16,
+        "saleStart": "2026-11-17T08:00:00Z",
+        "saleEnd": "2026-12-09T07:59:59Z"
+      }
     },
     "CO": {
       "price": 28438,
@@ -910824,7 +911661,16 @@
     "AR": {
       "price": 6720,
       "currency": "ARS",
-      "date": "2026-11-17"
+      "date": "2026-11-17",
+      "currentSale": {
+        "price": 6720,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 6720,
+        "saleStart": "2026-11-17T08:00:00Z",
+        "saleEnd": "2026-12-09T07:59:59Z"
+      }
     },
     "PE": {
       "price": 26.49,
@@ -936235,16 +937081,7 @@
     "JP": {
       "price": 1740,
       "currency": "JPY",
-      "date": "2026-11-16",
-      "currentSale": {
-        "price": 1740,
-        "currency": "JPY",
-        "status": "matches_low",
-        "statusRule": "global_php_v5",
-        "historicPrice": 1740,
-        "saleStart": "2026-11-16T15:00:00Z",
-        "saleEnd": "2026-11-30T14:59:59Z"
-      }
+      "date": "2026-11-16"
     },
     "ZA": {
       "price": 270,
@@ -981127,22 +981964,58 @@
     "US": {
       "price": 13.49,
       "currency": "USD",
-      "date": "2026-07-23"
+      "date": "2026-07-23",
+      "currentSale": {
+        "price": 13.49,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 13.49,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "MX": {
       "price": 263.43,
       "currency": "MXN",
-      "date": "2026-07-23"
+      "date": "2026-07-23",
+      "currentSale": {
+        "price": 263.43,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 263.43,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "BR": {
       "price": 68.82,
       "currency": "BRL",
-      "date": "2026-07-23"
+      "date": "2026-07-23",
+      "currentSale": {
+        "price": 68.82,
+        "currency": "BRL",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 68.82,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "CA": {
       "price": 17.1,
       "currency": "CAD",
-      "date": "2026-07-23"
+      "date": "2026-07-23",
+      "currentSale": {
+        "price": 17.1,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 17.1,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     }
   },
   "grip-digital-deluxe-switch": {
@@ -1018174,16 +1019047,7 @@
     "JP": {
       "price": 2980,
       "currency": "JPY",
-      "date": "2026-07-28",
-      "currentSale": {
-        "price": 2980,
-        "currency": "JPY",
-        "status": "not_low",
-        "statusRule": "global_php_v5",
-        "historicPrice": 2980,
-        "saleStart": "2026-11-17T15:00:00Z",
-        "saleEnd": "2026-12-13T14:59:59Z"
-      }
+      "date": "2026-07-28"
     },
     "TH": {
       "price": 688,
@@ -1018203,30 +1019067,12 @@
     "HK": {
       "price": 148,
       "currency": "HKD",
-      "date": "2026-09-22",
-      "currentSale": {
-        "price": 148,
-        "currency": "HKD",
-        "status": "not_low",
-        "statusRule": "global_php_v5",
-        "historicPrice": 148,
-        "saleStart": "2026-11-17T16:00:00Z",
-        "saleEnd": "2026-12-13T15:59:59Z"
-      }
+      "date": "2026-09-22"
     },
     "PH": {
       "price": 1080,
       "currency": "PHP",
-      "date": "2026-11-17",
-      "currentSale": {
-        "price": 1080,
-        "currency": "PHP",
-        "status": "not_low",
-        "statusRule": "global_php_v5",
-        "historicPrice": 1080,
-        "saleStart": "2026-11-17T16:00:00Z",
-        "saleEnd": "2026-12-13T15:59:59Z"
-      }
+      "date": "2026-11-17"
     }
   },
   "little-nightmares-iii-switch-2": {
@@ -1018293,16 +1019139,7 @@
     "JP": {
       "price": 2980,
       "currency": "JPY",
-      "date": "2026-07-28",
-      "currentSale": {
-        "price": 2980,
-        "currency": "JPY",
-        "status": "not_low",
-        "statusRule": "global_php_v5",
-        "historicPrice": 2980,
-        "saleStart": "2026-11-17T15:00:00Z",
-        "saleEnd": "2026-12-13T14:59:59Z"
-      }
+      "date": "2026-07-28"
     },
     "TH": {
       "price": 688,
@@ -1018322,30 +1019159,12 @@
     "HK": {
       "price": 148,
       "currency": "HKD",
-      "date": "2026-09-22",
-      "currentSale": {
-        "price": 148,
-        "currency": "HKD",
-        "status": "not_low",
-        "statusRule": "global_php_v5",
-        "historicPrice": 148,
-        "saleStart": "2026-11-17T16:00:00Z",
-        "saleEnd": "2026-12-13T15:59:59Z"
-      }
+      "date": "2026-09-22"
     },
     "PH": {
       "price": 1080,
       "currency": "PHP",
-      "date": "2026-11-17",
-      "currentSale": {
-        "price": 1080,
-        "currency": "PHP",
-        "status": "not_low",
-        "statusRule": "global_php_v5",
-        "historicPrice": 1080,
-        "saleStart": "2026-11-17T16:00:00Z",
-        "saleEnd": "2026-12-13T15:59:59Z"
-      }
+      "date": "2026-11-17"
     }
   },
   "monster-hunter-stories-switch": {
@@ -1082668,36 +1083487,63 @@
     "JP": {
       "price": 840,
       "currency": "JPY",
-      "date": "2026-11-18",
-      "currentSale": {
-        "price": 840,
-        "currency": "JPY",
-        "status": "not_low",
-        "statusRule": "global_php_v5",
-        "historicPrice": 840,
-        "saleStart": "2026-11-18T15:00:00Z",
-        "saleEnd": "2026-12-02T14:59:59Z"
-      }
+      "date": "2026-11-18"
     },
     "US": {
       "price": 6.99,
       "currency": "USD",
-      "date": "2026-11-19"
+      "date": "2026-11-19",
+      "currentSale": {
+        "price": 6.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 6.99,
+        "saleStart": "2026-11-19T17:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "MX": {
       "price": 86.79,
       "currency": "MXN",
-      "date": "2026-11-19"
+      "date": "2026-11-19",
+      "currentSale": {
+        "price": 86.79,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 86.79,
+        "saleStart": "2026-11-19T17:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "BR": {
       "price": 13.99,
       "currency": "BRL",
-      "date": "2026-11-19"
+      "date": "2026-11-19",
+      "currentSale": {
+        "price": 13.99,
+        "currency": "BRL",
+        "status": "matches_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 13.99,
+        "saleStart": "2026-11-19T17:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "CA": {
       "price": 9.09,
       "currency": "CAD",
-      "date": "2026-11-19"
+      "date": "2026-11-19",
+      "currentSale": {
+        "price": 9.09,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 9.09,
+        "saleStart": "2026-11-19T17:00:00Z",
+        "saleEnd": "2026-12-03T07:59:59Z"
+      }
     },
     "CO": {
       "price": 20800,
@@ -1251467,24 +1252313,60 @@
   },
   "spongebob-krusty-cook-off-kelp-city-bundle-switch": {
     "US": {
-      "price": 6.59,
+      "price": 4.99,
       "currency": "USD",
-      "date": "2026-08-25"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 4.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 6.59,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-07T07:59:59Z"
+      }
     },
     "MX": {
-      "price": 114.01,
+      "price": 86.37,
       "currency": "MXN",
-      "date": "2026-08-25"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 86.37,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 114.01,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-07T07:59:59Z"
+      }
     },
     "BR": {
-      "price": 32.96,
+      "price": 24.97,
       "currency": "BRL",
-      "date": "2026-08-25"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 24.97,
+        "currency": "BRL",
+        "status": "new_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 32.96,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-07T07:59:59Z"
+      }
     },
     "CA": {
-      "price": 9.07,
+      "price": 6.87,
       "currency": "CAD",
-      "date": "2026-08-25"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 6.87,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 9.07,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-07T07:59:59Z"
+      }
     }
   },
   "cozy-tiny-home-capibara-collection-switch": {
@@ -1361042,24 +1361924,60 @@
   },
   "nicktoons-and-the-dice-of-destiny-deluxe-edition-switch-2": {
     "US": {
-      "price": 29.99,
+      "price": 17.99,
       "currency": "USD",
-      "date": "2026-09-25"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 17.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 29.99,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "MX": {
-      "price": 563,
+      "price": 337.8,
       "currency": "MXN",
-      "date": "2026-09-25"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 337.8,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 563,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "BR": {
-      "price": 162.5,
+      "price": 97.5,
       "currency": "BRL",
-      "date": "2026-09-25"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 97.5,
+        "currency": "BRL",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 162.5,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "CA": {
-      "price": 34.99,
+      "price": 20.99,
       "currency": "CAD",
-      "date": "2026-09-25"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 20.99,
+        "currency": "CAD",
+        "status": "new_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 34.99,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "CO": {
       "price": 120509,
@@ -1361067,9 +1361985,18 @@
       "date": "2026-09-25"
     },
     "AR": {
-      "price": 32500,
+      "price": 19500,
       "currency": "ARS",
-      "date": "2026-09-25"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 19500,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 32500,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "PE": {
       "price": 106.5,
@@ -1361079,24 +1362006,60 @@
   },
   "nicktoons-and-the-dice-of-destiny-deluxe-edition-switch": {
     "US": {
-      "price": 29.99,
+      "price": 17.99,
       "currency": "USD",
-      "date": "2026-09-25"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 17.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 29.99,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "MX": {
-      "price": 563,
+      "price": 337.8,
       "currency": "MXN",
-      "date": "2026-09-25"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 337.8,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 563,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "BR": {
-      "price": 162.5,
+      "price": 97.5,
       "currency": "BRL",
-      "date": "2026-09-25"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 97.5,
+        "currency": "BRL",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 162.5,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "CA": {
-      "price": 34.99,
+      "price": 20.99,
       "currency": "CAD",
-      "date": "2026-09-25"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 20.99,
+        "currency": "CAD",
+        "status": "new_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 34.99,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "CO": {
       "price": 120509,
@@ -1361104,9 +1362067,18 @@
       "date": "2026-09-25"
     },
     "AR": {
-      "price": 32500,
+      "price": 19500,
       "currency": "ARS",
-      "date": "2026-09-25"
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 19500,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": 32500,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
     },
     "PE": {
       "price": 106.5,
@@ -1501326,6 +1502298,76 @@
         "saleStart": "2026-11-25T16:00:00Z",
         "saleEnd": "2026-11-30T15:59:59Z"
       }
+    },
+    "US": {
+      "price": 14.99,
+      "currency": "USD",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 14.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T23:00:00Z",
+        "saleEnd": "2026-12-01T07:59:59Z"
+      }
+    },
+    "MX": {
+      "price": 261.75,
+      "currency": "MXN",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 261.75,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T23:00:00Z",
+        "saleEnd": "2026-12-01T07:59:59Z"
+      }
+    },
+    "BR": {
+      "price": 67.42,
+      "currency": "BRL",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 67.42,
+        "currency": "BRL",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T23:00:00Z",
+        "saleEnd": "2026-12-01T07:59:59Z"
+      }
+    },
+    "CA": {
+      "price": 22.49,
+      "currency": "CAD",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 22.49,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T23:00:00Z",
+        "saleEnd": "2026-12-01T07:59:59Z"
+      }
+    },
+    "AR": {
+      "price": 18749.25,
+      "currency": "ARS",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 18749.25,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T23:00:00Z",
+        "saleEnd": "2026-12-01T07:59:59Z"
+      }
     }
   },
   "freuds-bones-the-game-switch": {
@@ -1501538,7 +1502580,7 @@
       "currentSale": {
         "price": 140,
         "currency": "PLN",
-        "status": "unknown",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": null,
         "saleStart": "2026-11-25T14:00:00Z",
@@ -1501557,6 +1502599,62 @@
         "historicPrice": null,
         "saleStart": "2026-11-25T14:00:00Z",
         "saleEnd": "2026-12-14T22:59:59Z"
+      }
+    },
+    "US": {
+      "price": 34.99,
+      "currency": "USD",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 34.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
+    },
+    "MX": {
+      "price": 699.97,
+      "currency": "MXN",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 699.97,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
+    },
+    "BR": {
+      "price": 180.82,
+      "currency": "BRL",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 180.82,
+        "currency": "BRL",
+        "status": "unknown",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
+    },
+    "CA": {
+      "price": 45.49,
+      "currency": "CAD",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 45.49,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
       }
     }
   },
@@ -1501704,11 +1502802,81 @@
       "currentSale": {
         "price": 327,
         "currency": "PHP",
-        "status": "unknown",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": null,
         "saleStart": "2026-11-25T16:00:00Z",
         "saleEnd": "2026-12-06T15:59:59Z"
+      }
+    },
+    "US": {
+      "price": 9.95,
+      "currency": "USD",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 9.95,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-07T07:59:59Z"
+      }
+    },
+    "MX": {
+      "price": 121.17,
+      "currency": "MXN",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 121.17,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-07T07:59:59Z"
+      }
+    },
+    "BR": {
+      "price": 28.62,
+      "currency": "BRL",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 28.62,
+        "currency": "BRL",
+        "status": "unknown",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-07T07:59:59Z"
+      }
+    },
+    "CA": {
+      "price": 12.85,
+      "currency": "CAD",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 12.85,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-07T07:59:59Z"
+      }
+    },
+    "AR": {
+      "price": 9130,
+      "currency": "ARS",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 9130,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-07T07:59:59Z"
       }
     }
   },
@@ -1501734,11 +1502902,81 @@
       "currentSale": {
         "price": 327,
         "currency": "PHP",
-        "status": "unknown",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": null,
         "saleStart": "2026-11-25T16:00:00Z",
         "saleEnd": "2026-12-06T15:59:59Z"
+      }
+    },
+    "US": {
+      "price": 9.95,
+      "currency": "USD",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 9.95,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-07T07:59:59Z"
+      }
+    },
+    "MX": {
+      "price": 121.17,
+      "currency": "MXN",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 121.17,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-07T07:59:59Z"
+      }
+    },
+    "BR": {
+      "price": 28.62,
+      "currency": "BRL",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 28.62,
+        "currency": "BRL",
+        "status": "unknown",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-07T07:59:59Z"
+      }
+    },
+    "CA": {
+      "price": 12.85,
+      "currency": "CAD",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 12.85,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-07T07:59:59Z"
+      }
+    },
+    "AR": {
+      "price": 9130,
+      "currency": "ARS",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 9130,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-07T07:59:59Z"
       }
     }
   },
@@ -1501824,11 +1503062,81 @@
       "currentSale": {
         "price": 487,
         "currency": "PHP",
-        "status": "unknown",
+        "status": "not_low",
         "statusRule": "global_php_v5",
         "historicPrice": null,
         "saleStart": "2026-11-25T16:00:00Z",
         "saleEnd": "2026-11-29T15:59:59Z"
+      }
+    },
+    "US": {
+      "price": 12.99,
+      "currency": "USD",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 12.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-09T07:59:59Z"
+      }
+    },
+    "MX": {
+      "price": 148.19,
+      "currency": "MXN",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 148.19,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-09T07:59:59Z"
+      }
+    },
+    "BR": {
+      "price": 29.24,
+      "currency": "BRL",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 29.24,
+        "currency": "BRL",
+        "status": "unknown",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-09T07:59:59Z"
+      }
+    },
+    "CA": {
+      "price": 16.89,
+      "currency": "CAD",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 16.89,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-09T07:59:59Z"
+      }
+    },
+    "AR": {
+      "price": 10335,
+      "currency": "ARS",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 10335,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-09T07:59:59Z"
       }
     }
   },
@@ -1502207,6 +1503515,150 @@
         "historicPrice": null,
         "saleStart": "2026-11-25T16:00:00Z",
         "saleEnd": "2026-12-10T15:59:59Z"
+      }
+    }
+  },
+  "the-god-who-never-forgot-a-bl-adventure-of-curses-and-obsession-switch": {
+    "US": {
+      "price": 4.89,
+      "currency": "USD",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 4.89,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-09T07:59:59Z"
+      }
+    },
+    "MX": {
+      "price": 90.3,
+      "currency": "MXN",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 90.3,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-09T07:59:59Z"
+      }
+    },
+    "BR": {
+      "price": 26.59,
+      "currency": "BRL",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 26.59,
+        "currency": "BRL",
+        "status": "unknown",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-09T07:59:59Z"
+      }
+    },
+    "CA": {
+      "price": 6.5,
+      "currency": "CAD",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 6.5,
+        "currency": "CAD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-09T07:59:59Z"
+      }
+    },
+    "AR": {
+      "price": 6999.3,
+      "currency": "ARS",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 6999.3,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-09T07:59:59Z"
+      }
+    }
+  },
+  "hot-wheels-lets-race-ultimate-speed-deluxe-edition-switch": {
+    "US": {
+      "price": 19.99,
+      "currency": "USD",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 19.99,
+        "currency": "USD",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
+    },
+    "MX": {
+      "price": 405.6,
+      "currency": "MXN",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 405.6,
+        "currency": "MXN",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
+    },
+    "BR": {
+      "price": 118.4,
+      "currency": "BRL",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 118.4,
+        "currency": "BRL",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
+    },
+    "CA": {
+      "price": 23.99,
+      "currency": "CAD",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 23.99,
+        "currency": "CAD",
+        "status": "unknown",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
+      }
+    },
+    "AR": {
+      "price": 21200,
+      "currency": "ARS",
+      "date": "2026-11-26",
+      "currentSale": {
+        "price": 21200,
+        "currency": "ARS",
+        "status": "not_low",
+        "statusRule": "global_php_v5",
+        "historicPrice": null,
+        "saleStart": "2026-11-25T17:00:00Z",
+        "saleEnd": "2026-12-15T07:59:59Z"
       }
     }
   }
