@@ -82847,10 +82847,10 @@
     "nsuid_us": "70050000053561",
     "nsuid_eu": "70050000053731",
     "nsuid_jp": "70010000011359",
-    "nsuid_hk": "70070000015110",
+    "nsuid_hk": "70070000020131",
     "productCode_us": "HACMBELHA",
     "productCode_jp": "HACPAQTH",
-    "productCode_hk": "HACYA3FED000001",
+    "productCode_hk": "HACYBCRGM000001",
     "supportLanguage_hk": "en",
     "active_in_base": true,
     "first_seen_at": "2025-08-30T13:17:35.537Z",
@@ -317473,13 +317473,10 @@
     "imageSquare_as": "https://img-eshop.cdn.nintendo.net/i/801a55c437da0c0a1ea00a96e563425b9b105ec1eea7df8be8e2e1037f3d7275.jpg",
     "imageSquare_ph": "https://img-eshop.cdn.nintendo.net/i/801a55c437da0c0a1ea00a96e563425b9b105ec1eea7df8be8e2e1037f3d7275.jpg",
     "imageKey": "store/software/switch/70070000034530/801a55c437da0c0a1ea00a96e563425b9b105ec1eea7df8be8e2e1037f3d7275",
-    "nsuid_us": "70070000034530",
-    "nsuid_as": "70070000035018",
-    "nsuid_ph": "70070000035018",
     "productCode_us": "HACYBRPQA",
     "productCode_as": "HACPBRPQA",
     "productCode_ph": "HACPBRPQA",
-    "active_in_base": true,
+    "active_in_base": false,
     "first_seen_at": "2026-03-19T19:45:45.233Z",
     "last_seen_at": "2026-11-03T22:17:43.856Z",
     "last_checked_at": "2026-03-19T19:45:58.707Z"
@@ -760090,10 +760087,12 @@
     "dlcType": "ROM Bundle",
     "playerCount": "Single player",
     "imageKey": "ncom/software/switch/70070000019208/e61c695432d7bde25c1d0eea5653c8f0e0af373cbab96163a3034a04dd7aa648",
+    "nsuid_us": "70070000019208",
+    "nsuid_hk": "70070000020131",
     "productCode_us": "HACYBCRGB",
     "productCode_hk": "HACYBCRGM000001",
     "supportLanguage_hk": "en",
-    "active_in_base": false,
+    "active_in_base": true,
     "first_seen_at": "2025-08-30T13:17:35.537Z",
     "last_seen_at": "2025-08-30T13:17:35.537Z"
   },
@@ -832392,9 +832391,13 @@
     "dlcType": "GAME",
     "playerCount": 2,
     "imageSquare": "https://assets.nintendo.eu/image/private/f_auto,q_auto,w_500/off3pngbgaic5njsy8lj",
+    "imageSquare_jp": "https://store-jp.nintendo.com/dw/image/v2/BFGJ_PRD/on/demandware.static/-/Sites-all-master-catalog/ja_JP/dwb0032bb6/products/D70010000132143/squareHeroBanner/362470dad5931d95e0614c5dceb620489291c8034a8f6a19b1dc83fb23067634.jpg?sw=346&strip=false",
     "imageKey": "",
     "nsuid_eu": "70010000131452",
+    "nsuid_jp": "70010000132143",
     "productCode_eu": "",
+    "productCode_jp": "HACPBW43",
+    "supportLanguage_jp": "en",
     "active_in_base": true,
     "first_seen_at": "2026-09-02T07:18:13.306Z",
     "last_seen_at": "2026-11-27T00:08:16.487Z",
@@ -875017,8 +875020,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-11-16T05:29:20.853Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z",
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z",
     "ph_on_sale": true,
     "sale_flg": "1"
   },
@@ -875044,8 +875047,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-11-16T05:29:20.853Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z",
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z",
     "ph_on_sale": true,
     "sale_flg": "1"
   },
@@ -875071,8 +875074,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-11-16T05:29:20.853Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z",
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z",
     "ph_on_sale": true,
     "sale_flg": "1"
   },
@@ -875092,8 +875095,8 @@
     "productCode_ph": "BEEPAA2UA",
     "active_in_base": true,
     "first_seen_at": "2026-11-16T05:29:20.853Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z",
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z",
     "ph_on_sale": true,
     "sale_flg": "1"
   },
@@ -875113,8 +875116,8 @@
     "productCode_ph": "HACPBWGMA",
     "active_in_base": true,
     "first_seen_at": "2026-11-16T05:29:20.853Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z",
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z",
     "ph_on_sale": true,
     "sale_flg": "1"
   },
@@ -875139,8 +875142,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-11-16T05:29:20.853Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z",
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z",
     "ph_on_sale": true,
     "sale_flg": "1"
   },
@@ -875165,8 +875168,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-11-16T05:29:20.853Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z",
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z",
     "ph_on_sale": true,
     "sale_flg": "1"
   },
@@ -875190,8 +875193,8 @@
     "supportLanguage_jp": "en",
     "active_in_base": true,
     "first_seen_at": "2026-11-16T05:29:20.853Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z",
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z",
     "ph_on_sale": true,
     "sale_flg": "1"
   },
@@ -875211,8 +875214,8 @@
     "productCode_ph": "BEEPABNWA",
     "active_in_base": true,
     "first_seen_at": "2026-11-16T05:29:20.853Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z",
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z",
     "ph_on_sale": true,
     "sale_flg": "1"
   },
@@ -875236,8 +875239,8 @@
     "supportLanguage_jp": "en",
     "active_in_base": true,
     "first_seen_at": "2026-11-16T05:29:20.853Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z",
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z",
     "ph_on_sale": true,
     "sale_flg": "1"
   },
@@ -875257,8 +875260,8 @@
     "productCode_ph": "HACPBTJSA",
     "active_in_base": true,
     "first_seen_at": "2026-11-16T05:29:20.853Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z",
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z",
     "ph_on_sale": true,
     "sale_flg": "1"
   },
@@ -875282,8 +875285,8 @@
     "active_in_base": true,
     "supportLanguage": "en",
     "first_seen_at": "2026-11-16T05:29:20.853Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z",
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z",
     "ph_on_sale": true,
     "sale_flg": "1"
   },
@@ -875310,8 +875313,8 @@
     "sale_flg": "1",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-18T22:35:57.628Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z"
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z"
   },
   {
     "title": "StarVaders",
@@ -875336,8 +875339,8 @@
     "sale_flg": "1",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-18T22:35:57.628Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z"
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z"
   },
   {
     "title": "StarVaders - Supporter Pack",
@@ -875357,8 +875360,8 @@
     "sale_flg": "1",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-18T22:35:57.628Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z"
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z"
   },
   {
     "title": "StarVaders - Digital Deluxe Edition",
@@ -875378,8 +875381,8 @@
     "sale_flg": "1",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-18T22:35:57.628Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z"
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z"
   },
   {
     "title": "GT Racing Pro",
@@ -875403,8 +875406,8 @@
     "supportLanguage": "en",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-18T22:35:57.628Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z",
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z",
     "sale_flg": "1"
   },
   {
@@ -875429,8 +875432,8 @@
     "supportLanguage": "en",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-18T22:35:57.628Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z",
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z",
     "sale_flg": "1"
   },
   {
@@ -875455,8 +875458,8 @@
     "supportLanguage": "en",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-18T22:35:57.628Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z",
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z",
     "sale_flg": "1"
   },
   {
@@ -875477,8 +875480,8 @@
     "sale_flg": "1",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-18T22:35:57.628Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z"
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z"
   },
   {
     "title": "Dragon Spira - Nintendo Switch 2 Edition",
@@ -875499,8 +875502,8 @@
     "sale_flg": "1",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-26T03:10:04.664Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z"
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z"
   },
   {
     "title": "Ooe",
@@ -875525,8 +875528,8 @@
     "sale_flg": "1",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-26T03:10:04.664Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z"
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z"
   },
   {
     "title": "Royal Secret Love: A Crown Between Us Girls",
@@ -875551,8 +875554,8 @@
     "sale_flg": "1",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-26T03:10:04.664Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z"
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z"
   },
   {
     "title": "Royal Secret Love: A Crown Between Us Boys",
@@ -875577,8 +875580,8 @@
     "sale_flg": "1",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-26T03:10:04.664Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z"
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z"
   },
   {
     "title": "Sexy Christmas: Santa Girls",
@@ -875587,20 +875590,24 @@
     "genres": [],
     "releaseDate": "2026-11-26 01:00:00",
     "imageSquare": "https://img-eshop.cdn.nintendo.net/i/e97863189cc4388ddf9103b9f8a979bcc656c7d9b53b1921811e62408b60f22b.jpg",
+    "imageSquare_jp": "https://store-jp.nintendo.com/dw/image/v2/BFGJ_PRD/on/demandware.static/-/Sites-all-master-catalog/ja_JP/dwb58ca94f/products/D70010000137576/squareHeroBanner/770405d4f0a8896ed4dfdcf99ffa99a8c388b50954e2949a23a53e36610eed4a.jpg?sw=346&strip=false",
     "imageSquare_as": "https://img-eshop.cdn.nintendo.net/i/e97863189cc4388ddf9103b9f8a979bcc656c7d9b53b1921811e62408b60f22b.jpg",
     "imageSquare_ph": "https://img-eshop.cdn.nintendo.net/i/e97863189cc4388ddf9103b9f8a979bcc656c7d9b53b1921811e62408b60f22b.jpg",
     "imageKey": "e97863189cc4388ddf9103b9f8a979bcc656c7d9b53b1921811e62408b60f22b",
+    "nsuid_jp": "70010000137576",
     "nsuid_as": "70010000137579",
     "nsuid_ph": "70010000137579",
+    "productCode_jp": "HACPBX8P",
     "productCode_as": "HACPBX8PA",
     "productCode_ph": "HACPBX8PA",
+    "supportLanguage_jp": "en",
     "active_in_base": true,
     "supportLanguage": "en",
     "sale_flg": "1",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-26T03:10:04.664Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z"
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z"
   },
   {
     "title": "Sexy Christmas: Santa Boys",
@@ -875609,20 +875616,24 @@
     "genres": [],
     "releaseDate": "2026-11-26 01:00:00",
     "imageSquare": "https://img-eshop.cdn.nintendo.net/i/59b8ad135372a512398d9f4535a75d16989b6e820bca06d0850f3ae56b5a5052.jpg",
+    "imageSquare_jp": "https://store-jp.nintendo.com/dw/image/v2/BFGJ_PRD/on/demandware.static/-/Sites-all-master-catalog/ja_JP/dwff45b57e/products/D70010000137582/squareHeroBanner/390642c6c28837a6049b8beaafa8c4ec4f6450414d504d90acca132c4854967b.jpg?sw=346&strip=false",
     "imageSquare_as": "https://img-eshop.cdn.nintendo.net/i/59b8ad135372a512398d9f4535a75d16989b6e820bca06d0850f3ae56b5a5052.jpg",
     "imageSquare_ph": "https://img-eshop.cdn.nintendo.net/i/59b8ad135372a512398d9f4535a75d16989b6e820bca06d0850f3ae56b5a5052.jpg",
     "imageKey": "59b8ad135372a512398d9f4535a75d16989b6e820bca06d0850f3ae56b5a5052",
+    "nsuid_jp": "70010000137582",
     "nsuid_as": "70010000137585",
     "nsuid_ph": "70010000137585",
+    "productCode_jp": "HACPBX8Q",
     "productCode_as": "HACPBX8QA",
     "productCode_ph": "HACPBX8QA",
+    "supportLanguage_jp": "en",
     "active_in_base": true,
     "supportLanguage": "en",
     "sale_flg": "1",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-26T03:10:04.664Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z"
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z"
   },
   {
     "title": "Pack it! Part-Time Master",
@@ -875647,8 +875658,8 @@
     "sale_flg": "1",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-26T03:10:04.664Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z"
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z"
   },
   {
     "title": "Origament - A Paper Adventure",
@@ -875673,8 +875684,8 @@
     "sale_flg": "1",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-26T03:10:04.664Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z"
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z"
   },
   {
     "title": "Catgirls: Midnight Paradise",
@@ -875699,8 +875710,8 @@
     "sale_flg": "1",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-26T03:10:04.664Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z"
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z"
   },
   {
     "title": "Yummy Girl: Mint Whisper",
@@ -875725,8 +875736,8 @@
     "sale_flg": "1",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-26T03:10:04.664Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z"
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z"
   },
   {
     "title": "BODYCAMERA: Drone Edition",
@@ -875751,8 +875762,8 @@
     "sale_flg": "1",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-26T03:10:04.664Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z"
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z"
   },
   {
     "title": "Moon Cleaner",
@@ -875777,7 +875788,7 @@
     "sale_flg": "1",
     "ph_on_sale": true,
     "first_seen_at": "2026-11-26T03:10:04.664Z",
-    "last_seen_at": "2026-11-26T15:10:13.732Z",
-    "last_checked_at": "2026-11-26T15:10:13.732Z"
+    "last_seen_at": "2026-11-27T03:10:11.411Z",
+    "last_checked_at": "2026-11-27T03:10:11.411Z"
   }
 ]
